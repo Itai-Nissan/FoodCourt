@@ -14,7 +14,7 @@ async function getFood() {
         const options = {
             method: 'GET',
             url: 'https://tasty.p.rapidapi.com/recipes/list',
-            params: { from: '0', size: '20', tags: 'under_30_minutes' },
+            params: { from: '0', size: '20'},
             headers: {
                 'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
@@ -30,6 +30,24 @@ async function getFood() {
     }
     // console.log('Food service:', foodList)
     return foodList
+}
+
+function getById(id){
+    const options = {
+        method: 'GET',
+        url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
+        params: {id: '5546'},
+        headers: {
+          'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
+          'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+        }
+      };
+      
+      axios.request(options).then(function (response) {
+          console.log(response.data);
+      }).catch(function (error) {
+          console.error(error);
+      })
 }
 
 function _save(entityType, entities) {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Component } from 'react'
+import FoodList from '../cmps/FoodList'
 
 import { foodService } from '../services/food.service'
 
@@ -29,14 +30,9 @@ export class HomePage extends Component {
         if (foodList === null) return <div>Loading...</div>
         else {
             return (
-                <div className='home-page container'>
+                <div className='home-page'>
                     <h1>HomePage</h1>
-                    {foodList.map((rec, index) => (
-                        <div key={index}>
-                            <p>{rec.name}</p>
-                            <img src={rec.thumbnail_url} alt=""/>
-                        </div>
-                    ))}
+                    <FoodList foodList={foodList}/>
                 </div>
             )
         }
