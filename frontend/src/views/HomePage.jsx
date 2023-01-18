@@ -1,41 +1,61 @@
 import React, { useState, useEffect, Component } from 'react'
-import FoodList from '../cmps/FoodList'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { loadFoodList, setFilterBy } from '../store/actions/foodActions'
 import { foodService } from '../services/food.service'
+import FoodList from '../cmps/FoodList'
+import { Filter } from '../cmps/Filter'
 
+class _HomePage extends Component {
 
-export class HomePage extends Component {
-
-    state = {
-        foodList: null,
+    async componentDidMount() {
+        this.props.loadFoodList()
     }
 
-    componentDidMount() {
-        this.loadFoodList()
+    onRemoveFood = async (foodId) => {
+        // await foodService.remove(foodId)
+        // this.loadFoods()
+        // await this.props.removeFood(foodId)
     }
 
-    async loadFoodList() {
-        try {
-            let foodList = await foodService.getFood()
-            this.setState({ foodList })
-            console.log(foodList)
-        } catch (err) {
-            console.log('err:', err)
-        }
+    onChangeFilter = (filterBy) => {
+        // this.setState({ filterBy }, this.loadFoods)
+        console.log('filterBy');
+        this.props.setFilterBy(filterBy)
+        this.props.loadFoodList()
     }
-
 
     render() {
-        const { foodList } = this.state
-        if (foodList === null) return <div>Loading...</div>
-        else {
-            return (
-                <div className='home-page'>
-                    <h1>HomePage</h1>
-                    <FoodList foodList={foodList}/>
-                </div>
-            )
-        }
+        const { foods } = this.props
+        if (!foods) return <div>Loading...</div>
+
+        return (
+            <div className='food-app'>
+                <Filter onChangeFilter={this.onChangeFilter}></Filter>
+                {/* <button onClick={this.onChangeFilter}>Filterit</button> */}
+                {/* <FoodFilter onChangeFilter={this.onChangeFilter} /> */}
+                {/* <Link to="/food/edit">Add Food</Link> */}
+                <FoodList history={this.props.history} onRemoveFood={this.onRemoveFood} foodList={foods} />
+            </div>
+        )
     }
 }
+
+
+const mapStateToProps = state => {
+
+    return {
+        foods: state.foodModule.foods
+    }
+}
+
+const mapDispatchToProps = {
+    loadFoodList,
+    // removeFood,
+    setFilterBy,
+}
+
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(_HomePage)
 

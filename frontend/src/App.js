@@ -2,11 +2,13 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 import { foodService } from './services/food.service'
 
 import './assets/scss/global.scss'
+
 import { AppHeader } from './cmps/AppHeader'
 import { HomePage } from './views/HomePage'
 import { AboutPage } from './views/AboutPage'
 
 function App() {
+  // console.clear()
 
   return (
     <Router >
