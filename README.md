@@ -16,5 +16,5 @@ The app was build using [React 16](https://www.npmjs.com/package/react/v/16.14.0
 
 ### Frontend
 
-cd frontend
+cd frontend.
 Make sure to first `npm install` then `npm start`.
