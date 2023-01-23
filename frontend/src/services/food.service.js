@@ -1,11 +1,12 @@
 import axios from "axios"
-const KEY = 'foodDB'
 
 export const foodService = {
-    getFood
+    getFood,
+    getById,
 }
 // getFood()
 async function getFood(filterBy) {
+    const KEY = 'foodDB'
     let foodList = localStorage.getItem(KEY) || {}
     if (foodList.length > 0) {
         foodList = JSON.parse(foodList)
@@ -32,7 +33,16 @@ async function getFood(filterBy) {
     return foodList
 }
 
-function getById(id) {
+async function getById(id) {
+    const KEY = 'foodByIdDb'
+    console.log('ById');
+    // let foodById = {}
+    let foodById = localStorage.getItem(KEY) || {}
+    if (foodById.length > 0) {
+    foodById = JSON.parse(foodById)
+    }
+    else {
+    console.log('Fectching byId from SERVER');
     const options = {
         method: 'GET',
         url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
@@ -43,11 +53,14 @@ function getById(id) {
         }
     };
 
-    axios.request(options).then(function (response) {
-        console.log(response.data);
+    await axios.request(options).then(function (response) {
+        foodById = response.data
+        _save(KEY, foodById)
     }).catch(function (error) {
         console.error(error);
     })
+    }
+    return foodById
 }
 
 function _save(entityType, entities) {

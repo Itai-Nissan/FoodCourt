@@ -5,6 +5,7 @@ import './assets/scss/global.scss'
 
 import { AppHeader } from './cmps/AppHeader'
 import { HomePage } from './views/HomePage'
+import { FoodDetails } from './views/FoodDetails'
 import { AboutPage } from './views/AboutPage'
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
         <main className='app-main container'>
           <Routes>
             <Route path='/' element={<HomePage />} />
+          </Routes>
+          <Routes>
+            <Route path='/foodDetails/:id' element={<FoodDetails />} />
           </Routes>
           <Routes>
             <Route path='/AboutPage' element={<AboutPage />} />

@@ -17,6 +17,20 @@ export function loadFoodList() {
     }
 }
 
+export function getFoodById(foodId) {
+    // console.log(foodId)
+
+    return async (dispatch) => {
+        try {
+            const foodById = await foodService.getById(foodId)
+            dispatch({ type: 'SET_FOOD_BY_ID', foodById })
+            return foodById
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
+
 export function removeFood(foodId) {
 
     return async (dispatch, getState) => {

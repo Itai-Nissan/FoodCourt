@@ -2,6 +2,7 @@ import { useDispatch as dispatch } from 'react-redux'
 
 const INITIAL_STATE = {
     foods: null,
+    foodById: 'foody',
     filterBy: '',
     test: 'Yes this is a test'
 }
@@ -9,6 +10,8 @@ const INITIAL_STATE = {
 
 // action = {type: SET_FOODS, foods: [...]}
 export function foodReducer(state = INITIAL_STATE, action) {
+    // console.log(action.foodById);
+
     switch (action.type) {
         case 'SET_FOOD':
             return {
@@ -37,10 +40,17 @@ export function foodReducer(state = INITIAL_STATE, action) {
         case 'SET_FILTER_BY':
             return {
                 ...state,
-                filterBy: action.filterBy 
+                filterBy: action.filterBy
+            }
+
+        case 'SET_FOOD_BY_ID':
+            return {
+                ...state,
+                foodById: action.foodById
             }
 
         default:
+
             return state;
     }
 

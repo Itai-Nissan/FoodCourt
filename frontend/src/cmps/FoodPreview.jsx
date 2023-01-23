@@ -11,7 +11,7 @@ export default function FoodPreview({ food }) {
                 <p>{food.name}</p>
             </div>
             <div className="card-img">
-                <Link to={'/AboutPage'}>
+                <Link to={`/foodDetails/${food.id}`} >
                     <img src={food.thumbnail_url} alt="" />
                 </Link>
             </div>
