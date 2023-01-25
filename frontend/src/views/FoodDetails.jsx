@@ -44,9 +44,25 @@ export const FoodDetails = (props) => {
     if (!foodById) return <div>Loading...</div>
     return (
         <div className='food-details'>
-            <section>
-                <h3>Food Is: {foodById.slug}</h3>
+            <img className='container' src={foodById.thumbnail_url} alt="" />
+            <section className='details-left'>
+                <h2>{foodById.name}</h2>
+                <div className="food-instructions">
+                    {foodById.instructions.map((step, index) => (
+                        <div key={index}>
+                            <h4>Step {index + 1}</h4>
+                            <p>{step.display_text}</p>
+                        </div>
+                    ))}
+                </div>
+                {/* <p>{foodById.instructions[0].display_text}</p> */}
+                {/* <img src={foodById.thumbnail_url} alt="" /> */}
             </section>
+            <section className='details-right'>
+                <video controls
+                    src={foodById.original_video_url}></video>
+            </section>
+
             {/* <button onClick={onBack}>Back</button> */}
             {/* <Link to='/food/r3' >Next Food</Link> */}
         </div>

@@ -43,3 +43,36 @@
     }
 
 }
+
+
+
+.food-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .details-left {
+        padding: 0.5em;
+
+        .food-instructions {
+            // width: 50%;
+        }
+    }
+
+    .details-right {
+        padding: 0.5em;
+
+        z-index: 180;
+
+        video{
+            width: 100%;
+            // height: 240px;
+        }
+    }
+
+    img {
+        // z-index: 1;
+        // width: 100%;
+        position: absolute;
+        opacity: 0.3;
+    }
+}
