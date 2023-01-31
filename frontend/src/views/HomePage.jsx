@@ -21,10 +21,10 @@ class _HomePage extends Component {
     }
 
     onChangeFilter = (filterBy) => {
-        // this.setState({ filterBy }, this.loadFoods)
         console.log('filterBy');
         this.props.setFilterBy(filterBy)
         this.props.loadFoodList()
+        this.props.setFilterBy('')
     }
 
     render() {

@@ -1,6 +1,11 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
 }
 
 .app {
@@ -13,23 +18,60 @@
     width: 1100px;
 }
 
-.food-list {
+.app-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(242, 242, 242);
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 190;
+
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+}
+
+.food-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .food-preview {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    // width: 95%;
     height: 250px;
-    border: 0.1px solid rgba(173, 216, 230, 0.521);
-    margin-inline-end: .5em;
-    margin-block-end: 1em;
+    outline: 0.1px solid rgba(173, 216, 230, 0.521);
+    margin-block-start: 1em;
+    // margin-block-end: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 
-    .card-header {
-        height: 40%;
+    .card-body {
+        display: grid;
+        grid-column: 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 50%;
         padding: 0.2em 0.5em 0.5em 0.5em;
+
+        .card-name {
+            margin-block-start: 0.2em;
+        }
+
+        .card-credits {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            img {
+                width: 20%;
+            }
+        }
     }
 
     .card-img {
@@ -50,8 +92,20 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 
+    .details-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0.3;
+        object-fit: fill;
+        z-index: 1;
+    }
+
     .details-left {
         padding: 0.5em;
+        z-index: 180;
+        width: 100%;
 
         .food-instructions {
             // width: 50%;
@@ -59,20 +113,28 @@
     }
 
     .details-right {
+        display: flex;
+        justify-content: center;
+        width: 100%;
         padding: 0.5em;
-
         z-index: 180;
 
-        video{
-            width: 100%;
-            // height: 240px;
+        video {
+            position: sticky;
+            top: 130px;
+            // width: 100%;
+            height: 25%;
         }
     }
+}
 
-    img {
-        // z-index: 1;
-        // width: 100%;
-        position: absolute;
-        opacity: 0.3;
-    }
+.food-filter {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    color: aliceblue;
+    background-color: rgb(32, 32, 32);
+    position: sticky;
+    top: 100px;
+    padding-inline-start: 1em;
 }

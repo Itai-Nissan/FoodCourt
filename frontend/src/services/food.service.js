@@ -4,13 +4,14 @@ export const foodService = {
     getFood,
     getById,
 }
-// getFood()
+
 async function getFood(filterBy) {
     const KEY = 'foodDB'
     let foodList = localStorage.getItem(KEY) || {}
     if (foodList.length > 0) {
         foodList = JSON.parse(foodList)
-    } else {
+    } 
+    if(filterBy) {
         console.log('Fetching from server')
         const options = {
             method: 'GET',
@@ -29,19 +30,14 @@ async function getFood(filterBy) {
             console.error(error)
         })
     }
-    console.log('Food service:', foodList)
     return foodList
 }
 
 async function getById(id) {
     const KEY = 'foodByIdDb'
     console.log('ById');
-    // let foodById = {}
-    let foodById = localStorage.getItem(KEY) || {}
-    if (foodById.length > 0) {
-    foodById = JSON.parse(foodById)
-    }
-    else {
+    let foodById = {}
+    if(id) {
     console.log('Fectching byId from SERVER');
     const options = {
         method: 'GET',
