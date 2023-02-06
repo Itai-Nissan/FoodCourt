@@ -2,10 +2,11 @@ import { foodService } from "../../services/food.service"
 
 
 export function loadFoodList() {
+    console.log('foodList');
 
     return async (dispatch, getState) => {
         try {
-            // console.log('loading food');
+            console.log('loading food');
             const { filterBy } = getState().foodModule
             // console.log(filterBy)
             const foods = await foodService.getFood(filterBy)
@@ -46,7 +47,6 @@ export function removeFood(foodId) {
 }
 
 export function setFilterBy(filterBy) {
-    console.log('filterThisBy:', filterBy);
 
     return (dispatch) => {
         dispatch({ type: 'SET_FILTER_BY', filterBy })

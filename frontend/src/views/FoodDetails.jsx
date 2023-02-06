@@ -12,9 +12,8 @@ export const FoodDetails = (props) => {
     // console.log(foody)
 
     const [foodById, setFood] = useState(null)
-    const params = useParams(
-
-    )
+    // const [foodVideo, setFoodVideo] = useState(null)
+    const params = useParams()
     // const navigate = useNavigate()
 
 
@@ -25,14 +24,9 @@ export const FoodDetails = (props) => {
 
     async function loadFood() {
         const foodId = params.id
-        // dispatch(getFoodById(foodId))
-
         const getFoodById = await foodService.getById(foodId)
-        console.log(getFoodById);
-        // console.log(JSON.parse(getFoodById))
-        // getFoodById = JSON.parse(getFoodById)
         setFood(getFoodById)
-        // console.log(food)
+        // setFoodVideo(foodById.original_video_url)
     }
 
     // const onBack = () => {
@@ -40,7 +34,7 @@ export const FoodDetails = (props) => {
     // }
 
 
-    // console.log('render');
+
     if (!foodById) return <div>Loading...</div>
     return (
         <div className='food-details'>
@@ -60,12 +54,12 @@ export const FoodDetails = (props) => {
                 </div>
             </section>
             <section className='details-right'>
-                <video controls autoPlay muted
-                    src={foodById.original_video_url}></video>
+                {foodById.original_video_url ? <video controls autoPlay muted
+                    src={foodById.original_video_url}></video> : null}
             </section>
 
             {/* <button onClick={onBack}>Back</button> */}
-            {/* <Link to='/food/r3' >Next Food</Link> */}
+            {/* <Link to='/food' >Next Food</Link> */}
         </div>
     )
 }

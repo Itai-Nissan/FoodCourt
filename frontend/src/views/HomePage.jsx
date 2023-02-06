@@ -12,6 +12,7 @@ class _HomePage extends Component {
 
     async componentDidMount() {
         this.props.loadFoodList()
+        window.scrollTo(0, 0)
     }
 
     onRemoveFood = async (foodId) => {
@@ -21,7 +22,6 @@ class _HomePage extends Component {
     }
 
     onChangeFilter = (filterBy) => {
-        console.log('filterBy');
         this.props.setFilterBy(filterBy)
         this.props.loadFoodList()
         this.props.setFilterBy('')

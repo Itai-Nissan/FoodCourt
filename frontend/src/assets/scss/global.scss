@@ -41,14 +41,19 @@ a {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+.food-preview:hover {
+    color: rgb(255, 94, 0);
+    transition: .3s ease;
+}
+
 .food-preview {
+    transition: 1s ease;
     display: flex;
     flex-direction: column;
-    // width: 95%;
     height: 250px;
-    outline: 0.1px solid rgba(173, 216, 230, 0.521);
+    outline: 0.1px solid rgba(192, 239, 255, 0.521);
+    border-radius: 7px;
     margin-block-start: 1em;
-    // margin-block-end: 1em;
     margin-left: 0.5em;
     margin-right: 0.5em;
 
@@ -128,13 +133,42 @@ a {
     }
 }
 
+
 .food-filter {
-    height: 30px;
+    height: 68px;
     display: flex;
-    align-items: center;
-    color: aliceblue;
-    background-color: rgb(32, 32, 32);
+    justify-content: center;
     position: sticky;
-    top: 100px;
-    padding-inline-start: 1em;
+    top: 116px;
+    z-index: 200;
+    margin-block-start: 1em;
+
+    .food-container {
+        display: flex;
+        width: 50%;
+        // justify-content: center;
+        background-color: aliceblue;
+        border-radius: 20px;
+        box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
+        -webkit-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
+        -moz-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
+    }
+
+    .MuiButtonBase-root {
+        background-color: rgb(132, 132, 255);
+        color: rgb(56, 56, 56);
+    }
+
+    .MuiButtonBase-root:hover {
+        background-color: blue;
+        color: white;
+    }
+
+    .MuiFormControl-root {
+        width: 90%;
+        margin-inline-start: 2em;
+    }
+
+    .MuiInputBase-input:hover {}
+
 }
