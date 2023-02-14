@@ -1,18 +1,9 @@
-import { Component, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-
-import { getFoodById } from '../store/actions/foodActions'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { foodService } from '../services/food.service'
 
 export const FoodDetails = (props) => {
-    // const dispatch = useDispatch()
-
-    // const foodById = useSelector(state => state.foodModule.foodById)
-    // console.log(foody)
-
     const [foodById, setFood] = useState(null)
-    // const [foodVideo, setFoodVideo] = useState(null)
     const params = useParams()
     // const navigate = useNavigate()
 

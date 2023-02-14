@@ -2,7 +2,6 @@ import React, { useState, useEffect, Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { useDispatch, useSelector } from 'react-redux'
 import { loadFoodList, setFilterBy } from '../store/actions/foodActions'
 import { foodService } from '../services/food.service'
 import FoodList from '../cmps/FoodList'

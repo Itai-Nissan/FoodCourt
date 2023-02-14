@@ -5,6 +5,7 @@ export default function FoodPreview({ food }) {
 
     const foodCredits = food.credits[0].name
     const foodCreditsImg = food.credits[0].image_url
+    
     return (
         <div className='food-preview'>
             <section className="card-img">
