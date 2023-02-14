@@ -28,8 +28,6 @@ export function Signup() {
         setuserEmail('')
     }
 
-    // const loggedUserName = loggedInUser.userName
-
     return (
         <div>
             <section className='login'>

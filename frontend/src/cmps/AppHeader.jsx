@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { setLoggedInUser } from '../store/actions/userActions'
-
-
+import { loadUser } from '../store/actions/userActions'
 
 export function AppHeader() {
   const dispatch = useDispatch()
+
+
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
 
+  useEffect(() =>{
+      dispatch(loadUser())
+  },[])
+
   function loggedUserName() {
-    console.log(loggedInUser)
     if (loggedInUser.userName)
       return <Link to={`/UserProfile/${loggedInUser.id}`}>{loggedInUser.userName}</Link>
     else
