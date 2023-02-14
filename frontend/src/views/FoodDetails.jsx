@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { foodService } from '../services/food.service'
+import { Button } from '@mui/material'
+
 
 export const FoodDetails = (props) => {
     const [foodById, setFood] = useState(null)
@@ -45,8 +47,11 @@ export const FoodDetails = (props) => {
                 </div>
             </section>
             <section className='details-right'>
-                {foodById.original_video_url ? <video controls autoPlay muted
-                    src={foodById.original_video_url}></video> : null}
+                <div className="food-video">
+                    {foodById.original_video_url ? <video controls autoPlay muted
+                        src={foodById.original_video_url}></video> : null}
+                </div>
+                <Button> Add to list</Button>
             </section>
 
             {/* <button onClick={onBack}>Back</button> */}

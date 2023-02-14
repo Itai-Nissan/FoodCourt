@@ -1,17 +1,26 @@
 import { useState } from 'react';
+import {useCallback} from 'react';
+import {useNavigate} from 'react-router-dom';
+
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
 import { setLoggedInUser } from '../store/actions/userActions'
 
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from "react-router-dom"
+
 
 export function Signup() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+  
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
 
     const [userName, setUserName] = useState('')
     const [userPassword, setuserPassword] = useState('')
     const [userEmail, setuserEmail] = useState('')
+
+    const routeToProfile = useCallback((userToSignup) => navigate(`/UserProfile/${userToSignup.id}`, {replace: true}), [navigate])
 
     function setLogin(e) {
         const userToSignup = {
@@ -22,10 +31,12 @@ export function Signup() {
         }
 
         dispatch(setLoggedInUser(userToSignup))
+        routeToProfile(userToSignup)
 
         setUserName('')
         setuserPassword('')
-        setuserEmail('')
+        setuserEmail('')        
+        // return <Link to={`/UserProfile/${userToSignup.id}`}>{userToSignup.userName}</Link>
     }
 
     return (

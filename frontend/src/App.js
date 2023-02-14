@@ -7,7 +7,7 @@ import { AppHeader } from './cmps/AppHeader'
 import { HomePage } from './views/HomePage'
 import { Login } from './views/Login'
 import { Signup } from './views/Signup'
-import { UserDetails } from './views/UserDetails'
+import { UserProfile } from './views/UserProfile'
 import { FoodDetails } from './views/FoodDetails'
 import { AboutPage } from './views/AboutPage'
 
@@ -29,7 +29,7 @@ function App() {
             <Route path='/Signup' element={<Signup />} />
           </Routes>
           <Routes>
-            <Route path='/UserDetails/:id' element={<UserDetails />} />
+            <Route path='/UserProfile/:id' element={<UserProfile />} />
           </Routes>
           <Routes>
             <Route path='/FoodDetails/:id' element={<FoodDetails />} />
