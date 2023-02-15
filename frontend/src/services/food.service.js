@@ -35,11 +35,11 @@ async function getFood(filterBy) {
 
 async function getById(id) {
     const KEY = 'foodByIdDb'
-    let foodById = localStorage.getItem(KEY) || {}
-    if (foodById) {
+    let foodById = localStorage.getItem(KEY) || null
+    if (foodById !== null) {
         foodById = JSON.parse(foodById)
     }
-    if (id && foodById.length <= 0) {
+    if (id && foodById === null) {
         console.log('Fectching byId from SERVER');
         const options = {
             method: 'GET',

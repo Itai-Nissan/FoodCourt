@@ -8,6 +8,18 @@ a {
     text-decoration: none;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+    padding: 0;
+    margin: 0;
+}
+
 .app {
     display: flex;
     flex-direction: column;
@@ -109,9 +121,41 @@ a {
     }
 
     .details-left {
-        padding: 0.5em;
+        // padding: 0.5em;
         z-index: 180;
         width: 100%;
+
+        h1 {
+            margin-block-start: .6em;
+        }
+
+        h2 {
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+        }
+
+        h3 {
+            margin-block-start: .5em;
+            margin-block-end: .5em;
+        }
+        
+        p {
+            margin-block-start: .5em;
+            margin-block-end: .5em;
+        }
+        .food-ingredients {
+
+            .ingredients-table {
+                display: grid;
+                grid-template-columns: 1fr auto;
+
+                margin-block-end: 1em;
+
+
+
+            }
+        }
+
 
         .food-instructions {
             // width: 50%;
@@ -121,19 +165,31 @@ a {
     .details-right {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: start;
         width: 100%;
         padding: 0.5em;
         z-index: 180;
 
-        .food-video {
+        .sticky-right {
+
             position: sticky;
             top: 130px;
-            video {
-                // height: 25%;
+
+            .food-video {
+                video {
+                    border-radius: 7px;
+                    width: 100%;
+                }
+            }
+
+            .MuiButtonBase-root {
+                background-color: #551788;
+                color: white;
+                margin-block-start: 1em;
                 width: 100%;
             }
         }
+
     }
 }
 

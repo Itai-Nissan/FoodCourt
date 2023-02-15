@@ -24,11 +24,11 @@ export const FoodDetails = (props) => {
         <div className='food-details'>
             <img className='details-bg' src={foodById.thumbnail_url} alt="" />
             <section className='details-left'>
-                <h2>{foodById.name}</h2>
+                <h1>{foodById.name}</h1>
                 <br />
                 <div className="food-ingredients">
-                    <div>
-                        <h2>Ingredients</h2>
+                    <h2>Ingredients</h2>
+                    <div className='ingredients-table'>
                         {foodById.sections.map((component, index) => (
                             <div key={index}>
                                 <h3>{component.name}</h3>
@@ -44,6 +44,7 @@ export const FoodDetails = (props) => {
                     </div>
                 </div>
                 <div className="food-instructions">
+                    <h2>Instructions</h2>
                     {foodById.instructions.map((step, index) => (
                         <div key={index}>
                             <h4>Step {index + 1}</h4>
@@ -53,11 +54,13 @@ export const FoodDetails = (props) => {
                 </div>
             </section>
             <section className='details-right'>
-                <div className="food-video">
-                    {foodById.original_video_url ? <video controls autoPlay muted
-                        src={foodById.original_video_url}></video> : null}
+                <div className="sticky-right">
+                    <div className="food-video">
+                        {foodById.original_video_url ? <video controls autoPlay muted
+                            src={foodById.original_video_url}></video> : null}
+                    </div>
+                    <Button> Add to list</Button>
                 </div>
-                <Button> Add to list</Button>
             </section>
 
             {/* <button onClick={onBack}>Back</button> */}
