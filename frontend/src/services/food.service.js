@@ -16,7 +16,7 @@ async function getFood(filterBy) {
         const options = {
             method: 'GET',
             url: 'https://tasty.p.rapidapi.com/recipes/list',
-            params: { from: '0', size: '20', q: filterBy.text },
+            params: { from: '0', size: '50', q: filterBy.text },
             headers: {
                 'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
@@ -58,7 +58,6 @@ async function getById(id) {
             console.error(error);
         })
     }
-    console.log(foodById)
     return foodById
 }
 

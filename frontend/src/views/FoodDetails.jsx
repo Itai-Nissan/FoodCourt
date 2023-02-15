@@ -7,25 +7,16 @@ import { Button } from '@mui/material'
 export const FoodDetails = (props) => {
     const [foodById, setFood] = useState(null)
     const params = useParams()
-    // const navigate = useNavigate()
-
 
     useEffect(() => {
         loadFood()
     }, [params.id])
 
-
     async function loadFood() {
         const foodId = params.id
         const getFoodById = await foodService.getById(foodId)
         setFood(getFoodById)
-        // setFoodVideo(foodById.original_video_url)
     }
-
-    // const onBack = () => {
-    //     navigate('/')
-    // }
-
 
 
     if (!foodById) return <div>Loading...</div>
@@ -35,13 +26,28 @@ export const FoodDetails = (props) => {
             <section className='details-left'>
                 <h2>{foodById.name}</h2>
                 <br />
+                <div className="food-ingredients">
+                    <div>
+                        <h2>Ingredients</h2>
+                        {foodById.sections.map((component, index) => (
+                            <div key={index}>
+                                <h3>{component.name}</h3>
+                                <div>
+                                    {component.components.map((componentText, i) => (
+                                        <p key={i}>
+                                            {componentText.raw_text}
+                                        </p>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
                 <div className="food-instructions">
                     {foodById.instructions.map((step, index) => (
                         <div key={index}>
                             <h4>Step {index + 1}</h4>
-                            <br />
                             <p>{step.display_text}</p>
-                            <br />
                         </div>
                     ))}
                 </div>
