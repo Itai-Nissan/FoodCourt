@@ -1,11 +1,10 @@
 import { userService } from '../../services/user.service'
 
-export function setLoggedInUser({ ...user }) {
-    console.log('heeeeeeere');
+export function setLoggedInUser({ ...user }, actionType) {
 
     return async (dispatch, getState) => {
         try {
-            const userToSet = await userService.confirmUser(user)
+            const userToSet = await userService.confirmUser(user, actionType)
             dispatch({ type: 'SET_USER', userToSet })
             return userToSet
         } catch (err) {

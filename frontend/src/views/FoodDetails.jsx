@@ -5,6 +5,8 @@ import { Button } from '@mui/material'
 
 
 export const FoodDetails = (props) => {
+    window.scrollTo(0, 0)
+
     const [foodById, setFood] = useState(null)
     const params = useParams()
 

@@ -1,9 +1,9 @@
 const INITIAL_STATE = {
     loggedInUser: {
-        id: null,
-        userName: '',
-        password: null,
-        email: ''
+        _id: null,
+        userName: null,
+        userPassword: null,
+        userEmail: null,
     }
 }
 

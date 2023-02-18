@@ -7,12 +7,29 @@ export const userService = {
 
 const USER_DB = 'FoodyUserDb'
 
-function confirmUser(user) {
-    storageService.store(USER_DB, user)
-    return user
+function confirmUser(user, actionType) {
+    const { id, userName, userPassword } = user
+    if (actionType === 'signup') {
+        storageService.store(USER_DB, user)
+        return user
+    }
+    if (actionType === 'login') {
+        if (userName === 'itai' && userPassword === 'niss') {
+            storageService.store(USER_DB, user)
+            return user
+        }
+    }
+    if (actionType === 'logout') {
+        return user
+    }
 }
 
 function loadUser() {
     const user = storageService.load(USER_DB)
-    return user
+    const userToSet = {
+        id: user.id,
+        userName: user.userName,
+        userEmail: user.userEmail
+    }
+    return userToSet
 }

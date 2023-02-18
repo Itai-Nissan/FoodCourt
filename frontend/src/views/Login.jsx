@@ -14,13 +14,13 @@ export function Login() {
 
 
     function setLogin(e) {
+        const actionType = 'login'
         const userToSignup = {
-            id: 12,
             userName,
             userPassword,
         }
 
-        dispatch(setLoggedInUser(userToSignup))
+        dispatch(setLoggedInUser(userToSignup, actionType))
 
         setUserName('')
         setuserPassword('')

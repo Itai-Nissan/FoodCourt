@@ -15,26 +15,27 @@ export function AppHeader() {
   }, [])
 
   function loggedUserName() {
-    if (loggedInUser.userName)
+    if (!loggedInUser || !loggedInUser.userName) return <Link to="/LogIn">Login</Link>
+    else if (loggedInUser.userName) {
       return <Link to={`/UserProfile/${loggedInUser.id}`}>{loggedInUser.userName}</Link>
-    else
-      return <Link to="/LogIn">Login</Link>
+    }
   }
 
   function logOut() {
+    const actionType = 'logout'
     const userToSignup = {
-      id: null,
-      userName: '',
+      _id: null,
+      userName: null,
       userPassword: null,
       userEmail: null
     }
 
-    dispatch(setLoggedInUser(userToSignup))
+    dispatch(setLoggedInUser(userToSignup, actionType))
   }
 
   function isLoggedIn() {
-    if (loggedInUser.userName) return <h1 onClick={logOut}>Logout</h1>
-    else return <h1>Sign up</h1>
+    if (!loggedInUser || !loggedInUser.userName) return <h1>Sign up</h1>
+    else if (loggedInUser.userName) return <h1 onClick={logOut}>Logout</h1>
   }
 
   return (
