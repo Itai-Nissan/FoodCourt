@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+import { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
