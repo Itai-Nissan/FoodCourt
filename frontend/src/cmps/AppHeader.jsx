@@ -10,9 +10,9 @@ export function AppHeader() {
 
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
 
-  useEffect(() =>{
-      dispatch(loadUser())
-  },[])
+  useEffect(() => {
+    dispatch(loadUser())
+  }, [])
 
   function loggedUserName() {
     if (loggedInUser.userName)
@@ -40,14 +40,18 @@ export function AppHeader() {
   return (
     <div className='app-header'>
 
-      <div className="header-container container">
-        <Link to="/"><h1>FoodCourt</h1></Link>
-        <Link to="/">HOME</Link>
-        <div>{loggedUserName()}</div>
-        <Link to="/Signup">
-          <div>{isLoggedIn()}</div>
-        </Link>
-      </div>
+      <section className="header-container container">
+        <div className="header-logo">
+          <Link to="/"><h1>FoodCourt</h1></Link>
+        </div>
+        <div className="header-routes">
+          <Link to="/">HOME</Link>
+          <div>{loggedUserName()}</div>
+          <Link to="/Signup">
+            <div>{isLoggedIn()}</div>
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

@@ -44,6 +44,15 @@ span {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        .header-routes{
+            display: flex;
+            align-items: center;
+        }
+
+        a{
+            margin-inline-start: 1em;
+        }
     }
 
 }
@@ -110,7 +119,7 @@ span {
     grid-template-columns: minmax(60%, 40%) 40% 60%;
 
     .details-bg {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
