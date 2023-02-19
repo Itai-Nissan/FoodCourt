@@ -5,8 +5,10 @@ export function setLoggedInUser({ ...user }, actionType) {
     return async (dispatch, getState) => {
         try {
             const userToSet = await userService.confirmUser(user, actionType)
-            dispatch({ type: 'SET_USER', userToSet })
-            return userToSet
+            if (userToSet) {
+                dispatch({ type: 'SET_USER', userToSet })
+                return true
+            } else return false
         } catch (err) {
             console.log('err:', err)
         }

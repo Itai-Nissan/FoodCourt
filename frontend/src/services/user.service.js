@@ -37,14 +37,15 @@ function confirmUser(user, actionType) {
         storageService.store(USER_DB, user)
         userToSet = user
     }
-    return userToSet
+    if (userToSet) return userToSet
+    else return false
 }
 
 function loadUser() {
     const user = storageService.load(USER_DB)
     const userToSet = {
         userName: user.userName,
-        userEmail: user.userEmail
+        userPassword: user.userPassword
     }
     return userToSet
 }
