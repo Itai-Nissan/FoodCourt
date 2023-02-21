@@ -11,11 +11,11 @@ function getUser(user, actionType) {
     if (actionType === 'signup') {
         userToSet = user
     }
-    
+
     if (actionType === 'login') {
         users.forEach((userToSearch) => {
             if (userName == userToSearch.userName) {
-                userToSet = user
+                userToSet = userToSearch
             }
         })
     }
@@ -29,7 +29,6 @@ function getUser(user, actionType) {
         }
         userToSet = blankUser
     }
-
     if (userToSet) return Promise.resolve(userToSet)
     else return Promise.resolve(false)
 }
