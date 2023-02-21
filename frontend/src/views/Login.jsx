@@ -15,7 +15,7 @@ export function Login() {
     const [userName, setUserName] = useState('')
     const [userPassword, setuserPassword] = useState('')
 
-    const routeToProfile = useCallback((userToSignup) => navigate(`/UserProfile/${userToSignup.id}`, { replace: true }), [navigate])
+    const routeToProfile = useCallback((userToSignup) => navigate(`/UserProfile/${userToSignup._id}`, { replace: true }), [navigate])
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
 
 
@@ -29,7 +29,7 @@ export function Login() {
         return dispatch(setLoggedInUser(userToSignup, actionType))
             .then((res) => {
                 if (res) {
-                    routeToProfile(userToSignup)
+                    routeToProfile(res)
                 }
                 setUserName('')
                 setuserPassword('')

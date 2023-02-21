@@ -15,7 +15,11 @@ function getUser(user, actionType) {
     if (actionType === 'login') {
         users.forEach((userToSearch) => {
             if (userName == userToSearch.userName) {
-                userToSet = userToSearch
+                userToSet = {
+                    _id: userToSearch._id,
+                    userName: userToSearch.userName,
+                    userEmail: userToSearch.userEmail
+                }
             }
         })
     }
