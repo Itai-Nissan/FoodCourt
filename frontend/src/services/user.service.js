@@ -1,15 +1,6 @@
 import { storageService } from './storage.service'
 import { httpService } from './http.service.js'
 
-let users = [
-    {
-        _id: 1,
-        userName: 'itai',
-        userPassword: 'niss',
-        userEmail: 'itainis'
-    }
-]
-
 export const userService = {
     confirmUser,
     loadUser,
