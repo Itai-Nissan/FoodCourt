@@ -1,0 +1,20 @@
+ [
+    {
+        "_id": 1,
+        "userName": "itai",
+        "userPassword": "nis",
+        "userEmail": "itainis"
+    },
+    {
+        "_id": 2,
+        "userName": "romi",
+        "userPassword": "rom",
+        "userEmail": "itainis"
+    },
+    {
+        "_id": 3,
+        "userName": "agam",
+        "userPassword": "gam",
+        "userEmail": "itainis"
+    }
+]

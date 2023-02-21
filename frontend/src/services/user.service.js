@@ -1,4 +1,5 @@
 import { storageService } from './storage.service'
+import { httpService } from './http.service.js'
 
 let users = [
     {
@@ -15,30 +16,15 @@ export const userService = {
 }
 
 const USER_DB = 'FoodyUserDb'
+const API = 'user'
 
-function confirmUser(user, actionType) {
-    const { id, userName, userPassword } = user
-    let userToSet = null
+async function confirmUser(user, actionType) {
 
-    if (actionType === 'signup') {
-        storageService.store(USER_DB, user)
-        userToSet = user
+    const userToSet = await httpService.get(API, { user, actionType })
+    if (userToSet) {
+        storageService.store(USER_DB, userToSet)
     }
-    if (actionType === 'login') {
-        users.forEach((userToSearch) => {
-            if (userName == userToSearch.userName) {
-                console.log('da');
-                storageService.store(USER_DB, user)
-                userToSet = user
-            }
-        })
-    }
-    if (actionType === 'logout') {
-        storageService.store(USER_DB, user)
-        userToSet = user
-    }
-    if (userToSet) return userToSet
-    else return false
+    return userToSet
 }
 
 function loadUser() {

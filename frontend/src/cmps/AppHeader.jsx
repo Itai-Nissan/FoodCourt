@@ -23,14 +23,7 @@ export function AppHeader() {
 
   function logOut() {
     const actionType = 'logout'
-    const userToSignup = {
-      _id: null,
-      userName: null,
-      userPassword: null,
-      userEmail: null
-    }
-
-    dispatch(setLoggedInUser(userToSignup, actionType))
+    dispatch(setLoggedInUser(loggedInUser, actionType))
   }
 
   function isLoggedIn() {
