@@ -32,7 +32,16 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.get("/api/user", (req, res) => {
+  console.log('user is herherherherher');
   userService.getUser(req.query.user, req.query.actionType)
+    .then((user) => {
+      console.log('server:', user);
+      res.send(user)
+    })
+})
+
+app.put("/api/user", (req, res) => {
+  userService.addFavToUser(req.body.user, req.body.food)
     .then((user) => {
       res.send(user)
     })

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { foodService } from '../services/food.service'
+import { addToFav } from '../store/actions/userActions'
 import { Button } from '@mui/material'
 
 
@@ -8,7 +10,10 @@ export const FoodDetails = (props) => {
     window.scrollTo(0, 0)
 
     const [foodById, setFood] = useState(null)
+    const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
     const params = useParams()
+    const dispatch = useDispatch()
+
 
     useEffect(() => {
         loadFood()
@@ -18,6 +23,10 @@ export const FoodDetails = (props) => {
         const foodId = params.id
         const getFoodById = await foodService.getById(foodId)
         setFood(getFoodById)
+    }
+
+    async function addFoodToFav() {
+        return dispatch(addToFav(loggedInUser, foodById))
     }
 
 
@@ -61,7 +70,7 @@ export const FoodDetails = (props) => {
                         {foodById.original_video_url ? <video controls autoPlay muted
                             src={foodById.original_video_url}></video> : null}
                     </div>
-                    <Button> Add to list</Button>
+                    <Button onClick={addFoodToFav}> Add to list</Button>
                 </div>
             </section>
 

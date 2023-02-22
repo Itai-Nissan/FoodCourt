@@ -23,7 +23,11 @@ export function AppHeader() {
 
   function logOut() {
     const actionType = 'logout'
-    dispatch(setLoggedInUser(loggedInUser, actionType))
+    // const blankUser = loggedInUser
+    // delete loggedInUser.userFavorite
+    const blankUser = null
+    console.log(blankUser);
+    dispatch(setLoggedInUser(blankUser, actionType))
   }
 
   function isLoggedIn() {

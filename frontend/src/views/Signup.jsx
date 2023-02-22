@@ -21,7 +21,7 @@ export function Signup() {
     const [userPassword, setuserPassword] = useState('')
     const [userEmail, setuserEmail] = useState('')
 
-    const routeToProfile = useCallback((userToSignup) => navigate(`/UserProfile/${userToSignup.id}`, { replace: true }), [navigate])
+    const routeToProfile = useCallback((userToSignup) => navigate(`/UserProfile/${userToSignup._id}`, { replace: true }), [navigate])
 
     function setLogin(e) {
         const actionType = 'signup'
@@ -32,13 +32,17 @@ export function Signup() {
             userEmail
         }
 
-        dispatch(setLoggedInUser(userToSignup, actionType))
-        routeToProfile(userToSignup)
-
-        setUserName('')
-        setuserPassword('')
-        setuserEmail('')
-        // return <Link to={`/UserProfile/${userToSignup.id}`}>{userToSignup.userName}</Link>
+        return dispatch(setLoggedInUser(userToSignup, actionType))
+            .then((res) => {
+                if (res) {
+                    console.log(res);
+                    routeToProfile(userToSignup)
+                }
+                setUserName('')
+                setuserPassword('')
+                setuserEmail('')
+            })
+        // routeToProfile(userToSignup)
     }
 
     return (
