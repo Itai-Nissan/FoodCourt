@@ -1,4 +1,4 @@
-const userService = require("./services/user.service");
+const userService = require("./api/user/user.service");
 
 const express = require("express")
 const expressSession = require('express-session')
@@ -18,7 +18,6 @@ const session = expressSession({
 })
 app.use(express.json())
 app.use(session)
-// app.use(cors())
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.resolve(__dirname, 'public')))
@@ -31,14 +30,10 @@ if (process.env.NODE_ENV === 'production') {
   app.use(cors(corsOptions))
 }
 
-app.get("/api/user", (req, res) => {
-  console.log('user is herherherherher');
-  userService.getUser(req.query.user, req.query.actionType)
-    .then((user) => {
-      console.log('server:', user);
-      res.send(user)
-    })
-})
+// routes
+const authRoutes = require('./api/auth/auth.routes')
+
+app.use('/api/auth', authRoutes)
 
 app.put("/api/user", (req, res) => {
   userService.addFavToUser(req.body.user, req.body.food)

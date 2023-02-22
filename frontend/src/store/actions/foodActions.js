@@ -2,13 +2,10 @@ import { foodService } from "../../services/food.service"
 
 
 export function loadFoodList() {
-    console.log('foodList');
 
     return async (dispatch, getState) => {
         try {
-            console.log('loading food');
             const { filterBy } = getState().foodModule
-            // console.log(filterBy)
             const foods = await foodService.getFood(filterBy)
             dispatch({ type: 'SET_FOOD', foods })
             return foods
@@ -19,7 +16,6 @@ export function loadFoodList() {
 }
 
 export function getFoodById(foodId) {
-    // console.log(foodId)
 
     return async (dispatch) => {
         try {

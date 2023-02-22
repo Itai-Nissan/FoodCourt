@@ -17,16 +17,13 @@ export function AppHeader() {
   function loggedUserName() {
     if (!loggedInUser || !loggedInUser.userName) return <Link to="/LogIn">Login</Link>
     else if (loggedInUser.userName) {
-      return <Link to={`/UserProfile/${loggedInUser.id}`}>{loggedInUser.userName}</Link>
+      return <Link to={`/UserProfile/${loggedInUser._id}`}>{loggedInUser.userName}</Link>
     }
   }
 
   function logOut() {
     const actionType = 'logout'
-    // const blankUser = loggedInUser
-    // delete loggedInUser.userFavorite
     const blankUser = null
-    console.log(blankUser);
     dispatch(setLoggedInUser(blankUser, actionType))
   }
 

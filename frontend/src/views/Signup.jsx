@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
-import { setLoggedInUser } from '../store/actions/userActions'
+import { setSignUp } from '../store/actions/userActions'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
@@ -17,6 +17,7 @@ export function Signup() {
 
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
 
+    const [fullName, setUserFullName] = useState('')
     const [userName, setUserName] = useState('')
     const [userPassword, setuserPassword] = useState('')
     const [userEmail, setuserEmail] = useState('')
@@ -24,20 +25,21 @@ export function Signup() {
     const routeToProfile = useCallback((userToSignup) => navigate(`/UserProfile/${userToSignup._id}`, { replace: true }), [navigate])
 
     function setLogin(e) {
-        const actionType = 'signup'
         const userToSignup = {
             _id: utilities.randomId(),
+            fullName,
             userName,
             userPassword,
             userEmail
         }
 
-        return dispatch(setLoggedInUser(userToSignup, actionType))
+        return dispatch(setSignUp(userToSignup))
             .then((res) => {
                 if (res) {
                     console.log(res);
                     routeToProfile(userToSignup)
                 }
+                setUserFullName('')
                 setUserName('')
                 setuserPassword('')
                 setuserEmail('')
@@ -49,6 +51,9 @@ export function Signup() {
         <div>
             <section className='login'>
                 <form action="">
+                    <Input type="text" placeholder='Full name'
+                        value={fullName}
+                        onChange={(event) => setUserFullName(event.target.value)} />
                     <Input type="text" placeholder='Username'
                         value={userName}
                         onChange={(event) => setUserName(event.target.value)} />

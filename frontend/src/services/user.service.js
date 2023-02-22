@@ -5,26 +5,22 @@ export const userService = {
     confirmUser,
     loadUser,
     addToFav,
+    login,
+    signUp,
 }
 
 const USER_DB = 'FoodyUserDb'
 const API = 'user'
+const ENDPOINT = 'auth'
 
-async function confirmUser(user, actionType) {
-
-    if (actionType === 'logout') return storageService.store(USER_DB, user)
-    else {
-        const userToSet = await httpService.get('user', { user, actionType })
-        if (userToSet) {
-            storageService.store(USER_DB, userToSet)
-        }
-        return userToSet
-    }
+async function confirmUser(cred) {
+    const userToSet = await httpService.post(ENDPOINT + '/login', cred)
+    if (userToSet) storageService.store(USER_DB, userToSet)
+    return userToSet
 }
 
 function loadUser() {
     const user = storageService.load(USER_DB)
-    console.log('loading', user)
     return user
 }
 
@@ -34,4 +30,18 @@ async function addToFav(user, food) {
         storageService.store(USER_DB, userToSet)
     }
     return userToSet
+}
+
+async function login(cred) {
+    console.log(cred);
+    const userToSet = await httpService.post(ENDPOINT + '/login', cred)
+    if (userToSet) storageService.store(USER_DB, userToSet)
+    return userToSet
+}
+
+async function signUp(user) {
+    const userToSet = await httpService.post(ENDPOINT + '/signup', user)
+    if (userToSet) storageService.store(USER_DB, userToSet)
+    return userToSet
+
 }

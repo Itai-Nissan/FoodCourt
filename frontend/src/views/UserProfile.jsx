@@ -12,7 +12,6 @@ export const UserProfile = (props) => {
             <h1>{fav.slug}</h1>
         </div>
     })
-    console.log(userFav);
 
     return (
         <div className='user-details'>

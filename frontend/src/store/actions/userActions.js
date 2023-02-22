@@ -5,12 +5,25 @@ export function setLoggedInUser(user, actionType) {
 
     return async (dispatch, getState) => {
         try {
-            console.log(user);
-            console.log(actionType);
 
-            const userToSet = await userService.confirmUser(user, actionType)
-            if (userToSet || actionType === 'logout') {
-                console.log('user to seeet:',userToSet);
+            const userToSet = await userService.login(user)
+            if (userToSet) {
+                dispatch({ type: 'SET_USER', userToSet })
+                return userToSet
+            } else return false
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
+
+export function setSignUp(user) {
+
+    return async (dispatch, getState) => {
+        try {
+
+            const userToSet = await userService.signUp(user)
+            if (userToSet) {
                 dispatch({ type: 'SET_USER', userToSet })
                 return userToSet
             } else return false

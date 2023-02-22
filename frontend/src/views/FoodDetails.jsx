@@ -26,6 +26,7 @@ export const FoodDetails = (props) => {
     }
 
     async function addFoodToFav() {
+        if (!loggedInUser) return
         return dispatch(addToFav(loggedInUser, foodById))
     }
 

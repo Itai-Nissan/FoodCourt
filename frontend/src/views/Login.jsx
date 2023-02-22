@@ -20,13 +20,12 @@ export function Login() {
 
 
     function setLogin(e) {
-        const actionType = 'login'
         const userToSignup = {
             userName,
             userPassword,
         }
 
-        return dispatch(setLoggedInUser(userToSignup, actionType))
+        return dispatch(setLoggedInUser(userToSignup))
             .then((res) => {
                 if (res) {
                     routeToProfile(res)
