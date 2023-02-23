@@ -7,6 +7,7 @@ export const userService = {
     addToFav,
     login,
     signUp,
+    logout,
 }
 
 const USER_DB = 'FoodyUserDb'
@@ -39,9 +40,13 @@ async function login(cred) {
 }
 
 async function signUp(user) {
-    // console.log(user)
     const userToSet = await httpService.post(ENDPOINT + '/signup', user)
     if (userToSet) storageService.store(USER_DB, userToSet)
     return userToSet
+}
 
+async function logout() {
+    const userToSet = await httpService.post(ENDPOINT + '/logout')
+    if (userToSet) storageService.store(USER_DB, userToSet)
+    return userToSet
 }

@@ -17,6 +17,23 @@ export function setLoggedInUser(user, actionType) {
     }
 }
 
+export function logout(user) {
+    // export function setLoggedInUser({ ...user }, actionType) {
+
+    return async (dispatch, getState) => {
+        try {
+
+            const userToSet = await userService.logout(user)
+            if (userToSet) {
+                dispatch({ type: 'SET_USER', userToSet })
+                return userToSet
+            } else return false
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
+
 export function setSignUp(user) {
 
     return async (dispatch, getState) => {

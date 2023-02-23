@@ -1,5 +1,5 @@
 
-export const utilities = {
+module.exports = {
     randomId,
 }
 

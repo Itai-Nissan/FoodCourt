@@ -1,4 +1,5 @@
 const users = require("../../data/users.json")
+const utilities = require("../../services/utilities")
 const fs = require('fs');
 
 module.exports = {
@@ -15,19 +16,15 @@ function getUsers() {
 }
 
 function addFavToUser(user, food) {
-    let userToSet
+    let userToAdd
     users.forEach((userToSearch) => {
         if (user._id === userToSearch._id) {
-            userToSet = {
-                _id: userToSearch._id,
-                userName: userToSearch.userName,
-                userEmail: userToSearch.userEmail,
-                userFavorite: userToSearch.userFavorite
-            }
-            userToSet.userFavorite.push(food)
+            userToAdd = userToSearch
+            userToAdd.userFavorite.push(food)
+            _writeToJson()
         }
     })
-    return Promise.resolve(userToSet)
+    return Promise.resolve(userToAdd)
 }
 
 async function getUserById(id) {
@@ -63,17 +60,19 @@ async function addUser(user) {
     let day = dateObj.getUTCDate();
     let year = dateObj.getUTCFullYear();
 
-    let memberSince = year + "/" + month + "/" + day;
+    let memberSince = year + "/" + month + "/" + day
     try {
         const userToAdd = {
-            _id: user._id,
+            _id: utilities.randomId(),
             fullName: user.fullName,
             userName: user.userName,
             userPassword: user.userPassword,
             userEmail: user.userEmail,
+            userFavorite: [],
             memberSince,
         }
-        _writeToJson(userToAdd)
+        users.push(userToAdd)
+        _writeToJson()
         return userToAdd
     } catch (err) {
         logger.error('cannot insert user', err)
@@ -81,13 +80,12 @@ async function addUser(user) {
     }
 }
 
-function _writeToJson(userToAdd) {
+function _writeToJson() {
     let updatedUsers = users
-    updatedUsers.push(userToAdd)
     var jsonContent = JSON.stringify(updatedUsers)
 
     fs.writeFile("data/users.json", jsonContent, 'utf8', function (err) {
-        console.log('trying to write:', jsonContent);
+        // console.log('trying to write:', jsonContent);
         if (err) {
             console.log("An error occured while writing JSON Object to File.");
             return console.log(err);

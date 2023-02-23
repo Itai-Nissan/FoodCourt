@@ -7,8 +7,6 @@ import { Button } from '@mui/material'
 import { setSignUp } from '../store/actions/userActions'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from "react-router-dom"
-import { utilities } from '../services/utilities';
 
 
 export function Signup() {
@@ -26,7 +24,6 @@ export function Signup() {
 
     function setLogin(e) {
         const userToSignup = {
-            _id: utilities.randomId(),
             fullName,
             userName,
             userPassword,
@@ -36,7 +33,7 @@ export function Signup() {
         return dispatch(setSignUp(userToSignup))
             .then((res) => {
                 if (res) {
-                    console.log(res);
+                    console.log(res)
                     routeToProfile(userToSignup)
                 }
                 setUserFullName('')
@@ -44,7 +41,6 @@ export function Signup() {
                 setuserPassword('')
                 setuserEmail('')
             })
-        // routeToProfile(userToSignup)
     }
 
     return (

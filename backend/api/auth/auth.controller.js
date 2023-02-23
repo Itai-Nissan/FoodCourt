@@ -5,9 +5,10 @@ async function login(req, res) {
   const { userName, userPassword } = req.body
   try {
     const user = await authService.login(userName, userPassword)
-    delete user.userPassword
-    req.session.userName = user
-    res.json(user)
+    let userToSet = { ...user }
+    delete userToSet.userPassword
+    req.session.userName = userToSet
+    res.json(userToSet)
   } catch (err) {
     // logger.error('Failed to Login ' + err)
     res.status(401).send({ err: 'Failed to Login' })

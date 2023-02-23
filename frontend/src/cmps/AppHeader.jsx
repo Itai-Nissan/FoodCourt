@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
-import { setLoggedInUser } from '../store/actions/userActions'
+import { logout } from '../store/actions/userActions'
 import { loadUser } from '../store/actions/userActions'
 
 export function AppHeader() {
@@ -21,15 +21,18 @@ export function AppHeader() {
     }
   }
 
-  function logOut() {
+  function setLogout() {
     const actionType = 'logout'
     const blankUser = null
-    dispatch(setLoggedInUser(blankUser, actionType))
+    dispatch(logout(blankUser, actionType))
   }
 
   function isLoggedIn() {
     if (!loggedInUser || !loggedInUser.userName) return <h1>Sign up</h1>
-    else if (loggedInUser.userName) return <h1 onClick={logOut}>Logout</h1>
+    // else if (loggedInUser.userName) return <Link>
+    //   <h1 onClick={logOut}>Logout</h1>
+    // </Link>
+    else if (loggedInUser.userName) return <h1 onClick={setLogout}>Logout</h1>
   }
 
   return (

@@ -4,7 +4,6 @@ const userService = require('../user/user.service')
 
 async function login(userName, userPassword) {
   // logger.debug(`auth.service - login with username: ${username}`)
-
   const user = await userService.getByUsername(userName)
   if (!user || user === null || user === undefined || user.userPassword !== userPassword) return Promise.reject('Invalid username or password')
   //   const match = await bcrypt.compare(password, user.password);
