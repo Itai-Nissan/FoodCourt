@@ -5,6 +5,7 @@ async function login(req, res) {
   const { userName, userPassword } = req.body
   try {
     const user = await authService.login(userName, userPassword)
+    delete user.userPassword
     req.session.userName = user
     res.json(user)
   } catch (err) {
@@ -20,7 +21,7 @@ async function signup(req, res) {
     // Never log passwords
     // logger.debug(fullname + ', ' + username + ', ' + password)
     const account = await authService.signup(req.body)
-    console.log('auth controller loging account:', account);
+    // console.log('auth controller loging account:', account);
     // logger.debug(`auth.route - new account created: ` + JSON.stringify(account))
     const user = await authService.login(userName, userPassword)
     req.session.user = user

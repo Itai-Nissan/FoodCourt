@@ -10,14 +10,12 @@ async function login(userName, userPassword) {
   //   const match = await bcrypt.compare(password, user.password);
   //   if (!match) return Promise.reject('Invalid username or password');
 
-  delete user.userPassword
   return user
 }
 
 async function signup({ _id, userName, userPassword, fullName, userEmail }) {
   // logger.debug(`auth.service - signup with username: ${username}, fullname: ${fullname}`)
   if (!userName || !userPassword || !fullName) return Promise.reject('fullname, username and password are required!')
-
   // const hash = await bcrypt.hash(password, saltRounds)
   return userService.addUser({ _id, userName, userPassword, fullName, userEmail })
 }

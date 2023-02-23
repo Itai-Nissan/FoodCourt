@@ -27,6 +27,9 @@ export function Login() {
 
         return dispatch(setLoggedInUser(userToSignup))
             .then((res) => {
+                if (!res) {
+                    console.log('ein rez');
+                }
                 if (res) {
                     routeToProfile(res)
                 }

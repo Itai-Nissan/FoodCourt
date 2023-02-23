@@ -1,10 +1,17 @@
 const users = require("../../data/users.json")
+const fs = require('fs');
 
 module.exports = {
-    // getUser,
     addFavToUser,
     getByUsername,
-    addUser
+    addUser,
+    getUsers,
+    getUserById,
+    _writeToJson,
+}
+
+function getUsers() {
+    return Promise.resolve(users)
 }
 
 function addFavToUser(user, food) {
@@ -23,51 +30,22 @@ function addFavToUser(user, food) {
     return Promise.resolve(userToSet)
 }
 
-// function getUser(user, actionType) {
-// const { _id, userName, userPassword } = user
-// let userToSet = null
-
-// if (actionType === 'signup') {
-//     userToSet = {
-//         _id: user._id,
-//         userName: user.userName,
-//         userEmail: user.userEmail
-//     }
-// }
-
-// if (actionType === 'login') {
-//     users.forEach((userToSearch) => {
-
-//         if (userName === userToSearch.userName && userPassword === userToSearch.userPassword) {
-//             userToSet = {
-//                 _id: userToSearch._id,
-//                 userName: userToSearch.userName,
-//                 userEmail: userToSearch.userEmail,
-//                 userFavorite: userToSearch.userFavorite
-//             }
-//         }
-//     })
-// }
-
-// if (actionType === 'logout') {
-//     console.log('login out');
-//     const blankUser = {
-//         _id: null,
-//         userName: null,
-//         userEmail: null,
-//         userFavorite: []
-//     }
-//     userToSet = blankUser
-// }
-// console.log('userToSet:', userToSet)
-// if (userToSet) return Promise.resolve(userToSet)
-// else return Promise.resolve(false)
-// }
+async function getUserById(id) {
+    id = parseInt(id)
+    let user = null
+    users.map((userById) => {
+        if (userById._id === id) {
+            user = userById
+        }
+    })
+    return user
+}
 
 async function getByUsername(userName) {
     let user = {}
+    const usersList = users
     try {
-        await users.forEach((userToSet) => {
+        await usersList.forEach((userToSet) => {
             if (userName === userToSet.userName) {
                 user = userToSet
             }
@@ -86,7 +64,6 @@ async function addUser(user) {
     let year = dateObj.getUTCFullYear();
 
     let memberSince = year + "/" + month + "/" + day;
-
     try {
         const userToAdd = {
             _id: user._id,
@@ -96,10 +73,26 @@ async function addUser(user) {
             userEmail: user.userEmail,
             memberSince,
         }
-        console.log('user service add user:', userToAdd);
+        _writeToJson(userToAdd)
         return userToAdd
     } catch (err) {
         logger.error('cannot insert user', err)
         throw err
     }
+}
+
+function _writeToJson(userToAdd) {
+    let updatedUsers = users
+    updatedUsers.push(userToAdd)
+    var jsonContent = JSON.stringify(updatedUsers)
+
+    fs.writeFile("data/users.json", jsonContent, 'utf8', function (err) {
+        console.log('trying to write:', jsonContent);
+        if (err) {
+            console.log("An error occured while writing JSON Object to File.");
+            return console.log(err);
+        }
+
+        console.log("JSON file has been saved.");
+    })
 }

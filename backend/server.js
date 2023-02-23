@@ -42,6 +42,19 @@ app.put("/api/user", (req, res) => {
     })
 })
 
+app.use('/api/users',(req,res)=>{
+  userService.getUsers().then((users)=>{
+    res.send(users)
+  })
+})
+
+app.use('/api/userProfile/:id',(req,res)=>{
+  const id = req.params.id
+  userService.getUserById(id).then((user)=>{
+    res.send(user)
+  })
+})
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 })

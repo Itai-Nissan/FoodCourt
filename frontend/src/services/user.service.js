@@ -33,13 +33,13 @@ async function addToFav(user, food) {
 }
 
 async function login(cred) {
-    console.log(cred);
     const userToSet = await httpService.post(ENDPOINT + '/login', cred)
     if (userToSet) storageService.store(USER_DB, userToSet)
     return userToSet
 }
 
 async function signUp(user) {
+    // console.log(user)
     const userToSet = await httpService.post(ENDPOINT + '/signup', user)
     if (userToSet) storageService.store(USER_DB, userToSet)
     return userToSet
