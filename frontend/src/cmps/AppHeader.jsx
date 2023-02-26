@@ -15,9 +15,17 @@ export function AppHeader() {
   }, [])
 
   function loggedUserName() {
-    if (!loggedInUser || !loggedInUser.userName) return <Link to="/LogIn">Login</Link>
+    if (!loggedInUser || !loggedInUser.userName) return <Link to="/LogIn">
+      <h4>
+        Login
+      </h4>
+    </Link>
     else if (loggedInUser.userName) {
-      return <Link to={`/UserProfile/${loggedInUser._id}`}>{loggedInUser.userName}</Link>
+      return <Link to={`/UserProfile/${loggedInUser._id}`}>
+        <h4>
+          {loggedInUser.userName}
+        </h4 >
+      </Link>
     }
   }
 
@@ -28,11 +36,8 @@ export function AppHeader() {
   }
 
   function isLoggedIn() {
-    if (!loggedInUser || !loggedInUser.userName) return <h1>Sign up</h1>
-    // else if (loggedInUser.userName) return <Link>
-    //   <h1 onClick={logOut}>Logout</h1>
-    // </Link>
-    else if (loggedInUser.userName) return <h1 onClick={setLogout}>Logout</h1>
+    if (!loggedInUser || !loggedInUser.userName) return <h4>Sign up</h4>
+    else if (loggedInUser.userName) return <h4 onClick={setLogout}>Logout</h4>
   }
 
   return (
@@ -43,8 +48,10 @@ export function AppHeader() {
           <Link to="/"><h1>FoodCourt</h1></Link>
         </div>
         <div className="header-routes">
-          <Link to="/">HOME</Link>
-          <div>{loggedUserName()}</div>
+          <Link to="/">
+            <h4>Home</h4>
+          </Link>
+          <div className='logged-user'>{loggedUserName()}</div>
           <Link to="/Signup">
             <div>{isLoggedIn()}</div>
           </Link>

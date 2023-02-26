@@ -38,20 +38,58 @@ span {
     background-color: rgb(242, 242, 242);
     display: flex;
     justify-content: center;
+    align-items: center;
     z-index: 190;
+    background-image: url('../images/background/il_fullxfull.2551070265_fcsh.jpg');
+    background-size: cover;
 
     .header-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        .header-routes{
-            display: flex;
-            align-items: center;
+        height: 50%;
+        background-color: rgba(240, 248, 255, 0.431);
+        border-radius: 7px;
+
+        .header-logo {
+
+            a {
+                color: #4c3e3e;
+
+                h1 {
+                    margin-inline-start: 1em;
+                }
+            }
         }
 
-        a{
+        .header-routes {
+            display: flex;
+            align-items: center;
+
+            .logged-user {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        h4 {
+            font-size: larger;
+            font-weight: 200;
+            letter-spacing: 5px;
             margin-inline-start: 1em;
+            margin-inline-end: 1em;
+        }
+
+        a {
+            color: #4c3e3e;
+            transition: .4s;
+            border-radius: 7px;
+        }
+
+        a:hover {
+            color: #cbc2c1;
+            background-color: #4c3e3e;
         }
     }
 
@@ -147,11 +185,12 @@ span {
             margin-block-start: .5em;
             margin-block-end: .5em;
         }
-        
+
         p {
             margin-block-start: .5em;
             margin-block-end: .5em;
         }
+
         .food-ingredients {
 
             .ingredients-table {
