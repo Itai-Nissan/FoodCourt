@@ -45,7 +45,7 @@ export function AppHeader() {
 
       <section className="header-container container">
         <div className="header-logo">
-          <Link to="/"><h1>FoodCourt</h1></Link>
+          <Link to="/"><h1><span>C</span>uttin <span>B</span>oard</h1></Link>
         </div>
         <div className="header-routes">
           <Link to="/">

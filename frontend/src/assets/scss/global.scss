@@ -52,11 +52,28 @@ a {
         .header-logo {
 
             a {
+
+                letter-spacing: .3em;
                 color: $dark-text;
 
                 h1 {
+                    font-family: Handlee;
+                    font-size: 1em;
                     margin-inline-start: 1em;
-                    letter-spacing: .1em;
+                }
+
+                span {
+                    color: $light-wood;
+                    font-family: Cookie;
+                    font-size: 3em;
+                }
+            }
+
+            a:hover {
+                color: $light-wood;
+
+                span {
+                    color: $dark-text;
                 }
             }
         }
@@ -77,7 +94,7 @@ a {
             }
 
             a:hover {
-                color: $light-text;
+                color: $light-wood;
                 background-color: $dark-text;
             }
 
@@ -110,7 +127,7 @@ a {
     display: flex;
     flex-direction: column;
     height: 250px;
-    outline: 0.1px solid rgba(192, 239, 255, 0.521);
+    // outline: .1px solid $light-wood;
     border-radius: 7px;
     margin-block-start: 1em;
     margin-left: 0.5em;
@@ -228,11 +245,6 @@ a {
 
             }
         }
-
-
-        .food-instructions {
-            // width: 50%;
-        }
     }
 
     .details-right {
@@ -256,10 +268,15 @@ a {
             }
 
             .MuiButtonBase-root {
-                background-color: #551788;
-                color: white;
+                background-color: $dark-text;
+                color: $light-wood;
                 margin-block-start: 1em;
                 width: 100%;
+            }
+
+            .MuiButtonBase-root:hover {
+                background-color: $dark-wood-opactiy;
+                color: $dark-wood;
             }
         }
 
@@ -279,22 +296,15 @@ a {
     .food-container {
         display: flex;
         width: 50%;
-        // justify-content: center;
-        background-color: aliceblue;
+        background-color: $dark-text;
         border-radius: 20px;
         box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
         -webkit-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
         -moz-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
     }
 
-    .MuiButtonBase-root {
-        background-color: rgb(132, 132, 255);
-        color: rgb(56, 56, 56);
-    }
-
-    .MuiButtonBase-root:hover {
-        background-color: blue;
-        color: white;
+    .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
+        border-bottom: 2px solid $light-wood;
     }
 
     .MuiFormControl-root {
@@ -302,19 +312,52 @@ a {
         margin-inline-start: 2em;
     }
 
-    .MuiInputBase-input:hover {}
+    .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+        color: $light-wood;
+    }
+
+    .css-1x51dt5-MuiInputBase-input-MuiInput-input {
+        color: $light-text;
+    }
+
+    .MuiInputLabel-root {
+        color: $light-wood;
+    }
+
+    .MuiInputBase-root {
+        color: $light-text;
+    }
 
 }
 
 
 .login {
+    margin-block-start: 1em;
+    color: $dark-text;
+
     * {
         font-family: PatrickHand;
     }
 
-    margin-block-start: 1em;
-    color: $dark-text;
+    .css-q0jhri-MuiInputBase-root-MuiInput-root {
+        color: $dark-text;
+    }
 
+    .css-q0jhri-MuiInputBase-root-MuiInput-root::after {
+        border-bottom: 2px solid $light-wood;
+    }
+
+    .MuiButtonBase-root {
+        background-color: $dark-text;
+        color: $light-wood;
+        margin-block-start: 1em;
+        width: 100%;
+    }
+
+    .MuiButtonBase-root:hover {
+        background-color: $dark-wood-opactiy;
+        color: $dark-wood;
+    }
 
     a {
         color: $dark-text;
@@ -329,6 +372,10 @@ a {
 
     h2 {
         margin-block-end: 1em;
+    }
+
+    p {
+        margin-block-start: 1em;
     }
 
     form {
