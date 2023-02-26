@@ -60,6 +60,7 @@ export const FoodDetails = (props) => {
                     {foodById.instructions.map((step, index) => (
                         <div key={index}>
                             <h4>Step {index + 1}</h4>
+                            <hr />
                             <p>{step.display_text}</p>
                         </div>
                     ))}

@@ -181,7 +181,6 @@ a {
     }
 
     .details-left {
-        // padding: 0.5em;
         z-index: 180;
         width: 100%;
 
@@ -196,6 +195,19 @@ a {
         h3 {
             margin-block-start: .5em;
             margin-block-end: .5em;
+        }
+
+        h4 {
+            font-weight: 600;
+            color: $darker-text;
+        }
+
+        hr {
+            margin: 0 auto;
+            margin-top: .5em;
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
         }
 
         p {

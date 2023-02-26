@@ -23,7 +23,7 @@ export function AppHeader() {
     else if (loggedInUser.userName) {
       return <Link to={`/UserProfile/${loggedInUser._id}`}>
         <h4>
-          {loggedInUser.userName}
+          {loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1)}
         </h4 >
       </Link>
     }
