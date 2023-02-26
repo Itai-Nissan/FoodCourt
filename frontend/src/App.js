@@ -1,5 +1,4 @@
 import { HashRouter as Router, Route, Routes } from 'react-router-dom'
-import { foodService } from './services/food.service'
 
 import './assets/scss/global.scss'
 
@@ -12,7 +11,6 @@ import { FoodDetails } from './views/FoodDetails'
 import { AboutPage } from './views/AboutPage'
 
 function App() {
-  // console.clear()
 
   return (
     <Router >
