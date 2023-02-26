@@ -1,3 +1,7 @@
+@import 'setup/variables';
+@import 'setup/base';
+@import 'setup/typography';
+
 * {
     padding: 0;
     margin: 0;
@@ -6,18 +10,6 @@
 
 a {
     text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span {
-    padding: 0;
-    margin: 0;
 }
 
 .app {
@@ -43,22 +35,28 @@ span {
     background-image: url('../images/background/il_fullxfull.2551070265_fcsh.jpg');
     background-size: cover;
 
+    * {
+        font-family: Gloock;
+    }
+
+
     .header-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         height: 50%;
-        background-color: rgba(240, 248, 255, 0.431);
+        background-color: $light-text-opactiy;
         border-radius: 7px;
 
         .header-logo {
 
             a {
-                color: #4c3e3e;
+                color: $dark-text;
 
                 h1 {
                     margin-inline-start: 1em;
+                    letter-spacing: .1em;
                 }
             }
         }
@@ -71,26 +69,29 @@ span {
                 display: flex;
                 align-items: center;
             }
+
+            a {
+                color: $dark-text;
+                transition: .4s;
+                border-radius: 7px;
+            }
+
+            a:hover {
+                color: $light-text;
+                background-color: $dark-text;
+            }
+
+            h4 {
+                font-size: larger;
+                font-weight: 600;
+                letter-spacing: 5px;
+                margin-inline-start: 1em;
+                margin-inline-end: 1em;
+            }
+
         }
 
-        h4 {
-            font-size: larger;
-            font-weight: 200;
-            letter-spacing: 5px;
-            margin-inline-start: 1em;
-            margin-inline-end: 1em;
-        }
 
-        a {
-            color: #4c3e3e;
-            transition: .4s;
-            border-radius: 7px;
-        }
-
-        a:hover {
-            color: #cbc2c1;
-            background-color: #4c3e3e;
-        }
     }
 
 }
@@ -98,15 +99,14 @@ span {
 .food-list {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-}
 
-.food-preview:hover {
-    color: rgb(255, 94, 0);
-    transition: .3s ease;
+    * {
+        font-family: PatrickHand;
+        color: $dark-text;
+    }
 }
 
 .food-preview {
-    transition: 1s ease;
     display: flex;
     flex-direction: column;
     height: 250px;
@@ -141,10 +141,18 @@ span {
     .card-img {
         height: 60%;
 
+
+        img:hover {
+            opacity: 0.5;
+        }
+
         img {
+            transition: .3s ease;
+
             height: 100%;
             width: 100%;
             object-fit: cover;
+            border-radius: 7px;
         }
     }
 
@@ -155,6 +163,11 @@ span {
 .food-details {
     display: grid;
     grid-template-columns: minmax(60%, 40%) 40% 60%;
+
+    * {
+        font-family: PatrickHand;
+        color: $dark-text;
+    }
 
     .details-bg {
         position: fixed;
@@ -177,7 +190,6 @@ span {
         }
 
         h2 {
-            margin-block-start: 1em;
             margin-block-end: 1em;
         }
 
@@ -189,6 +201,7 @@ span {
         p {
             margin-block-start: .5em;
             margin-block-end: .5em;
+            font-weight: 600;
         }
 
         .food-ingredients {
@@ -283,9 +296,43 @@ span {
 
 
 .login {
+    * {
+        font-family: PatrickHand;
+    }
+
+    margin-block-start: 1em;
+    color: $dark-text;
+
+
+    a {
+        color: $dark-text;
+        padding-inline-start: .3em;
+        padding-inline-end: .3em;
+        border-radius: 7px;
+    }
+
+    a:hover {
+        background-color: $light-text-opactiy;
+    }
+
+    h2 {
+        margin-block-end: 1em;
+    }
+
     form {
         display: flex;
         flex-direction: column;
         width: 50%;
+    }
+}
+
+.user-profile {
+    margin-block-start: 1em;
+
+    .user-details {
+        * {
+            font-family: PatrickHand;
+            color: $dark-text;
+        }
     }
 }

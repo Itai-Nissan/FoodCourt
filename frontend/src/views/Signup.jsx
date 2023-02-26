@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { Link } from "react-router-dom"
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
 import { setSignUp } from '../store/actions/userActions'
@@ -46,6 +46,7 @@ export function Signup() {
     return (
         <div>
             <section className='login'>
+                <h2>Sign up</h2>
                 <form action="">
                     <Input type="text" placeholder='Full name'
                         value={fullName}
@@ -61,6 +62,7 @@ export function Signup() {
                         onChange={(event) => setuserEmail(event.target.value)} />
                     <Button onClick={setLogin}>Login</Button>
                 </form>
+                <p>Allready have an account? <Link to="/Login">Login</Link></p>
             </section>
         </div>
     )

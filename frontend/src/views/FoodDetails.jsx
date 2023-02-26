@@ -39,7 +39,7 @@ export const FoodDetails = (props) => {
                 <h1>{foodById.name}</h1>
                 <br />
                 <div className="food-ingredients">
-                    <h2>Ingredients</h2>
+                    <h2>Ingredients:</h2>
                     <div className='ingredients-table'>
                         {foodById.sections.map((component, index) => (
                             <div key={index}>
@@ -56,7 +56,7 @@ export const FoodDetails = (props) => {
                     </div>
                 </div>
                 <div className="food-instructions">
-                    <h2>Instructions</h2>
+                    <h2>Instructions:</h2>
                     {foodById.instructions.map((step, index) => (
                         <div key={index}>
                             <h4>Step {index + 1}</h4>

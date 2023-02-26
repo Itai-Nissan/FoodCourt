@@ -14,10 +14,12 @@ export const UserProfile = (props) => {
     })
 
     return (
-        <div className='user-details'>
-            <h1>{userName}</h1>
-            <h2>{userEmail}</h2>
-            <h3>{userFav}</h3>
+        <div className='user-profile'>
+            <section className='user-details'>
+                <h1>{userName}</h1>
+                <h2>{userEmail}</h2>
+                <h3>{userFav}</h3>
+            </section>
         </div>
     )
 }

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Link } from "react-router-dom"
+
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
 import { setLoggedInUser } from '../store/actions/userActions'
@@ -41,6 +43,7 @@ export function Login() {
     return (
         <div>
             <section className='login'>
+                <h2>Login</h2>
                 <form action="">
                     <Input type="text" placeholder='Username'
                         value={userName}
@@ -50,6 +53,7 @@ export function Login() {
                         onChange={(event) => setuserPassword(event.target.value)} />
                     <Button onClick={setLogin}>Login</Button>
                 </form>
+                <p>Dont have an account yet? <Link to="/Signup">Sign up</Link></p>
             </section>
         </div>
     )
