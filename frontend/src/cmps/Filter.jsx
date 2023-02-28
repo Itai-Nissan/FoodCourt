@@ -1,6 +1,9 @@
 import { Component } from 'react'
 import { Button } from '@mui/material'
+import { LoadingButton } from '@mui/lab';
 import TextField from '@mui/material/TextField'
+import { Autocomplete } from '@mui/material';
+
 
 
 export class Filter extends Component {
@@ -14,14 +17,14 @@ export class Filter extends Component {
     const field = target.name
     const value = target.type === 'number' ? (+target.value || '') : target.value
     this.setState({ [field]: value }, () => {
-      // this.props.onChangeFilter({ ...this.state })
     })
   }
 
   onClickSearch = (e) => {
-    if (e.key === 'Enter') {
+    console.log(e);
+    if (e.key === 'Enter' || e.type === 'click') {
       this.props.onChangeFilter({ ...this.state })
-      // this.state.text = ''
+      this.state.text = ''
     }
   }
 
@@ -37,8 +40,12 @@ export class Filter extends Component {
             id="standard-basic"
             label="Search"
             variant="standard" />
-          {/* <Button onClick={this.onClickSearch}>SearchIt</Button> */}
+          <Button onClick={this.onClickSearch}>Search</Button>
         </div>
+        <LoadingButton loading loadingIndicator="Loading…" variant="outlined">
+          Fetch data
+        </LoadingButton>
+
       </section>
     )
   }

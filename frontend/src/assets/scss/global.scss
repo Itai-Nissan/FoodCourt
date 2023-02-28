@@ -5,7 +5,6 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 a {
@@ -16,6 +15,10 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: $light-text-opactiy;
+}
+
+.app-main{
 }
 
 .container {
@@ -35,17 +38,10 @@ a {
     background-image: url('../images/background/il_fullxfull.2551070265_fcsh.jpg');
     background-size: cover;
 
-    * {
-        font-family: Gloock;
-    }
-
-
     .header-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        height: 50%;
         background-color: $light-text-opactiy;
         border-radius: 7px;
 
@@ -55,6 +51,7 @@ a {
 
                 letter-spacing: .3em;
                 color: $dark-text;
+                transition: 1s;
 
                 h1 {
                     font-family: Handlee;
@@ -63,6 +60,7 @@ a {
                 }
 
                 span {
+                    transition: 1s;
                     color: $light-wood;
                     font-family: Cookie;
                     font-size: 3em;
@@ -73,6 +71,7 @@ a {
                 color: $light-wood;
 
                 span {
+                    transition: 2s;
                     color: $dark-text;
                 }
             }
@@ -81,6 +80,8 @@ a {
         .header-routes {
             display: flex;
             align-items: center;
+            font-family: Handlee;
+
 
             .logged-user {
                 display: flex;
@@ -102,8 +103,8 @@ a {
                 font-size: larger;
                 font-weight: 600;
                 letter-spacing: 5px;
-                margin-inline-start: 1em;
-                margin-inline-end: 1em;
+                margin-inline-start: .5em;
+                margin-inline-end: .5em;
             }
 
         }
@@ -111,6 +112,9 @@ a {
 
     }
 
+}
+
+.home-page {
 }
 
 .food-list {
@@ -285,16 +289,18 @@ a {
 
 
 .food-filter {
-    height: 68px;
+    // height: 90%;
+    height: 60px;
     display: flex;
     justify-content: center;
     position: sticky;
-    top: 116px;
+    top: 110px;
     z-index: 200;
-    margin-block-start: 1em;
+    // margin-block-start: .5em;
 
     .food-container {
         display: flex;
+        // align-items: center;
         width: 50%;
         background-color: $dark-text;
         border-radius: 20px;
@@ -309,7 +315,8 @@ a {
 
     .MuiFormControl-root {
         width: 90%;
-        margin-inline-start: 2em;
+        margin-inline-start: 1em;
+        margin-inline-end: 1em;
     }
 
     .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
@@ -327,6 +334,18 @@ a {
     .MuiInputBase-root {
         color: $light-text;
     }
+
+    .MuiButtonBase-root {
+        background-color: $light-wood;
+        color: $dark-wood;
+        border-radius: 0 20px 20px 0px;
+    }
+
+    .MuiButtonBase-root:hover {
+        background-color: $dark-text;
+        color: $light-wood;
+    }
+
 
 }
 

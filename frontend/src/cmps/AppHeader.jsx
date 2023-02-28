@@ -1,18 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { logout } from '../store/actions/userActions'
 import { loadUser } from '../store/actions/userActions'
+import { loadFoodList, setFilterBy } from '../store/actions/foodActions'
+
+import { Filter } from '../cmps/Filter'
+
 
 export function AppHeader() {
   const dispatch = useDispatch()
-
-
+  const [recipes, setRecipes] = useState(null)
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
 
   useEffect(() => {
     dispatch(loadUser())
   }, [])
+
+  function onChangeFilter(filterBy) {
+    dispatch(setFilterBy(filterBy))
+    dispatch(loadFoodList())
+      .then((updatedRecipes) => {
+        setRecipes(updatedRecipes)
+        dispatch(setFilterBy(''))
+      })
+  }
 
   function loggedUserName() {
     if (!loggedInUser || !loggedInUser.userName) return <Link to="/LogIn">
@@ -47,6 +59,7 @@ export function AppHeader() {
         <div className="header-logo">
           <Link to="/"><h1><span>C</span>uttin <span>B</span>oard</h1></Link>
         </div>
+        {/* <Filter onChangeFilter={onChangeFilter}></Filter> */}
         <div className="header-routes">
           <Link to="/">
             <h4>Home</h4>

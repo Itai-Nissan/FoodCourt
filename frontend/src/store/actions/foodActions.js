@@ -5,6 +5,7 @@ export function loadFoodList() {
 
     return async (dispatch, getState) => {
         try {
+            dispatch({ type: 'SET_FOOD', undefined })
             const { filterBy } = getState().foodModule
             const foods = await foodService.getFood(filterBy)
             dispatch({ type: 'SET_FOOD', foods })
