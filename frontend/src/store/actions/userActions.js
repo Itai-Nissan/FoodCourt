@@ -25,6 +25,7 @@ export function logout(user) {
 
             const userToSet = await userService.logout(user)
             if (userToSet) {
+                console.log(userToSet);
                 dispatch({ type: 'SET_USER', userToSet })
                 return userToSet
             } else return false

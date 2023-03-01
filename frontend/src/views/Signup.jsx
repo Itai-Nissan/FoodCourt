@@ -60,7 +60,7 @@ export function Signup() {
                     <Input type="email" placeholder='Email'
                         value={userEmail}
                         onChange={(event) => setuserEmail(event.target.value)} />
-                    <Button onClick={setLogin}>Login</Button>
+                    <Button onClick={setLogin}>Signup</Button>
                 </form>
                 <p>Allready have an account? <Link to="/Login">Login</Link></p>
             </section>

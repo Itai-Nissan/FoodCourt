@@ -10,8 +10,16 @@ export class Filter extends Component {
 
   state = {
     text: '',
+    currentSearch: 'All',
+    searchResult: null,
     type: '',
+    loading: false,
   }
+
+  componentDidUpdate() {
+    this.state.loading = false
+  }
+
 
   handleChange = ({ target }) => {
     const field = target.name
@@ -21,32 +29,39 @@ export class Filter extends Component {
   }
 
   onClickSearch = (e) => {
-    console.log(e);
     if (e.key === 'Enter' || e.type === 'click') {
       this.props.onChangeFilter({ ...this.state })
+      this.state.currentSearch = this.state.text
+      // this.state.currentSearch = ('Showing search result for - ' + this.state.text)
       this.state.text = ''
+      this.state.loading = true
     }
   }
-
 
   render() {
     const { text, type } = this.state
     return (
-      <section className='food-filter' >
-        <div className='food-container'>
+      <div className='food-filter' >
+        <section className="filter-result">
+          <h4>Showing search result for - {this.state.currentSearch}</h4>
+        </section>
+        <section className='filter-container'>
           <TextField value={text} onChange={this.handleChange} onKeyDown={this.onClickSearch}
             type="text"
             name="text"
             id="standard-basic"
             label="Search"
             variant="standard" />
-          <Button onClick={this.onClickSearch}>Search</Button>
-        </div>
-        <LoadingButton loading loadingIndicator="Loading…" variant="outlined">
-          Fetch data
-        </LoadingButton>
+          <LoadingButton
+            size="small"
+            onClick={this.onClickSearch}
+            loading={this.state.loading}
+            variant="standard">
+            Search
+          </LoadingButton>
+        </section>
 
-      </section>
+      </div>
     )
   }
 }

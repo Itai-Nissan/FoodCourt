@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { logout } from '../store/actions/userActions'
 import { loadUser } from '../store/actions/userActions'
-import { loadFoodList, setFilterBy } from '../store/actions/foodActions'
+
+import Dropdown from './Dropdown'
+
 
 import { Filter } from '../cmps/Filter'
 
@@ -17,27 +19,21 @@ export function AppHeader() {
     dispatch(loadUser())
   }, [])
 
-  function onChangeFilter(filterBy) {
-    dispatch(setFilterBy(filterBy))
-    dispatch(loadFoodList())
-      .then((updatedRecipes) => {
-        setRecipes(updatedRecipes)
-        dispatch(setFilterBy(''))
-      })
-  }
-
   function loggedUserName() {
     if (!loggedInUser || !loggedInUser.userName) return <Link to="/LogIn">
       <h4>
         Login
       </h4>
     </Link>
+    // else if (loggedInUser.userName) {
+    //   return <Link to={`/UserProfile/${loggedInUser._id}`}>
+    //     <h4>
+    //       {loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1)}
+    //     </h4 >
+    //   </Link>
+    // }
     else if (loggedInUser.userName) {
-      return <Link to={`/UserProfile/${loggedInUser._id}`}>
-        <h4>
-          {loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1)}
-        </h4 >
-      </Link>
+      return <Dropdown></Dropdown>
     }
   }
 
@@ -49,7 +45,7 @@ export function AppHeader() {
 
   function isLoggedIn() {
     if (!loggedInUser || !loggedInUser.userName) return <h4>Sign up</h4>
-    else if (loggedInUser.userName) return <h4 onClick={setLogout}>Logout</h4>
+    // else if (loggedInUser.userName) return <h4 onClick={setLogout}>Logout</h4>
   }
 
   return (
@@ -59,12 +55,13 @@ export function AppHeader() {
         <div className="header-logo">
           <Link to="/"><h1><span>C</span>uttin <span>B</span>oard</h1></Link>
         </div>
-        {/* <Filter onChangeFilter={onChangeFilter}></Filter> */}
         <div className="header-routes">
           <Link to="/">
             <h4>Home</h4>
           </Link>
-          <div className='logged-user'>{loggedUserName()}</div>
+          <div className='logged-user'>
+            {loggedUserName()}
+          </div>
           <Link to="/Signup">
             <div>{isLoggedIn()}</div>
           </Link>
