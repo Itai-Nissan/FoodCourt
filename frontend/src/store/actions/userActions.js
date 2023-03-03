@@ -80,3 +80,20 @@ export function addToFav(user, food) {
         }
     }
 }
+
+export function setAddUserRecipe(user, recipe) {
+
+    return async (dispatch, getState) => {
+        try {
+            console.log(user);
+            console.log(recipe);
+            // const userToSet = await userService.addToFav(user, food)
+            // if (userToSet) {
+            //     dispatch({ type: 'SET_USER', userToSet })
+            //     return userToSet
+            // }
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
