@@ -25,13 +25,6 @@ export function AppHeader() {
         Login
       </h4>
     </Link>
-    // else if (loggedInUser.userName) {
-    //   return <Link to={`/UserProfile/${loggedInUser._id}`}>
-    //     <h4>
-    //       {loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1)}
-    //     </h4 >
-    //   </Link>
-    // }
     else if (loggedInUser.userName) {
       return <Dropdown></Dropdown>
     }

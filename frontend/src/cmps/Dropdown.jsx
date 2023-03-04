@@ -180,7 +180,7 @@ export default function UnstyledMenuIntroduction() {
         aria-expanded={isOpen || undefined}
         aria-haspopup="menu"
       >
-        <h4>User</h4>
+        <h4>{loggedUserName()}</h4>
       </TriggerButton>
       <MenuUnstyled
         actions={menuActions}
@@ -190,7 +190,11 @@ export default function UnstyledMenuIntroduction() {
         slots={{ root: Popper, listbox: StyledListbox }}
         slotProps={{ listbox: { id: 'simple-menu' } }}
       >
-        <StyledMenuItem><div>{loggedUserName()}</div>
+        <StyledMenuItem><Link to={`/UserProfile/${loggedInUser._id}`}>
+          <h4>
+            {'Profile'}
+          </h4 >
+        </Link>
         </StyledMenuItem>
         <StyledMenuItem><Link to="/Add-recipe"><div><h4>{'Add recipe'}</h4></div></Link></StyledMenuItem>
         <StyledMenuItem>
