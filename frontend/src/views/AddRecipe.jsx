@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setAddUserRecipe } from '../store/actions/userActions'
+import { setAddUserRecipe } from '../store/actions/foodActions'
 
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
@@ -31,7 +31,7 @@ export const AddRecipe = (props) => {
             section: recipeSections,
         }
 
-        return dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
+        return dispatch(setAddUserRecipe(loggedInUser._id, recipeToAdd))
             .then((res) => {
                 if (!res) {
                     console.log('ein rez')

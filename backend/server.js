@@ -32,8 +32,10 @@ if (process.env.NODE_ENV === 'production') {
 
 // routes
 const authRoutes = require('./api/auth/auth.routes')
+const recipeRoutes = require('./api/recipe/recipe.routes')
 
 app.use('/api/auth', authRoutes)
+app.use('/api/recipe', recipeRoutes)
 
 app.put("/api/user", (req, res) => {
   userService.addFavToUser(req.body.user, req.body.food)

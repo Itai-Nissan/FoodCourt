@@ -49,3 +49,19 @@ export function setFilterBy(filterBy) {
         dispatch({ type: 'SET_FILTER_BY', filterBy })
     }
 }
+
+export function setAddUserRecipe(userId, recipe) {
+
+    return async (dispatch, getState) => {
+        try {
+            const newRecipe = await foodService.addNewRecipe(userId, recipe)
+            if (newRecipe) {
+                console.log(newRecipe)
+                // dispatch({ type: 'SET_USER', userToSet })
+                return newRecipe
+            }
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}

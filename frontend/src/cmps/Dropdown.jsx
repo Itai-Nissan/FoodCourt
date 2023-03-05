@@ -121,17 +121,14 @@ export default function UnstyledMenuIntroduction() {
 
   function loggedUserName() {
     if (loggedInUser) {
-      return <Link to={`/UserProfile/${loggedInUser._id}`}>
-        <h4>
-          {loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1)}
-        </h4 >
-      </Link>
+        return <div>
+          <h4>{loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1)}</h4>
+        </div >
     }
   }
 
   function setLogout(e) {
     if (e) {
-      console.log('logingout');
       const actionType = 'logout'
       const blankUser = null
       dispatch(logout(blankUser, actionType))
@@ -170,7 +167,7 @@ export default function UnstyledMenuIntroduction() {
   }
 
   return (
-    <div>
+    <div className='dropdown-menu'>
       <TriggerButton
         type="button"
         onClick={handleButtonClick}
@@ -190,13 +187,15 @@ export default function UnstyledMenuIntroduction() {
         slots={{ root: Popper, listbox: StyledListbox }}
         slotProps={{ listbox: { id: 'simple-menu' } }}
       >
-        <StyledMenuItem><Link to={`/UserProfile/${loggedInUser._id}`}>
+        <StyledMenuItem>
+          <Link to={`/UserProfile/${loggedInUser._id}`}>
           <h4>
             {'Profile'}
           </h4 >
         </Link>
         </StyledMenuItem>
-        <StyledMenuItem><Link to="/Add-recipe"><div><h4>{'Add recipe'}</h4></div></Link></StyledMenuItem>
+        <StyledMenuItem>
+          <Link to="/Add-recipe"><div><h4>{'Add recipe'}</h4></div></Link></StyledMenuItem>
         <StyledMenuItem>
           <div>{onClickLogout()}</div>
         </StyledMenuItem>

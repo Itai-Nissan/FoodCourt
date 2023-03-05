@@ -84,17 +84,6 @@ a {
             align-items: center;
             font-family: Handlee;
 
-            .css-j9r4wx {
-                background-color: red;
-            }
-
-
-            .logged-user {
-                display: flex;
-                align-items: center;
-
-            }
-
             a {
                 color: $dark-text;
                 transition: .4s;
@@ -114,11 +103,46 @@ a {
                 margin-inline-end: .5em;
             }
 
+
+
+            .logged-user {
+                display: flex;
+                align-items: center;
+
+                .dropdown-menu {}
+
+            }
         }
-
-
     }
+}
 
+.MuiMenuItem-dense {
+
+    // background-color: black;
+}
+
+.Mui-focusVisible {
+    // background-color: black;
+    
+}
+
+.MuiMenuItem-divider{
+    background-color: black;
+}
+
+.Mui-selected:hover{
+    background-color: black;
+}
+
+.MuiMenuItem-root {
+    a {
+        color: $dark-text;
+    }
+}
+.MuiMenuItem-root:hover {
+    a {
+        background-color: $dark-text;
+    }
 }
 
 .home-page {}
@@ -503,7 +527,7 @@ a {
                 display: flex;
                 justify-content: space-between;
 
-                .MuiInputBase-root{
+                .MuiInputBase-root {
                     width: 50%;
                 }
 

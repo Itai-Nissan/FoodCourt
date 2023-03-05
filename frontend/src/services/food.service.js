@@ -1,8 +1,10 @@
 import axios from "axios"
+import { httpService } from './http.service.js'
 
 export const foodService = {
     getFood,
     getById,
+    addNewRecipe,
 }
 
 async function getFood(filterBy) {
@@ -64,3 +66,16 @@ async function getById(id) {
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
+
+async function addNewRecipe(userId, recipe) {
+    // console.log(userId)
+    // console.log(recipe)
+    const newRecipe = await httpService.put('recipe', { userId, recipe })
+    if (newRecipe) {
+        console.log(newRecipe)
+        // storageService.store(USER_DB, newRecipe)
+    }
+    return newRecipe
+}
+
+
