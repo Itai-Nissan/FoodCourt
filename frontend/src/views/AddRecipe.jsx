@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAddUserRecipe } from '../store/actions/foodActions'
+import { AddIngredient } from '../cmps/addRecipe/AddIngredient'
 
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
+import { AddRecipeOutput } from '../cmps/addRecipe/AddRecipeOutput'
 
-export const AddRecipe = (props) => {
+
+export const AddRecipe = () => {
     const dispatch = useDispatch()
 
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
@@ -14,7 +17,6 @@ export const AddRecipe = (props) => {
     const [recipeName, setRecipeName] = useState('')
     const [recipeCountry, setRecipeCountry] = useState('')
     const [recipeIngredient, setIngredient] = useState('')
-    const [recipeIngredients, setIngredients] = useState('')
     const [recipeSections, setRecipeSections] = useState([{
         components: [
             {
@@ -82,33 +84,48 @@ export const AddRecipe = (props) => {
         return recipeSections[0].components[index].raw_text
     }
 
+    const Ingredients = () => {
+        if (ingredientCount) return 'Ingredients:'
+
+    }
+
     return (
         <div className='add-recipe'>
             <h2>Add new recipe</h2>
-            <form action="">
-                <Input type="text" placeholder='Name'
-                    value={recipeName}
-                    onChange={(event) => setRecipeName(event.target.value)} />
-                <Input type="text" placeholder='Origin'
-                    value={recipeCountry}
-                    onChange={(event) => setRecipeCountry(event.target.value)} />
-                <section className="add-remove-section">
-                    {numberOfIngredients.map((ingredient, index) => {
-                        return <div className="add-remove-ingredient" key={index}>
-                            <h4>{ingredientList(index)}</h4>
-                            <Button onClick={event => removeIngredient(event, index)} key={index}>Remove ingredient</Button>
-                        </div>
-                    })
-                    }
-                    <div className="Add-ingredient">
-                        <Input type="text" placeholder={recipeIngredient}
-                            value={recipeIngredient}
-                            onChange={(event) => setIngredient(event.target.value)} />
-                        <Button onClick={addIngredient}>Add ingredient</Button>
-                    </div>
+            <div className="add-recipe-wrapper">
+
+                <form action="">
+                    <Input type="text" placeholder='Name'
+                        value={recipeName}
+                        onChange={(event) => setRecipeName(event.target.value)} />
+                    <Input type="text" placeholder='Country'
+                        value={recipeCountry}
+                        onChange={(event) => setRecipeCountry(event.target.value)} />
+                    <section className="add-remove-section">
+                        <AddIngredient
+                            ingredientList={ingredientList}
+                            addIngredient={addIngredient}
+                            removeIngredient={removeIngredient}
+                            setIngredient={setIngredient}
+                            recipeIngredient={recipeIngredient}
+                            numberOfIngredients={numberOfIngredients}
+                        ></AddIngredient>
+                    </section>
+                    {/* <Button onClick={onAddRecipe}>Create recipe</Button> */}
+                </form>
+                <section className='add-recipe-output'>
+                    <AddRecipeOutput
+                        recipeName={recipeName}
+                        recipeCountry={recipeCountry}
+                        Ingredients={Ingredients}
+                        numberOfIngredients={numberOfIngredients}
+                        ingredientList={ingredientList}
+                        onAddRecipe={onAddRecipe}
+                    ></AddRecipeOutput>
                 </section>
-                <Button onClick={onAddRecipe}>Create recipe</Button>
-            </form>
+            </div>
         </div>
     )
 }
+
+

@@ -116,33 +116,62 @@ a {
     }
 }
 
-.MuiMenuItem-dense {
+// .MuiMenuItem-dense {
 
-    // background-color: black;
-}
+//     background-color: black;
+// }
 
-.Mui-focusVisible {
-    // background-color: black;
-    
-}
+// .Mui-focusVisible {
+//     background-color: black;
 
-.MuiMenuItem-divider{
+// }
+
+.MuiMenuItem-divider {
     background-color: black;
+    color: red;
+    border: none;
 }
 
-.Mui-selected:hover{
-    background-color: black;
+// .Mui-selected:hover{
+//     background-color: black;
+//     color: red;
+// }
+
+// .MuiMenuItem-root {
+//     a {
+//         color: $dark-text;
+//         background-color: red;
+//     }
+//     a:hover{
+//         background-color: blue;
+//     }
+// }
+
+// .MuiMenuItem-root:hover {
+//     a {
+//         background-color: $light-wood;
+//         background: $light-wood;
+//         color: $dark-wood
+//     }
+// }
+
+.MuiMenuItem-root:focus {
+
+    a {}
 }
 
 .MuiMenuItem-root {
+
     a {
-        color: $dark-text;
+
+        color: $dark-text
     }
 }
+
 .MuiMenuItem-root:hover {
-    a {
-        background-color: $dark-text;
-    }
+    background-color: $light-wood;
+    background: $light-wood;
+    outline: .5px solid $dark-text;
 }
 
 .home-page {}
@@ -474,34 +503,49 @@ a {
 
 .add-recipe {
     * {
+        font-family: PatrickHand;
+        color: $dark-text;
+    }
+
+}
+
+.add-recipe-wrapper {
+
+    display: grid;
+    grid-template-columns: 70% 1fr;
+
+    .recipe-output {
+        // display: flex;
+
+    }
+
+    .css-q0jhri-MuiInputBase-root-MuiInput-root {
+        color: $dark-text;
+    }
+
+    .css-q0jhri-MuiInputBase-root-MuiInput-root::after {
+        border-bottom: 2px solid $light-wood;
+    }
+
+    .MuiButtonBase-root {
+        background-color: $dark-text;
+        color: $light-wood;
+        margin-block-start: 1em;
+        width: 100%;
         font-family: Handlee;
+    }
+
+    .MuiButtonBase-root:hover {
+        background-color: $dark-wood-opactiy;
+        color: $dark-wood;
     }
 
     form {
         display: flex;
         flex-direction: column;
-        width: 50%;
+        margin-inline-end: 1em;
 
-        .css-q0jhri-MuiInputBase-root-MuiInput-root {
-            color: $dark-text;
-        }
 
-        .css-q0jhri-MuiInputBase-root-MuiInput-root::after {
-            border-bottom: 2px solid $light-wood;
-        }
-
-        .MuiButtonBase-root {
-            background-color: $dark-text;
-            color: $light-wood;
-            margin-block-start: 1em;
-            width: 100%;
-            font-family: Handlee;
-        }
-
-        .MuiButtonBase-root:hover {
-            background-color: $dark-wood-opactiy;
-            color: $dark-wood;
-        }
 
         .add-remove-section {
 
@@ -509,6 +553,10 @@ a {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+
+                * {
+                    font-family: Handlee;
+                }
 
                 .MuiButtonBase-root {
                     background-color: $light-text-opactiy;
@@ -550,18 +598,12 @@ a {
                 display: flex;
                 justify-content: flex-end;
 
-                // width: 50%;
                 .MuiButtonBase-root {
-                    // background-color: $light-text-opactiy;
-                    // color: $dark-wood;
                     margin-inline-start: 1em;
                     width: 50%;
                 }
 
             }
-
         }
-
-
     }
 }

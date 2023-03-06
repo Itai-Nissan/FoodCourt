@@ -45,7 +45,7 @@ const StyledListbox = styled('ul')(
   background: #cbc2c1;
   color: #4c3e3e;
   `,
-);
+)
 
 const StyledMenuItem = styled(MenuItemUnstyled)(
   ({ theme }) => `
@@ -54,32 +54,39 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
   border-radius: 8px;
   cursor: pointer;
   user-select: none;
-  color: #f4b069;
+  // color: #65e311;
+  // background: #65e311;
+  // background-color: #65e311;
   
-  &:hover {
-    background: red;
-    background-color: red;
-    color: #f4b069;
-  }
+  // &:hover {
+  //   background: #65e311;
+  //   background-color: #65e311;
+  //   color: #f4b069;
+  // }
 
-  &:last-of-type {
-    border-bottom: none;
-  }
+  // &:last-of-type {
+  //   border-bottom: none;
+  // }
+  // &:active{
+    // background-color: #65e311;
+    // color: #65e311;
 
-  &.${menuItemUnstyledClasses.focusVisible} {
-    outline: 1px solid #4c3e3e;
-    background-color: #f4b069;
-    color: #f4b069;
-  }
+  // }
+
+  // &.${menuItemUnstyledClasses.focusVisible} {
+  //   outline: 1px solid #4c3e3e;
+  //   background-color: #65e311;
+  //   color: #65e311;
+  // }
   
-  &.${menuItemUnstyledClasses.disabled} {
-    color: #f4b069;
-  }
+  // &.${menuItemUnstyledClasses.disabled} {
+  //   color: #65e311;
+  // }
 
-  &:hover:not(.${menuItemUnstyledClasses.disabled}) {
-    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-    color: #f4b069;
-  }
+  // &:hover:not(.${menuItemUnstyledClasses.disabled}) {
+  //   background-color: #f4b069;
+  //   color: #65e311;
+  // }
   `,
 );
 
@@ -100,8 +107,8 @@ const TriggerButton = styled('div')(
   }
 
   &:focus {
-    border-color: #f4b069;
-    outline: 3px solid #4c3e3e};
+    // border-color: #f4b069;
+    // outline: 3px solid #4c3e3e};
   }
   `,
 );
@@ -183,6 +190,7 @@ export default function UnstyledMenuIntroduction() {
         actions={menuActions}
         open={isOpen}
         onClose={close}
+        onClick={close}
         anchorEl={anchorEl}
         slots={{ root: Popper, listbox: StyledListbox }}
         slotProps={{ listbox: { id: 'simple-menu' } }}
@@ -195,7 +203,7 @@ export default function UnstyledMenuIntroduction() {
         </Link>
         </StyledMenuItem>
         <StyledMenuItem>
-          <Link to="/Add-recipe"><div><h4>{'Add recipe'}</h4></div></Link></StyledMenuItem>
+          <Link to="/Add-recipe"><h4>{'Add recipe'}</h4></Link></StyledMenuItem>
         <StyledMenuItem>
           <div>{onClickLogout()}</div>
         </StyledMenuItem>
