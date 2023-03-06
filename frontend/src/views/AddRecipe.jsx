@@ -93,8 +93,7 @@ export const AddRecipe = () => {
         <div className='add-recipe'>
             <h2>Add new recipe</h2>
             <div className="add-recipe-wrapper">
-
-                <form action="">
+                <form>
                     <Input type="text" placeholder='Name'
                         value={recipeName}
                         onChange={(event) => setRecipeName(event.target.value)} />
@@ -111,7 +110,6 @@ export const AddRecipe = () => {
                             numberOfIngredients={numberOfIngredients}
                         ></AddIngredient>
                     </section>
-                    {/* <Button onClick={onAddRecipe}>Create recipe</Button> */}
                 </form>
                 <section className='add-recipe-output'>
                     <AddRecipeOutput
