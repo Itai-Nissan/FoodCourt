@@ -20,7 +20,8 @@ export const AddStep = (props) => {
             <div className="add-step">
                 <Input type="text" placeholder={props.recipeStep}
                     value={props.recipeStep}
-                    onChange={(event) => props.setStep(event.target.value)} />
+                    onChange={(event) => props.setStep(event.target.value)}
+                    onKeyDown={props.addStep} />
                 <Button onClick={props.addStep}>Add step</Button>
             </div>
         </div>

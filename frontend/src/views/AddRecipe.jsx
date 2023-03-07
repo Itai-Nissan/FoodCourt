@@ -44,23 +44,26 @@ export const AddRecipe = () => {
 
     }
 
-    function addIngredient() {
-        let updatedSections = null
-        if (recipeSections[0].components[0].raw_text === null) {
-            updatedSections = recipeSections
-            updatedSections[0].components[0].raw_text = recipeIngredient
-        } else {
-            updatedSections = recipeSections
-            updatedSections[0].components.push({
-                raw_text: recipeIngredient,
-            })
-        }
-        setRecipeSections(updatedSections)
-        setIngredient('')
+    function addIngredient(e) {
+        if (recipeIngredient === '') return
+        if (e.key === "Enter" || e.type === 'click') {
+            let updatedSections = null
+            if (recipeSections[0].components[0].raw_text === null) {
+                updatedSections = recipeSections
+                updatedSections[0].components[0].raw_text = recipeIngredient
+            } else {
+                updatedSections = recipeSections
+                updatedSections[0].components.push({
+                    raw_text: recipeIngredient,
+                })
+            }
+            setRecipeSections(updatedSections)
+            setIngredient('')
 
-        const newCount = ingredientCount + 1
-        setIngredientCount(newCount)
-        setNumberOfIngredient(Array.from(Array(newCount)))
+            const newCount = ingredientCount + 1
+            setIngredientCount(newCount)
+            setNumberOfIngredient(Array.from(Array(newCount)))
+        }
     }
 
     function ingredientList(index) {
@@ -74,13 +77,11 @@ export const AddRecipe = () => {
     }
 
     // Step
-
-    // Step
     const [stepCount, setStepCount] = useState(0)
     const [numberOfSteps, setNumberOfStep] = useState(Array.from(Array(stepCount)))
     const [recipeStep, setStep] = useState('')
     const [recipeInstructions, setRecipeInstructions] = useState(
-         [
+        [
             {
                 display_text: null,
             }
@@ -100,23 +101,26 @@ export const AddRecipe = () => {
 
     }
 
-    function addStep() {
-        let updatedInstructions = null
-        if (recipeInstructions[0].display_text === null) {
-            updatedInstructions = recipeInstructions
-            updatedInstructions[0].display_text = recipeStep
-        } else {
-            updatedInstructions = recipeInstructions
-            updatedInstructions.push({
-                display_text: recipeStep,
-            })
-        }
-        setRecipeInstructions(updatedInstructions)
-        setStep('')
+    function addStep(e) {
+        if (recipeStep === '') return
+        if (e.key === "Enter" || e.type === 'click') {
+            let updatedInstructions = null
+            if (recipeInstructions[0].display_text === null) {
+                updatedInstructions = recipeInstructions
+                updatedInstructions[0].display_text = recipeStep
+            } else {
+                updatedInstructions = recipeInstructions
+                updatedInstructions.push({
+                    display_text: recipeStep,
+                })
+            }
+            setRecipeInstructions(updatedInstructions)
+            setStep('')
 
-        const newCount = stepCount + 1
-        setStepCount(newCount)
-        setNumberOfStep(Array.from(Array(newCount)))
+            const newCount = stepCount + 1
+            setStepCount(newCount)
+            setNumberOfStep(Array.from(Array(newCount)))
+        }
     }
 
     function stepList(index) {
@@ -125,20 +129,17 @@ export const AddRecipe = () => {
     }
 
     const steps = () => {
-        if (stepCount) return 'Steps:'
+        if (stepCount) return 'Instructions:'
 
     }
 
     function onAddRecipe() {
-        console.log(recipeInstructions);
         const recipeToAdd = {
             name: recipeName,
             country: recipeCountry,
             section: recipeSections,
             instructions: recipeInstructions,
         }
-
-        console.log(recipeToAdd);
 
         return dispatch(setAddUserRecipe(loggedInUser._id, recipeToAdd))
             .then((res) => {

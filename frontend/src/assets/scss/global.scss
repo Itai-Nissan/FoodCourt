@@ -515,7 +515,38 @@ a {
     grid-template-columns: 70% 1fr;
 
     .recipe-output {
-        // display: flex;
+        h1 {
+            font-size: xx-large;
+            margin-block-start: .6em;
+        }
+
+        h2 {
+            // margin-block-end: 1em;
+        }
+
+        h3 {
+            margin-block-start: 1em;
+            margin-block-end: .5em;
+        }
+
+        h4 {
+            font-weight: 600;
+            color: $darker-text;
+        }
+
+        hr {
+            margin: 0 auto;
+            margin-top: .5em;
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
+        }
+
+        p {
+            margin-block-start: .5em;
+            margin-block-end: .5em;
+            font-weight: 600;
+        }
 
     }
 

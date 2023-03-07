@@ -20,7 +20,8 @@ export const AddIngredient = (props) => {
             <div className="add-ingredient">
                 <Input type="text" placeholder={props.recipeIngredient}
                     value={props.recipeIngredient}
-                    onChange={(event) => props.setIngredient(event.target.value)} />
+                    onChange={(event) => props.setIngredient(event.target.value)}
+                    onKeyDown={props.addIngredient} />
                 <Button onClick={props.addIngredient}>Add ingredient</Button>
             </div>
         </div>
