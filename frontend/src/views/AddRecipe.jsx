@@ -2,20 +2,24 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAddUserRecipe } from '../store/actions/foodActions'
 import { AddIngredient } from '../cmps/addRecipe/AddIngredient'
+import { AddStep } from '../cmps/addRecipe/AddStep'
+import { AddRecipeOutput } from '../cmps/addRecipe/AddRecipeOutput'
 
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
-import { AddRecipeOutput } from '../cmps/addRecipe/AddRecipeOutput'
 
 
 export const AddRecipe = () => {
     const dispatch = useDispatch()
 
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
-    const [ingredientCount, setIngredientCount] = useState(0)
-    const [numberOfIngredients, setNumberOfIngredient] = useState(Array.from(Array(ingredientCount)))
+
     const [recipeName, setRecipeName] = useState('')
     const [recipeCountry, setRecipeCountry] = useState('')
+
+    // Ingredient
+    const [ingredientCount, setIngredientCount] = useState(0)
+    const [numberOfIngredients, setNumberOfIngredient] = useState(Array.from(Array(ingredientCount)))
     const [recipeIngredient, setIngredient] = useState('')
     const [recipeSections, setRecipeSections] = useState([{
         components: [
@@ -25,26 +29,6 @@ export const AddRecipe = () => {
         ],
     }
     ])
-
-    function onAddRecipe() {
-        const recipeToAdd = {
-            name: recipeName,
-            country: recipeCountry,
-            section: recipeSections,
-        }
-
-        return dispatch(setAddUserRecipe(loggedInUser._id, recipeToAdd))
-            .then((res) => {
-                if (!res) {
-                    console.log('ein rez')
-                }
-                if (res) {
-                    // routeToProfile(res)
-                }
-                setRecipeName('')
-                setRecipeCountry('')
-            })
-    }
 
     function removeIngredient(e, index) {
         if (recipeSections[0].components.length === 1) {
@@ -89,6 +73,86 @@ export const AddRecipe = () => {
 
     }
 
+    // Step
+
+    // Step
+    const [stepCount, setStepCount] = useState(0)
+    const [numberOfSteps, setNumberOfStep] = useState(Array.from(Array(stepCount)))
+    const [recipeStep, setStep] = useState('')
+    const [recipeInstructions, setRecipeInstructions] = useState(
+         [
+            {
+                display_text: null,
+            }
+        ]
+    )
+
+    function removeStep(e, index) {
+        if (recipeInstructions.length === 1) {
+            recipeInstructions = null
+        } else {
+            let updatedSections = recipeInstructions
+            updatedSections.splice(index, 1)
+        }
+        const newCount = stepCount - 1
+        setStepCount(newCount)
+        setNumberOfStep(Array.from(Array(newCount)))
+
+    }
+
+    function addStep() {
+        let updatedInstructions = null
+        if (recipeInstructions[0].display_text === null) {
+            updatedInstructions = recipeInstructions
+            updatedInstructions[0].display_text = recipeStep
+        } else {
+            updatedInstructions = recipeInstructions
+            updatedInstructions.push({
+                display_text: recipeStep,
+            })
+        }
+        setRecipeInstructions(updatedInstructions)
+        setStep('')
+
+        const newCount = stepCount + 1
+        setStepCount(newCount)
+        setNumberOfStep(Array.from(Array(newCount)))
+    }
+
+    function stepList(index) {
+        if (recipeInstructions[0].display_text === null) return
+        return recipeInstructions[index].display_text
+    }
+
+    const steps = () => {
+        if (stepCount) return 'Steps:'
+
+    }
+
+    function onAddRecipe() {
+        console.log(recipeInstructions);
+        const recipeToAdd = {
+            name: recipeName,
+            country: recipeCountry,
+            section: recipeSections,
+            instructions: recipeInstructions,
+        }
+
+        console.log(recipeToAdd);
+
+        return dispatch(setAddUserRecipe(loggedInUser._id, recipeToAdd))
+            .then((res) => {
+                if (!res) {
+                    console.log('ein rez')
+                }
+                if (res) {
+                    // routeToProfile(res)
+                }
+                setRecipeName('')
+                setRecipeCountry('')
+            })
+    }
+
     return (
         <div className='add-recipe'>
             <h2>Add new recipe</h2>
@@ -109,6 +173,14 @@ export const AddRecipe = () => {
                             recipeIngredient={recipeIngredient}
                             numberOfIngredients={numberOfIngredients}
                         ></AddIngredient>
+                        <AddStep
+                            stepList={stepList}
+                            addStep={addStep}
+                            removeStep={removeStep}
+                            setStep={setStep}
+                            recipeStep={recipeStep}
+                            numberOfSteps={numberOfSteps}
+                        ></AddStep>
                     </section>
                 </form>
                 <section className='add-recipe-output'>
@@ -118,6 +190,9 @@ export const AddRecipe = () => {
                         Ingredients={Ingredients}
                         numberOfIngredients={numberOfIngredients}
                         ingredientList={ingredientList}
+                        steps={steps}
+                        stepList={stepList}
+                        numberOfSteps={numberOfSteps}
                         onAddRecipe={onAddRecipe}
                     ></AddRecipeOutput>
                 </section>

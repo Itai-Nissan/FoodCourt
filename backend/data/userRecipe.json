@@ -1,1 +1,26 @@
-[{"_id":"t5J6gu6G7D","userId":"yE3L03gXWb","name":"Pizza","country":"Italy","section":[{"components":[{"raw_text":"salt"},{"raw_text":"tommato"},{"raw_text":"garlic"}]}],"createDate":"2023/3/4"},{"_id":"gN2B3mAz40","userId":"yE3L03gXWb","name":"humus","country":"lebanon","section":[{"components":[{"raw_text":"humus"},{"raw_text":"leamon"},{"raw_text":"garlic"}]}],"createDate":"2023/3/6"},{"_id":"9c4lRjU1jE","userId":"yE3L03gXWb","name":"fsda","country":"fsda","section":[{"components":[{"raw_text":"f"},{"raw_text":"a"},{"raw_text":"s"},{"raw_text":"g"},{"raw_text":"f"},{"raw_text":"f"}]}],"createDate":"2023/3/6"},{"_id":"kWg9Xk2Wd2","userId":"yE3L03gXWb","name":"asdf","country":"asdf","section":[{"components":[{"raw_text":null}]}],"createDate":"2023/3/6"},{"_id":"kNU7f9rSf0","userId":"yE3L03gXWb","name":"a","country":"b","section":[{"components":[{"raw_text":"a"},{"raw_text":"b"},{"raw_text":"c"},{"raw_text":"d"}]}],"createDate":"2023/3/6"},{"_id":"2fD8wbaRRg","userId":"yE3L03gXWb","name":"f","country":"f","section":[{"components":[{"raw_text":"f"}]}],"createDate":"2023/3/6"},{"_id":"TbgK560BAi","userId":"yE3L03gXWb","name":"gf","country":"gf","section":[{"components":[{"raw_text":"gfff"},{"raw_text":"gfff"},{"raw_text":"gfff"}]}],"createDate":"2023/3/6"}]
+[
+    {
+        "_id": "Eteme899pW",
+        "userId": "yE3L03gXWb",
+        "name": "",
+        "country": "",
+        "section": [
+            {
+                "components": [
+                    {
+                        "raw_text": "salt"
+                    },
+                    {
+                        "raw_text": "bread"
+                    }
+                ]
+            }
+        ],
+        "instructions": [
+            {
+                "display_text": "pizzzzza"
+            }
+        ],
+        "createDate": "2023/3/6"
+    }
+]

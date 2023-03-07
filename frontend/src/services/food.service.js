@@ -68,8 +68,6 @@ function _save(entityType, entities) {
 }
 
 async function addNewRecipe(userId, recipe) {
-    // console.log(userId)
-    // console.log(recipe)
     const newRecipe = await httpService.put('recipe', { userId, recipe })
     if (newRecipe) {
         console.log(newRecipe)

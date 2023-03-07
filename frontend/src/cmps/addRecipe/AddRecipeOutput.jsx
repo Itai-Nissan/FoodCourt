@@ -16,6 +16,13 @@ export const AddRecipeOutput = (props) => {
                     </div>
                 })
                 }
+                <h4 >{props.steps()}</h4>
+                {props.numberOfSteps.map((ingredient, index) => {
+                    return <div className="add-remove-ingredient" key={index}>
+                        <p>{props.stepList(index)}</p>
+                    </div>
+                })
+                }
             </section>
             <Button onClick={props.onAddRecipe}>Create recipe</Button>
         </div>

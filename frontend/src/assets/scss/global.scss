@@ -548,7 +548,7 @@ a {
 
 
         .add-remove-section {
-            
+
             .add-remove-ingredient-section {
 
                 .add-remove-ingredient {
@@ -597,6 +597,64 @@ a {
                 }
 
                 .remove-ingredient {
+                    display: flex;
+                    justify-content: flex-end;
+
+                    .MuiButtonBase-root {
+                        margin-inline-start: 1em;
+                        width: 50%;
+                    }
+
+                }
+            }
+            .add-remove-step-section {
+
+                .add-remove-step {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    * {
+                        font-family: Handlee;
+                    }
+
+                    .MuiButtonBase-root {
+                        background-color: $light-text-opactiy;
+                        color: $dark-wood;
+                        margin-inline-start: 1em;
+                        width: 50%;
+                    }
+
+                    .MuiButtonBase-root:hover {
+                        background-color: $dark-wood-opactiy;
+                        color: $dark-wood;
+                    }
+                }
+
+                .add-step {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .MuiInputBase-root {
+                        width: 50%;
+                    }
+
+                    .MuiButtonBase-root {
+                        background-color: $light-text-opactiy;
+                        color: $dark-wood;
+                        margin-inline-start: 1em;
+                        width: 50%;
+                        font-family: Handlee;
+                    }
+
+                    .MuiButtonBase-root:hover {
+                        background-color: $dark-wood-opactiy;
+                        color: $dark-wood;
+                    }
+
+                }
+
+                .remove-step {
                     display: flex;
                     justify-content: flex-end;
 

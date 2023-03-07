@@ -19,6 +19,7 @@ async function addRecipe(userId, recipe) {
       name: recipe.name,
       country: recipe.country,
       section: recipe.section,
+      instructions: recipe.instructions,
       createDate,
     }
     userRecipe.push(recipeToAdd)

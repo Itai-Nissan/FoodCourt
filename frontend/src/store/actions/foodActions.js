@@ -54,6 +54,7 @@ export function setAddUserRecipe(userId, recipe) {
 
     return async (dispatch, getState) => {
         try {
+            console.log(recipe);
             const newRecipe = await foodService.addNewRecipe(userId, recipe)
             if (newRecipe) {
                 console.log(newRecipe)
