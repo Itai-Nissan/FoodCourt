@@ -5,9 +5,11 @@ export const AddRecipeOutput = (props) => {
 
     return (
         <div className='recipe-output'>
+            <h1>Recipe output</h1>
+            <hr />
             {/* <img className='details-bg' src={foodById.thumbnail_url} alt="" /> */}
             <section className='details-left'>
-                <h1>{props.recipeName ? props.recipeName : 'Recipe name'}</h1>
+                <h2>{props.recipeName ? props.recipeName : 'Recipe name'}</h2>
                 <h2>{props.recipeCountry ? props.recipeCountry : 'Recipe origin'}</h2>
                 <h3 >{props.Ingredients()}</h3>
                 {props.Ingredients() ? <hr /> : null}

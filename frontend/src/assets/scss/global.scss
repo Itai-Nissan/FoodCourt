@@ -514,11 +514,20 @@ a {
     display: grid;
     grid-template-columns: 70% 1fr;
 
+    h1 {
+        font-size: xx-large;
+        margin-block-start: .3em;
+    }
+
+    hr {
+        // margin: 0 auto;
+        margin-top: .5em;
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
+    }
+
     .recipe-output {
-        h1 {
-            font-size: xx-large;
-            margin-block-start: .6em;
-        }
 
         h2 {
             // margin-block-end: 1em;
@@ -532,14 +541,6 @@ a {
         h4 {
             font-weight: 600;
             color: $darker-text;
-        }
-
-        hr {
-            margin: 0 auto;
-            margin-top: .5em;
-            border: 0;
-            height: 1px;
-            background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
         }
 
         p {
@@ -576,7 +577,9 @@ a {
         flex-direction: column;
         margin-inline-end: 1em;
 
-
+        Input {
+            height: 40px;
+        }
 
         .add-remove-section {
 
@@ -638,6 +641,7 @@ a {
 
                 }
             }
+
             .add-remove-step-section {
 
                 .add-remove-step {

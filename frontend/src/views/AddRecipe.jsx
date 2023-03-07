@@ -156,9 +156,10 @@ export const AddRecipe = () => {
 
     return (
         <div className='add-recipe'>
-            <h2>Add new recipe</h2>
             <div className="add-recipe-wrapper">
                 <form>
+                    <h1>Add new recipe</h1>
+                    <hr />
                     <Input type="text" placeholder='Name'
                         value={recipeName}
                         onChange={(event) => setRecipeName(event.target.value)} />
