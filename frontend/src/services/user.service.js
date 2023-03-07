@@ -5,6 +5,7 @@ export const userService = {
     confirmUser,
     loadUser,
     addToFav,
+    removeFromFav,
     login,
     signUp,
     logout,
@@ -27,6 +28,14 @@ function loadUser() {
 
 async function addToFav(user, food) {
     const userToSet = await httpService.put('user', { user, food })
+    if (userToSet) {
+        storageService.store(USER_DB, userToSet)
+    }
+    return userToSet
+}
+
+async function removeFromFav(user, recipeId) {
+    const userToSet = await httpService.delete('userFav', { user, recipeId })
     if (userToSet) {
         storageService.store(USER_DB, userToSet)
     }

@@ -80,3 +80,19 @@ export function addToFav(user, food) {
         }
     }
 }
+
+export function removeFromFav(user, recipeId) {
+    console.log(user);
+    console.log(recipeId);
+    return async (dispatch, getState) => {
+        try {
+            const userToSet = await userService.removeFromFav(user, recipeId)
+            if (userToSet) {
+                dispatch({ type: 'SET_USER', userToSet })
+                return userToSet
+            }
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}

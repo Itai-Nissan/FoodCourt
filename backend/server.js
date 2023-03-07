@@ -44,6 +44,13 @@ app.put("/api/user", (req, res) => {
     })
 })
 
+app.delete("/api/userFav/", (req, res) => {
+  userService.removeFavFromUser(req.body.user, req.body.recipeId)
+    .then((user) => {
+      res.send(user)
+    })
+})
+
 app.use('/api/users',(req,res)=>{
   userService.getUsers().then((users)=>{
     res.send(users)

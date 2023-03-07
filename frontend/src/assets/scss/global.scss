@@ -493,6 +493,22 @@ a {
 .user-profile {
     margin-block-start: 1em;
 
+    .food-list {
+
+        .food-preview {
+
+            .MuiButtonBase-root {
+                background-color: $dark-wood-opactiy;
+                color: $dark-wood;
+            }
+            
+            .MuiButtonBase-root:hover {
+                background-color: $dark-text;
+                color: $light-wood;
+            }
+        }
+    }
+
     .user-details {
         * {
             font-family: PatrickHand;

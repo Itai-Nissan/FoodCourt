@@ -4,6 +4,7 @@ const fs = require('fs');
 
 module.exports = {
     addFavToUser,
+    removeFavFromUser,
     getByUsername,
     addUser,
     getUsers,
@@ -21,6 +22,22 @@ function addFavToUser(user, food) {
         if (user._id === userToSearch._id) {
             userToAdd = userToSearch
             userToAdd.userFavorite.push(food)
+            _writeToJson()
+        }
+    })
+    return Promise.resolve(userToAdd)
+}
+
+function removeFavFromUser(user, recipeId) {
+    let userToAdd
+    users.forEach((userToSearch) => {
+        if (user._id === userToSearch._id) {
+            userToAdd = userToSearch
+        }
+    })
+    userToAdd.userFavorite.map((recipeToSearch, index) => {
+        if (recipeToSearch.id === recipeId) {
+            userToAdd.userFavorite.splice(index, 1)
             _writeToJson()
         }
     })
@@ -87,10 +104,10 @@ function _writeToJson() {
     fs.writeFile("data/users.json", jsonContent, 'utf8', function (err) {
         // console.log('trying to write:', jsonContent);
         if (err) {
-            console.log("An error occured while writing JSON Object to File.");
+            console.log("An error occured while writing JSON Object to File.")
             return console.log(err);
         }
 
-        console.log("JSON file has been saved.");
+        console.log("JSON file has been saved.")
     })
 }
