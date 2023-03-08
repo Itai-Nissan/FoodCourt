@@ -1,12 +1,27 @@
 import { userService } from '../../services/user.service'
 
 export function setLoggedInUser(user, actionType) {
-    // export function setLoggedInUser({ ...user }, actionType) {
 
     return async (dispatch, getState) => {
         try {
 
             const userToSet = await userService.login(user)
+            console.log(userToSet);
+            if (userToSet) {
+                dispatch({ type: 'SET_USER', userToSet })
+                return userToSet
+            } else return false
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
+
+export function setUpdatedUser(user) {
+
+    return async (dispatch, getState) => {
+        try {
+            const userToSet = user
             if (userToSet) {
                 dispatch({ type: 'SET_USER', userToSet })
                 return userToSet
@@ -18,7 +33,6 @@ export function setLoggedInUser(user, actionType) {
 }
 
 export function logout(user) {
-    // export function setLoggedInUser({ ...user }, actionType) {
 
     return async (dispatch, getState) => {
         try {
@@ -82,8 +96,6 @@ export function addToFav(user, food) {
 }
 
 export function removeFromFav(user, recipeId) {
-    console.log(user);
-    console.log(recipeId);
     return async (dispatch, getState) => {
         try {
             const userToSet = await userService.removeFromFav(user, recipeId)
@@ -96,3 +108,4 @@ export function removeFromFav(user, recipeId) {
         }
     }
 }
+

@@ -9,6 +9,8 @@ module.exports = {
     addUser,
     getUsers,
     getUserById,
+    addRecipeToUser,
+    removeRecipeFromUser,
     _writeToJson,
 }
 
@@ -86,6 +88,7 @@ async function addUser(user) {
             userPassword: user.userPassword,
             userEmail: user.userEmail,
             userFavorite: [],
+            userRecipe: [],
             memberSince,
         }
         users.push(userToAdd)
@@ -110,4 +113,32 @@ function _writeToJson() {
 
         console.log("JSON file has been saved.")
     })
+}
+
+function addRecipeToUser(userId, recipe) {
+    let userToSet
+    users.forEach((userToSearch) => {
+        if (userId === userToSearch._id) {
+            userToSet = userToSearch
+            userToSet.userRecipe.push(recipe)
+            _writeToJson()
+        }
+    })
+    return Promise.resolve(userToSet)
+}
+
+function removeRecipeFromUser(userId, recipeId) {
+    let userToAdd
+    users.forEach((userToSearch) => {
+        if (userId === userToSearch._id) {
+            userToAdd = userToSearch
+        }
+    })
+    userToAdd.userFavorite.map((recipeToSearch, index) => {
+        if (recipeToSearch.id === recipeId) {
+            userToAdd.userFavorite.splice(index, 1)
+            _writeToJson()
+        }
+    })
+    return Promise.resolve(userToAdd)
 }

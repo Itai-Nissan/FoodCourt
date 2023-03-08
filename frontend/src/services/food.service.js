@@ -70,8 +70,6 @@ function _save(entityType, entities) {
 async function addNewRecipe(userId, recipe) {
     const newRecipe = await httpService.put('recipe', { userId, recipe })
     if (newRecipe) {
-        console.log(newRecipe)
-        // storageService.store(USER_DB, newRecipe)
     }
     return newRecipe
 }

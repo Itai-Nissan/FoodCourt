@@ -54,12 +54,9 @@ export function setAddUserRecipe(userId, recipe) {
 
     return async (dispatch, getState) => {
         try {
-            console.log(recipe);
-            const newRecipe = await foodService.addNewRecipe(userId, recipe)
-            if (newRecipe) {
-                console.log(newRecipe)
-                // dispatch({ type: 'SET_USER', userToSet })
-                return newRecipe
+            const userToSet = await foodService.addNewRecipe(userId, recipe)
+            if (userToSet) {
+                return userToSet
             }
         } catch (err) {
             console.log('err:', err)

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAddUserRecipe } from '../store/actions/foodActions'
+import { setUpdatedUser } from '../store/actions/userActions'
 import { AddIngredient } from '../cmps/addRecipe/AddIngredient'
 import { AddStep } from '../cmps/addRecipe/AddStep'
 import { AddRecipeOutput } from '../cmps/addRecipe/AddRecipeOutput'
@@ -147,7 +148,7 @@ export const AddRecipe = () => {
                     console.log('ein rez')
                 }
                 if (res) {
-                    // routeToProfile(res)
+                    dispatch(setUpdatedUser(res))
                 }
                 setRecipeName('')
                 setRecipeCountry('')

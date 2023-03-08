@@ -15,6 +15,28 @@ export const UserProfile = (props) => {
         return dispatch(removeFromFav(loggedInUser, recipeId))
     }
 
+    let userRecipe = ''
+    if (loggedInUser.userRecipe) userRecipe = loggedInUser.userRecipe.map((recipe, index) => {
+        return <div className='' key={index}>
+            <section className="card-img">
+                <Link to={`/foodDetails/${recipe.id}`} >
+                    {/* <img src={recipe.thumbnail_url} alt="" /> */}
+                </Link>
+            </section>
+            <section className="card-body">
+                <div className="card-name">
+                    <p>{recipe.name}</p>
+                </div>
+                <div className="card-credits">
+                    {/* <p>{foodCredits}</p> */}
+                    {/* <img src={foodCreditsImg} alt="" /> */}
+                    {/* <Button onClick={() => removeRecipeFromFav(recipe.id)}>X</Button> */}
+                </div>
+            </section>
+        </div>
+    })
+
+
     let userFav = ''
     if (loggedInUser.userFavorite) userFav = loggedInUser.userFavorite.map((recipe, index) => {
         const foodCredits = recipe.credits[0].name
@@ -44,6 +66,8 @@ export const UserProfile = (props) => {
                 <h1>{userName}</h1>
                 <h2>{userEmail}</h2>
                 <section className='food-list'>{userFav}</section>
+                {/* <section className='user-recipe'>{userRecipe}</section> */}
+                <section className='user-recipe'>{userRecipe}</section>
             </section>
         </div>
     )
