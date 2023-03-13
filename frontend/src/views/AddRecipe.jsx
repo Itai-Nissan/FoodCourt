@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAddUserRecipe } from '../store/actions/foodActions'
 import { setUpdatedUser } from '../store/actions/userActions'
@@ -134,13 +134,41 @@ export const AddRecipe = () => {
 
     }
 
+    //image
+    const [imgFile, setImageFile] = useState()
+    const [outputImg, setOutputImg] = useState()
+
+    const handleImgChange = (e) => {
+        console.log(e.target.files[0])
+        if (e.target.value) {
+            const imgPath = URL.createObjectURL(e.target.files[0])
+            setOutputImg(imgPath)
+            setImageFile(e.target.files[0].name)
+        }
+    }
+
+    //video
+    const [videoFile, setVideoFile] = useState('')
+    const [videoOutput, setVideoOutput] = useState('')
+
+    const handleVidChange = (e) => {
+        if (e.target.value) {
+            const videoPath = URL.createObjectURL(e.target.files[0])
+            setVideoOutput(videoPath)
+            setVideoFile(e.target.files[0].name)
+        }
+    }
+
     function onAddRecipe() {
         const recipeToAdd = {
             name: recipeName,
             country: recipeCountry,
             section: recipeSections,
             instructions: recipeInstructions,
+            thumbnail_url: imgFile,
+            original_video_url: videoFile,
         }
+        console.log(recipeToAdd)
 
         return dispatch(setAddUserRecipe(loggedInUser._id, recipeToAdd))
             .then((res) => {
@@ -184,6 +212,29 @@ export const AddRecipe = () => {
                             recipeStep={recipeStep}
                             numberOfSteps={numberOfSteps}
                         ></AddStep>
+                        <Button
+                            variant="contained"
+                            component="label"
+                        >
+                            Upload recipe image
+                            <input
+                                type="file"
+                                hidden
+                                onChange={handleImgChange}
+                            />
+                        </Button>
+                        <Button
+                            variant="contained"
+                            component="label"
+                        >
+                            Upload recipe video
+                            <input
+                                type="file"
+                                hidden
+                                onChange={handleVidChange}
+                            />
+                        </Button>
+
                     </section>
                 </form>
                 <section className='add-recipe-output'>
@@ -197,8 +248,11 @@ export const AddRecipe = () => {
                         stepList={stepList}
                         numberOfSteps={numberOfSteps}
                         onAddRecipe={onAddRecipe}
+                        imageOutput={outputImg}
+                        videoOutput={videoOutput}
                     ></AddRecipeOutput>
                 </section>
+                {/* <img className='' src={require('../assets/images/userRecipe/userRecipe_img.jpg')} alt="" /> */}
             </div>
         </div>
     )

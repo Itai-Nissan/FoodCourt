@@ -38,7 +38,6 @@ export function AppHeader() {
 
   function isLoggedIn() {
     if (!loggedInUser || !loggedInUser.userName) return <h4>Sign up</h4>
-    // else if (loggedInUser.userName) return <h4 onClick={setLogout}>Logout</h4>
   }
 
   return (

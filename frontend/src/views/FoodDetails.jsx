@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { foodService } from '../services/food.service'
 import { addToFav } from '../store/actions/userActions'
 import { Button } from '@mui/material'
-
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 
 export const FoodDetails = (props) => {
     window.scrollTo(0, 0)
@@ -23,7 +24,6 @@ export const FoodDetails = (props) => {
         const foodId = params.id
         const getFoodById = await foodService.getById(foodId)
         setFood(getFoodById)
-        console.log(getFoodById);
     }
 
     async function addFoodToFav() {
@@ -32,7 +32,21 @@ export const FoodDetails = (props) => {
     }
 
 
-    if (!foodById) return <div>Loading...</div>
+    if (!foodById) return <div className='skeleton-list' >
+        {[...Array(16)].map((e, i) => {
+            return <Stack key={i} spacing={1}>
+                <div className='skeleton-preview'>
+                    <Skeleton variant="rounded" height={140} />
+                    <Skeleton variant="text" height={20} sx={{ fontSize: '1rem' }} />
+                    <br />
+                    <div className="skeleton-footer">
+                        <Skeleton variant="text" width={100} height={20} sx={{ fontSize: '1rem' }} />
+                        <Skeleton variant="circular" width={40} height={40} />
+                    </div>
+                </div>
+            </Stack>
+        })}
+    </div>
     return (
         <div className='food-details'>
             <img className='details-bg' src={foodById.thumbnail_url} alt="" />

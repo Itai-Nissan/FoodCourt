@@ -1,3 +1,4 @@
+import React, { useState, ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { removeFromFav } from '../store/actions/userActions'
@@ -17,10 +18,11 @@ export const UserProfile = (props) => {
 
     let userRecipe = ''
     if (loggedInUser.userRecipe) userRecipe = loggedInUser.userRecipe.map((recipe, index) => {
-        return <div className='' key={index}>
+        let imgName = recipe.thumbnail_url
+        return <div className='food-preview' key={index}>
             <section className="card-img">
                 <Link to={`/foodDetails/${recipe.id}`} >
-                    {/* <img src={recipe.thumbnail_url} alt="" /> */}
+                    <img alt="timer" src={recipe.thumbnail_url ? require('../assets/images/userRecipe/' + imgName) : null} />
                 </Link>
             </section>
             <section className="card-body">
@@ -63,11 +65,23 @@ export const UserProfile = (props) => {
     return (
         <div className='user-profile'>
             <section className='user-details'>
-                <h1>{userName}</h1>
-                <h2>{userEmail}</h2>
-                <section className='food-list'>{userFav}</section>
-                {/* <section className='user-recipe'>{userRecipe}</section> */}
-                <section className='user-recipe'>{userRecipe}</section>
+                <div className="header">
+                    <h1>Hi {userName}</h1>
+                </div>
+                <div className="user-content">
+                    <section>
+                        <h4>Your favorites</h4>
+                        <div className="food-list">
+                        {userFav}
+                        </div>
+                        </section>
+                    <section className='user-recipe'>
+                        <h4>Your recipes</h4>
+                        <div className="">
+                        {userRecipe}
+                        </div>
+                        </section>
+                </div>
             </section>
         </div>
     )

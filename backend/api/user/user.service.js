@@ -116,6 +116,7 @@ function _writeToJson() {
 }
 
 function addRecipeToUser(userId, recipe) {
+
     let userToSet
     users.forEach((userToSearch) => {
         if (userId === userToSearch._id) {

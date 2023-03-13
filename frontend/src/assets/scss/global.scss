@@ -493,7 +493,14 @@ a {
 .user-profile {
     margin-block-start: 1em;
 
+    .user-content {
+        display: grid;
+        grid-template-columns: 75% 1fr;
+    }
+
     .food-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
 
         .food-preview {
 
@@ -501,7 +508,7 @@ a {
                 background-color: $dark-wood-opactiy;
                 color: $dark-wood;
             }
-            
+
             .MuiButtonBase-root:hover {
                 background-color: $dark-text;
                 color: $light-wood;
@@ -525,6 +532,19 @@ a {
 
 }
 
+.recipe-output {
+    position: relative;
+
+    .recipe-details-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0.3;
+        z-index: 1;
+    }
+}
+
 .add-recipe-wrapper {
 
     display: grid;
@@ -541,30 +561,6 @@ a {
         border: 0;
         height: 1px;
         background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
-    }
-
-    .recipe-output {
-
-        h2 {
-            // margin-block-end: 1em;
-        }
-
-        h3 {
-            margin-block-start: 1em;
-            margin-block-end: .5em;
-        }
-
-        h4 {
-            font-weight: 600;
-            color: $darker-text;
-        }
-
-        p {
-            margin-block-start: .5em;
-            margin-block-end: .5em;
-            font-weight: 600;
-        }
-
     }
 
     .css-q0jhri-MuiInputBase-root-MuiInput-root {

@@ -6,7 +6,6 @@ export function setLoggedInUser(user, actionType) {
         try {
 
             const userToSet = await userService.login(user)
-            console.log(userToSet);
             if (userToSet) {
                 dispatch({ type: 'SET_USER', userToSet })
                 return userToSet
@@ -21,7 +20,7 @@ export function setUpdatedUser(user) {
 
     return async (dispatch, getState) => {
         try {
-            const userToSet = user
+            const userToSet = await userService.updateUser(user)
             if (userToSet) {
                 dispatch({ type: 'SET_USER', userToSet })
                 return userToSet
@@ -39,7 +38,6 @@ export function logout(user) {
 
             const userToSet = await userService.logout(user)
             if (userToSet) {
-                console.log(userToSet);
                 dispatch({ type: 'SET_USER', userToSet })
                 return userToSet
             } else return false

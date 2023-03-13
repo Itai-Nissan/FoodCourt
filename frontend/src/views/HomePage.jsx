@@ -25,10 +25,6 @@ export const HomePage = (props) => {
             })
     }
 
-
-    // if (!recipes) return <div>
-    //     <Filter onChangeFilter={onChangeFilter} isLoading={loading}></Filter>
-    // </div>
     return (
         <div className='home-page'>
             <Filter onChangeFilter={onChangeFilter} isLoading={loading}></Filter>

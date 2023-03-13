@@ -11,6 +11,7 @@ async function addRecipe(userId, recipe) {
   let createDate = year + "/" + month + "/" + day
 
   try {
+
     const recipeToAdd = {
       _id: utilities.randomId(),
       userId,
@@ -18,11 +19,13 @@ async function addRecipe(userId, recipe) {
       country: recipe.country,
       section: recipe.section,
       instructions: recipe.instructions,
+      thumbnail_url: recipe.thumbnail_url,
+      original_video_url: recipe.original_video_url,
       createDate,
     }
     userRecipe.push(recipeToAdd)
     _writeToJson()
-    const userToReturn = userService.addRecipeToUser(userId, recipe)
+    const userToReturn = await userService.addRecipeToUser(userId, recipeToAdd)
     return userToReturn
   } catch (err) {
     logger.error('cannot insert new recipe', err)
@@ -32,7 +35,7 @@ async function addRecipe(userId, recipe) {
 
 function _writeToJson() {
   let updatedUsers = userRecipe
-  console.log('writing to json:', updatedUsers)
+  // console.log('writing to json:', updatedUsers)
   var jsonContent = JSON.stringify(updatedUsers)
 
 

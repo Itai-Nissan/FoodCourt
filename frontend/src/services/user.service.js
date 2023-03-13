@@ -9,6 +9,7 @@ export const userService = {
     login,
     signUp,
     logout,
+    updateUser,
 }
 
 const USER_DB = 'FoodyUserDb'
@@ -58,4 +59,9 @@ async function logout() {
     const userToSet = await httpService.post(ENDPOINT + '/logout')
     if (userToSet) storageService.store(USER_DB, userToSet)
     return userToSet
+}
+
+async function updateUser(user){
+    if (user) storageService.store(USER_DB, user)
+    return user
 }
