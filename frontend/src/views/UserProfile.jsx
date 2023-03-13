@@ -19,6 +19,7 @@ export const UserProfile = (props) => {
     let userRecipe = ''
     if (loggedInUser.userRecipe) userRecipe = loggedInUser.userRecipe.map((recipe, index) => {
         let imgName = recipe.thumbnail_url
+        const foodCredits = recipe.credits[0].name
         return <div className='food-preview' key={index}>
             <section className="card-img">
                 <Link to={`/foodDetails/${recipe.id}`} >
@@ -30,7 +31,7 @@ export const UserProfile = (props) => {
                     <p>{recipe.name}</p>
                 </div>
                 <div className="card-credits">
-                    {/* <p>{foodCredits}</p> */}
+                    <p>{foodCredits}</p>
                     {/* <img src={foodCreditsImg} alt="" /> */}
                     {/* <Button onClick={() => removeRecipeFromFav(recipe.id)}>X</Button> */}
                 </div>

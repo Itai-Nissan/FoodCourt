@@ -111,7 +111,7 @@ function _writeToJson() {
             return console.log(err);
         }
 
-        console.log("JSON file has been saved.")
+        console.log("JSON file has been saved in user service")
     })
 }
 

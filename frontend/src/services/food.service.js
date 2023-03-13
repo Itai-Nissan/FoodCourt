@@ -68,8 +68,9 @@ function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
 
-async function addNewRecipe(userId, recipe) {
-    const newRecipe = await httpService.put('recipe', { userId, recipe })
+async function addNewRecipe(user, recipe) {
+
+    const newRecipe = await httpService.put('recipe', { user, recipe })
     if (newRecipe) {
     }
     return newRecipe

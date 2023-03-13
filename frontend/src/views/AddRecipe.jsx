@@ -170,7 +170,7 @@ export const AddRecipe = () => {
         }
         console.log(recipeToAdd)
 
-        return dispatch(setAddUserRecipe(loggedInUser._id, recipeToAdd))
+        return dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
             .then((res) => {
                 if (!res) {
                     console.log('ein rez')

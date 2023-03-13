@@ -2,12 +2,10 @@ const recipeService = require('./recipe.service')
 // const logger = require('../../services/logger.service')
 
 async function addNewRecipe(req, res) {
-  const { userId, recipe } = req.body
-  // console.log('recipe controller:', recipe)
+  const { user, recipe } = req.body
   try {
-    const newRecipe = await recipeService.addRecipe(userId, recipe)
+    const newRecipe = await recipeService.addRecipe(user, recipe)
     let recipeToReturn = { ...newRecipe }
-    // console.log('recipe controller:', recipeToReturn)
     // req.session.userName = userToSet
     res.json(recipeToReturn)
   } catch (err) {

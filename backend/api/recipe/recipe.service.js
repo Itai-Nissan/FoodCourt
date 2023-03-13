@@ -3,7 +3,7 @@ const utilities = require("../../services/utilities")
 const userService = require("../user/user.service")
 const fs = require('fs')
 
-async function addRecipe(userId, recipe) {
+async function addRecipe(user, recipe) {
   let dateObj = new Date()
   let month = dateObj.getUTCMonth() + 1
   let day = dateObj.getUTCDate()
@@ -11,21 +11,25 @@ async function addRecipe(userId, recipe) {
   let createDate = year + "/" + month + "/" + day
 
   try {
-
     const recipeToAdd = {
       _id: utilities.randomId(),
-      userId,
+      userId: user._id,
       name: recipe.name,
       country: recipe.country,
       section: recipe.section,
       instructions: recipe.instructions,
       thumbnail_url: recipe.thumbnail_url,
+      credits: [
+        {
+          name: user.fullName
+        }
+      ],
       original_video_url: recipe.original_video_url,
       createDate,
     }
     userRecipe.push(recipeToAdd)
     _writeToJson()
-    const userToReturn = await userService.addRecipeToUser(userId, recipeToAdd)
+    const userToReturn = await userService.addRecipeToUser(user._id, recipeToAdd)
     return userToReturn
   } catch (err) {
     logger.error('cannot insert new recipe', err)
@@ -35,7 +39,6 @@ async function addRecipe(userId, recipe) {
 
 function _writeToJson() {
   let updatedUsers = userRecipe
-  // console.log('writing to json:', updatedUsers)
   var jsonContent = JSON.stringify(updatedUsers)
 
 
@@ -45,7 +48,7 @@ function _writeToJson() {
       return console.log(err)
     }
 
-    console.log("JSON file has been saved.")
+    console.log("JSON file has been saved in recipe service")
   })
 }
 

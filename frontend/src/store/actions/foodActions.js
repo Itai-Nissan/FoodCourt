@@ -50,12 +50,13 @@ export function setFilterBy(filterBy) {
     }
 }
 
-export function setAddUserRecipe(userId, recipe) {
+export function setAddUserRecipe(user, recipe) {
 
     return async (dispatch, getState) => {
         try {
-            const userToSet = await foodService.addNewRecipe(userId, recipe)
+            const userToSet = await foodService.addNewRecipe(user, recipe)
             if (userToSet) {
+                console.log(userToSet);
                 return userToSet
             }
         } catch (err) {
