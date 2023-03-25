@@ -36,31 +36,34 @@ async function getFood(filterBy) {
 }
 
 async function getById(id) {
+    const ENDPOINT = 'recipe'
+    console.log(id)
+
     const KEY = 'foodByIdDb'
     let foodById = null
-    // let foodById = localStorage.getItem(KEY) || null
-    // if (foodById !== null) {
-    //     foodById = JSON.parse(foodById)
-    // }
-    // if (id && foodById === null) {
-    console.log('Fectching byId from SERVER');
-    const options = {
-        method: 'GET',
-        url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
-        params: { id: id },
-        headers: {
-            'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
-            'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-        }
-    };
 
-    await axios.request(options).then(function (response) {
-        foodById = response.data
-        _save(KEY, foodById)
-    }).catch(function (error) {
-        console.error(error);
-    })
-    // }
+    foodById = await httpService.get(ENDPOINT + '/:id', {id})
+    console.log(foodById);
+
+    if (!foodById) {
+        console.log('Fectching byId from SERVER', id);
+        const options = {
+            method: 'GET',
+            url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
+            params: { id: id },
+            headers: {
+                'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
+                'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+            }
+        };
+
+        await axios.request(options).then(function (response) {
+            foodById = response.data
+            _save(KEY, foodById)
+        }).catch(function (error) {
+            console.error(error);
+        })
+    }
     return foodById
 }
 
@@ -69,6 +72,7 @@ function _save(entityType, entities) {
 }
 
 async function addNewRecipe(user, recipe) {
+    console.log(recipe);
 
     const newRecipe = await httpService.put('recipe', { user, recipe })
     if (newRecipe) {

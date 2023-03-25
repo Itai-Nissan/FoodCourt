@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { foodService } from '../services/food.service'
 import { addToFav } from '../store/actions/userActions'
+import { loadUser } from '../store/actions/userActions'
+
 import { Button } from '@mui/material'
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
@@ -15,22 +17,36 @@ export const FoodDetails = (props) => {
     const params = useParams()
     const dispatch = useDispatch()
 
-
     useEffect(() => {
-        loadFood()
+        dispatch(loadUser())
+            .then(() => {
+                loadFood()
+                    .then(() => {
+                    })
+            })
     }, [params.id])
 
     async function loadFood() {
         const foodId = params.id
+        // loggedInUser.userRecipe[0]
+        // if (loggedInUser) {
+        //     loggedInUser.userRecipe.map((recipe, index) => {
+        //         if (foodId === recipe._id) {
+        //             console.log(recipe)
+        //             setFood(recipe)
+        //             return
+        //         }
+        //     })
+        // }
         const getFoodById = await foodService.getById(foodId)
         setFood(getFoodById)
+        console.log(getFoodById);
     }
 
     async function addFoodToFav() {
         if (!loggedInUser) return
         return dispatch(addToFav(loggedInUser, foodById))
     }
-
 
     if (!foodById) return <div className='skeleton-list' >
         {[...Array(16)].map((e, i) => {

@@ -3,6 +3,15 @@ const utilities = require("../../services/utilities")
 const userService = require("../user/user.service")
 const fs = require('fs')
 
+async function getRecipeById(id) {
+  let recipeToReturn = null
+  userRecipe.forEach((recipe) => {
+    if (recipe._id === id)
+    recipeToReturn = recipe
+  })
+  return recipeToReturn
+}
+
 async function addRecipe(user, recipe) {
   let dateObj = new Date()
   let month = dateObj.getUTCMonth() + 1
@@ -16,7 +25,7 @@ async function addRecipe(user, recipe) {
       userId: user._id,
       name: recipe.name,
       country: recipe.country,
-      section: recipe.section,
+      sections: recipe.sections,
       instructions: recipe.instructions,
       thumbnail_url: recipe.thumbnail_url,
       credits: [
@@ -54,5 +63,6 @@ function _writeToJson() {
 
 module.exports = {
   addRecipe,
+  getRecipeById,
   _writeToJson,
 }

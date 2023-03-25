@@ -56,7 +56,6 @@ export function setAddUserRecipe(user, recipe) {
         try {
             const userToSet = await foodService.addNewRecipe(user, recipe)
             if (userToSet) {
-                console.log(userToSet);
                 return userToSet
             }
         } catch (err) {

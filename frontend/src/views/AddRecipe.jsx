@@ -163,12 +163,11 @@ export const AddRecipe = () => {
         const recipeToAdd = {
             name: recipeName,
             country: recipeCountry,
-            section: recipeSections,
+            sections: recipeSections,
             instructions: recipeInstructions,
             thumbnail_url: imgFile,
             original_video_url: videoFile,
         }
-        console.log(recipeToAdd)
 
         return dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
             .then((res) => {

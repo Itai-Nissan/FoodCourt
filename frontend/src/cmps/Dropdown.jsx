@@ -128,9 +128,9 @@ export default function UnstyledMenuIntroduction() {
 
   function loggedUserName() {
     if (loggedInUser) {
-        return <div>
-          <h4>{loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1)}</h4>
-        </div >
+      return <div>
+        <h4>{loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1)}</h4>
+      </div >
     }
   }
 
@@ -197,13 +197,14 @@ export default function UnstyledMenuIntroduction() {
       >
         <StyledMenuItem>
           <Link to={`/UserProfile/${loggedInUser._id}`}>
-          <h4>
-            {'Profile'}
-          </h4 >
-        </Link>
+            <h4>{'Profile'}</h4 >
+          </Link>
         </StyledMenuItem>
         <StyledMenuItem>
-          <Link to="/Add-recipe"><h4>{'Add recipe'}</h4></Link></StyledMenuItem>
+          <Link to="/Add-recipe">
+            <h4>{'Add recipe'}</h4>
+          </Link>
+        </StyledMenuItem>
         <StyledMenuItem>
           <div>{onClickLogout()}</div>
         </StyledMenuItem>

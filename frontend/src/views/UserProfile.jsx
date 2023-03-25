@@ -22,7 +22,7 @@ export const UserProfile = (props) => {
         const foodCredits = recipe.credits[0].name
         return <div className='food-preview' key={index}>
             <section className="card-img">
-                <Link to={`/foodDetails/${recipe.id}`} >
+                <Link to={`/foodDetails/${recipe._id}`} >
                     <img alt="timer" src={recipe.thumbnail_url ? require('../assets/images/userRecipe/' + imgName) : null} />
                 </Link>
             </section>
