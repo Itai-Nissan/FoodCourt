@@ -3,10 +3,19 @@ const utilities = require("../../services/utilities")
 const userService = require("../user/user.service")
 const fs = require('fs')
 
+async function getusersRecipe(id) {
+  let recipeToReturn = userRecipe
+  // userRecipe.forEach((recipe) => {
+  //   if (recipe._id === id)
+  //   recipeToReturn = recipe
+  // })
+  return recipeToReturn
+}
+
 async function getRecipeById(id) {
   let recipeToReturn = null
   userRecipe.forEach((recipe) => {
-    if (recipe._id === id)
+    if (recipe.id === id)
     recipeToReturn = recipe
   })
   return recipeToReturn
@@ -21,7 +30,7 @@ async function addRecipe(user, recipe) {
 
   try {
     const recipeToAdd = {
-      _id: utilities.randomId(),
+      id: utilities.randomId(),
       userId: user._id,
       name: recipe.name,
       country: recipe.country,
@@ -64,5 +73,6 @@ function _writeToJson() {
 module.exports = {
   addRecipe,
   getRecipeById,
+  getusersRecipe,
   _writeToJson,
 }

@@ -14,13 +14,12 @@ async function addNewRecipe(req, res) {
   }
 }
 
-async function getUserRecipe(req, res) {
+async function getUserRecipeById(req, res) {
   const { id } = req.query
   try {
     const recipeToReturn = await recipeService.getRecipeById(id)
     // let recipeToReturn = { ...newRecipe }
     // // req.session.userName = userToSet
-    console.log(recipeToReturn)
     res.json(recipeToReturn)
   } catch (err) {
     // logger.error('Failed to Login ' + err)
@@ -28,8 +27,23 @@ async function getUserRecipe(req, res) {
   }
 }
 
+async function getUserRecipe(req, res) {
+  console.log('recipe controllers:');
+  const { filterBy } = req.query
+  console.log('recipe controllers:', filterBy);
+  try {
+    const recipeToReturn = await recipeService.getusersRecipe(filterBy)
+    // let recipeToReturn = { ...newRecipe }
+    // // req.session.userName = userToSet
+    res.json(recipeToReturn)
+  } catch (err) {
+    // logger.error('Failed to Login ' + err)
+    res.status(401).send({ err: 'Failed to Login' })
+  }
+}
 
 module.exports = {
   addNewRecipe,
-  getUserRecipe
+  getUserRecipeById,
+  getUserRecipe,
 }

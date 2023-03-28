@@ -1,1 +1,42 @@
-[{"_id":"7ZVkc28jiF","userId":"Fk01wbttnU","name":"Humus","country":"Israel","sections":[{"components":[{"raw_text":"Humus"},{"raw_text":"leamon"},{"raw_text":"garlic"}]}],"instructions":[{"display_text":"boil humus"},{"display_text":"smash with ing"},{"display_text":"enjoy!"}],"thumbnail_url":"userRecipe_img.jpg","credits":[{"name":"itai"}],"original_video_url":"","createDate":"2023/3/25"}]
+[
+    {
+        "id": "7ZVkc28jiF",
+        "userId": "Fk01wbttnU",
+        "name": "Humus",
+        "country": "Israel",
+        "sections": [
+            {
+                "components": [
+                    {
+                        "raw_text": "Humus"
+                    },
+                    {
+                        "raw_text": "leamon"
+                    },
+                    {
+                        "raw_text": "garlic"
+                    }
+                ]
+            }
+        ],
+        "instructions": [
+            {
+                "display_text": "boil humus"
+            },
+            {
+                "display_text": "smash with ing"
+            },
+            {
+                "display_text": "enjoy!"
+            }
+        ],
+        "thumbnail_url": "userRecipe_img.jpg",
+        "credits": [
+            {
+                "name": "itai"
+            }
+        ],
+        "original_video_url": "",
+        "createDate": "2023/3/25"
+    }
+]
