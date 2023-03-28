@@ -4,13 +4,10 @@ const INITIAL_STATE = {
     foods: null,
     foodById: 'foody',
     filterBy: '',
-    test: 'Yes this is a test'
+    test: false
 }
 
-
-// action = {type: SET_FOODS, foods: [...]}
 export function foodReducer(state = INITIAL_STATE, action) {
-    // console.log(action.foodById);
 
     switch (action.type) {
         case 'SET_FOOD':

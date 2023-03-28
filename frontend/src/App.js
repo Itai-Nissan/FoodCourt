@@ -36,23 +36,11 @@ function App() {
         <main className='app-main container'>
           <Routes>
             <Route path='/' element={<HomePage />} />
-          </Routes>
-          <Routes>
             <Route path='/Login' element={<Login />} />
-          </Routes>
-          <Routes>
             <Route path='/Signup' element={<Signup />} />
-          </Routes>
-          <Routes>
             <Route path='/UserProfile/:id' element={<UserProfile />} />
-          </Routes>
-          <Routes>
             <Route path='/Add-recipe' element={<AddRecipe />} />
-          </Routes>
-          <Routes>
             <Route path='/FoodDetails/:id' element={<FoodDetails />} />
-          </Routes>
-          <Routes>
             <Route path='/AboutPage' element={<AboutPage />} />
           </Routes>
         </main>
