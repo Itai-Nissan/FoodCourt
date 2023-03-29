@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { setAddUserRecipe } from '../store/actions/foodActions'
 import { setUpdatedUser } from '../store/actions/userActions'
@@ -13,6 +14,7 @@ import { Button } from '@mui/material'
 
 export const AddRecipe = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate();
 
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
 
@@ -197,8 +199,9 @@ export const AddRecipe = () => {
                     console.log('ein rez')
                 }
                 if (res) {
-                    console.log(res);
+                    console.log(res)
                     dispatch(setUpdatedUser(res))
+                    navigate(`/UserProfile/${loggedInUser._id}`)
                 }
                 setRecipeName('')
                 setRecipeCountry('')

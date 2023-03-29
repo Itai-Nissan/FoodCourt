@@ -1,16 +1,13 @@
-var cloudinary = require("cloudinary").v2;
+var cloudinary = require("cloudinary").v2
 
-// const cloud_name = 'counditai'
-const cloud_name = process.env.CLOUD_NAME;
-// const api_key = '743814795936984'
-const api_key = process.env.API_KEY;
-// const api_secret = '7sSBUT0hjf7JFDm0ulyRz0Y-eT4'
-const api_secret = process.env.API_SECRET;
+const CLOUD_NAME = process.env.CLOUD_NAME
+const API_KEY = process.env.API_KEY
+const API_SECRET = process.env.API_SECRET
 
 cloudinary.config({
-    cloud_name: cloud_name,
-    api_key: api_key,
-    api_secret: api_secret,
+    cloud_name: CLOUD_NAME,
+    api_key: API_KEY,
+    api_secret: API_SECRET,
 });
 
 const opts = {
@@ -37,4 +34,13 @@ const uploadImage = (image) => {
 module.exports = {
     uploadImage,
 }
+
+// module.exports.uploadMultipleImages = (images) => {
+//     return new Promise((resolve, reject) => {
+//       const uploads = images.map((base) => uploadImage(base));
+//       Promise.all(uploads)
+//         .then((values) => resolve(values))
+//         .catch((err) => reject(err));
+//     });
+//   };
 
