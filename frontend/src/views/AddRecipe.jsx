@@ -5,12 +5,10 @@ import { setAddUserRecipe } from '../store/actions/foodActions'
 import { setUpdatedUser } from '../store/actions/userActions'
 import { AddIngredient } from '../cmps/addRecipe/AddIngredient'
 import { AddStep } from '../cmps/addRecipe/AddStep'
+import { AddImage } from '../cmps/addRecipe/AddImage'
+import { AddVideo } from '../cmps/addRecipe/AddVideo'
 import { AddRecipeOutput } from '../cmps/addRecipe/AddRecipeOutput'
-
-
 import { Input } from '@mui/material'
-import { Button } from '@mui/material'
-
 
 export const AddRecipe = () => {
     const dispatch = useDispatch()
@@ -24,7 +22,6 @@ export const AddRecipe = () => {
     // Ingredient
     const [ingredientCount, setIngredientCount] = useState(0)
     const [numberOfIngredients, setNumberOfIngredient] = useState(Array.from(Array(ingredientCount)))
-    const [recipeIngredient, setIngredient] = useState('')
     const [recipeSections, setRecipeSections] = useState([{
         components: [
             {
@@ -34,42 +31,6 @@ export const AddRecipe = () => {
     }
     ])
 
-    function removeIngredient(e, index) {
-        if (recipeSections[0].components.length === 1) {
-            recipeSections[0].components[0].raw_text = null
-        } else {
-            let updatedSections = recipeSections
-            updatedSections[0].components.splice(index, 1)
-
-        }
-        const newCount = ingredientCount - 1
-        setIngredientCount(newCount)
-        setNumberOfIngredient(Array.from(Array(newCount)))
-
-    }
-
-    function addIngredient(e) {
-        if (recipeIngredient === '') return
-        if (e.key === "Enter" || e.type === 'click') {
-            let updatedSections = null
-            if (recipeSections[0].components[0].raw_text === null) {
-                updatedSections = recipeSections
-                updatedSections[0].components[0].raw_text = recipeIngredient
-            } else {
-                updatedSections = recipeSections
-                updatedSections[0].components.push({
-                    raw_text: recipeIngredient,
-                })
-            }
-            setRecipeSections(updatedSections)
-            setIngredient('')
-
-            const newCount = ingredientCount + 1
-            setIngredientCount(newCount)
-            setNumberOfIngredient(Array.from(Array(newCount)))
-        }
-    }
-
     function ingredientList(index) {
         if (recipeSections[0].components[0].raw_text === null) return
         return recipeSections[0].components[index].raw_text
@@ -77,13 +38,11 @@ export const AddRecipe = () => {
 
     const Ingredients = () => {
         if (ingredientCount) return 'Ingredients:'
-
     }
 
     // Step
     const [stepCount, setStepCount] = useState(0)
     const [numberOfSteps, setNumberOfStep] = useState(Array.from(Array(stepCount)))
-    const [recipeStep, setStep] = useState('')
     const [recipeInstructions, setRecipeInstructions] = useState(
         [
             {
@@ -92,41 +51,6 @@ export const AddRecipe = () => {
         ]
     )
 
-    function removeStep(e, index) {
-        if (recipeInstructions.length === 1) {
-            recipeInstructions = null
-        } else {
-            let updatedSections = recipeInstructions
-            updatedSections.splice(index, 1)
-        }
-        const newCount = stepCount - 1
-        setStepCount(newCount)
-        setNumberOfStep(Array.from(Array(newCount)))
-
-    }
-
-    function addStep(e) {
-        if (recipeStep === '') return
-        if (e.key === "Enter" || e.type === 'click') {
-            let updatedInstructions = null
-            if (recipeInstructions[0].display_text === null) {
-                updatedInstructions = recipeInstructions
-                updatedInstructions[0].display_text = recipeStep
-            } else {
-                updatedInstructions = recipeInstructions
-                updatedInstructions.push({
-                    display_text: recipeStep,
-                })
-            }
-            setRecipeInstructions(updatedInstructions)
-            setStep('')
-
-            const newCount = stepCount + 1
-            setStepCount(newCount)
-            setNumberOfStep(Array.from(Array(newCount)))
-        }
-    }
-
     function stepList(index) {
         if (recipeInstructions[0].display_text === null) return
         return recipeInstructions[index].display_text
@@ -134,55 +58,17 @@ export const AddRecipe = () => {
 
     const steps = () => {
         if (stepCount) return 'Instructions:'
-
     }
 
     //image
     const [imgFile, setImageFile] = useState()
     const [outputImg, setOutputImg] = useState()
 
-    const handleImgChange = async (e) => {
-        const newImage = e.target.files[0]
-        if (newImage) {
-            const imgPath = {
-                src: await convertBase64(newImage),
-                alt: e.target.files[0].name
-            }
-            const imgPre = URL.createObjectURL(newImage)
-
-            setOutputImg(imgPre)
-            setImageFile(imgPath)
-        }
-    }
-
-    const convertBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-
-            fileReader.onload = () => {
-                resolve(fileReader.result);
-            };
-
-            fileReader.onerror = (error) => {
-                reject(error);
-            };
-        });
-    };
-
-
     //video
     const [videoFile, setVideoFile] = useState('')
     const [videoOutput, setVideoOutput] = useState('')
 
-    const handleVidChange = (e) => {
-        if (e.target.value) {
-            const videoPath = URL.createObjectURL(e.target.files[0])
-            setVideoOutput(videoPath)
-            setVideoFile(e.target.files[0])
-        }
-    }
-
+    //add recipe
     function onAddRecipe() {
         const recipeToAdd = {
             name: recipeName,
@@ -222,44 +108,29 @@ export const AddRecipe = () => {
                         onChange={(event) => setRecipeCountry(event.target.value)} />
                     <section className="add-remove-section">
                         <AddIngredient
-                            ingredientList={ingredientList}
-                            addIngredient={addIngredient}
-                            removeIngredient={removeIngredient}
-                            setIngredient={setIngredient}
-                            recipeIngredient={recipeIngredient}
                             numberOfIngredients={numberOfIngredients}
+                            setNumberOfIngredient={setNumberOfIngredient}
+                            ingredientCount={ingredientCount}
+                            setIngredientCount={setIngredientCount}
+                            recipeSections={recipeSections}
+                            setRecipeSections={setRecipeSections}
                         ></AddIngredient>
                         <AddStep
-                            stepList={stepList}
-                            addStep={addStep}
-                            removeStep={removeStep}
-                            setStep={setStep}
-                            recipeStep={recipeStep}
+                            setStepCount={setStepCount}
+                            stepCount={stepCount}
+                            setRecipeInstructions={setRecipeInstructions}
+                            recipeInstructions={recipeInstructions}
+                            setNumberOfStep={setNumberOfStep}
                             numberOfSteps={numberOfSteps}
                         ></AddStep>
-                        <Button
-                            variant="contained"
-                            component="label"
-                        >
-                            Upload recipe image
-                            <input
-                                type="file"
-                                hidden
-                                onChange={handleImgChange}
-                            />
-                        </Button>
-                        <Button
-                            variant="contained"
-                            component="label"
-                        >
-                            Upload recipe video
-                            <input
-                                type="file"
-                                hidden
-                                onChange={handleVidChange}
-                            />
-                        </Button>
-
+                        <AddImage
+                            setOutputImg={setOutputImg}
+                            setImageFile={setImageFile}
+                        ></AddImage>
+                        <AddVideo
+                            setVideoFile={setVideoFile}
+                            setVideoOutput={setVideoOutput}
+                        ></AddVideo>
                     </section>
                 </form>
                 <section className='add-recipe-output'>
@@ -277,9 +148,8 @@ export const AddRecipe = () => {
                         videoOutput={videoOutput}
                     ></AddRecipeOutput>
                 </section>
-                {/* <img className='' src={require('../assets/images/userRecipe/userRecipe_img.jpg')} alt="" /> */}
             </div>
-        </div>
+        </div >
     )
 }
 

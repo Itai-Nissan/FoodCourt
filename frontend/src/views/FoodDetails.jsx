@@ -40,7 +40,6 @@ export const FoodDetails = (props) => {
         // }
         const getFoodById = await foodService.getById(foodId)
         setFood(getFoodById)
-        console.log(getFoodById);
     }
 
     async function addFoodToFav() {

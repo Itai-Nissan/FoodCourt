@@ -8,21 +8,64 @@ import { Button } from '@mui/material'
 
 export const AddStep = (props) => {
 
+    // Step
+    const [recipeStep, setStep] = useState('')
+
+    function removeStep(e, index) {
+        if (props.recipeInstructions.length === 1) {
+            props.recipeInstructions = null
+        } else {
+            let updatedSections = props.recipeInstructions
+            updatedSections.splice(index, 1)
+        }
+        const newCount = props.stepCount - 1
+        props.setStepCount(newCount)
+        props.setNumberOfStep(Array.from(Array(newCount)))
+
+    }
+
+    function addStep(e) {
+        if (recipeStep === '') return
+        if (e.key === "Enter" || e.type === 'click') {
+            let updatedInstructions = null
+            if (props.recipeInstructions[0].display_text === null) {
+                updatedInstructions = props.recipeInstructions
+                updatedInstructions[0].display_text = recipeStep
+            } else {
+                updatedInstructions = props.recipeInstructions
+                updatedInstructions.push({
+                    display_text: recipeStep,
+                })
+            }
+            props.setRecipeInstructions(updatedInstructions)
+            setStep('')
+
+            const newCount = props.stepCount + 1
+            props.setStepCount(newCount)
+            props.setNumberOfStep(Array.from(Array(newCount)))
+        }
+    }
+
+    function stepList(index) {
+        if (props.recipeInstructions[0].display_text === null) return
+        return props.recipeInstructions[index].display_text
+    }
+
     return (
         <div className='add-remove-step-section'>
             {props.numberOfSteps.map((step, index) => {
                 return <div className="add-remove-step" key={index}>
-                    <h4>{props.stepList(index)}</h4>
-                    <Button onClick={event => props.removeStep(event, index)} key={index}>Remove step</Button>
+                    <h4>{stepList(index)}</h4>
+                    <Button onClick={event => removeStep(event, index)} key={index}>Remove step</Button>
                 </div>
             })
             }
             <div className="add-step">
-                <Input type="text" placeholder={props.recipeStep}
-                    value={props.recipeStep}
-                    onChange={(event) => props.setStep(event.target.value)}
-                    onKeyDown={props.addStep} />
-                <Button onClick={props.addStep}>Add step</Button>
+                <Input type="text" placeholder={recipeStep}
+                    value={recipeStep}
+                    onChange={(event) => setStep(event.target.value)}
+                    onKeyDown={addStep} />
+                <Button onClick={addStep}>Add step</Button>
             </div>
         </div>
     )
