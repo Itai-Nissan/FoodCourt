@@ -6,6 +6,7 @@ import { AddIngredient } from '../cmps/addRecipe/AddIngredient'
 import { AddStep } from '../cmps/addRecipe/AddStep'
 import { AddRecipeOutput } from '../cmps/addRecipe/AddRecipeOutput'
 
+
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
 
@@ -138,14 +139,35 @@ export const AddRecipe = () => {
     const [imgFile, setImageFile] = useState()
     const [outputImg, setOutputImg] = useState()
 
-    const handleImgChange = (e) => {
-        console.log(e.target.files[0])
-        if (e.target.value) {
-            const imgPath = URL.createObjectURL(e.target.files[0])
-            setOutputImg(imgPath)
-            setImageFile(e.target.files[0].name)
+    const handleImgChange = async (e) => {
+        const newImage = e.target.files[0]
+        if (newImage) {
+            const imgPath = {
+                src: await convertBase64(newImage),
+                alt: e.target.files[0].name
+            }
+            const imgPre = URL.createObjectURL(newImage)
+
+            setOutputImg(imgPre)
+            setImageFile(imgPath)
         }
     }
+
+    const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
+    };
+
 
     //video
     const [videoFile, setVideoFile] = useState('')
@@ -155,7 +177,7 @@ export const AddRecipe = () => {
         if (e.target.value) {
             const videoPath = URL.createObjectURL(e.target.files[0])
             setVideoOutput(videoPath)
-            setVideoFile(e.target.files[0].name)
+            setVideoFile(e.target.files[0])
         }
     }
 
@@ -175,6 +197,7 @@ export const AddRecipe = () => {
                     console.log('ein rez')
                 }
                 if (res) {
+                    console.log(res);
                     dispatch(setUpdatedUser(res))
                 }
                 setRecipeName('')

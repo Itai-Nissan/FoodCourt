@@ -1,6 +1,7 @@
 const userRecipe = require("../../data/userRecipe.json")
 const utilities = require("../../services/utilities")
 const userService = require("../user/user.service")
+const cloudinary = require("../../services/cloudinary")
 const fs = require('fs')
 
 async function getusersRecipe(id) {
@@ -16,7 +17,7 @@ async function getRecipeById(id) {
   let recipeToReturn = null
   userRecipe.forEach((recipe) => {
     if (recipe.id === id)
-    recipeToReturn = recipe
+      recipeToReturn = recipe
   })
   return recipeToReturn
 }
@@ -29,6 +30,8 @@ async function addRecipe(user, recipe) {
   let createDate = year + "/" + month + "/" + day
 
   try {
+    const imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
+
     const recipeToAdd = {
       id: utilities.randomId(),
       userId: user._id,
@@ -36,7 +39,7 @@ async function addRecipe(user, recipe) {
       country: recipe.country,
       sections: recipe.sections,
       instructions: recipe.instructions,
-      thumbnail_url: recipe.thumbnail_url,
+      thumbnail_url: imgUrl,
       credits: [
         {
           name: user.fullName

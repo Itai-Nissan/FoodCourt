@@ -6,7 +6,9 @@ async function addNewRecipe(req, res) {
   try {
     const newRecipe = await recipeService.addRecipe(user, recipe)
     let recipeToReturn = { ...newRecipe }
+
     // req.session.userName = userToSet
+    // console.log('recipe controller:', newRecipe);
     res.json(recipeToReturn)
   } catch (err) {
     // logger.error('Failed to Login ' + err)
