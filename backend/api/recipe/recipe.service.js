@@ -4,12 +4,17 @@ const userService = require("../user/user.service")
 const cloudinary = require("../../services/cloudinary")
 const fs = require('fs')
 
-async function getusersRecipe(id) {
-  let recipeToReturn = userRecipe
-  // userRecipe.forEach((recipe) => {
-  //   if (recipe._id === id)
-  //   recipeToReturn = recipe
-  // })
+async function getusersRecipe(filterBy) {
+  let recipeToReturn = null
+  if (!filterBy) {
+    recipeToReturn = userRecipe
+  } else {
+    userRecipe.forEach((recipe) => {
+      if (recipe.name == filterBy) {
+        recipeToReturn = recipe
+      }
+    })
+  }
   return recipeToReturn
 }
 

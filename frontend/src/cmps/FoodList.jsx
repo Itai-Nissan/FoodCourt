@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 
 export default function FoodList({ foodList }) {
 
-    if (!foodList) return <div className='skeleton-list' >
+    if (!foodList || foodList.length === 0) return <div className='skeleton-list' >
         {[...Array(16)].map((e, i) => {
             return <Stack key={i} spacing={1}>
                 <div className='skeleton-preview'>

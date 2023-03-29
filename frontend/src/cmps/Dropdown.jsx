@@ -125,7 +125,6 @@ export default function UnstyledMenuIntroduction() {
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
   const dispatch = useDispatch()
 
-
   function loggedUserName() {
     if (loggedInUser) {
       return <div>
@@ -143,7 +142,7 @@ export default function UnstyledMenuIntroduction() {
   }
 
   function onClickLogout(e) {
-    return <Link to="/">
+    return <Link to="/LogIn">
       <h4 onClick={setLogout}>
         Logout
       </h4>

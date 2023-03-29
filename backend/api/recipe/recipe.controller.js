@@ -30,9 +30,7 @@ async function getUserRecipeById(req, res) {
 }
 
 async function getUserRecipe(req, res) {
-  console.log('recipe controllers:');
-  const { filterBy } = req.query
-  console.log('recipe controllers:', filterBy);
+  const filterBy = req.query.text
   try {
     const recipeToReturn = await recipeService.getusersRecipe(filterBy)
     // let recipeToReturn = { ...newRecipe }
