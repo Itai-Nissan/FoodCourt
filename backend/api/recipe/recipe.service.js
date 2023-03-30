@@ -2,10 +2,14 @@ const userRecipe = require("../../data/userRecipe.json")
 const utilities = require("../../services/utilities")
 const userService = require("../user/user.service")
 const cloudinary = require("../../services/cloudinary")
+const axios = require('axios')
 const fs = require('fs')
+
 
 async function getusersRecipe(filterBy) {
   let recipeToReturn = null
+  let foodList = []
+  
   if (!filterBy) {
     recipeToReturn = userRecipe
   } else {
@@ -15,7 +19,36 @@ async function getusersRecipe(filterBy) {
       }
     })
   }
-  return recipeToReturn
+  
+  if (recipeToReturn) {
+    if (recipeToReturn.length > 1) {
+      recipeToReturn.forEach((recipe) => {
+        foodList.push(recipe)
+      })
+    }
+    if (recipeToReturn.length === undefined) {
+      foodList.push(recipeToReturn)
+    }
+  }
+
+  const options = {
+    method: 'GET',
+    url: 'https://tasty.p.rapidapi.com/recipes/list',
+    params: { from: '0', size: '50', q: filterBy ? filterBy : '' },
+    headers: {
+      'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
+      'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+    }
+  }
+
+  await axios.request(options).then(function (response) {
+    response.data.results.map((recipe) => {
+      foodList.push(recipe)
+    })
+  }).catch(function (error) {
+    console.error(error)
+  })
+  return foodList
 }
 
 async function getRecipeById(id) {
@@ -24,6 +57,25 @@ async function getRecipeById(id) {
     if (recipe.id === id)
       recipeToReturn = recipe
   })
+
+  if (!recipeToReturn) {
+    console.log('Fectching byId from SERVER', id);
+    const options = {
+        method: 'GET',
+        url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
+        params: { id: id },
+        headers: {
+            'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
+            'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+        }
+    };
+
+    await axios.request(options).then(function (response) {
+        recipeToReturn = response.data
+    }).catch(function (error) {
+        console.error(error);
+    })
+}
   return recipeToReturn
 }
 
