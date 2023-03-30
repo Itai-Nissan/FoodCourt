@@ -49,7 +49,7 @@ async function getFood(filterBy) {
     }).catch(function (error) {
         console.error(error)
     })
-    console.log('Fetching from server after:', foodList)
+    // console.log('Fetching from server after:', foodList)
     // }
     return foodList
 }
