@@ -5,8 +5,6 @@ export const AddRecipeOutput = (props) => {
 
     return (
         <div className='recipe-output'>
-            <h1>Recipe output</h1>
-            <hr />
             <img className='recipe-details-bg' src={props.imageOutput ? props.imageOutput : null} alt="" />
             <div className="food-details">
                 <section className='details-left'>

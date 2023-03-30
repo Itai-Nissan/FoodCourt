@@ -134,6 +134,8 @@ export const AddRecipe = () => {
                     </section>
                 </form>
                 <section className='add-recipe-output'>
+                    <h1>Recipe output</h1>
+                    <hr />
                     <AddRecipeOutput
                         recipeName={recipeName}
                         recipeCountry={recipeCountry}

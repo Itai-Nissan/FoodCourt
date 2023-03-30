@@ -549,6 +549,10 @@ a {
 .recipe-output {
     position: relative;
 
+    .food-details{
+        display: flex;
+    }
+
     .recipe-details-bg {
         position: absolute;
         top: 0;
