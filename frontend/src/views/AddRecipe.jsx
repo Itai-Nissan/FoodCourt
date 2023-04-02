@@ -69,6 +69,8 @@ export const AddRecipe = () => {
     const [videoOutput, setVideoOutput] = useState('')
 
     //add recipe
+    const [loading, setLoading] = useState(false)
+
     function onAddRecipe() {
         const recipeToAdd = {
             name: recipeName,
@@ -79,7 +81,8 @@ export const AddRecipe = () => {
             original_video_url: videoFile,
         }
 
-        return dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
+        setLoading(true)
+        dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
             .then((res) => {
                 if (!res) {
                     console.log('ein rez')
@@ -89,8 +92,6 @@ export const AddRecipe = () => {
                     dispatch(setUpdatedUser(res))
                     navigate(`/UserProfile/${loggedInUser._id}`)
                 }
-                // setRecipeName('')
-                // setRecipeCountry('')
             })
     }
 
@@ -148,6 +149,7 @@ export const AddRecipe = () => {
                         onAddRecipe={onAddRecipe}
                         imageOutput={outputImg}
                         videoOutput={videoOutput}
+                        loading={loading}
                     ></AddRecipeOutput>
                 </section>
             </div>

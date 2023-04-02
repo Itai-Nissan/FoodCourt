@@ -162,7 +162,7 @@ a {
 //     }
 // }
 
-.dropdown-menu{
+.dropdown-menu {
 
     .MuiMenu-root {
         z-index: 201;
@@ -546,27 +546,54 @@ a {
 
 }
 
-.recipe-output {
-    position: relative;
+// .recipe-output {
+//     position: relative;
 
-    .food-details{
-        display: flex;
-    }
 
-    .recipe-details-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        opacity: 0.3;
-        z-index: 1;
-    }
-}
+//     .food-details {
+//         display: flex;
+//     }
+
+//     .recipe-details-bg {
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         width: 100%;
+//         opacity: 0.3;
+//         z-index: 1;
+//     }
+// }
 
 .add-recipe-wrapper {
 
     display: grid;
     grid-template-columns: 70% 1fr;
+
+    .recipe-output{
+        position: relative;
+
+
+        .food-details {
+            display: flex;
+        }
+    
+        .recipe-details-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0.3;
+            z-index: 1;
+        }
+    
+        .MuiButtonBase-root {
+            height: 50px;
+            background-color: $light-wood;
+            color: $dark-wood;
+            border-radius: 20px;
+        }
+    
+    }
 
     h1 {
         font-size: xx-large;

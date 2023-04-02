@@ -12,8 +12,6 @@ export const HomePage = (props) => {
     const dispatch = useDispatch()
     let recipes = useSelector((state) => state.foodModule.foods)
     let loading = false
-    const listSkeleton = 8
-
 
     function onChangeFilter(filterBy) {
         loading = true
