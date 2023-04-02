@@ -89,8 +89,8 @@ export const AddRecipe = () => {
                     dispatch(setUpdatedUser(res))
                     navigate(`/UserProfile/${loggedInUser._id}`)
                 }
-                setRecipeName('')
-                setRecipeCountry('')
+                // setRecipeName('')
+                // setRecipeCountry('')
             })
     }
 

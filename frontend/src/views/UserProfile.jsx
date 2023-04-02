@@ -1,6 +1,8 @@
 import React, { useState, ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
+
+import { utils } from '../services/utils'
 import { removeFromFav } from '../store/actions/userActions'
 
 import { Button } from '@mui/material'
@@ -28,7 +30,7 @@ export const UserProfile = (props) => {
             </section>
             <section className="card-body">
                 <div className="card-name">
-                    <p>{recipe.name}</p>
+                    <p>{utils.firstToCap(recipe.name)}</p>
                 </div>
                 <div className="card-credits">
                     <p>{foodCredits}</p>
@@ -73,15 +75,15 @@ export const UserProfile = (props) => {
                     <section>
                         <h4>Your favorites</h4>
                         <div className="food-list">
-                        {userFav}
+                            {userFav}
                         </div>
-                        </section>
+                    </section>
                     <section className='user-recipe'>
                         <h4>Your recipes</h4>
                         <div className="">
-                        {userRecipe}
+                            {userRecipe}
                         </div>
-                        </section>
+                    </section>
                 </div>
             </section>
         </div>

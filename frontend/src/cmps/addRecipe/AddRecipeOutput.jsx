@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { utils } from '../../services/utils'
 import { Button } from '@mui/material'
 
 export const AddRecipeOutput = (props) => {
@@ -8,13 +9,13 @@ export const AddRecipeOutput = (props) => {
             <img className='recipe-details-bg' src={props.imageOutput ? props.imageOutput : null} alt="" />
             <div className="food-details">
                 <section className='details-left'>
-                    <h2>{props.recipeName ? props.recipeName : 'Recipe name'}</h2>
-                    <h2>{props.recipeCountry ? props.recipeCountry : 'Recipe origin'}</h2>
+                    <h2>{props.recipeName ? utils.firstToCap(props.recipeName) : 'Recipe name'}</h2>
+                    <h2>{props.recipeCountry ? utils.firstToCap(props.recipeCountry) : 'Recipe origin'}</h2>
                     <h3 >{props.Ingredients()}</h3>
                     {props.Ingredients() ? <hr /> : null}
                     {props.numberOfIngredients.map((ingredient, index) => {
                         return <div className="add-remove-ingredient" key={index}>
-                            <p>{props.ingredientList(index)}</p>
+                            <p>{utils.firstToCap(props.ingredientList(index))}</p>
                         </div>
                     })
                     }
@@ -23,7 +24,7 @@ export const AddRecipeOutput = (props) => {
                     {props.numberOfSteps.map((ingredient, index) => {
                         return <div className="add-remove-step" key={index}>
                             <h4>Step {index + 1}</h4>
-                            <p>{props.stepList(index)}</p>
+                            <p>{utils.firstToCap(props.stepList(index))}</p>
                         </div>
                     })
                     }

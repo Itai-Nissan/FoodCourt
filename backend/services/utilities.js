@@ -1,7 +1,15 @@
 
 module.exports = {
     randomId,
+    firstToLow,
 }
+
+function firstToLow(str){
+    const capStr = str.charAt(0).toLowerCase() + str.slice(1)
+    return capStr
+}
+
+
 
 function randomId() {
     var text = "";
