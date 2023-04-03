@@ -8,6 +8,7 @@ import { loadUser } from '../store/actions/userActions'
 import { Button } from '@mui/material'
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
+import { RecipeSkeleton } from '../cmps/RecipeSkeleton'
 
 export const FoodDetails = (props) => {
     window.scrollTo(0, 0)
@@ -54,21 +55,10 @@ export const FoodDetails = (props) => {
         return dispatch(addToFav(loggedInUser, foodById))
     }
 
-    if (!foodById) return <div className='skeleton-list' >
-        {[...Array(16)].map((e, i) => {
-            return <Stack key={i} spacing={1}>
-                <div className='skeleton-preview'>
-                    <Skeleton variant="rounded" height={140} />
-                    <Skeleton variant="text" height={20} sx={{ fontSize: '1rem' }} />
-                    <br />
-                    <div className="skeleton-footer">
-                        <Skeleton variant="text" width={100} height={20} sx={{ fontSize: '1rem' }} />
-                        <Skeleton variant="circular" width={40} height={40} />
-                    </div>
-                </div>
-            </Stack>
-        })}
+    if (!foodById) return <div>
+        <RecipeSkeleton></RecipeSkeleton>
     </div>
+
     return (
         <div className='food-details'>
             <img className='details-bg' src={foodById.thumbnail_url} alt="" />
