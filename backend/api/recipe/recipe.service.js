@@ -9,17 +9,17 @@ const fs = require('fs')
 async function getusersRecipe(filterBy) {
   let recipeToReturn = null
   let foodList = []
-  
+
   if (!filterBy) {
     recipeToReturn = userRecipe
   } else {
     userRecipe.forEach((recipe) => {
-      if (recipe.name == filterBy) {
+      if (recipe.name.toLowerCase().includes(filterBy.toLowerCase())) {
         recipeToReturn = recipe
       }
     })
   }
-  
+
   if (recipeToReturn) {
     if (recipeToReturn.length > 1) {
       recipeToReturn.forEach((recipe) => {
@@ -61,21 +61,21 @@ async function getRecipeById(id) {
   if (!recipeToReturn) {
     console.log('Fectching byId from SERVER', id);
     const options = {
-        method: 'GET',
-        url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
-        params: { id: id },
-        headers: {
-            'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
-            'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-        }
+      method: 'GET',
+      url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
+      params: { id: id },
+      headers: {
+        'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
+        'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+      }
     };
 
     await axios.request(options).then(function (response) {
-        recipeToReturn = response.data
+      recipeToReturn = response.data
     }).catch(function (error) {
-        console.error(error);
+      console.error(error);
     })
-}
+  }
   return recipeToReturn
 }
 
