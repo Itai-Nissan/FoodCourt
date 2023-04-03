@@ -42,6 +42,13 @@ export const FoodDetails = (props) => {
         setFood(getFoodById)
     }
 
+    function loggedUserRecipe() {
+        if (loggedInUser._id === foodById.userId) {
+            return false
+        }
+        else return true
+    }
+
     async function addFoodToFav() {
         if (!loggedInUser) return
         return dispatch(addToFav(loggedInUser, foodById))
@@ -103,7 +110,7 @@ export const FoodDetails = (props) => {
                         {foodById.original_video_url ? <video controls autoPlay muted
                             src={foodById.original_video_url}></video> : null}
                     </div>
-                    <Button onClick={addFoodToFav}> Add to list</Button>
+                    {loggedUserRecipe() ? <Button onClick={addFoodToFav}> Add to list</Button> : null}
                 </div>
             </section>
 

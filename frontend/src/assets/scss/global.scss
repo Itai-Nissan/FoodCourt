@@ -6,7 +6,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-
 }
 
 a {
@@ -17,11 +16,10 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: $light-text-opactiy;
+    background-color: rgb(242, 242, 242);
+    // background-color: $light-text-opactiy;
     min-height: 100vh;
 }
-
-.app-main {}
 
 .container {
     width: 1100px;
@@ -122,53 +120,12 @@ a {
     z-index: 201;
 }
 
-
-// .MuiMenuItem-dense {
-
-//     background-color: black;
-// }
-
-// .Mui-focusVisible {
-//     background-color: black;
-
-// }
-
-// .MuiMenuItem-divider {
-//     background-color: black;
-//     color: red;
-//     border: none;
-// }
-
-// .Mui-selected:hover{
-//     background-color: black;
-//     color: red;
-// }
-
-// .MuiMenuItem-root {
-//     a {
-//         color: $dark-text;
-//         background-color: red;
-//     }
-//     a:hover{
-//         background-color: blue;
-//     }
-// }
-
-// .MuiMenuItem-root:hover {
-//     a {
-//         background-color: $light-wood;
-//         background: $light-wood;
-//         color: $dark-wood
-//     }
-// }
-
 .dropdown-menu {
 
     .MuiMenu-root {
         z-index: 201;
     }
 }
-
 
 .MuiMenuItem-root:focus {
 
@@ -187,8 +144,6 @@ a {
     background: $light-wood;
     outline: .5px solid $dark-text;
 }
-
-.home-page {}
 
 .skeleton-list {
     display: grid;
@@ -251,7 +206,8 @@ a {
     }
 
     .card-img {
-        height: 60%;
+        min-height: 60%;
+        max-height: 60%;
 
 
         img:hover {
@@ -269,8 +225,6 @@ a {
     }
 
 }
-
-
 
 .food-details {
     display: grid;
@@ -377,7 +331,6 @@ a {
     }
 }
 
-
 .food-filter {
     height: 60px;
     display: grid;
@@ -448,7 +401,6 @@ a {
 
 
 }
-
 
 .login {
     margin-block-start: 1em;
@@ -545,24 +497,6 @@ a {
     }
 
 }
-
-// .recipe-output {
-//     position: relative;
-
-
-//     .food-details {
-//         display: flex;
-//     }
-
-//     .recipe-details-bg {
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//         width: 100%;
-//         opacity: 0.3;
-//         z-index: 1;
-//     }
-// }
 
 .add-recipe-wrapper {
 
