@@ -1,0 +1,28 @@
+.skeleton-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    .skeleton-preview {
+        height: 250px;
+        border-radius: 7px;
+        margin-block-start: 1em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+
+        .skeleton-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}
+
+.food-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    * {
+        font-family: PatrickHand;
+        color: $dark-text;
+    }
+}

@@ -1,3 +1,26 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(240, 240, 240);
+    // background-color: $light-text-opactiy;
+    min-height: 100vh;
+}
+
+.container {
+    width: 1100px;
+}
+
 h1,
 h2,
 h3,

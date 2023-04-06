@@ -1,0 +1,203 @@
+.add-recipe {
+    // * {
+        font-family: Handlee;
+        color: $dark-text;
+    // }
+
+    .add-recipe-wrapper {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .recipe-output {
+            position: relative;
+            min-height: 40vh;
+
+            .food-details {
+                display: flex;
+            }
+
+            .recipe-details-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                opacity: 0.3;
+                z-index: 1;
+            }
+
+            .MuiButtonBase-root {
+                height: 50px;
+                background-color: $light-wood;
+                color: $dark-wood;
+                border-radius: 20px;
+            }
+
+        }
+
+        h1 {
+            font-size: xx-large;
+            margin-block-start: .3em;
+        }
+
+        hr {
+            // margin: 0 auto;
+            margin-top: .5em;
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
+        }
+
+        .css-q0jhri-MuiInputBase-root-MuiInput-root {
+            color: $dark-text;
+        }
+
+        .css-q0jhri-MuiInputBase-root-MuiInput-root::after {
+            border-bottom: 2px solid $light-wood;
+        }
+
+        .MuiButtonBase-root {
+            background-color: $dark-text;
+            color: $light-wood;
+            margin-block-start: 1em;
+            width: 100%;
+            font-family: Handlee;
+        }
+
+        .MuiButtonBase-root:hover {
+            background-color: $dark-wood-opactiy;
+            color: $dark-wood;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-inline-end: 1em;
+
+            Input {
+                height: 40px;
+            }
+
+            .add-remove-section {
+
+                .add-remove-ingredient-section {
+
+                    .add-remove-ingredient {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        * {
+                            font-family: Handlee;
+                        }
+
+                        .MuiButtonBase-root {
+                            background-color: $light-text-opactiy;
+                            color: $dark-wood;
+                            margin-inline-start: 1em;
+                            width: 50%;
+                        }
+
+                        .MuiButtonBase-root:hover {
+                            background-color: $dark-wood-opactiy;
+                            color: $dark-wood;
+                        }
+                    }
+
+                    .add-ingredient {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .MuiInputBase-root {
+                            width: 50%;
+                        }
+
+                        .MuiButtonBase-root {
+                            background-color: $light-text-opactiy;
+                            color: $dark-wood;
+                            margin-inline-start: 1em;
+                            width: 50%;
+                            font-family: Handlee;
+                        }
+
+                        .MuiButtonBase-root:hover {
+                            background-color: $dark-wood-opactiy;
+                            color: $dark-wood;
+                        }
+
+                    }
+
+                    .remove-ingredient {
+                        display: flex;
+                        justify-content: flex-end;
+
+                        .MuiButtonBase-root {
+                            margin-inline-start: 1em;
+                            width: 50%;
+                        }
+
+                    }
+                }
+
+                .add-remove-step-section {
+
+                    .add-remove-step {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        * {
+                            font-family: Handlee;
+                        }
+
+                        .MuiButtonBase-root {
+                            background-color: $light-text-opactiy;
+                            color: $dark-wood;
+                            margin-inline-start: 1em;
+                            width: 50%;
+                        }
+
+                        .MuiButtonBase-root:hover {
+                            background-color: $dark-wood-opactiy;
+                            color: $dark-wood;
+                        }
+                    }
+
+                    .add-step {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .MuiInputBase-root {
+                            width: 50%;
+                        }
+
+                        .MuiButtonBase-root {
+                            background-color: $light-text-opactiy;
+                            color: $dark-wood;
+                            margin-inline-start: 1em;
+                            width: 50%;
+                            font-family: Handlee;
+                        }
+
+                        .MuiButtonBase-root:hover {
+                            background-color: $dark-wood-opactiy;
+                            color: $dark-wood;
+                        }
+
+                    }
+
+                    .remove-step {
+                        display: flex;
+                        justify-content: flex-end;
+
+                        .MuiButtonBase-root {
+                            margin-inline-start: 1em;
+                            width: 50%;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}

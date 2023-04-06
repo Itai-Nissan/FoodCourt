@@ -1,0 +1,28 @@
+.dropdown-menu {
+
+    .MuiMenu-root {
+        z-index: 201;
+    }
+}
+
+.MenuUnstyled {
+    z-index: 201;
+}
+
+.MuiMenuItem-root:focus {
+
+    a {}
+}
+
+.MuiMenuItem-root {
+
+    a {
+        color: $dark-text
+    }
+}
+
+.MuiMenuItem-root:hover {
+    background-color: $light-wood;
+    background: $light-wood;
+    outline: .5px solid $dark-text;
+}

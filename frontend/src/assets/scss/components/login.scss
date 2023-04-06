@@ -1,0 +1,53 @@
+.login {
+    margin-block-start: 1em;
+    color: $dark-text;
+
+    * {
+        font-family: PatrickHand;
+    }
+
+    .css-q0jhri-MuiInputBase-root-MuiInput-root {
+        color: $dark-text;
+    }
+
+    .css-q0jhri-MuiInputBase-root-MuiInput-root::after {
+        border-bottom: 2px solid $light-wood;
+    }
+
+    .MuiButtonBase-root {
+        background-color: $dark-text;
+        color: $light-wood;
+        margin-block-start: 1em;
+        width: 100%;
+    }
+
+    .MuiButtonBase-root:hover {
+        background-color: $dark-wood-opactiy;
+        color: $dark-wood;
+    }
+
+    a {
+        color: $dark-text;
+        padding-inline-start: .3em;
+        padding-inline-end: .3em;
+        border-radius: 7px;
+    }
+
+    a:hover {
+        background-color: $light-text-opactiy;
+    }
+
+    h2 {
+        margin-block-end: 1em;
+    }
+
+    p {
+        margin-block-start: 1em;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+}

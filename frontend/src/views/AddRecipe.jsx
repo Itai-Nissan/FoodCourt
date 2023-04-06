@@ -73,7 +73,7 @@ export const AddRecipe = () => {
 
     function onAddRecipe() {
         if (recipeName === '') {
-            console.log('neit');
+            console.log('neit')
             return
         }
         else {

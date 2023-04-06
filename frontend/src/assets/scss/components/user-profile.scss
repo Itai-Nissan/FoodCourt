@@ -1,0 +1,33 @@
+.user-profile {
+    margin-block-start: 1em;
+
+    .user-content {
+        display: grid;
+        grid-template-columns: 75% 1fr;
+    }
+
+    .food-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        .food-preview {
+
+            .MuiButtonBase-root {
+                background-color: $dark-wood-opactiy;
+                color: $dark-wood;
+            }
+
+            .MuiButtonBase-root:hover {
+                background-color: $dark-text;
+                color: $light-wood;
+            }
+        }
+    }
+
+    .user-details {
+        * {
+            font-family: PatrickHand;
+            color: $dark-text;
+        }
+    }
+}
