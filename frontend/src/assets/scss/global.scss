@@ -235,7 +235,7 @@ a {
         color: $dark-text;
     }
 
-    .food-skeleton{
+    .food-skeleton {
         margin-block-start: 1em;
     }
 
@@ -503,18 +503,18 @@ a {
 }
 
 .add-recipe-wrapper {
-
+    
     display: grid;
-    grid-template-columns: 70% 1fr;
-
-    .recipe-output{
+    grid-template-columns: 1fr 1fr;
+    
+    .recipe-output {
         position: relative;
-
-
+        min-height: 40vh;
+        
         .food-details {
             display: flex;
         }
-    
+        
         .recipe-details-bg {
             position: absolute;
             top: 0;
@@ -523,14 +523,14 @@ a {
             opacity: 0.3;
             z-index: 1;
         }
-    
+        
         .MuiButtonBase-root {
             height: 50px;
             background-color: $light-wood;
             color: $dark-wood;
             border-radius: 20px;
         }
-    
+        
     }
 
     h1 {

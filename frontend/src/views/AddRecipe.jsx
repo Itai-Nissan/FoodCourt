@@ -72,27 +72,35 @@ export const AddRecipe = () => {
     const [loading, setLoading] = useState(false)
 
     function onAddRecipe() {
-        const recipeToAdd = {
-            name: recipeName,
-            country: recipeCountry,
-            sections: recipeSections,
-            instructions: recipeInstructions,
-            thumbnail_url: imgFile,
-            original_video_url: videoFile,
+        if (recipeName === '') {
+            console.log('neit');
+            return
         }
+        else {
+            console.log('da');
 
-        setLoading(true)
-        dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
-            .then((res) => {
-                if (!res) {
-                    console.log('ein rez')
-                }
-                if (res) {
-                    console.log(res)
-                    dispatch(setUpdatedUser(res))
-                    navigate(`/UserProfile/${loggedInUser._id}`)
-                }
-            })
+            const recipeToAdd = {
+                name: recipeName,
+                country: recipeCountry,
+                sections: recipeSections,
+                instructions: recipeInstructions,
+                thumbnail_url: imgFile,
+                original_video_url: videoFile,
+            }
+
+            setLoading(true)
+            dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
+                .then((res) => {
+                    if (!res) {
+                        console.log('ein rez')
+                    }
+                    if (res) {
+                        console.log(res)
+                        dispatch(setUpdatedUser(res))
+                        navigate(`/UserProfile/${loggedInUser._id}`)
+                    }
+                })
+        }
     }
 
     return (
