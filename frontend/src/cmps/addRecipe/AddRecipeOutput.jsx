@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { utils } from '../../services/utils'
-import { Button } from '@mui/material'
-import { LoadingButton } from '@mui/lab';
 
 
 export const AddRecipeOutput = (props) => {
@@ -42,16 +40,7 @@ export const AddRecipeOutput = (props) => {
                     </section>
                 </div>
             </div>
-            <LoadingButton
-                onClick={props.onAddRecipe}
-                loading={props.loading}
-                variant="standard"
-                placeholder='Create'
-            >
-                <h3 >{props.loading ? '' : 'Create recipe'}</h3>
-            </LoadingButton>
         </div>
-
     )
 }
 

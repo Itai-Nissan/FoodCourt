@@ -1,0 +1,26 @@
+.recipe-output {
+    position: relative;
+    min-height: 40vh;
+    
+    .food-details {
+        display: flex;
+        padding: 1em;
+    }
+
+    .recipe-details-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0.3;
+        z-index: 1;
+    }
+
+    .MuiButtonBase-root {
+        height: 50px;
+        background-color: $light-wood;
+        color: $dark-wood;
+        border-radius: 20px;
+    }
+
+}

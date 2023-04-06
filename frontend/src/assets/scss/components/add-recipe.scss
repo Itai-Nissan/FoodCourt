@@ -1,38 +1,31 @@
 .add-recipe {
-    // * {
-        font-family: Handlee;
-        color: $dark-text;
-    // }
+    font-family: Handlee;
+    color: $dark-text;
 
     .add-recipe-wrapper {
 
         display: grid;
         grid-template-columns: 1fr 1fr;
 
-        .recipe-output {
-            position: relative;
-            min-height: 40vh;
-
-            .food-details {
-                display: flex;
-            }
-
-            .recipe-details-bg {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                opacity: 0.3;
-                z-index: 1;
-            }
-
+        .loading-button {
             .MuiButtonBase-root {
                 height: 50px;
+                width: 100%;
                 background-color: $light-wood;
                 color: $dark-wood;
                 border-radius: 20px;
             }
+        }
 
+        .upload-button {
+
+            .MuiButtonBase-root {
+                background-color: $dark-text;
+                color: $light-wood;
+                margin-block-start: 1em;
+                width: 100%;
+                font-family: Handlee;
+            }
         }
 
         h1 {
@@ -57,10 +50,8 @@
         }
 
         .MuiButtonBase-root {
-            background-color: $dark-text;
-            color: $light-wood;
             margin-block-start: 1em;
-            width: 100%;
+            // width: 100%;
             font-family: Handlee;
         }
 
@@ -78,126 +69,7 @@
                 height: 40px;
             }
 
-            .add-remove-section {
-
-                .add-remove-ingredient-section {
-
-                    .add-remove-ingredient {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-
-                        * {
-                            font-family: Handlee;
-                        }
-
-                        .MuiButtonBase-root {
-                            background-color: $light-text-opactiy;
-                            color: $dark-wood;
-                            margin-inline-start: 1em;
-                            width: 50%;
-                        }
-
-                        .MuiButtonBase-root:hover {
-                            background-color: $dark-wood-opactiy;
-                            color: $dark-wood;
-                        }
-                    }
-
-                    .add-ingredient {
-                        display: flex;
-                        justify-content: space-between;
-
-                        .MuiInputBase-root {
-                            width: 50%;
-                        }
-
-                        .MuiButtonBase-root {
-                            background-color: $light-text-opactiy;
-                            color: $dark-wood;
-                            margin-inline-start: 1em;
-                            width: 50%;
-                            font-family: Handlee;
-                        }
-
-                        .MuiButtonBase-root:hover {
-                            background-color: $dark-wood-opactiy;
-                            color: $dark-wood;
-                        }
-
-                    }
-
-                    .remove-ingredient {
-                        display: flex;
-                        justify-content: flex-end;
-
-                        .MuiButtonBase-root {
-                            margin-inline-start: 1em;
-                            width: 50%;
-                        }
-
-                    }
-                }
-
-                .add-remove-step-section {
-
-                    .add-remove-step {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-
-                        * {
-                            font-family: Handlee;
-                        }
-
-                        .MuiButtonBase-root {
-                            background-color: $light-text-opactiy;
-                            color: $dark-wood;
-                            margin-inline-start: 1em;
-                            width: 50%;
-                        }
-
-                        .MuiButtonBase-root:hover {
-                            background-color: $dark-wood-opactiy;
-                            color: $dark-wood;
-                        }
-                    }
-
-                    .add-step {
-                        display: flex;
-                        justify-content: space-between;
-
-                        .MuiInputBase-root {
-                            width: 50%;
-                        }
-
-                        .MuiButtonBase-root {
-                            background-color: $light-text-opactiy;
-                            color: $dark-wood;
-                            margin-inline-start: 1em;
-                            width: 50%;
-                            font-family: Handlee;
-                        }
-
-                        .MuiButtonBase-root:hover {
-                            background-color: $dark-wood-opactiy;
-                            color: $dark-wood;
-                        }
-
-                    }
-
-                    .remove-step {
-                        display: flex;
-                        justify-content: flex-end;
-
-                        .MuiButtonBase-root {
-                            margin-inline-start: 1em;
-                            width: 50%;
-                        }
-
-                    }
-                }
-            }
+            .add-remove-section {}
         }
     }
 }

@@ -9,6 +9,8 @@ import { AddImage } from '../cmps/addRecipe/AddImage'
 import { AddVideo } from '../cmps/addRecipe/AddVideo'
 import { AddRecipeOutput } from '../cmps/addRecipe/AddRecipeOutput'
 import { Input } from '@mui/material'
+import { LoadingButton } from '@mui/lab';
+
 
 export const AddRecipe = () => {
     const dispatch = useDispatch()
@@ -88,19 +90,18 @@ export const AddRecipe = () => {
                 thumbnail_url: imgFile,
                 original_video_url: videoFile,
             }
-            console.log(recipeToAdd.sections)
             setLoading(true)
-            dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
-                .then((res) => {
-                    if (!res) {
-                        console.log('ein rez')
-                    }
-                    if (res) {
-                        console.log(res)
-                        dispatch(setUpdatedUser(res))
-                        navigate(`/UserProfile/${loggedInUser._id}`)
-                    }
-                })
+            // dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
+            //     .then((res) => {
+            //         if (!res) {
+            //             console.log('ein rez')
+            //         }
+            //         if (res) {
+            //             console.log(res)
+            //             dispatch(setUpdatedUser(res))
+            //             navigate(`/UserProfile/${loggedInUser._id}`)
+            //         }
+            //     })
         }
     }
 
@@ -133,14 +134,25 @@ export const AddRecipe = () => {
                             setNumberOfStep={setNumberOfStep}
                             numberOfSteps={numberOfSteps}
                         ></AddStep>
-                        <AddImage
-                            setOutputImg={setOutputImg}
-                            setImageFile={setImageFile}
-                        ></AddImage>
-                        <AddVideo
-                            setVideoFile={setVideoFile}
-                            setVideoOutput={setVideoOutput}
-                        ></AddVideo>
+                        <div className="upload-button">
+                            <AddImage
+                                setOutputImg={setOutputImg}
+                                setImageFile={setImageFile}
+                            ></AddImage>
+                            <AddVideo
+                                setVideoFile={setVideoFile}
+                                setVideoOutput={setVideoOutput}
+                            ></AddVideo>
+                        </div>
+                        <div className='loading-button'>
+                            <LoadingButton
+                                onClick={onAddRecipe}
+                                loading={loading}
+                                variant="standard"
+                                placeholder='Create'>
+                                <h3 >{loading ? '' : 'Create recipe'}</h3>
+                            </LoadingButton>
+                        </div>
                     </section>
                 </form>
                 <section className='add-recipe-output'>

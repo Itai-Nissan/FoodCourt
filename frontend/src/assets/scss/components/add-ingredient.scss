@@ -1,0 +1,61 @@
+.add-remove-ingredient-section {
+
+    .add-remove-ingredient {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        * {
+            font-family: Handlee;
+        }
+
+        .MuiButtonBase-root {
+            background-color: $light-text-opactiy;
+            color: $dark-wood;
+            margin-inline-start: 1em;
+            width: 300px;
+        }
+
+        .MuiButtonBase-root:hover {
+            background-color: $dark-wood-opactiy;
+            color: $dark-wood;
+        }
+    }
+
+    .add-ingredient {
+        display: flex;
+        justify-content: space-between;
+
+        .MuiInputBase-root {
+            width: 100%;
+        }
+
+        .MuiButtonBase-root {
+            background-color: $light-text-opactiy;
+            color: $dark-wood;
+            margin-inline-start: 1em;
+            width: 300px;
+            font-family: Handlee;
+        }
+
+        .MuiButtonBase-root:hover {
+            background-color: $dark-wood-opactiy;
+            color: $dark-wood;
+        }
+
+    }
+
+    h4{
+        width: 100%;
+    }
+
+    .remove-ingredient {
+        display: flex;
+        justify-content: flex-end;
+
+        .MuiButtonBase-root {
+            margin-inline-start: 1em;
+        }
+
+    }
+}
