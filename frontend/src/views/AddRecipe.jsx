@@ -22,14 +22,15 @@ export const AddRecipe = () => {
     // Ingredient
     const [ingredientCount, setIngredientCount] = useState(0)
     const [numberOfIngredients, setNumberOfIngredient] = useState(Array.from(Array(ingredientCount)))
-    const [recipeSections, setRecipeSections] = useState([{
-        components: [
-            {
-                raw_text: null,
-            }
-        ],
-    }
-    ])
+    const [recipeSections, setRecipeSections] = useState(
+        [{
+            components: [
+                {
+                    raw_text: null,
+                }
+            ],
+        }]
+    )
 
     function ingredientList(index) {
         if (recipeSections[0].components[0].raw_text === null) return
@@ -87,7 +88,7 @@ export const AddRecipe = () => {
                 thumbnail_url: imgFile,
                 original_video_url: videoFile,
             }
-
+            console.log(recipeToAdd.sections)
             setLoading(true)
             dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
                 .then((res) => {

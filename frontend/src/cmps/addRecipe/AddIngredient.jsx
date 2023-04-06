@@ -14,6 +14,17 @@ export const AddIngredient = (props) => {
     function removeIngredient(e, index) {
         if (props.recipeSections[0].components.length === 1) {
             props.recipeSections[0].components[0].raw_text = null
+            props.setRecipeSections(
+                [{
+                    components: [
+                        {
+                            raw_text: null,
+                        }
+                    ],
+                }]
+            )
+
+
         } else {
             let updatedSections = props.recipeSections
             updatedSections[0].components.splice(index, 1)

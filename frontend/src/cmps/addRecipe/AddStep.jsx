@@ -12,8 +12,13 @@ export const AddStep = (props) => {
     const [recipeStep, setStep] = useState('')
 
     function removeStep(e, index) {
-        if (props.recipeInstructions.length === 1) {
-            props.recipeInstructions = null
+        if (props.recipeInstructions.length <= 1) {
+            props.setRecipeInstructions([
+                {
+                    display_text: null,
+                }
+            ]
+            )
         } else {
             let updatedSections = props.recipeInstructions
             updatedSections.splice(index, 1)
