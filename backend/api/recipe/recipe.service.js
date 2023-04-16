@@ -103,8 +103,12 @@ async function addRecipe(user, recipe) {
   let year = dateObj.getUTCFullYear()
   let createDate = year + "/" + month + "/" + day
 
+
   try {
-    const imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
+    let imgUrl
+    if (recipe.thumbnail_url) {
+      imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
+    }
 
     const recipeToAdd = {
       id: utilities.randomId(),
