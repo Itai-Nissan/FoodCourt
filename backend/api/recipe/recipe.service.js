@@ -7,22 +7,23 @@ const axios = require('axios')
 const fs = require('fs')
 
 
-async function getAllUserRecipes(recipeIds) {
-  let recipeToReturn = null
+async function getAllUserRecipes(user) {
   let foodList = []
 
-  recipes.forEach((recipe) => {
-    recipeIds.forEach((id) => {
-      if (id.recipeId === recipe.id) {
-        recipeToReturn = recipe
-        foodList.push(recipe)
+  userRecipes.forEach((userRecipe) => {
+    if (userRecipe.userId === user._id)
+
+      recipes.forEach((recipe) => {
+        if (recipe.id === userRecipe.recipeId) {
+          foodList.push(recipe)
+        }
       }
-    })
+      )
   })
   return foodList
 }
 
-async function getusersRecipe(filterBy) {
+async function getAllRecipes(filterBy) {
   let recipeToReturn = null
   let foodList = []
 
@@ -50,7 +51,7 @@ async function getusersRecipe(filterBy) {
   const options = {
     method: 'GET',
     url: 'https://tasty.p.rapidapi.com/recipes/list',
-    params: { from: '0', size: '50', q: filterBy ? filterBy : '' },
+    params: { from: '0', size: 'All', q: filterBy ? filterBy : '' },
     headers: {
       'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
       'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
@@ -156,7 +157,7 @@ function _writeToJson(file, db) {
 module.exports = {
   addRecipe,
   getRecipeById,
-  getusersRecipe,
+  getAllRecipes,
   getAllUserRecipes,
   _writeToJson,
 }

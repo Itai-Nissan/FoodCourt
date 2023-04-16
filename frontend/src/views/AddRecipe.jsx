@@ -80,8 +80,6 @@ export const AddRecipe = () => {
             return
         }
         else {
-            console.log('da');
-
             const recipeToAdd = {
                 name: recipeName,
                 country: recipeCountry,

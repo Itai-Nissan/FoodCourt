@@ -20,12 +20,14 @@ export function setLoggedInUser(user, actionType) {
 }
 
 export function setUpdatedUser(user) {
+    console.log(user);
 
     return async (dispatch, getState) => {
         try {
             const userToSet = await userService.updateUser(user)
             if (userToSet) {
-                dispatch({ type: 'SET_USER', userToSet })
+                const authUser = user
+                dispatch({ type: 'SET_USER', authUser })
                 return userToSet
             } else return false
         } catch (err) {

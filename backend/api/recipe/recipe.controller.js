@@ -9,6 +9,7 @@ async function addNewRecipe(req, res) {
 
     // req.session.userName = userToSet
     // console.log('recipe controller:', newRecipe);
+    console.log(recipeToReturn);
     res.json(recipeToReturn)
   } catch (err) {
     // logger.error('Failed to Login ' + err)
@@ -32,7 +33,7 @@ async function getUserRecipeById(req, res) {
 async function getUserRecipe(req, res) {
   const filterBy = req.query.text
   try {
-    const recipeToReturn = await recipeService.getusersRecipe(filterBy)
+    const recipeToReturn = await recipeService.getAllRecipes(filterBy)
     // let recipeToReturn = { ...newRecipe }
     // // req.session.userName = userToSet
     res.json(recipeToReturn)
