@@ -25,10 +25,10 @@ function _save(entityType, entities) {
 
 async function addNewRecipe(user, recipe) {
 
-    const newRecipe = await httpService.put('recipe', { user, recipe })
-    if (newRecipe) {
+    const authUser = await httpService.put('recipe', { user, recipe })
+    if (authUser) {
     }
-    return newRecipe
+    return authUser
 }
 
 

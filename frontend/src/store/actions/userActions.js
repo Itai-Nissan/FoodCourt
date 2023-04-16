@@ -19,16 +19,18 @@ export function setLoggedInUser(user, actionType) {
     }
 }
 
-export function setUpdatedUser(user) {
-    console.log(user);
-
+export function setUpdatedUser(login) {
+    
     return async (dispatch, getState) => {
         try {
-            const userToSet = await userService.updateUser(user)
-            if (userToSet) {
-                const authUser = user
+            const updatedUser = await userService.updateUser(login)
+            if (login) {
+                console.log(updatedUser);
+                const authUser = updatedUser.userToSet
+                const userRecipes = login.userRecipes
                 dispatch({ type: 'SET_USER', authUser })
-                return userToSet
+                dispatch({ type: 'SET_USER_RECIPES', userRecipes })
+                return authUser
             } else return false
         } catch (err) {
             console.log('err:', err)
@@ -74,8 +76,10 @@ export function loadUser() {
         try {
             const login = await userService.loadUser()
             if (login) {
+                console.log(login);
                 const authUser = login.userToSet
                 const userRecipes = login.userRecipes
+                console.log(userRecipes);
                 dispatch({ type: 'SET_USER', authUser })
                 dispatch({ type: 'SET_USER_RECIPES', userRecipes })
                 return authUser

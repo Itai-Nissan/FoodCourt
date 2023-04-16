@@ -123,16 +123,22 @@ async function addRecipe(user, recipe) {
       original_video_url: recipe.original_video_url,
       createDate,
     }
-    recipes.push(recipeToAdd)
 
+    recipes.push(recipeToAdd)
     userRecipes.push({
       recipeId: recipeToAdd.id,
       userId: user._id
     })
+
     _writeToJson('recipes', recipes)
     _writeToJson('userRecipes', userRecipes)
-    // const userToReturn = await userService.addRecipeToUser(user._id, recipeToAdd)
-    return user
+
+    const allUserRecipes = await getAllUserRecipes(user)
+    // console.log(allUserRecipes);
+    return ({
+      user,
+      allUserRecipes
+    })
   } catch (err) {
     logger.error('cannot insert new recipe', err)
     throw err

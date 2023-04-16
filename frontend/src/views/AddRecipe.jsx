@@ -97,7 +97,9 @@ export const AddRecipe = () => {
                     if (res) {
                         console.log(res)
                         dispatch(setUpdatedUser(res))
-                        navigate(`/UserProfile/${loggedInUser._id}`)
+                            .then(() => {
+                                navigate(`/UserProfile/${loggedInUser._id}`)
+                            })
                     }
                 })
         }
