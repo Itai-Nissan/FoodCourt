@@ -34,7 +34,7 @@ export function Signup() {
             .then((res) => {
                 if (res) {
                     console.log(res)
-                    routeToProfile(userToSignup)
+                    routeToProfile(res)
                 }
                 setUserFullName('')
                 setUserName('')

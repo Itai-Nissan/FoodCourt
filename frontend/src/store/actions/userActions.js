@@ -58,10 +58,14 @@ export function setSignUp(user) {
     return async (dispatch, getState) => {
         try {
 
-            const userToSet = await userService.signUp(user)
-            if (userToSet) {
-                dispatch({ type: 'SET_USER', userToSet })
-                return userToSet
+            const login = await userService.signUp(user)
+            if (login) {
+                const authUser = login.userToSet
+                console.log(login)
+                console.log(authUser)
+                const userRecipes = login.userRecipes
+                dispatch({ type: 'SET_USER', authUser })
+                return authUser
             } else return false
         } catch (err) {
             console.log('err:', err)
@@ -75,7 +79,6 @@ export function loadUser() {
         try {
             const login = await userService.loadUser()
             if (login) {
-                console.log(login);
                 const authUser = login.userToSet
                 const userRecipes = login.userRecipes
                 console.log(userRecipes);

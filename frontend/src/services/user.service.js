@@ -45,14 +45,16 @@ async function removeFromFav(user, recipeId) {
 
 async function login(cred) {
     const authUser = await httpService.post(ENDPOINT + '/login', cred)
+    console.log(authUser);
     if (authUser) storageService.store(USER_DB, authUser)
     return authUser
 }
 
 async function signUp(user) {
-    const userToSet = await httpService.post(ENDPOINT + '/signup', user)
-    if (userToSet) storageService.store(USER_DB, userToSet)
-    return userToSet
+    const authUser = await httpService.post(ENDPOINT + '/signup', user)
+    console.log(authUser);
+    if (authUser) storageService.store(USER_DB, authUser)
+    return authUser
 }
 
 async function logout() {
