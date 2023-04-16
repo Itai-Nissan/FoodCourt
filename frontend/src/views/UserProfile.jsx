@@ -21,7 +21,6 @@ export const UserProfile = (props) => {
     }
 
     let userRecipe = ''
-    console.log(userRecipes);
     if (userRecipes) userRecipe = userRecipes.map((recipe, index) => {
         let imgName = recipe.thumbnail_url
         const foodCredits = recipe.credits[0].name

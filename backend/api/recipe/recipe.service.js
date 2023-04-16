@@ -104,8 +104,7 @@ async function addRecipe(user, recipe) {
   let createDate = year + "/" + month + "/" + day
 
   try {
-    const imgUrl = 'await cloudinary.uploadImage(recipe.thumbnail_url)'
-    // const imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
+    const imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
 
     const recipeToAdd = {
       id: utilities.randomId(),
@@ -134,7 +133,6 @@ async function addRecipe(user, recipe) {
     _writeToJson('userRecipes', userRecipes)
 
     const allUserRecipes = await getAllUserRecipes(user)
-    // console.log(allUserRecipes);
     return ({
       user,
       allUserRecipes

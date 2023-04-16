@@ -25,7 +25,6 @@ export function setUpdatedUser(login) {
         try {
             const updatedUser = await userService.updateUser(login)
             if (login) {
-                console.log(updatedUser);
                 const authUser = updatedUser.userToSet
                 const userRecipes = login.userRecipes
                 dispatch({ type: 'SET_USER', authUser })
