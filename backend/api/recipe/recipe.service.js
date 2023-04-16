@@ -7,6 +7,21 @@ const axios = require('axios')
 const fs = require('fs')
 
 
+async function getAllUserRecipes(recipeIds) {
+  let recipeToReturn = null
+  let foodList = []
+
+  recipes.forEach((recipe) => {
+    recipeIds.forEach((id) => {
+      if (id.recipeId === recipe.id) {
+        recipeToReturn = recipe
+        foodList.push(recipe)
+      }
+    })
+  })
+  return foodList
+}
+
 async function getusersRecipe(filterBy) {
   let recipeToReturn = null
   let foodList = []
@@ -142,5 +157,6 @@ module.exports = {
   addRecipe,
   getRecipeById,
   getusersRecipe,
+  getAllUserRecipes,
   _writeToJson,
 }

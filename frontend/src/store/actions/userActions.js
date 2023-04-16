@@ -5,10 +5,13 @@ export function setLoggedInUser(user, actionType) {
     return async (dispatch, getState) => {
         try {
 
-            const userToSet = await userService.login(user)
-            if (userToSet) {
-                dispatch({ type: 'SET_USER', userToSet })
-                return userToSet
+            const login = await userService.login(user)
+            if (login) {
+                const authUser = login.userToSet
+                const userRecipes = login.userRecipes
+                dispatch({ type: 'SET_USER', authUser })
+                dispatch({ type: 'SET_USER_RECIPES', userRecipes })
+                return authUser
             } else return false
         } catch (err) {
             console.log('err:', err)
@@ -67,10 +70,13 @@ export function loadUser() {
 
     return async (dispatch, getState) => {
         try {
-            const userToSet = await userService.loadUser()
-            if (userToSet) {
-                dispatch({ type: 'SET_USER', userToSet })
-                return userToSet
+            const login = await userService.loadUser()
+            if (login) {
+                const authUser = login.userToSet
+                const userRecipes = login.userRecipes
+                dispatch({ type: 'SET_USER', authUser })
+                dispatch({ type: 'SET_USER_RECIPES', userRecipes })
+                return authUser
             }
         } catch (err) {
             console.log('err:', err)

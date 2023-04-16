@@ -7,8 +7,7 @@ const INITIAL_STATE = {
         userEmail: null,
         userFavorite: [],
         userRecipe: []
-    },
-    // loggedInUser: {},
+    }
 }
 
 export function userReducer(state = INITIAL_STATE, action) {
@@ -17,7 +16,14 @@ export function userReducer(state = INITIAL_STATE, action) {
 
             return {
                 ...state,
-                loggedInUser: action.userToSet
+                loggedInUser: action.authUser
+            }
+
+        case 'SET_USER_RECIPES':
+
+            return {
+                ...state,
+                userRecipes: action.userRecipes
             }
 
         default:

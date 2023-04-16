@@ -1,14 +1,22 @@
 const authService = require('./auth.service')
+const recipeService = require('../recipe/recipe.service')
 // const logger = require('../../services/logger.service')
 
 async function login(req, res) {
   const { userName, userPassword } = req.body
   try {
     const user = await authService.login(userName, userPassword)
+    // console.log('auth Controller:', user.userRecipes)
+    const userRecipes = await recipeService.getAllUserRecipes(user.userRecipes)
+    // console.log('auth Controller:', userRecipes)
     let userToSet = { ...user }
     delete userToSet.userPassword
     req.session.userName = userToSet
-    res.json(userToSet)
+    res.json({
+      userToSet,
+      userRecipes
+    })
+    // res.json(userToSet, userRecipes)
   } catch (err) {
     // logger.error('Failed to Login ' + err)
     res.status(401).send({ err: 'Failed to Login' })

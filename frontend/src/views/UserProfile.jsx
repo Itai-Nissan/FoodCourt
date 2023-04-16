@@ -1,8 +1,9 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 
 import { utils } from '../services/utils'
+import { loadUser } from '../store/actions/userActions'
 import { removeFromFav } from '../store/actions/userActions'
 
 import { Button } from '@mui/material'
@@ -10,6 +11,7 @@ import { Button } from '@mui/material'
 export const UserProfile = (props) => {
     const dispatch = useDispatch()
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
+    const userRecipes = useSelector((state) => state.userModule.userRecipes)
     const userName = loggedInUser.userName
     const userEmail = loggedInUser.userEmail
 
@@ -19,7 +21,7 @@ export const UserProfile = (props) => {
     }
 
     let userRecipe = ''
-    if (loggedInUser.userRecipe) userRecipe = loggedInUser.userRecipe.map((recipe, index) => {
+    if (userRecipes) userRecipe = userRecipes.map((recipe, index) => {
         let imgName = recipe.thumbnail_url
         const foodCredits = recipe.credits[0].name
         return <div className='food-preview' key={index}>

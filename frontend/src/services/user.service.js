@@ -23,8 +23,8 @@ async function confirmUser(cred) {
 }
 
 function loadUser() {
-    const user = storageService.load(USER_DB)
-    return user
+    const authUser = storageService.load(USER_DB)
+    return authUser
 }
 
 async function addToFav(user, food) {
@@ -44,9 +44,9 @@ async function removeFromFav(user, recipeId) {
 }
 
 async function login(cred) {
-    const userToSet = await httpService.post(ENDPOINT + '/login', cred)
-    if (userToSet) storageService.store(USER_DB, userToSet)
-    return userToSet
+    const authUser = await httpService.post(ENDPOINT + '/login', cred)
+    if (authUser) storageService.store(USER_DB, authUser)
+    return authUser
 }
 
 async function signUp(user) {

@@ -11,12 +11,12 @@ import { Filter } from '../cmps/Filter'
 export function AppHeader() {
   const dispatch = useDispatch()
   const [recipes, setRecipes] = useState(null)
-  const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
 
   useEffect(() => {
     dispatch(loadUser())
   }, [])
 
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
   function loggedUserName() {
     if (!loggedInUser || !loggedInUser.userName) return <Link to="/LogIn">
       <h4>
