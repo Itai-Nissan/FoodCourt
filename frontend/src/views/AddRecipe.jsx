@@ -91,17 +91,17 @@ export const AddRecipe = () => {
                 original_video_url: videoFile,
             }
             setLoading(true)
-            // dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
-            //     .then((res) => {
-            //         if (!res) {
-            //             console.log('ein rez')
-            //         }
-            //         if (res) {
-            //             console.log(res)
-            //             dispatch(setUpdatedUser(res))
-            //             navigate(`/UserProfile/${loggedInUser._id}`)
-            //         }
-            //     })
+            dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
+                .then((res) => {
+                    if (!res) {
+                        console.log('ein rez')
+                    }
+                    if (res) {
+                        console.log(res)
+                        dispatch(setUpdatedUser(res))
+                        navigate(`/UserProfile/${loggedInUser._id}`)
+                    }
+                })
         }
     }
 

@@ -1,4 +1,5 @@
-const userRecipe = require("../../data/userRecipe.json")
+const recipes = require("../../data/recipes.json")
+const userRecipes = require("../../data/userRecipes.json")
 const utilities = require("../../services/utilities")
 const userService = require("../user/user.service")
 const cloudinary = require("../../services/cloudinary")
@@ -11,9 +12,9 @@ async function getusersRecipe(filterBy) {
   let foodList = []
 
   if (!filterBy) {
-    recipeToReturn = userRecipe
+    recipeToReturn = recipes
   } else {
-    userRecipe.forEach((recipe) => {
+    recipes.forEach((recipe) => {
       if (recipe.name.toLowerCase().includes(filterBy.toLowerCase())) {
         recipeToReturn = recipe
       }
@@ -53,7 +54,7 @@ async function getusersRecipe(filterBy) {
 
 async function getRecipeById(id) {
   let recipeToReturn = null
-  userRecipe.forEach((recipe) => {
+  recipes.forEach((recipe) => {
     if (recipe.id === id)
       recipeToReturn = recipe
   })
@@ -87,7 +88,8 @@ async function addRecipe(user, recipe) {
   let createDate = year + "/" + month + "/" + day
 
   try {
-    const imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
+    const imgUrl = 'await cloudinary.uploadImage(recipe.thumbnail_url)'
+    // const imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
 
     const recipeToAdd = {
       id: utilities.randomId(),
@@ -105,22 +107,28 @@ async function addRecipe(user, recipe) {
       original_video_url: recipe.original_video_url,
       createDate,
     }
-    userRecipe.push(recipeToAdd)
-    _writeToJson()
-    const userToReturn = await userService.addRecipeToUser(user._id, recipeToAdd)
-    return userToReturn
+    recipes.push(recipeToAdd)
+
+    userRecipes.push({
+      recipeId: recipeToAdd.id,
+      userId: user._id
+    })
+    _writeToJson('recipes', recipes)
+    _writeToJson('userRecipes', userRecipes)
+    // const userToReturn = await userService.addRecipeToUser(user._id, recipeToAdd)
+    return user
   } catch (err) {
     logger.error('cannot insert new recipe', err)
     throw err
   }
 }
 
-function _writeToJson() {
-  let updatedUsers = userRecipe
+function _writeToJson(file, db) {
+  let updatedUsers = db
   var jsonContent = JSON.stringify(updatedUsers)
 
 
-  fs.writeFile("data/userRecipe.json", jsonContent, 'utf8', function (err) {
+  fs.writeFile(`data/${file}.json`, jsonContent, 'utf8', function (err) {
     if (err) {
       console.log("An error occured while writing JSON Object to File.")
       return console.log(err)
