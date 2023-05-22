@@ -20,7 +20,7 @@ const session = expressSession({
   saveUninitialized: true,
   cookie: { secure: false },
 })
-app.use(express.json({limit: '25mb'}));
+app.use(express.json({ limit: '25mb' }));
 app.use(session)
 
 if (process.env.NODE_ENV === 'production') {
@@ -55,15 +55,15 @@ app.delete("/api/userFav/", (req, res) => {
     })
 })
 
-app.use('/api/users',(req,res)=>{
-  userService.getUsers().then((users)=>{
+app.use('/api/users', (req, res) => {
+  userService.getUsers().then((users) => {
     res.send(users)
   })
 })
 
-app.use('/api/userProfile/:id',(req,res)=>{
+app.use('/api/userProfile/:id', (req, res) => {
   const id = req.params.id
-  userService.getUserById(id).then((user)=>{
+  userService.getUserById(id).then((user) => {
     res.send(user)
   })
 })

@@ -56,14 +56,16 @@ export const UserProfile = (props) => {
                 </Link>
             </section>
             <section className="card-body">
-                <div className="card-name">
-                    <p>{recipe.name}</p>
-                </div>
-                <div className="card-credits">
-                    <p>{foodCredits}</p>
-                    <img src={foodCreditsImg} alt="" />
-                    <Button onClick={() => removeRecipeFromFav(recipe.id)}>X</Button>
-                </div>
+                <Link to={`/foodDetails/${recipe.id}`} >
+                    <div className="card-name">
+                        <p>{recipe.name}</p>
+                    </div>
+                    <div className="card-credits">
+                        <p>{foodCredits}</p>
+                        <img src={foodCreditsImg} alt="" />
+                        <Button onClick={() => removeRecipeFromFav(recipe.id)}>X</Button>
+                    </div>
+                </Link>
             </section>
         </div>
     })

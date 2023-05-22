@@ -21,13 +21,11 @@ async function login(req, res) {
 }
 
 async function signup(req, res) {
-  console.log('signing up auth controller', req.body)
   try {
     // const { userName, userPassword } = req.body
     const userToSet = await authService.signup(req.body)
     const userRecipes = []
 
-    console.log('auth controller loging account:', userToSet);
     // const user = await authService.login(userName, userPassword)
     // req.session.user = user
     res.json({

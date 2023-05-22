@@ -76,7 +76,6 @@ async function getRecipeById(id) {
   })
 
   if (!recipeToReturn) {
-    console.log('Fectching byId from SERVER', id);
     const options = {
       method: 'GET',
       url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',

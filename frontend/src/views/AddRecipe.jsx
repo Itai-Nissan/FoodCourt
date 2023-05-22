@@ -24,16 +24,17 @@ export const AddRecipe = () => {
     // Ingredient
     const [ingredientCount, setIngredientCount] = useState(0)
     const [numberOfIngredients, setNumberOfIngredients] = useState(Array.from(Array(ingredientCount)))
-    const [recipeSections, setRecipeSections] = useState(
-        [{
-            components: [
-                {
-                    raw_text: null,
-                }
-            ],
-        }]
-    )
-    const [ingredientList, setIngredientList] = useState(recipeSections ? recipeSections[0].components : null)
+    const [recipeSections, setRecipeSections] = useState([])
+    // const [recipeSections, setRecipeSections] = useState(
+    //     [{
+    //         components: [
+    //             {
+    //                 raw_text: null,
+    //             }
+    //         ],
+    //     }]
+    // )
+    const [ingredientList, setIngredientList] = useState(recipeSections ? recipeSections : [])
 
     // Step
     const [stepCount, setStepCount] = useState(0)
@@ -67,7 +68,11 @@ export const AddRecipe = () => {
             const recipeToAdd = {
                 name: recipeName,
                 country: recipeCountry,
-                sections: recipeSections,
+                sections: [
+                    {
+                        components: recipeSections
+                    }
+                ],
                 instructions: recipeInstructions,
                 thumbnail_url: imgFile,
                 original_video_url: videoFile,
