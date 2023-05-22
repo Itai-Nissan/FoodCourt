@@ -1,7 +1,6 @@
 const recipes = require("../../data/recipes.json")
 const userRecipes = require("../../data/userRecipes.json")
 const utilities = require("../../services/utilities")
-const userService = require("../user/user.service")
 const cloudinary = require("../../services/cloudinary")
 const axios = require('axios')
 const fs = require('fs')
@@ -26,6 +25,7 @@ async function getAllUserRecipes(user) {
 async function getAllRecipes(filterBy) {
   let recipeToReturn = null
   let foodList = []
+
 
   if (!filterBy) {
     recipeToReturn = recipes

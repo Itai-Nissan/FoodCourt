@@ -8,31 +8,24 @@ import { Button } from '@mui/material'
 
 export const AddIngredient = (props) => {
 
+    // console.log(props.numberOfIngredients);
+    useEffect(() => {
+    }, [])
+
+
     // Ingredient
     const [recipeIngredient, setIngredient] = useState('')
 
     function removeIngredient(e, index) {
-        if (props.recipeSections[0].components.length === 1) {
-            props.recipeSections[0].components[0].raw_text = null
-            props.setRecipeSections(
-                [{
-                    components: [
-                        {
-                            raw_text: null,
-                        }
-                    ],
-                }]
-            )
-
-
+        if (props.recipeSections.length === 1) {
+            props.recipeSections[0].raw_text = null
         } else {
             let updatedSections = props.recipeSections
-            updatedSections[0].components.splice(index, 1)
-
+            updatedSections.splice(index, 1)
         }
         const newCount = props.ingredientCount - 1
         props.setIngredientCount(newCount)
-        props.setNumberOfIngredient(Array.from(Array(newCount)))
+        // props.setNumberOfIngredients(Array.from(Array(newCount)))
 
     }
 
@@ -40,12 +33,12 @@ export const AddIngredient = (props) => {
         if (recipeIngredient === '') return
         if (e.key === "Enter" || e.type === 'click') {
             let updatedSections = null
-            if (props.recipeSections[0].components[0].raw_text === null) {
+            if (props.recipeSections[0].raw_text === null) {
                 updatedSections = props.recipeSections
-                updatedSections[0].components[0].raw_text = recipeIngredient
+                updatedSections[0].raw_text = recipeIngredient
             } else {
                 updatedSections = props.recipeSections
-                updatedSections[0].components.push({
+                updatedSections.push({
                     raw_text: recipeIngredient,
                 })
             }
@@ -54,24 +47,30 @@ export const AddIngredient = (props) => {
 
             const newCount = props.ingredientCount + 1
             props.setIngredientCount(newCount)
-            props.setNumberOfIngredient(Array.from(Array(newCount)))
+            // props.setNumberOfIngredients(Array.from(Array(newCount)))
         }
     }
 
-    function ingredientList(index) {
-        if (props.recipeSections[0].components[0].raw_text === null) return
-        return props.recipeSections[0].components[index].raw_text
-    }
+    // function ingredientList(index) {
+    //     if (props.recipeSections[0].components[0].raw_text === null) return
+    //     return props.recipeSections[0].components[index].raw_text
+    // }
 
-    const Ingredients = () => {
-        if (props.ingredientCount) return 'Ingredients:'
+    // const Ingredients = () => {
+    //     if (props.ingredientCount) return 'Ingredients:'
+    // }
 
-    }
+    // console.log('ingredientCount:', props.ingredientCount);
+    // console.log('numberOfIngredients:', props.numberOfIngredients);
+
+
     return (
         <div className='add-remove-ingredient-section'>
-            {props.numberOfIngredients.map((ingredient, index) => {
+            {/* {props.ingredientList ? props.numberOfIngredients.map((ingredient, index) => { */}
+            {props.ingredientList.map((ingredient, index) => {
                 return <div className="add-remove-ingredient" key={index}>
-                    <h4>{ingredientList(index)}</h4>
+                    {/* <h4>{props.ingredientList[index].raw_text}</h4> */}
+                    <h4>{props.ingredientList ? props.ingredientList[index].raw_text : ''}</h4>
                     <Button onClick={event => removeIngredient(event, index)} key={index}>Remove ingredient</Button>
                 </div>
             })
@@ -86,5 +85,90 @@ export const AddIngredient = (props) => {
         </div>
     )
 }
+
+// export const AddIngredient = (props) => {
+
+//     console.log(props.recipeSections);
+//     // console.log(props.numberOfIngredients);
+//     useEffect(() => {
+//         // props.setRecipeSections(props.recipeSections ? props.recipeSections : [])
+
+//     }, [])
+
+
+//     // Ingredient
+//     const [recipeIngredient, setIngredient] = useState('')
+
+//     function removeIngredient(e, index) {
+//         console.log('props.recipeSections:', props.recipeSections);
+//         console.log('props.recipeSections[0].components:', props.recipeSections[0].components);
+//         if (props.recipeSections[0].components.length === 1) {
+//             props.recipeSections[0].components[0].raw_text = null
+//         } else {
+//             let updatedSections = props.recipeSections
+//             updatedSections[0].components.splice(index, 1)
+//         }
+//         const newCount = props.ingredientCount - 1
+//         props.setIngredientCount(newCount)
+//         props.setNumberOfIngredients(Array.from(Array(newCount)))
+
+//     }
+
+//     function addIngredient(e) {
+//         if (recipeIngredient === '') return
+//         if (e.key === "Enter" || e.type === 'click') {
+//             let updatedSections = null
+//             if (props.recipeSections[0].components[0].raw_text === null) {
+//                 updatedSections = props.recipeSections
+//                 updatedSections[0].components[0].raw_text = recipeIngredient
+//             } else {
+//                 updatedSections = props.recipeSections
+//                 updatedSections[0].components.push({
+//                     raw_text: recipeIngredient,
+//                 })
+//             }
+//             props.setRecipeSections(updatedSections)
+//             setIngredient('')
+
+//             const newCount = props.ingredientCount + 1
+//             props.setIngredientCount(newCount)
+//             props.setNumberOfIngredients(Array.from(Array(newCount)))
+//         }
+//     }
+
+//     // function ingredientList(index) {
+//     //     if (props.recipeSections[0].components[0].raw_text === null) return
+//     //     return props.recipeSections[0].components[index].raw_text
+//     // }
+
+//     // const Ingredients = () => {
+//     //     if (props.ingredientCount) return 'Ingredients:'
+//     // }
+
+//     // console.log('ingredientCount:', props.ingredientCount);
+//     // console.log('numberOfIngredients:', props.numberOfIngredients);
+
+
+//     return (
+//         <div className='add-remove-ingredient-section'>
+//             {/* {props.ingredientList ? props.numberOfIngredients.map((ingredient, index) => { */}
+//             {props.ingredientList.map((ingredient, index) => {
+//                 return <div className="add-remove-ingredient" key={index}>
+//                     {/* <h4>{props.ingredientList[index].raw_text}</h4> */}
+//                     <h4>{props.ingredientList ? props.ingredientList[index].raw_text : ''}</h4>
+//                     <Button onClick={event => removeIngredient(event, index)} key={index}>Remove ingredient</Button>
+//                 </div>
+//             })
+//             }
+//             <div className="add-ingredient">
+//                 <Input type="text" placeholder={recipeIngredient}
+//                     value={recipeIngredient}
+//                     onChange={(event) => setIngredient(event.target.value)}
+//                     onKeyDown={addIngredient} />
+//                 <Button onClick={addIngredient}>Add ingredient</Button>
+//             </div>
+//         </div>
+//     )
+// }
 
 

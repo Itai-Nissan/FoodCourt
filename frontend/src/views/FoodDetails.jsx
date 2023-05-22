@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { foodService } from '../services/food.service'
 import { addToFav } from '../store/actions/userActions'
 import { loadUser } from '../store/actions/userActions'
 
 import { Button } from '@mui/material'
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
 import { RecipeSkeleton } from '../cmps/RecipeSkeleton'
 
 export const FoodDetails = (props) => {
@@ -29,16 +27,6 @@ export const FoodDetails = (props) => {
 
     async function loadFood() {
         const foodId = params.id
-        // loggedInUser.userRecipe[0]
-        // if (loggedInUser) {
-        //     loggedInUser.userRecipe.map((recipe, index) => {
-        //         if (foodId === recipe._id) {
-        //             console.log(recipe)
-        //             setFood(recipe)
-        //             return
-        //         }
-        //     })
-        // }
         const getFoodById = await foodService.getById(foodId)
         setFood(getFoodById)
     }
@@ -53,6 +41,10 @@ export const FoodDetails = (props) => {
     async function addFoodToFav() {
         if (!loggedInUser) return
         return dispatch(addToFav(loggedInUser, foodById))
+    }
+
+    function onEditRecipe() {
+        // <Link to={`/AddRecipe`} ></Link>
     }
 
     if (!foodById) return <div>
@@ -102,6 +94,12 @@ export const FoodDetails = (props) => {
                     </div>
                     {loggedUserRecipe() ? <Button onClick={addFoodToFav}> Add to list</Button> : null}
                 </div>
+                <Button>
+                <Link to={`/Edit-recipe/${foodById.id}`} >
+                        Edit recipe</Link>
+                </Button>
+
+                {/* <Button onClick={onEditRecipe}>Edit recipe</Button> */}
             </section>
 
             {/* <button onClick={onBack}>Back</button> */}

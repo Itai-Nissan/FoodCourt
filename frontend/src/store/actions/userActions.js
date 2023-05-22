@@ -81,7 +81,6 @@ export function loadUser() {
             if (login) {
                 const authUser = login.userToSet
                 const userRecipes = login.userRecipes
-                console.log(userRecipes);
                 dispatch({ type: 'SET_USER', authUser })
                 dispatch({ type: 'SET_USER_RECIPES', userRecipes })
                 return authUser

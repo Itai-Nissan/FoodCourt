@@ -14,6 +14,7 @@ import { UserProfile } from './views/UserProfile'
 import { AddRecipe } from './views/AddRecipe'
 import { FoodDetails } from './views/FoodDetails'
 import { AboutPage } from './views/AboutPage'
+import { EditRecipe } from './views/EditRecipe'
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
             <Route path='/Signup' element={<Signup />} />
             <Route path='/UserProfile/:id' element={<UserProfile />} />
             <Route path='/Add-recipe' element={<AddRecipe />} />
+            <Route path='/Edit-recipe/:id' element={<EditRecipe />} />
             <Route path='/FoodDetails/:id' element={<FoodDetails />} />
             <Route path='/AboutPage' element={<AboutPage />} />
           </Routes>

@@ -13,12 +13,14 @@ export const AddStep = (props) => {
 
     function removeStep(e, index) {
         if (props.recipeInstructions.length <= 1) {
-            props.setRecipeInstructions([
+            const updatedInstructions = [
                 {
                     display_text: null,
                 }
             ]
-            )
+
+            props.setRecipeInstructions(updatedInstructions)
+            props.setStepList(updatedInstructions)
         } else {
             let updatedSections = props.recipeInstructions
             updatedSections.splice(index, 1)
@@ -51,16 +53,18 @@ export const AddStep = (props) => {
         }
     }
 
-    function stepList(index) {
-        if (props.recipeInstructions[0].display_text === null) return
-        return props.recipeInstructions[index].display_text
-    }
+    // function stepList(index) {
+    //     if (props.recipeInstructions[0].display_text === null) return
+    //     return props.recipeInstructions[index].display_text
+    // }
+
+    // console.log(props.recipeInstructions);
 
     return (
         <div className='add-remove-step-section'>
             {props.numberOfSteps.map((step, index) => {
                 return <div className="add-remove-step" key={index}>
-                    <h4>{stepList(index)}</h4>
+                    <h4>{props.recipeInstructions[0].display_text === null ? '' : props.recipeInstructions[index].display_text}</h4>
                     <Button onClick={event => removeStep(event, index)} key={index}>Remove step</Button>
                 </div>
             })
