@@ -10,34 +10,28 @@ export const AddStep = (props) => {
 
     // Step
     const [recipeStep, setStep] = useState('')
+    const [updatedRecipeStep, setUpdatedStep] = useState('')
+
 
     function removeStep(e, index) {
-        if (props.recipeInstructions.length <= 1) {
-            const updatedInstructions = [
-                {
-                    display_text: null,
-                }
-            ]
-
-            props.setRecipeInstructions(updatedInstructions)
-            props.setStepList(updatedInstructions)
+        if (props.recipeInstructions.length === 1) {
+            props.recipeInstructions.splice(index, 1)
         } else {
             let updatedSections = props.recipeInstructions
             updatedSections.splice(index, 1)
         }
+
         const newCount = props.stepCount - 1
         props.setStepCount(newCount)
-        props.setNumberOfStep(Array.from(Array(newCount)))
-
     }
 
     function addStep(e) {
         if (recipeStep === '') return
         if (e.key === "Enter" || e.type === 'click') {
             let updatedInstructions = null
-            if (props.recipeInstructions[0].display_text === null) {
+            if (props.recipeInstructions.length === 0) {
                 updatedInstructions = props.recipeInstructions
-                updatedInstructions[0].display_text = recipeStep
+                updatedInstructions.push({ display_text: recipeStep })
             } else {
                 updatedInstructions = props.recipeInstructions
                 updatedInstructions.push({
@@ -45,29 +39,36 @@ export const AddStep = (props) => {
                 })
             }
             props.setRecipeInstructions(updatedInstructions)
+            console.log(updatedInstructions);
             setStep('')
 
             const newCount = props.stepCount + 1
             props.setStepCount(newCount)
-            props.setNumberOfStep(Array.from(Array(newCount)))
         }
     }
 
-    // function stepList(index) {
-    //     if (props.recipeInstructions[0].display_text === null) return
-    //     return props.recipeInstructions[index].display_text
-    // }
+    function updateStep(event, index) {
+        let updatedInstructions = props.recipeInstructions
+        updatedInstructions.splice(index, 1, { display_text: event.target.value })
+        props.setRecipeInstructions(updatedInstructions)
 
-    // console.log(props.recipeInstructions);
+        const newCount = props.stepCount + 1
+        props.setStepCount(newCount)
+    }
 
     return (
         <div className='add-remove-step-section'>
-            {props.numberOfSteps.map((step, index) => {
+            {props.recipeInstructions ? props.recipeInstructions.map((step, index) => {
                 return <div className="add-remove-step" key={index}>
-                    <h4>{props.recipeInstructions[0].display_text === null ? '' : props.recipeInstructions[index].display_text}</h4>
+                    <Input type="text" placeholder={step.display_text}
+                        value={step.display_text}
+                        onChange={event => { setUpdatedStep(event.target.value); updateStep(event, index) }}
+                    />
+
+                    {/* <h4>{props.recipeInstructions[0].display_text === null ? '' : props.recipeInstructions[index].display_text}</h4> */}
                     <Button onClick={event => removeStep(event, index)} key={index}>Remove step</Button>
                 </div>
-            })
+            }) : []
             }
             <div className="add-step">
                 <Input type="text" placeholder={recipeStep}

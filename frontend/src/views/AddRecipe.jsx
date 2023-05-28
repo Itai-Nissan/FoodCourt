@@ -26,16 +26,8 @@ export const AddRecipe = () => {
     const [ingredientCount, setIngredientCount] = useState(recipeSections ? recipeSections.length : 0)
 
     // Step
-    const [stepCount, setStepCount] = useState(0)
-    const [numberOfSteps, setNumberOfStep] = useState(Array.from(Array(stepCount)))
-    const [recipeInstructions, setRecipeInstructions] = useState(
-        [
-            {
-                display_text: null,
-            }
-        ]
-    )
-    const [stepList, setStepList] = useState(recipeInstructions ? recipeInstructions : null)
+    const [recipeInstructions, setRecipeInstructions] = useState([])
+    const [stepCount, setStepCount] = useState(recipeInstructions ? recipeInstructions.length : 0)
 
     //image
     const [imgFile, setImageFile] = useState()
@@ -49,6 +41,7 @@ export const AddRecipe = () => {
     const [loading, setLoading] = useState(false)
 
     function onAddRecipe() {
+        console.log(recipeInstructions);
         if (recipeName === '') {
             console.log('neit')
             return
@@ -106,10 +99,7 @@ export const AddRecipe = () => {
                             setStepCount={setStepCount}
                             stepCount={stepCount}
                             setRecipeInstructions={setRecipeInstructions}
-                            setStepList={setStepList}
                             recipeInstructions={recipeInstructions}
-                            setNumberOfStep={setNumberOfStep}
-                            numberOfSteps={numberOfSteps}
                         ></AddStep>
                         <div className="upload-button">
                             <AddImage
@@ -139,9 +129,7 @@ export const AddRecipe = () => {
                         recipeName={recipeName}
                         recipeCountry={recipeCountry}
                         recipeSections={recipeSections}
-                        // steps={steps}
-                        stepList={stepList}
-                        numberOfSteps={numberOfSteps}
+                        recipeInstructions={recipeInstructions}
                         onAddRecipe={onAddRecipe}
                         imageOutput={outputImg}
                         videoOutput={videoOutput}

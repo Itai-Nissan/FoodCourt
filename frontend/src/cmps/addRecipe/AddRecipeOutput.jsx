@@ -20,13 +20,12 @@ export const AddRecipeOutput = (props) => {
                             </div>
                         }) : ''
                         }
-                        {/* <h3 >{props.stepList && props.stepList[0].display_text === null ? '' : 'Instructions'}</h3> */}
-                        {/* {props.stepList && props.stepList[0].display_text === null ? null : <hr />} */}
-                        {props.stepList ? props.numberOfSteps.map((ingredient, index) => {
+                        <h3 >{props.recipeInstructions && props.recipeInstructions.length !== 0 ? 'Instructions' : ''}</h3>
+                        {props.recipeInstructions && props.recipeInstructions.length !== 0 ? <hr /> : null}
+                        {props.recipeInstructions ? props.recipeInstructions.map((ingredient, index) => {
                             return <div className="add-remove-step" key={index}>
                                 <h4>Step {index + 1}</h4>
-                                {/* <p>{props.stepList[index].display_text}</p> */}
-                                <p>{utils.firstToCap(props.stepList[index].display_text)}</p>
+                                <p>{utils.firstToCap(props.recipeInstructions[index].display_text)}</p>
                             </div>
                         }) : ''
                         }

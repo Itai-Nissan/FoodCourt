@@ -32,14 +32,18 @@ export const EditRecipe = () => {
         loadFood()
             .then((foodToSet) => {
                 // console.log(foodById);
+                console.log(foodToSet);
                 setFood(foodToSet)
                 setRecipeName(foodToSet.name)
                 setRecipeCountry(foodToSet.country)
 
                 setRecipeSections(foodToSet ? foodToSet.sections[0].components : [])
-                setIngredientCount(foodToSet ? foodToSet.sections[0].components.length : 0)
-                // setNumberOfIngredients(Array.from(Array(ingredientCount)))
-                // setIngredientList(foodToSet ? foodToSet.sections[0].components : [{}])
+                // setIngredientCount(foodToSet ? foodToSet.sections[0].components.length : 0)
+
+                setRecipeInstructions(foodToSet ? foodToSet.instructions : [])
+
+                setOutputImg(foodToSet ? foodToSet.thumbnail_url : {})
+                // setStepCount(foodToSet ? foodToSet.instructions.length : 0)
             })
     }, [])
 
@@ -47,32 +51,12 @@ export const EditRecipe = () => {
     const [recipeCountry, setRecipeCountry] = useState('')
 
     // Ingredient
-    // const [ingredientList, setIngredientList] = useState()
-    // const [numberOfIngredients, setNumberOfIngredients] = useState(Array.from(Array(ingredientCount)))
-    const [ingredientCount, setIngredientCount] = useState(foodById ? foodById.sections[0].components.length : 0)
     const [recipeSections, setRecipeSections] = useState(foodById ? foodById.sections[0].components : [])
+    const [ingredientCount, setIngredientCount] = useState(foodById ? foodById.sections[0].components.length : 0)
 
     // Step
-    const [stepCount, setStepCount] = useState(0)
-    const [numberOfSteps, setNumberOfStep] = useState(Array.from(Array(stepCount)))
-    const [recipeInstructions, setRecipeInstructions] = useState(
-        [
-            {
-                display_text: null,
-            }
-        ]
-    )
-
-    const [stepList, setStepList] = useState(recipeInstructions ? recipeInstructions : null)
-
-    // function stepList(index) {
-    //     if (recipeInstructions[0].display_text === null) return
-    //     return recipeInstructions[index].display_text
-    // }
-
-    const steps = () => {
-        if (stepCount) return 'Instructions:'
-    }
+    const [recipeInstructions, setRecipeInstructions] = useState([])
+    const [stepCount, setStepCount] = useState(recipeInstructions ? recipeInstructions.length : 0)
 
     //image
     const [imgFile, setImageFile] = useState(foodById ? foodById.thumbnail_url : {})
@@ -130,23 +114,17 @@ export const EditRecipe = () => {
                         onChange={(event) => setRecipeCountry(event.target.value)} />
                     <section className="add-remove-section">
                         <AddIngredient
-                            // numberOfIngredients={numberOfIngredients > 0 ? numberOfIngredients : []}
-                            // setNumberOfIngredient={setNumberOfIngredients}
                             ingredientCount={ingredientCount}
                             setIngredientCount={setIngredientCount}
-                            recipeSections={recipeSections.length > 0 ? recipeSections : []}
+                            recipeSections={recipeSections}
                             setRecipeSections={setRecipeSections}
-                            // ingredientList={ingredientList ? ingredientList : []}
-                            // setIngredientList={setIngredientList}
                         ></AddIngredient>
-                        {/* <AddStep
+                        <AddStep
                             setStepCount={setStepCount}
                             stepCount={stepCount}
                             setRecipeInstructions={setRecipeInstructions}
                             recipeInstructions={recipeInstructions}
-                            setNumberOfStep={setNumberOfStep}
-                            numberOfSteps={numberOfSteps}
-                        ></AddStep> */}
+                        ></AddStep>
                         <div className="upload-button">
                             <AddImage
                                 setOutputImg={setOutputImg}
@@ -172,19 +150,14 @@ export const EditRecipe = () => {
                     <h1>Recipe output</h1>
                     <hr />
                     <AddRecipeOutput
-                        recipeName={recipeName ? foodById.name : ''}
-                        recipeCountry={recipeCountry ? foodById.country : ''}
-                        // Ingredients={Ingredients}
-                        // numberOfIngredients={numberOfIngredients}
-                        // ingredientList={ingredientList}
+                        recipeName={recipeName}
+                        recipeCountry={recipeCountry}
                         recipeSections={recipeSections}
-                        // steps={steps}
-                        // stepList={stepList}
-                        // numberOfSteps={numberOfSteps}
-                        // onAddRecipe={onAddRecipe}
-                        imageOutput={foodById ? foodById.thumbnail_url : {}}
-                    // videoOutput={videoOutput}
-                    // loading={loading}
+                        recipeInstructions={recipeInstructions}
+                        onAddRecipe={onAddRecipe}
+                        imageOutput={outputImg}
+                        videoOutput={videoOutput}
+                        loading={loading}
                     ></AddRecipeOutput>
                 </section>
             </div>

@@ -42,7 +42,6 @@ export const AddIngredient = (props) => {
     }
 
     function updateIngredient(event, index) {
-        console.log('updating');
         let updatedSections = props.recipeSections
         updatedSections.splice(index, 1, { raw_text: event.target.value })
         props.setRecipeSections(updatedSections)
