@@ -51,11 +51,12 @@
 
         .MuiButtonBase-root {
             margin-block-start: 1em;
+            // width: 100%;
             font-family: Handlee;
         }
 
         .MuiButtonBase-root:hover {
-            background-color: $confirm;
+            background-color: $dark-wood-opactiy;
             color: $dark-wood;
         }
 

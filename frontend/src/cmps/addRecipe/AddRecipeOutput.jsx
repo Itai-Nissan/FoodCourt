@@ -4,6 +4,7 @@ import { utils } from '../../services/utils'
 
 export const AddRecipeOutput = (props) => {
     const [updatedSection, setUpdateSection] = useState(props.recipeSections)
+    
     return (
         <div className="recipe-output">
             <div className='recipe-output'>
