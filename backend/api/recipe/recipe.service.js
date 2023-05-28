@@ -26,7 +26,7 @@ async function getAllRecipes(filterBy) {
   let recipesToReturn = null
   let foodList = []
 
-  if (!filterBy) {
+  if (!filterBy || filterBy.toLowerCase() === 'all') {
     foodList = recipes
   } else {
     recipes.forEach((recipe) => {
