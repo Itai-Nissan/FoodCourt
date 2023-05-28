@@ -20,7 +20,9 @@ export default function FoodPreview({ food }) {
                 </div>
                 <div className="card-credits">
                     <p>{foodCredits}</p>
-                    <img src={foodCreditsImg} alt="" />
+                    <div className="credit-img">
+                        <img src={foodCreditsImg} alt="" />
+                    </div>
                 </div>
             </section>
         </div>

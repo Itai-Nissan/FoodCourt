@@ -19,12 +19,18 @@
         }
 
         .card-credits {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
 
-            img {
-                width: 20%;
+            .credit-img {
+                display: flex;
+                justify-content: flex-end;
+
+                img {
+                    width: 25%;
+                    border-radius: 50%;
+                }
             }
         }
     }
@@ -49,4 +55,3 @@
     }
 
 }
-
