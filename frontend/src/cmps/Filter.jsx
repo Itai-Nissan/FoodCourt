@@ -32,7 +32,6 @@ export class Filter extends Component {
     if (e.key === 'Enter' || e.type === 'click') {
       this.props.onChangeFilter({ ...this.state })
       this.state.currentSearch = this.state.text
-      // this.state.currentSearch = ('Showing search result for - ' + this.state.text)
       this.state.text = ''
       this.state.loading = true
     }

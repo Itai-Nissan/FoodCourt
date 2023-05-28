@@ -23,40 +23,40 @@ async function getAllUserRecipes(user) {
 }
 
 async function getAllRecipes(filterBy) {
-  let recipeToReturn = null
+  let recipesToReturn = null
   let foodList = []
 
-
   if (!filterBy) {
-    recipeToReturn = recipes
+    foodList = recipes
   } else {
     recipes.forEach((recipe) => {
       if (recipe.name.toLowerCase().includes(filterBy.toLowerCase())) {
-        recipeToReturn = recipe
+        foodList.push(recipe)
       }
     })
   }
 
-  if (recipeToReturn) {
-    if (recipeToReturn.length > 1) {
-      recipeToReturn.forEach((recipe) => {
-        foodList.push(recipe)
-      })
-    }
-    if (recipeToReturn.length === undefined) {
-      foodList.push(recipeToReturn)
-    }
-  }
+  // if (recipesToReturn) {
+  //   console.log('found recipes to return');
+  //   if (recipesToReturn.length > 1) {
+  //     recipesToReturn.forEach((recipe) => {
+  //       foodList.push(recipe)
+  //     })
+  //   }
+  //   if (recipesToReturn.length === undefined) {
+  //     foodList.push(recipesToReturn)
+  //   }
+  // }
 
-  const options = {
-    method: 'GET',
-    url: 'https://tasty.p.rapidapi.com/recipes/list',
-    params: { from: '0', size: 'All', q: filterBy ? filterBy : '' },
-    headers: {
-      'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
-      'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-    }
-  }
+  // const options = {
+  //   method: 'GET',
+  //   url: 'https://tasty.p.rapidapi.com/recipes/list',
+  //   params: { from: '0', size: 'All', q: filterBy ? filterBy : '' },
+  //   headers: {
+  //     'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
+  //     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+  //   }
+  // }
 
   // await axios.request(options).then(function (response) {
   //   response.data.results.map((recipe) => {
