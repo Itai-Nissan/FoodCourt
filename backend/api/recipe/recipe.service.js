@@ -70,12 +70,14 @@ async function getAllRecipes(filterBy) {
 
 async function getRecipeById(id) {
   let recipeToReturn = null
+  // let idToInt = 0
+  // if (typeof id === String) idToInt = parseInt(id, base)
   recipes.forEach((recipe) => {
-    if (recipe.id === id)
+    if (recipe.id == id)
       recipeToReturn = recipe
   })
 
-  console.log('getRecipeById:', recipeToReturn);
+  // console.log('getRecipeById:', recipeToReturn);
   // if (!recipeToReturn) {
   //   const options = {
   //     method: 'GET',
