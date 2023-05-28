@@ -9,15 +9,19 @@
             font-family: Handlee;
         }
 
+        .MuiInputBase-root {
+            width: 65%;
+        }
+
         .MuiButtonBase-root {
             background-color: $light-text-opactiy;
             color: $dark-wood;
             margin-inline-start: 1em;
-            width: 300px;
+            width: 35%;
         }
 
         .MuiButtonBase-root:hover {
-            background-color: $dark-wood-opactiy;
+            background-color: $reject;
             color: $dark-wood;
         }
     }
@@ -27,32 +31,32 @@
         justify-content: space-between;
 
         .MuiInputBase-root {
-            width: 100%;
+            width: 65%;
         }
 
         .MuiButtonBase-root {
-            background-color: $light-text-opactiy;
+            background-color: $light-wood;
             color: $dark-wood;
             margin-inline-start: 1em;
-            width: 300px;
+            width: 35%;
             font-family: Handlee;
         }
 
         .MuiButtonBase-root:hover {
-            background-color: $dark-wood-opactiy;
+            background-color: $confirm;
             color: $dark-wood;
         }
 
     }
 
-    h4{
+    h4 {
         width: 100%;
     }
 
     .remove-step {
         display: flex;
         justify-content: flex-end;
-        
+
         .MuiButtonBase-root {
             margin-inline-start: 1em;
         }

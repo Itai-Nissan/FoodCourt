@@ -92,12 +92,12 @@
                 color: $light-wood;
                 margin-block-start: 1em;
                 padding: .5em;
-                border-radius: 20px;
+                border-radius: 7px;
                 width: 100%;
             }
 
             a:hover {
-                background-color: $dark-wood-opactiy;
+                background-color: $confirm;
                 color: $dark-wood;
             }
 
@@ -116,7 +116,7 @@
             }
 
             .MuiButtonBase-root:hover {
-                background-color: $dark-wood-opactiy;
+                background-color: $confirm;
                 color: $dark-wood;
             }
 
