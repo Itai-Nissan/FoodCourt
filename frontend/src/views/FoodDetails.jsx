@@ -32,10 +32,10 @@ export const FoodDetails = (props) => {
     }
 
     function loggedUserRecipe() {
-        if (loggedInUser._id === foodById.userId) {
-            return false
+        if (loggedInUser && loggedInUser._id === foodById.userId) {
+            return true
         }
-        else return true
+        else return false
     }
 
     async function addFoodToFav() {
@@ -92,14 +92,9 @@ export const FoodDetails = (props) => {
                         {foodById.original_video_url ? <video controls autoPlay muted
                             src={foodById.original_video_url}></video> : null}
                     </div>
-                    {loggedUserRecipe() ? <Button onClick={addFoodToFav}> Add to list</Button> : null}
+                    {loggedUserRecipe() ? null : <Button onClick={addFoodToFav}> Add to list</Button>}
+                    {loggedUserRecipe() ? <Link to={`/Edit-recipe/${foodById.id}`} >Edit recipe</Link> : null}
                 </div>
-                <Button>
-                <Link to={`/Edit-recipe/${foodById.id}`} >
-                        Edit recipe</Link>
-                </Button>
-
-                {/* <Button onClick={onEditRecipe}>Edit recipe</Button> */}
             </section>
 
             {/* <button onClick={onBack}>Back</button> */}

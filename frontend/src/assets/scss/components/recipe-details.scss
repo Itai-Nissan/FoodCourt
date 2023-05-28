@@ -84,6 +84,22 @@
 
             position: sticky;
             top: 130px;
+            text-align: end;
+
+            a {
+                transition: .2s;
+                background-color: $dark-text;
+                color: $light-wood;
+                margin-block-start: 1em;
+                padding: .5em;
+                border-radius: 20px;
+                width: 100%;
+            }
+
+            a:hover {
+                background-color: $dark-wood-opactiy;
+                color: $dark-wood;
+            }
 
             .food-video {
                 video {
@@ -103,7 +119,7 @@
                 background-color: $dark-wood-opactiy;
                 color: $dark-wood;
             }
+
         }
     }
 }
-

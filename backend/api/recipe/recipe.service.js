@@ -75,6 +75,7 @@ async function getRecipeById(id) {
       recipeToReturn = recipe
   })
 
+  console.log('getRecipeById:', recipeToReturn);
   // if (!recipeToReturn) {
   //   const options = {
   //     method: 'GET',
