@@ -130,10 +130,10 @@ export const EditRecipe = () => {
                                 setOutputImg={setOutputImg}
                                 setImageFile={setImageFile}
                             ></AddImage>
-                            {/* <AddVideo
+                            <AddVideo
                                 setVideoFile={setVideoFile}
                                 setVideoOutput={setVideoOutput}
-                            ></AddVideo> */}
+                            ></AddVideo>
                         </div>
                         <div className='loading-button'>
                             <LoadingButton
