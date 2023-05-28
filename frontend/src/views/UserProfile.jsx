@@ -24,23 +24,23 @@ export const UserProfile = (props) => {
     if (userRecipes) userRecipe = userRecipes.map((recipe, index) => {
         let imgName = recipe.thumbnail_url
         const foodCredits = recipe.credits[0].name
-        return <div className='food-preview' key={index}>
-            <section className="card-img">
-                <Link to={`/foodDetails/${recipe.id}`} >
+        return <Link to={`/foodDetails/${recipe.id}`} >
+            <div className='food-preview' key={index}>
+                <section className="card-img">
                     <img alt="timer" src={recipe.thumbnail_url} />
-                </Link>
-            </section>
-            <section className="card-body">
-                <div className="card-name">
-                    <p>{utils.firstToCap(recipe.name)}</p>
-                </div>
-                <div className="card-credits">
-                    <p>{foodCredits}</p>
-                    {/* <img src={foodCreditsImg} alt="" /> */}
-                    {/* <Button onClick={() => removeRecipeFromFav(recipe.id)}>X</Button> */}
-                </div>
-            </section>
-        </div>
+                </section>
+                <section className="card-body">
+                    <div className="card-name">
+                        <p>{utils.firstToCap(recipe.name)}</p>
+                    </div>
+                    <div className="card-credits">
+                        <p>{foodCredits}</p>
+                        {/* <img src={foodCreditsImg} alt="" /> */}
+                        {/* <Button onClick={() => removeRecipeFromFav(recipe.id)}>X</Button> */}
+                    </div>
+                </section>
+            </div >
+        </Link>
     })
 
 
