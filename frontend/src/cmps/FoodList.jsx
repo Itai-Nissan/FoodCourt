@@ -1,9 +1,8 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 import FoodPreview from './FoodPreview'
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
-
-
+import Skeleton from '@mui/material/Skeleton'
+import Stack from '@mui/material/Stack'
 
 export default function FoodList({ foodList }) {
 
@@ -26,7 +25,9 @@ export default function FoodList({ foodList }) {
         <div className='food-list'>
             {foodList.map((food, index) => (
                 <div key={index}>
-                    <FoodPreview food={food} />
+                    <Link to={`/foodDetails/${food.id}`} >
+                        <FoodPreview food={food} />
+                    </Link>
                 </div>
             ))}
         </div>

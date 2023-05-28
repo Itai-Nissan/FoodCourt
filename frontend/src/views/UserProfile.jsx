@@ -12,7 +12,6 @@ export const UserProfile = (props) => {
     const dispatch = useDispatch()
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
     const userRecipes = useSelector((state) => state.userModule.userRecipes)
-    console.log(loggedInUser);
     const userName = loggedInUser.userName
     const userEmail = loggedInUser.userEmail
 

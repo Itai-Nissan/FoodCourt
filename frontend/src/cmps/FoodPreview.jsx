@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from "react-router-dom";
 
 export default function FoodPreview({ food }) {
 
@@ -10,9 +9,7 @@ export default function FoodPreview({ food }) {
     return (
         <div className='food-preview'>
             <section className="card-img">
-                <Link to={`/foodDetails/${food.id}`} >
-                    <img src={food.thumbnail_url} alt="" />
-                </Link>
+                <img src={food.thumbnail_url} alt="" />
             </section>
             <section className="card-body">
                 <div className="card-name">
