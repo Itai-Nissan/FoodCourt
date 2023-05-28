@@ -7,6 +7,7 @@ import { Button } from '@mui/material'
 export const AddIngredient = (props) => {
 
     const [recipeIngredient, setIngredient] = useState('')
+    const [updatedRecipeIngredient, setUpdatedIngredient] = useState('')
 
     function removeIngredient(e, index) {
         if (props.recipeSections.length === 1) {
@@ -40,20 +41,34 @@ export const AddIngredient = (props) => {
         }
     }
 
+    function updateIngredient(event, index) {
+        console.log('updating');
+        let updatedSections = props.recipeSections
+        updatedSections.splice(index, 1, { raw_text: event.target.value })
+        props.setRecipeSections(updatedSections)
+
+        const newCount = props.ingredientCount + 1
+        props.setIngredientCount(newCount)
+    }
+
     return (
         <div className='add-remove-ingredient-section'>
-            {props.ingredientList.map((ingredient, index) => {
+            {props.recipeSections ? props.recipeSections.map((ingredient, index) => {
                 return <div className="add-remove-ingredient" key={index}>
-                    <h4>{props.ingredientList ? props.ingredientList[index].raw_text : ''}</h4>
+                    <Input type="text" placeholder={ingredient.raw_text}
+                        value={ingredient.raw_text}
+                        onChange={event => { setUpdatedIngredient(event.target.value); updateIngredient(event, index) }}
+                    />
                     <Button onClick={event => removeIngredient(event, index)} key={index}>Remove ingredient</Button>
                 </div>
-            })
+            }) : []
             }
             <div className="add-ingredient">
                 <Input type="text" placeholder={recipeIngredient}
                     value={recipeIngredient}
                     onChange={(event) => setIngredient(event.target.value)}
-                    onKeyDown={addIngredient} />
+                    onKeyDown={addIngredient}
+                />
                 <Button onClick={addIngredient}>Add ingredient</Button>
             </div>
         </div>

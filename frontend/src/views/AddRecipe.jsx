@@ -22,19 +22,8 @@ export const AddRecipe = () => {
     const [recipeCountry, setRecipeCountry] = useState('')
 
     // Ingredient
-    const [ingredientCount, setIngredientCount] = useState(0)
-    const [numberOfIngredients, setNumberOfIngredients] = useState(Array.from(Array(ingredientCount)))
     const [recipeSections, setRecipeSections] = useState([])
-    // const [recipeSections, setRecipeSections] = useState(
-    //     [{
-    //         components: [
-    //             {
-    //                 raw_text: null,
-    //             }
-    //         ],
-    //     }]
-    // )
-    const [ingredientList, setIngredientList] = useState(recipeSections ? recipeSections : [])
+    const [ingredientCount, setIngredientCount] = useState(recipeSections ? recipeSections.length : 0)
 
     // Step
     const [stepCount, setStepCount] = useState(0)
@@ -108,14 +97,10 @@ export const AddRecipe = () => {
                         onChange={(event) => setRecipeCountry(event.target.value)} />
                     <section className="add-remove-section">
                         <AddIngredient
-                            numberOfIngredients={numberOfIngredients}
-                            setNumberOfIngredient={setNumberOfIngredients}
                             ingredientCount={ingredientCount}
                             setIngredientCount={setIngredientCount}
                             recipeSections={recipeSections}
                             setRecipeSections={setRecipeSections}
-                            ingredientList={ingredientList}
-                            setIngredientList={setIngredientList}
                         ></AddIngredient>
                         <AddStep
                             setStepCount={setStepCount}
@@ -153,8 +138,7 @@ export const AddRecipe = () => {
                     <AddRecipeOutput
                         recipeName={recipeName}
                         recipeCountry={recipeCountry}
-                        numberOfIngredients={numberOfIngredients}
-                        ingredientList={ingredientList}
+                        recipeSections={recipeSections}
                         // steps={steps}
                         stepList={stepList}
                         numberOfSteps={numberOfSteps}

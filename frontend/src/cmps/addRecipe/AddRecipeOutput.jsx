@@ -1,29 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { utils } from '../../services/utils'
 
 
 export const AddRecipeOutput = (props) => {
-
-    // console.log(props.ingredientList)
-
+    const [updatedSection, setUpdateSection] = useState(props.recipeSections)
     return (
         <div className="recipe-output">
             <div className='recipe-output'>
                 <img className='recipe-details-bg' src={props.imageOutput} alt="" />
                 <div className="food-details">
-                    <section className='details-left'>
+                    <section className='details-left' >
                         <h2>{props.recipeName ? utils.firstToCap(props.recipeName) : 'Recipe name'}</h2>
                         <h2>{props.recipeCountry ? utils.firstToCap(props.recipeCountry) : 'Recipe origin'}</h2>
-                        <h3 >{props.ingredientList ? '' : 'Ingredients'}</h3>
-                        {props.ingredientList ? null : <hr />}
-                        {props.ingredientList ? props.ingredientList.map((ingredient, index) => {
+                        <h3 >{props.recipeSections && props.recipeSections.length !== 0 ? 'Ingredients' : ''}</h3>
+                        {props.recipeSections && props.recipeSections.length !== 0 ? <hr /> : null}
+                        {props.recipeSections ? props.recipeSections.map((ingredient, index) => {
                             return <div className="add-remove-ingredient" key={index}>
-                                <p>{utils.firstToCap(props.ingredientList[index].raw_text)}</p>
+                                <p>{utils.firstToCap(props.recipeSections[index].raw_text)}</p>
                             </div>
                         }) : ''
                         }
-                        {/* <h3 >{props.stepList[0].display_text === null ? '' : 'Instructions'}</h3> */}
-                        {/* {props.stepList[0].display_text === null ? null : <hr />} */}
+                        {/* <h3 >{props.stepList && props.stepList[0].display_text === null ? '' : 'Instructions'}</h3> */}
+                        {/* {props.stepList && props.stepList[0].display_text === null ? null : <hr />} */}
                         {props.stepList ? props.numberOfSteps.map((ingredient, index) => {
                             return <div className="add-remove-step" key={index}>
                                 <h4>Step {index + 1}</h4>

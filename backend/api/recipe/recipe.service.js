@@ -58,13 +58,13 @@ async function getAllRecipes(filterBy) {
     }
   }
 
-  await axios.request(options).then(function (response) {
-    response.data.results.map((recipe) => {
-      foodList.push(recipe)
-    })
-  }).catch(function (error) {
-    console.error(error)
-  })
+  // await axios.request(options).then(function (response) {
+  //   response.data.results.map((recipe) => {
+  //     foodList.push(recipe)
+  //   })
+  // }).catch(function (error) {
+  //   console.error(error)
+  // })
   return foodList
 }
 
@@ -75,23 +75,23 @@ async function getRecipeById(id) {
       recipeToReturn = recipe
   })
 
-  if (!recipeToReturn) {
-    const options = {
-      method: 'GET',
-      url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
-      params: { id: id },
-      headers: {
-        'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
-        'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-      }
-    };
+  // if (!recipeToReturn) {
+  //   const options = {
+  //     method: 'GET',
+  //     url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
+  //     params: { id: id },
+  //     headers: {
+  //       'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
+  //       'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+  //     }
+  //   };
 
-    await axios.request(options).then(function (response) {
-      recipeToReturn = response.data
-    }).catch(function (error) {
-      console.error(error);
-    })
-  }
+  //   await axios.request(options).then(function (response) {
+  //     recipeToReturn = response.data
+  //   }).catch(function (error) {
+  //     console.error(error);
+  //   })
+  // }
   return recipeToReturn
 }
 

@@ -38,8 +38,8 @@ export const EditRecipe = () => {
 
                 setRecipeSections(foodToSet ? foodToSet.sections[0].components : [])
                 setIngredientCount(foodToSet ? foodToSet.sections[0].components.length : 0)
-                setNumberOfIngredients(Array.from(Array(ingredientCount)))
-                setIngredientList(foodToSet ? foodToSet.sections[0].components : [])
+                // setNumberOfIngredients(Array.from(Array(ingredientCount)))
+                // setIngredientList(foodToSet ? foodToSet.sections[0].components : [{}])
             })
     }, [])
 
@@ -47,16 +47,10 @@ export const EditRecipe = () => {
     const [recipeCountry, setRecipeCountry] = useState('')
 
     // Ingredient
-    // const [Ingredients, setIngredients] = useState()
-    const [ingredientList, setIngredientList] = useState()
-    const [ingredientCount, setIngredientCount] = useState(Number)
-    const [numberOfIngredients, setNumberOfIngredients] = useState(Array.from(Array(ingredientCount)))
+    // const [ingredientList, setIngredientList] = useState()
+    // const [numberOfIngredients, setNumberOfIngredients] = useState(Array.from(Array(ingredientCount)))
+    const [ingredientCount, setIngredientCount] = useState(foodById ? foodById.sections[0].components.length : 0)
     const [recipeSections, setRecipeSections] = useState(foodById ? foodById.sections[0].components : [])
-    console.log('recipeSections:', recipeSections);
-
-    // const Ingredients = () => {
-    //     if (ingredientCount) return 'Ingredients:'
-    // }
 
     // Step
     const [stepCount, setStepCount] = useState(0)
@@ -126,7 +120,7 @@ export const EditRecipe = () => {
         <div className='add-recipe'>
             <div className="add-recipe-wrapper">
                 <form>
-                    <h1>Add new recipe</h1>
+                    <h1>Edit recipe</h1>
                     <hr />
                     <Input type="text" placeholder='Name'
                         value={recipeName}
@@ -136,14 +130,14 @@ export const EditRecipe = () => {
                         onChange={(event) => setRecipeCountry(event.target.value)} />
                     <section className="add-remove-section">
                         <AddIngredient
-                            numberOfIngredients={numberOfIngredients > 0 ? numberOfIngredients : []}
-                            setNumberOfIngredient={setNumberOfIngredients}
+                            // numberOfIngredients={numberOfIngredients > 0 ? numberOfIngredients : []}
+                            // setNumberOfIngredient={setNumberOfIngredients}
                             ingredientCount={ingredientCount}
                             setIngredientCount={setIngredientCount}
                             recipeSections={recipeSections.length > 0 ? recipeSections : []}
                             setRecipeSections={setRecipeSections}
-                            ingredientList={ingredientList ? ingredientList : []}
-                            setIngredientList={setIngredientList}
+                            // ingredientList={ingredientList ? ingredientList : []}
+                            // setIngredientList={setIngredientList}
                         ></AddIngredient>
                         {/* <AddStep
                             setStepCount={setStepCount}
@@ -169,7 +163,7 @@ export const EditRecipe = () => {
                                 loading={loading}
                                 variant="standard"
                                 placeholder='Create'>
-                                <h3 >{loading ? '' : 'Create recipe'}</h3>
+                                <h3 >{loading ? '' : 'Save recipe'}</h3>
                             </LoadingButton>
                         </div>
                     </section>
@@ -181,8 +175,9 @@ export const EditRecipe = () => {
                         recipeName={recipeName ? foodById.name : ''}
                         recipeCountry={recipeCountry ? foodById.country : ''}
                         // Ingredients={Ingredients}
-                        numberOfIngredients={numberOfIngredients}
-                        ingredientList={ingredientList}
+                        // numberOfIngredients={numberOfIngredients}
+                        // ingredientList={ingredientList}
+                        recipeSections={recipeSections}
                         // steps={steps}
                         // stepList={stepList}
                         // numberOfSteps={numberOfSteps}
