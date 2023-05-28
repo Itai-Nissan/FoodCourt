@@ -14,7 +14,7 @@ import { LoadingButton } from '@mui/lab';
 
 export const AddRecipe = () => {
     const dispatch = useDispatch()
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
 
@@ -41,7 +41,6 @@ export const AddRecipe = () => {
     const [loading, setLoading] = useState(false)
 
     function onAddRecipe() {
-        console.log(recipeInstructions);
         if (recipeName === '') {
             console.log('neit')
             return
@@ -140,172 +139,3 @@ export const AddRecipe = () => {
         </div >
     )
 }
-
-
-// export const AddRecipe = () => {
-//     const dispatch = useDispatch()
-//     const navigate = useNavigate();
-
-//     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
-
-//     const [recipeName, setRecipeName] = useState('')
-//     const [recipeCountry, setRecipeCountry] = useState('')
-
-//     // Ingredient
-//     const [ingredientCount, setIngredientCount] = useState(0)
-//     const [numberOfIngredients, setNumberOfIngredient] = useState(Array.from(Array(ingredientCount)))
-//     const [recipeSections, setRecipeSections] = useState(
-//         [{
-//             components: [
-//                 {
-//                     raw_text: null,
-//                 }
-//             ],
-//         }]
-//     )
-
-//     function ingredientList(index) {
-//         if (recipeSections[0].components[0].raw_text === null) return
-//         return recipeSections[0].components[index].raw_text
-//     }
-
-//     const Ingredients = () => {
-//         if (ingredientCount) return 'Ingredients:'
-//     }
-
-//     // Step
-//     const [stepCount, setStepCount] = useState(0)
-//     const [numberOfSteps, setNumberOfStep] = useState(Array.from(Array(stepCount)))
-//     const [recipeInstructions, setRecipeInstructions] = useState(
-//         [
-//             {
-//                 display_text: null,
-//             }
-//         ]
-//     )
-
-//     function stepList(index) {
-//         if (recipeInstructions[0].display_text === null) return
-//         return recipeInstructions[index].display_text
-//     }
-
-//     const steps = () => {
-//         if (stepCount) return 'Instructions:'
-//     }
-
-//     //image
-//     const [imgFile, setImageFile] = useState()
-//     const [outputImg, setOutputImg] = useState()
-
-//     //video
-//     const [videoFile, setVideoFile] = useState('')
-//     const [videoOutput, setVideoOutput] = useState('')
-
-//     //add recipe
-//     const [loading, setLoading] = useState(false)
-
-//     function onAddRecipe() {
-//         if (recipeName === '') {
-//             console.log('neit')
-//             return
-//         }
-//         else {
-//             const recipeToAdd = {
-//                 name: recipeName,
-//                 country: recipeCountry,
-//                 sections: recipeSections,
-//                 instructions: recipeInstructions,
-//                 thumbnail_url: imgFile,
-//                 original_video_url: videoFile,
-//             }
-//             setLoading(true)
-//             dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
-//                 .then((res) => {
-//                     if (!res) {
-//                         console.log('ein rez')
-//                     }
-//                     if (res) {
-//                         console.log(res)
-//                         dispatch(setUpdatedUser(res))
-//                             .then(() => {
-//                                 navigate(`/UserProfile/${loggedInUser._id}`)
-//                             })
-//                     }
-//                 })
-//         }
-//     }
-
-//     return (
-//         <div className='add-recipe'>
-//             <div className="add-recipe-wrapper">
-//                 <form>
-//                     <h1>Add new recipe</h1>
-//                     <hr />
-//                     <Input type="text" placeholder='Name'
-//                         value={recipeName}
-//                         onChange={(event) => setRecipeName(event.target.value)} />
-//                     <Input type="text" placeholder='Country'
-//                         value={recipeCountry}
-//                         onChange={(event) => setRecipeCountry(event.target.value)} />
-//                     <section className="add-remove-section">
-//                         <AddIngredient
-//                             numberOfIngredients={numberOfIngredients}
-//                             setNumberOfIngredient={setNumberOfIngredient}
-//                             ingredientCount={ingredientCount}
-//                             setIngredientCount={setIngredientCount}
-//                             recipeSections={recipeSections}
-//                             setRecipeSections={setRecipeSections}
-//                         ></AddIngredient>
-//                         <AddStep
-//                             setStepCount={setStepCount}
-//                             stepCount={stepCount}
-//                             setRecipeInstructions={setRecipeInstructions}
-//                             recipeInstructions={recipeInstructions}
-//                             setNumberOfStep={setNumberOfStep}
-//                             numberOfSteps={numberOfSteps}
-//                         ></AddStep>
-//                         <div className="upload-button">
-//                             <AddImage
-//                                 setOutputImg={setOutputImg}
-//                                 setImageFile={setImageFile}
-//                             ></AddImage>
-//                             <AddVideo
-//                                 setVideoFile={setVideoFile}
-//                                 setVideoOutput={setVideoOutput}
-//                             ></AddVideo>
-//                         </div>
-//                         <div className='loading-button'>
-//                             <LoadingButton
-//                                 onClick={onAddRecipe}
-//                                 loading={loading}
-//                                 variant="standard"
-//                                 placeholder='Create'>
-//                                 <h3 >{loading ? '' : 'Create recipe'}</h3>
-//                             </LoadingButton>
-//                         </div>
-//                     </section>
-//                 </form>
-//                 <section className='add-recipe-output'>
-//                     <h1>Recipe output</h1>
-//                     <hr />
-//                     <AddRecipeOutput
-//                         recipeName={recipeName}
-//                         recipeCountry={recipeCountry}
-//                         Ingredients={Ingredients}
-//                         numberOfIngredients={numberOfIngredients}
-//                         ingredientList={ingredientList}
-//                         steps={steps}
-//                         stepList={stepList}
-//                         numberOfSteps={numberOfSteps}
-//                         onAddRecipe={onAddRecipe}
-//                         imageOutput={outputImg}
-//                         videoOutput={videoOutput}
-//                         loading={loading}
-//                     ></AddRecipeOutput>
-//                 </section>
-//             </div>
-//         </div >
-//     )
-// }
-
-
