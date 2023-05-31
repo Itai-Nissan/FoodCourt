@@ -1,5 +1,15 @@
 .dropdown-menu {
 
+    h4 {
+        color: $dark-text;
+    }
+
+    h4:hover {
+        color: $darker-text;
+        border-bottom: 1px solid $darker-text;
+
+    }
+
     .MuiMenu-root {
         z-index: 201;
     }
@@ -22,7 +32,29 @@
 }
 
 .MuiMenuItem-root:hover {
-    background-color: $light-wood;
-    background: $light-wood;
+    background-color: $lighter-wood;
+    // background: $light-wood;
     outline: .5px solid $dark-text;
 }
+
+.Mui-focusVisible {
+    // border-bottom: 1px solid $darker-text;
+    outline: none;
+}
+
+// .MuiMenu-root{
+//     position: relative;
+    
+// }
+// .Mui-expanded{
+//     position: relative;
+    
+// }
+// .css-1ej3oh2{
+//     position: relative;
+    
+// }
+// .MuiPopper-root{
+//     position: relative;
+
+// }

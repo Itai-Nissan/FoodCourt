@@ -4,7 +4,7 @@ import { loadFoodList, setFilterBy } from '../store/actions/foodActions'
 import FoodList from '../cmps/FoodList'
 import { Filter } from '../cmps/Filter'
 
-export const HomePage = (props) => {
+export const ExplorRecipes = (props) => {
     window.scrollTo(0, 0)
 
     const dispatch = useDispatch()
@@ -32,8 +32,8 @@ export const HomePage = (props) => {
 
     return (
         <div className='home-page'>
-            {/* <Filter onChangeFilter={onChangeFilter} isLoading={loading}></Filter> */}
-            {/* <FoodList foodList={recipes} /> */}
+            <Filter onChangeFilter={onChangeFilter} isLoading={loading}></Filter>
+            <FoodList foodList={recipes} />
         </div>
     )
 }

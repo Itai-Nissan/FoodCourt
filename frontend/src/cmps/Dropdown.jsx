@@ -10,39 +10,39 @@ import MenuItemUnstyled, {
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
-const blue = {
-  100: '#DAECFF',
-  200: '#99CCF3',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  900: '#003A75',
-};
+// const blue = {
+//   100: '#DAECFF',
+//   200: '#99CCF3',
+//   400: '#3399FF',
+//   500: '#007FFF',
+//   600: '#0072E5',
+//   900: '#003A75',
+// };
 
-const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
-};
+// const grey = {
+//   50: '#f6f8fa',
+//   100: '#eaeef2',
+//   200: '#d0d7de',
+//   300: '#afb8c1',
+//   400: '#8c959f',
+//   500: '#6e7781',
+//   600: '#57606a',
+//   700: '#424a53',
+//   800: '#32383f',
+//   900: '#24292f',
+// };
 
 const StyledListbox = styled('ul')(
   ({ theme }) => `
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
-  min-width: 200px;
+  // min-width: 200px;
   border-radius: 7px;
   overflow: auto;
   outline: 0px;
-  background: #cbc2c1;
+  background: #f4b069;
   color: #4c3e3e;
   `,
 )
@@ -58,7 +58,7 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
   // background: #65e311;
   // background-color: #65e311;
   
-  // &:hover {
+  &:hover {
   //   background: #65e311;
   //   background-color: #65e311;
   //   color: #f4b069;
@@ -67,7 +67,7 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
   // &:last-of-type {
   //   border-bottom: none;
   // }
-  // &:active{
+  &:active{
     // background-color: #65e311;
     // color: #65e311;
 
@@ -83,10 +83,10 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
   //   color: #65e311;
   // }
 
-  // &:hover:not(.${menuItemUnstyledClasses.disabled}) {
+  &:hover:not(.${menuItemUnstyledClasses.disabled}) {
   //   background-color: #f4b069;
   //   color: #65e311;
-  // }
+  }
   `,
 );
 
@@ -102,8 +102,8 @@ const TriggerButton = styled('div')(
   transition-duration: 120ms;
 
   &:hover {
-    color: #f4b069;
-    background: #4c3e3e;
+    // color: $darker-text;
+    // border-bottom: 1px solid $light-wood;
   }
 
   &:focus {
@@ -128,7 +128,7 @@ export default function UnstyledMenuIntroduction() {
   function loggedUserName() {
     if (loggedInUser) {
       return <div>
-        <h4>{loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1)}</h4>
+        {loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1)}
       </div >
     }
   }

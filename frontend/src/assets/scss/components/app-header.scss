@@ -2,7 +2,7 @@
     position: sticky;
     top: 0;
     width: 100%;
-    height: 100px;
+    height: 90px;
     background-color: rgb(242, 242, 242);
     display: flex;
     justify-content: center;
@@ -53,28 +53,30 @@
         .header-routes {
             display: flex;
             align-items: center;
-            font-family: Handlee;
+            font-family: PatrickHand;
+            background-color: $light-wood;
+            height: 90px;
+            padding-inline-start: 1em;
+            border-radius: 50px 0 0 50px;
+
 
             a {
                 color: $dark-text;
-                transition: .4s;
-                border-radius: 7px;
+                // border-bottom: 0px solid $dark-wood
             }
 
             a:hover {
-                color: $light-wood;
-                background-color: $dark-text;
+                color: $darker-text;
+                border-bottom: 1px solid $darker-text;
             }
 
             h4 {
-                font-size: larger;
-                font-weight: 600;
+                font-size: 1em;
+                font-weight: 100;
                 letter-spacing: 5px;
                 margin-inline-start: .5em;
                 margin-inline-end: .5em;
             }
-
-
 
             .logged-user {
                 display: flex;

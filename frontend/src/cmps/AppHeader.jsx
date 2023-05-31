@@ -49,6 +49,9 @@ export function AppHeader() {
           <Link to="/">
             <h4>Home</h4>
           </Link>
+          <Link to="/ExplorRecipes">
+            <h4>Recipes</h4>
+          </Link>
           <div className='logged-user'>
             {loggedUserName()}
           </div>

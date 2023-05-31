@@ -8,6 +8,7 @@ import './assets/scss/global.scss'
 
 import { AppHeader } from './cmps/AppHeader'
 import { HomePage } from './views/HomePage'
+import { ExplorRecipes } from './views/ExplorRecipes'
 import { Login } from './views/Login'
 import { Signup } from './views/Signup'
 import { UserProfile } from './views/UserProfile'
@@ -37,6 +38,7 @@ function App() {
         <main className='app-main container'>
           <Routes>
             <Route path='/' element={<HomePage />} />
+            <Route path='/ExplorRecipes' element={<ExplorRecipes />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/Signup' element={<Signup />} />
             <Route path='/UserProfile/:id' element={<UserProfile />} />
