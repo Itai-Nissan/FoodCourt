@@ -25,13 +25,18 @@ async function getAllUserRecipes(user) {
 }
 
 async function getAllRecipes(filterBy) {
-  let recipesToReturn = null
+  // let recipesToReturn = null
   let foodList = []
 
   if (!filterBy || filterBy.toLowerCase() === 'all') {
-    foodList = recipes
+    foodList = recipes.concat(tastyRecipes)
   } else {
     recipes.forEach((recipe) => {
+      if (recipe.name.toLowerCase().includes(filterBy.toLowerCase())) {
+        foodList.push(recipe)
+      }
+    })
+    tastyRecipes.forEach((recipe) => {
       if (recipe.name.toLowerCase().includes(filterBy.toLowerCase())) {
         foodList.push(recipe)
       }
@@ -86,6 +91,7 @@ async function getRecipeById(id) {
   recipes.forEach((recipe) => {
     if (recipe.id == id)
       recipeToReturn = recipe
+      return
   })
 
   // console.log('getRecipeById:', recipeToReturn);
@@ -187,6 +193,7 @@ async function editRecipe(user, recipe) {
     recipes.map((recipe, index) => {
       if (recipe.id === editedRecipe.id) {
         recipes[index] = editedRecipe
+        return
       }
     })
 
