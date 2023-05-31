@@ -91,7 +91,12 @@ async function getRecipeById(id) {
   recipes.forEach((recipe) => {
     if (recipe.id == id)
       recipeToReturn = recipe
-      return
+    return
+  })
+  tastyRecipes.forEach((recipe) => {
+    if (recipe.id == id)
+      recipeToReturn = recipe
+    return
   })
 
   // console.log('getRecipeById:', recipeToReturn);
