@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import { setAddUserRecipe } from '../store/actions/foodActions'
+import { setUpdateUserRecipe } from '../store/actions/foodActions'
 import { setUpdatedUser } from '../store/actions/userActions'
 import { AddIngredient } from '../cmps/addRecipe/AddIngredient'
 import { AddStep } from '../cmps/addRecipe/AddStep'
@@ -31,8 +31,6 @@ export const EditRecipe = () => {
     useEffect(() => {
         loadFood()
             .then((foodToSet) => {
-                // console.log(foodById);
-                console.log(foodToSet);
                 setFood(foodToSet)
                 setRecipeName(foodToSet.name)
                 setRecipeCountry(foodToSet.country)
@@ -41,9 +39,10 @@ export const EditRecipe = () => {
                 // setIngredientCount(foodToSet ? foodToSet.sections[0].components.length : 0)
 
                 setRecipeInstructions(foodToSet ? foodToSet.instructions : [])
+                // setStepCount(foodToSet ? foodToSet.instructions.length : 0)
 
                 setOutputImg(foodToSet ? foodToSet.thumbnail_url : {})
-                // setStepCount(foodToSet ? foodToSet.instructions.length : 0)
+                setImageFile(foodToSet ? foodToSet.thumbnail_url : {})
             })
     }, [])
 
@@ -69,22 +68,27 @@ export const EditRecipe = () => {
     //add recipe
     const [loading, setLoading] = useState(false)
 
-    function onAddRecipe() {
+    function onEditRecipe() {
         if (recipeName === '') {
             console.log('neit')
             return
         }
         else {
             const recipeToAdd = {
+                id: foodById.id,
                 name: recipeName,
                 country: recipeCountry,
-                sections: recipeSections,
+                sections: [
+                    {
+                        components: recipeSections
+                    }
+                ],
                 instructions: recipeInstructions,
-                thumbnail_url: imgFile,
+                thumbnail_url: imgFile ? imgFile : outputImg,
                 original_video_url: videoFile,
             }
             setLoading(true)
-            dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
+            dispatch(setUpdateUserRecipe(loggedInUser, recipeToAdd))
                 .then((res) => {
                     if (!res) {
                         console.log('ein rez')
@@ -137,7 +141,7 @@ export const EditRecipe = () => {
                         </div>
                         <div className='loading-button'>
                             <LoadingButton
-                                onClick={onAddRecipe}
+                                onClick={onEditRecipe}
                                 loading={loading}
                                 variant="standard"
                                 placeholder='Create'>
@@ -154,7 +158,7 @@ export const EditRecipe = () => {
                         recipeCountry={recipeCountry}
                         recipeSections={recipeSections}
                         recipeInstructions={recipeInstructions}
-                        onAddRecipe={onAddRecipe}
+                        onEditRecipe={onEditRecipe}
                         imageOutput={outputImg}
                         videoOutput={videoOutput}
                         loading={loading}

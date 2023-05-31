@@ -160,6 +160,50 @@ async function addRecipe(user, recipe) {
   }
 }
 
+async function editRecipe(user, recipe) {
+
+  try {
+    let imgUrl = recipe.thumbnail_url
+    if (typeof imgUrl === 'object') {
+      imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
+    }
+
+    const editedRecipe = {
+      id: recipe.id,
+      userId: user._id,
+      name: recipe.name,
+      country: recipe.country,
+      sections: recipe.sections,
+      instructions: recipe.instructions,
+      thumbnail_url: imgUrl,
+      credits: [
+        {
+          name: user.fullName
+        }
+      ],
+      original_video_url: recipe.original_video_url,
+    }
+
+    recipes.map((recipe, index) => {
+      if (recipe.id === editedRecipe.id) {
+        recipes[index] = editedRecipe
+      }
+    })
+
+    _writeToJson('recipes', recipes)
+    _writeToJson('userRecipes', userRecipes)
+
+    const allUserRecipes = await getAllUserRecipes(user)
+    return ({
+      user,
+      allUserRecipes
+    })
+  } catch (err) {
+    logger.error('cannot insert new recipe', err)
+    throw err
+  }
+}
+
 function _writeToJson(file, db) {
   let updatedUsers = db
   var jsonContent = JSON.stringify(updatedUsers)
@@ -177,6 +221,7 @@ function _writeToJson(file, db) {
 
 module.exports = {
   addRecipe,
+  editRecipe,
   getRecipeById,
   getAllRecipes,
   getAllUserRecipes,

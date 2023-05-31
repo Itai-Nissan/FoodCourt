@@ -63,3 +63,18 @@ export function setAddUserRecipe(user, recipe) {
         }
     }
 }
+
+export function setUpdateUserRecipe(user, recipe) {
+    console.log(user);
+
+    return async (dispatch, getState) => {
+        try {
+            const authUser = await foodService.editRecipe(user, recipe)
+            if (authUser) {
+                return authUser
+            }
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}

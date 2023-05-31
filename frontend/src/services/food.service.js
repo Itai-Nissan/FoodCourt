@@ -5,6 +5,7 @@ export const foodService = {
     getFood,
     getById,
     addNewRecipe,
+    editRecipe,
 }
 
 async function getFood(filterBy) {
@@ -24,6 +25,14 @@ function _save(entityType, entities) {
 }
 
 async function addNewRecipe(user, recipe) {
+
+    const authUser = await httpService.post('recipe', { user, recipe })
+    if (authUser) {
+    }
+    return authUser
+}
+
+async function editRecipe(user, recipe) {
 
     const authUser = await httpService.put('recipe', { user, recipe })
     if (authUser) {
