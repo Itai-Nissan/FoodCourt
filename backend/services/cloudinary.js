@@ -17,7 +17,6 @@ const opts = {
 };
 
 const uploadImage = (image) => {
-    console.log('cloudinary uploadimage:', image.alt);
     //imgage = > base64
     return new Promise((resolve, reject) => {
         cloudinary.uploader.upload(image.src, opts, (error, result) => {

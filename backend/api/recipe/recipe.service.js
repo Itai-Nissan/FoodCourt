@@ -1,4 +1,6 @@
 const recipes = require("../../data/recipes.json")
+const tastyRecipes = require("../../data/tastyRecipes.json")
+const tastyRecipeDetails = require("../../data/tastyRecipeDetails.json")
 const userRecipes = require("../../data/userRecipes.json")
 const utilities = require("../../services/utilities")
 const cloudinary = require("../../services/cloudinary")
@@ -58,13 +60,22 @@ async function getAllRecipes(filterBy) {
   //   }
   // }
 
-  // await axios.request(options).then(function (response) {
-  //   response.data.results.map((recipe) => {
-  //     foodList.push(recipe)
-  //   })
-  // }).catch(function (error) {
-  //   console.error(error)
-  // })
+  await axios.request(options).then(function (response) {
+    response.data.results.map((recipes) => {
+      foodList.push(recipes)
+    }).then(() => {
+      foodList.map((recipe) => {
+        recipeDetails.push(recipe)
+      })
+    })
+    _writeToJson('tastyRecipes', tastyRecipes)
+    _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
+    // console.log('response.data.results:');
+    // console.log('response.data.results:', response.data.results);
+  }).catch(function (error) {
+    console.error(error)
+  })
+
   return foodList
 }
 
