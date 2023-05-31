@@ -95,10 +95,11 @@ export function addToFav(user, food) {
 
     return async (dispatch, getState) => {
         try {
-            const userToSet = await userService.addToFav(user, food)
-            if (userToSet) {
-                dispatch({ type: 'SET_USER', authUser: userToSet })
-                return userToSet
+            const authUser = await userService.addToFav(user, food)
+            if (authUser) {
+                dispatch({ type: 'SET_USER', authUser: authUser.userToSet })
+                dispatch({ type: 'SET_USER_RECIPES', userRecipes: authUser.userRecipes })
+                return authUser
             }
         } catch (err) {
             console.log('err:', err)
@@ -109,10 +110,11 @@ export function addToFav(user, food) {
 export function removeFromFav(user, recipeId) {
     return async (dispatch, getState) => {
         try {
-            const userToSet = await userService.removeFromFav(user, recipeId)
-            if (userToSet) {
-                dispatch({ type: 'SET_USER', authUser: userToSet })
-                return userToSet
+            const authUser = await userService.removeFromFav(user, recipeId)
+            if (authUser) {
+                dispatch({ type: 'SET_USER', authUser: authUser.userToSet })
+                dispatch({ type: 'SET_USER_RECIPES', userRecipes: authUser.userRecipes })
+                return authUser
             }
         } catch (err) {
             console.log('err:', err)

@@ -19,17 +19,17 @@ import { EditRecipe } from './views/EditRecipe'
 
 function App() {
 
-  const [recipes, setRecipes] = useState(null)
-  const dispatch = useDispatch()
-  const stateRecipes = useSelector((state) => state.userModule.loggedInUser)
+  // const [recipes, setRecipes] = useState(null)
+  // const dispatch = useDispatch()
+  // const stateRecipes = useSelector((state) => state.userModule.loggedInUser)
 
 
-  useEffect(() => {
-    dispatch(loadFoodList())
-      .then((updatedRecipes) => {
-        setRecipes(updatedRecipes)
-      })
-  }, [])
+  // useEffect(() => {
+  //   dispatch(loadFoodList())
+  //     .then((updatedRecipes) => {
+  //       setRecipes(updatedRecipes)
+  //     })
+  // }, [])
 
   return (
     <Router >

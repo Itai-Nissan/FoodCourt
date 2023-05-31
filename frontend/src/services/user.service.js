@@ -28,31 +28,31 @@ function loadUser() {
 }
 
 async function addToFav(user, food) {
-    const userToSet = await httpService.put('user', { user, food })
-    if (userToSet) {
-        storageService.store(USER_DB, userToSet)
+    const authUser = await httpService.put('user', { user, food })
+    console.log(authUser);
+
+    if (authUser) {
+        storageService.store(USER_DB, authUser)
     }
-    return userToSet
+    return authUser
 }
 
 async function removeFromFav(user, recipeId) {
-    const userToSet = await httpService.delete('userFav', { user, recipeId })
-    if (userToSet) {
-        storageService.store(USER_DB, userToSet)
+    const authUser = await httpService.delete('userFav', { user, recipeId })
+    if (authUser) {
+        storageService.store(USER_DB, authUser)
     }
-    return userToSet
+    return authUser
 }
 
 async function login(cred) {
     const authUser = await httpService.post(ENDPOINT + '/login', cred)
-    console.log(authUser);
     if (authUser) storageService.store(USER_DB, authUser)
     return authUser
 }
 
 async function signUp(user) {
     const authUser = await httpService.post(ENDPOINT + '/signup', user)
-    console.log(authUser);
     if (authUser) storageService.store(USER_DB, authUser)
     return authUser
 }
@@ -63,7 +63,7 @@ async function logout() {
     return userToSet
 }
 
-async function updateUser(user){
+async function updateUser(user) {
     if (user) storageService.store(USER_DB, user)
     return user
 }

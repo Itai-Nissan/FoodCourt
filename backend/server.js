@@ -12,7 +12,6 @@ require('dotenv').config()
 const cors = require('cors')
 const path = require('path')
 
-
 // app.use(express.static("public")) 
 const session = expressSession({
   secret: 'coding is amazing',
@@ -41,17 +40,18 @@ const recipeRoutes = require('./api/recipe/recipe.routes')
 app.use('/api/auth', authRoutes)
 app.use('/api/recipe', recipeRoutes)
 
+//fav
 app.put("/api/user", (req, res) => {
   userService.addFavToUser(req.body.user, req.body.food)
-    .then((user) => {
-      res.send(user)
+    .then((authUser) => {
+      res.send(authUser)
     })
 })
 
 app.delete("/api/userFav/", (req, res) => {
   userService.removeFavFromUser(req.body.user, req.body.recipeId)
-    .then((user) => {
-      res.send(user)
+    .then((authUser) => {
+      res.send(authUser)
     })
 })
 

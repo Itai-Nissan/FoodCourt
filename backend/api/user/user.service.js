@@ -1,4 +1,5 @@
 const users = require("../../data/users.json")
+const recipeService = require("../recipe/recipe.service")
 const utilities = require("../../services/utilities")
 const fs = require('fs');
 
@@ -18,33 +19,37 @@ function getUsers() {
     return Promise.resolve(users)
 }
 
-function addFavToUser(user, food) {
-    let userToAdd
+async function addFavToUser(user, food) {
+    let userToSet
     food.favId = utilities.randomId()
     users.forEach((userToSearch) => {
         if (user._id === userToSearch._id) {
-            userToAdd = userToSearch
-            userToAdd.userFavorite.push(food)
+            userToSet = userToSearch
+            userToSet.userFavorite.push(food)
             _writeToJson()
         }
     })
-    return Promise.resolve(userToAdd)
+    const userRecipes = await recipeService.getAllUserRecipes(user)
+    const authUser = { userToSet, userRecipes }
+    return Promise.resolve(authUser)
 }
 
-function removeFavFromUser(user, recipeId) {
-    let userToAdd
+async function removeFavFromUser(user, recipeId) {
+    let userToSet
     users.forEach((userToSearch) => {
         if (user._id === userToSearch._id) {
-            userToAdd = userToSearch
+            userToSet = userToSearch
         }
     })
-    userToAdd.userFavorite.map((recipeToSearch, index) => {
+    userToSet.userFavorite.map((recipeToSearch, index) => {
         if (recipeToSearch.favId === recipeId) {
-            userToAdd.userFavorite.splice(index, 1)
+            userToSet.userFavorite.splice(index, 1)
             _writeToJson()
         }
     })
-    return Promise.resolve(userToAdd)
+    const userRecipes = await recipeService.getAllUserRecipes(user)
+    const authUser = { userToSet, userRecipes }
+    return Promise.resolve(authUser)
 }
 
 async function getUserById(id) {

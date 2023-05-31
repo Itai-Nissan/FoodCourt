@@ -12,8 +12,8 @@ export const UserProfile = (props) => {
     const dispatch = useDispatch()
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
     const userRecipes = useSelector((state) => state.userModule.userRecipes)
-    const userName = loggedInUser.userName
-    const userEmail = loggedInUser.userEmail
+    const userName = loggedInUser ? loggedInUser.userName : ''
+    const userEmail = loggedInUser ? loggedInUser.userEmail : ''
 
     async function removeRecipeFromFav(recipeId) {
         if (!loggedInUser) return
@@ -45,7 +45,7 @@ export const UserProfile = (props) => {
 
 
     let userFav = ''
-    if (loggedInUser.userFavorite) userFav = loggedInUser.userFavorite.map((recipe, index) => {
+    if (loggedInUser) userFav = loggedInUser.userFavorite.map((recipe, index) => {
         const foodCredits = recipe.credits[0].name
         const foodCreditsImg = recipe.credits[0].image_url
         return <div className='food-preview' key={index}>
