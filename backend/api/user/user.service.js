@@ -20,6 +20,7 @@ function getUsers() {
 
 function addFavToUser(user, food) {
     let userToAdd
+    food.favId = utilities.randomId()
     users.forEach((userToSearch) => {
         if (user._id === userToSearch._id) {
             userToAdd = userToSearch
@@ -38,7 +39,7 @@ function removeFavFromUser(user, recipeId) {
         }
     })
     userToAdd.userFavorite.map((recipeToSearch, index) => {
-        if (recipeToSearch.id === recipeId) {
+        if (recipeToSearch.favId === recipeId) {
             userToAdd.userFavorite.splice(index, 1)
             _writeToJson()
         }

@@ -62,9 +62,9 @@ export const UserProfile = (props) => {
                     <div className="card-credits">
                         <p>{foodCredits}</p>
                         <img src={foodCreditsImg} alt="" />
-                        <Button onClick={() => removeRecipeFromFav(recipe.id)}>X</Button>
                     </div>
                 </Link>
+                <Button onClick={() => removeRecipeFromFav(recipe.favId)}>X</Button>
             </section>
         </div>
     })

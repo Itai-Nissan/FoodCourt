@@ -20,7 +20,7 @@ export function setLoggedInUser(user, actionType) {
 }
 
 export function setUpdatedUser(login) {
-    
+
     return async (dispatch, getState) => {
         try {
             const updatedUser = await userService.updateUser(login)
@@ -97,7 +97,7 @@ export function addToFav(user, food) {
         try {
             const userToSet = await userService.addToFav(user, food)
             if (userToSet) {
-                dispatch({ type: 'SET_USER', userToSet })
+                dispatch({ type: 'SET_USER', authUser: userToSet })
                 return userToSet
             }
         } catch (err) {
@@ -111,7 +111,7 @@ export function removeFromFav(user, recipeId) {
         try {
             const userToSet = await userService.removeFromFav(user, recipeId)
             if (userToSet) {
-                dispatch({ type: 'SET_USER', userToSet })
+                dispatch({ type: 'SET_USER', authUser: userToSet })
                 return userToSet
             }
         } catch (err) {

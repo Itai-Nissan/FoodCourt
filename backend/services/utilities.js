@@ -4,12 +4,10 @@ module.exports = {
     firstToLow,
 }
 
-function firstToLow(str){
+function firstToLow(str) {
     const capStr = str.charAt(0).toLowerCase() + str.slice(1)
     return capStr
 }
-
-
 
 function randomId() {
     var text = "";

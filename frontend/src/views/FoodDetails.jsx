@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { foodService } from '../services/food.service'
 import { addToFav } from '../store/actions/userActions'
 import { loadUser } from '../store/actions/userActions'
-
+import { utils } from '../services/utils'
 import { Button } from '@mui/material'
 import { RecipeSkeleton } from '../cmps/RecipeSkeleton'
 
@@ -17,12 +17,7 @@ export const FoodDetails = (props) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(loadUser())
-            .then(() => {
-                loadFood()
-                    .then(() => {
-                    })
-            })
+        loadFood()
     }, [params.id])
 
     async function loadFood() {
