@@ -20,7 +20,7 @@ export const EditRecipe = () => {
     const params = useParams()
 
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
-    const [foodById, setFood] = useState({})
+    const [foodById, setFood] = useState(null | Object)
 
     async function loadFood() {
         const foodId = params.id
