@@ -8,17 +8,18 @@ export const HomePage = (props) => {
     window.scrollTo(0, 0)
 
     const dispatch = useDispatch()
-    let recipes = useSelector((state) => state.foodModule.foods)
+    // let recipes = useSelector((state) => state.foodModule.foods)
+    // console.log(recipes);
     let loading = false
 
-    useEffect(() => {
-        resetFilter()
-    }, [])
+    // useEffect(() => {
+    //     resetFilter()
+    // }, [])
 
-    function resetFilter() {
-        dispatch(setFilterBy(''))
-        onChangeFilter()
-    }
+    // function resetFilter() {
+    //     dispatch(setFilterBy(''))
+    //     onChangeFilter()
+    // }
 
     function onChangeFilter(filterBy) {
         loading = true

@@ -68,13 +68,20 @@ async function getAllRecipes(filterBy) {
   // await axios.request(options).then(function (response) {
   //   response.data.results.map((recipes) => {
   //     foodList.push(recipes)
-  //   }).then(() => {
-  //     foodList.map((recipe) => {
-  //       recipeDetails.push(recipe)
-  //     })
   //   })
-  //   _writeToJson('tastyRecipes', tastyRecipes)
-  //   _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
+  //     .then(() => {
+  //       foodList.map((recipe) => {
+  //         getRecipeById(recipe.id)
+  //           .then((detailedRecipe) => {
+  //             recipeDetails.push(detailedRecipe)
+  //           })
+  //       })
+  //     })
+
+  //   console.log(foodList);
+  //   console.log(recipeDetails);
+  //   // _writeToJson('tastyRecipes', tastyRecipes)
+  //   // _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
   //   // console.log('response.data.results:');
   //   // console.log('response.data.results:', response.data.results);
   // }).catch(function (error) {

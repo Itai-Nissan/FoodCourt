@@ -1,7 +1,7 @@
 import { useDispatch as dispatch } from 'react-redux'
 
 const INITIAL_STATE = {
-    foods: null,
+    foods: [],
     foodById: 'foody',
     filterBy: '',
     test: false

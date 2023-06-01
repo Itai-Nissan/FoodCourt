@@ -20,12 +20,12 @@ export const EditRecipe = () => {
     const params = useParams()
 
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
-    const [foodById, setFood] = useState(null)
+    const [foodById, setFood] = useState({})
 
     async function loadFood() {
         const foodId = params.id
-        const getFoodById = await foodService.getById(foodId)
-        return getFoodById
+        const fooToSet = await foodService.getById(foodId)
+        return fooToSet
     }
 
     useEffect(() => {

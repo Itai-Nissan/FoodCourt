@@ -59,9 +59,9 @@
             padding-inline-start: 1em;
             border-radius: 50px 0 0 50px;
 
-            a:focus{
-                border-bottom: 1px solid $darker-text;
-            }
+            // a:focus{
+            //     border-bottom: 1px solid $darker-text;
+            // }
 
             a {
                 color: $dark-text;
@@ -88,4 +88,8 @@
             }
         }
     }
+}
+
+.is-active{
+    background-color: red;
 }

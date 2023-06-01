@@ -31,7 +31,7 @@ export const ExplorRecipes = (props) => {
     }
 
     return (
-        <div className='home-page'>
+        <div className='explore-recipes'>
             <Filter onChangeFilter={onChangeFilter} isLoading={loading}></Filter>
             <FoodList foodList={recipes} />
         </div>
