@@ -25,7 +25,6 @@ async function getAllUserRecipes(user) {
 }
 
 async function getAllRecipes(filterBy) {
-  // let recipesToReturn = null
   let foodList = []
 
   if (!filterBy || filterBy.toLowerCase() === 'all') {
@@ -43,59 +42,55 @@ async function getAllRecipes(filterBy) {
     })
   }
 
-  // if (recipesToReturn) {
-  //   console.log('found recipes to return');
-  //   if (recipesToReturn.length > 1) {
-  //     recipesToReturn.forEach((recipe) => {
-  //       foodList.push(recipe)
-  //     })
-  //   }
-  //   if (recipesToReturn.length === undefined) {
-  //     foodList.push(recipesToReturn)
-  //   }
-  // }
+  const options = {
+    method: 'GET',
+    url: 'https://tasty.p.rapidapi.com/recipes/list',
+    params: { from: '41', size: '40', q: filterBy ? filterBy : '' },
+    headers: {
+      'X-RapidAPI-Key': "",
+      'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+    }
+  }
 
-  // const options = {
-  //   method: 'GET',
-  //   url: 'https://tasty.p.rapidapi.com/recipes/list',
-  //   params: { from: '0', size: 'All', q: filterBy ? filterBy : '' },
-  //   headers: {
-  //     'X-RapidAPI-Key': `${X_RAPIDAPI_KEY}`,
-  //     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-  //   }
-  // }
+  await axios.request(options).then(function (response) {
+    // console.log(response.data.results)
+    // foodList.push(recipes)
+    response.data.results.map((recipes) => {
+      // foodList.push(recipes)
+      tastyRecipes.push(recipes)
+      console.log('fetching recipes', foodList.length);
+    })
 
-  // await axios.request(options).then(function (response) {
-  //   response.data.results.map((recipes) => {
-  //     foodList.push(recipes)
-  //   })
-  //     .then(() => {
-  //       foodList.map((recipe) => {
-  //         getRecipeById(recipe.id)
-  //           .then((detailedRecipe) => {
-  //             recipeDetails.push(detailedRecipe)
-  //             console.log(detailedRecipe);
-  //           })
-  //       })
-  //     })
+  tastyRecipes.map((recipe, index) => {
+    console.log(index);
+    // if (index <=10 || index >= 15 ) return
+    setTimeout(() => {
+      getRecipeById(recipe.id)
+        .then((detailedRecipe) => {
+          console.log('fetching recipeDetails', tastyRecipeDetails.length);
+          tastyRecipeDetails.push(detailedRecipe)
+          _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
+        })
+    }, 5000 * index)
+    console.log(tastyRecipeDetails);
+  })
 
-  //   // console.log(foodList);
-  //   // console.log(recipeDetails);
-  //   _writeToJson('tastyRecipes', tastyRecipes)
-  //   _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
-  //   // console.log('response.data.results:');
-  //   // console.log('response.data.results:', response.data.results);
-  // }).catch(function (error) {
-  //   console.error(error)
-  // })
+  console.log(foodList);
+  console.log(recipeDetails);
+  _writeToJson('tastyRecipes', tastyRecipes)
+  console.log('response.data.results:');
+  console.log('response.data.results:', response.data.results);
+  }).catch(function (error) {
+    console.error(error)
+  })
 
   return foodList
 }
 
 async function getRecipeById(id) {
   let recipeToReturn = null
-  // let idToInt = 0
-  // if (typeof id === String) idToInt = parseInt(id, base)
+  let idToInt = 0
+  if (typeof id === String) idToInt = parseInt(id, base)
   recipes.forEach((recipe) => {
     if (recipe.id == id)
       recipeToReturn = recipe
@@ -114,10 +109,10 @@ async function getRecipeById(id) {
   //     url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
   //     params: { id: id },
   //     headers: {
-        // 'X-RapidAPI-Key': `${X_RAPIDAPI_KEY}`,
+  //       'X-RapidAPI-Key': "",
   //       'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
   //     }
-  //   };
+  //   }
 
   //   await axios.request(options).then(function (response) {
   //     recipeToReturn = response.data
@@ -125,6 +120,7 @@ async function getRecipeById(id) {
   //     console.error(error);
   //   })
   // }
+
   return recipeToReturn
 }
 
@@ -225,6 +221,7 @@ async function editRecipe(user, recipe) {
 }
 
 function _writeToJson(file, db) {
+  console.log('writing to jSON');
   let updatedUsers = db
   var jsonContent = JSON.stringify(updatedUsers)
 
