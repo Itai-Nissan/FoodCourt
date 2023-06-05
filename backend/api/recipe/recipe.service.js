@@ -60,7 +60,7 @@ async function getAllRecipes(filterBy) {
   //   url: 'https://tasty.p.rapidapi.com/recipes/list',
   //   params: { from: '0', size: 'All', q: filterBy ? filterBy : '' },
   //   headers: {
-  //     'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
+  //     'X-RapidAPI-Key': `${X_RAPIDAPI_KEY}`,
   //     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
   //   }
   // }
@@ -74,14 +74,15 @@ async function getAllRecipes(filterBy) {
   //         getRecipeById(recipe.id)
   //           .then((detailedRecipe) => {
   //             recipeDetails.push(detailedRecipe)
+  //             console.log(detailedRecipe);
   //           })
   //       })
   //     })
 
-  //   console.log(foodList);
-  //   console.log(recipeDetails);
-  //   // _writeToJson('tastyRecipes', tastyRecipes)
-  //   // _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
+  //   // console.log(foodList);
+  //   // console.log(recipeDetails);
+  //   _writeToJson('tastyRecipes', tastyRecipes)
+  //   _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
   //   // console.log('response.data.results:');
   //   // console.log('response.data.results:', response.data.results);
   // }).catch(function (error) {
@@ -113,7 +114,7 @@ async function getRecipeById(id) {
   //     url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
   //     params: { id: id },
   //     headers: {
-  //       'X-RapidAPI-Key': 'a38ff25a46msh308ca696239e976p1f5e31jsnd96340e8e05f',
+        // 'X-RapidAPI-Key': `${X_RAPIDAPI_KEY}`,
   //       'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
   //     }
   //   };
