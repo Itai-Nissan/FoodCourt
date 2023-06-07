@@ -23,6 +23,7 @@ export const FoodDetails = (props) => {
     async function loadFood() {
         const foodId = params.id
         const getFoodById = await foodService.getById(foodId)
+        console.log(getFoodById);
         setFood(getFoodById)
     }
 
@@ -36,10 +37,6 @@ export const FoodDetails = (props) => {
     async function addFoodToFav() {
         if (!loggedInUser) return
         return dispatch(addToFav(loggedInUser, foodById))
-    }
-
-    function onEditRecipe() {
-        // <Link to={`/AddRecipe`} ></Link>
     }
 
     if (!foodById) return <div>
@@ -56,7 +53,7 @@ export const FoodDetails = (props) => {
                 <div className="food-ingredients">
                     <h2>Ingredients:</h2>
                     <div className='ingredients-table'>
-                        {foodById.sections.map((component, index) => (
+                        {foodById.sections ? foodById.sections.map((component, index) => (
                             <div key={index}>
                                 <h3>{component.name}</h3>
                                 <div>
@@ -67,18 +64,18 @@ export const FoodDetails = (props) => {
                                     ))}
                                 </div>
                             </div>
-                        ))}
+                        )) : ''}
                     </div>
                 </div>
                 <div className="food-instructions">
                     <h2>Instructions:</h2>
-                    {foodById.instructions.map((step, index) => (
+                    {foodById.instructions ? foodById.instructions.map((step, index) => (
                         <div key={index}>
                             <h4>Step {index + 1}</h4>
                             <p>{step.display_text}</p>
                             <hr />
                         </div>
-                    ))}
+                    )): ''}
                 </div>
             </section>
             <section className='details-right'>

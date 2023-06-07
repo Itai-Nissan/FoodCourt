@@ -12,7 +12,7 @@ export const ExplorRecipes = (props) => {
     let loading = false
 
     useEffect(() => {
-        // resetFilter()
+        resetFilter()
     }, [])
 
     function resetFilter() {

@@ -42,63 +42,84 @@ async function getAllRecipes(filterBy) {
     })
   }
 
-  const options = {
-    method: 'GET',
-    url: 'https://tasty.p.rapidapi.com/recipes/list',
-    params: { from: '41', size: '40', q: filterBy ? filterBy : '' },
-    headers: {
-      'X-RapidAPI-Key': "",
-      'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-    }
-  }
+  // console.log('before cleaning:', tastyRecipes.length);
 
-  await axios.request(options).then(function (response) {
-    // console.log(response.data.results)
-    // foodList.push(recipes)
-    response.data.results.map((recipes) => {
-      // foodList.push(recipes)
-      tastyRecipes.push(recipes)
-      console.log('fetching recipes', foodList.length);
-    })
+  // const cleanList = tastyRecipes.reduce((accumulator, current) => {
+  //   if (!accumulator.find((item) => item.id === current.id)) {
+  //     accumulator.push(current);
+  //   }
+  //   return accumulator;
+  // }, []);
 
-  tastyRecipes.map((recipe, index) => {
-    console.log(index);
-    // if (index <=10 || index >= 15 ) return
-    setTimeout(() => {
-      getRecipeById(recipe.id)
-        .then((detailedRecipe) => {
-          console.log('fetching recipeDetails', tastyRecipeDetails.length);
-          tastyRecipeDetails.push(detailedRecipe)
-          _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
-        })
-    }, 5000 * index)
-    console.log(tastyRecipeDetails);
-  })
+  // console.log('cleanList:', cleanList.length);
 
-  console.log(foodList);
-  console.log(recipeDetails);
-  _writeToJson('tastyRecipes', tastyRecipes)
-  console.log('response.data.results:');
-  console.log('response.data.results:', response.data.results);
-  }).catch(function (error) {
-    console.error(error)
-  })
+  // const options = {
+  //   method: 'GET',
+  //   url: 'https://tasty.p.rapidapi.com/recipes/list',
+  //   params: { from: '280', size: '40', q: filterBy ? filterBy : '' },
+  //   headers: {
+  //     'X-RapidAPI-Key': "",
+  //     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+  //   }
+  // }
 
+  // await axios.request(options).then(function (response) {
+  //   console.log('fetching recipes', tastyRecipes.length);
+  //   // foodList.push(recipes)
+  //   response.data.results.map((recipes) => {
+  //     // foodList.push(recipes)
+  //     tastyRecipes.push(recipes)
+  //   })
+
+  // console.log('before fetching', tastyRecipeDetails.length);
+  // let recipeOnJson = false
+  // tastyRecipes.map((recipe, index) => {
+  //   tastyRecipeDetails.map((detailedRecipe) => {
+  //     if (detailedRecipe.id === recipe.id) {
+  //       recipeOnJson = true
+  //     }
+  //     if (recipeOnJson) {
+  //       recipeOnJson = false
+  //       return
+  //     } else {
+  //       setTimeout(() => {
+  //         getRecipeById(recipe.id)
+  //           .then((detailedRecipe) => {
+  //             console.log('fetching recipeDetails', detailedRecipe.id);
+  //             tastyRecipeDetails.push(detailedRecipe)
+  //             _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
+  //           })
+  //       }, 2000 * index)
+  //     }
+  //   })
+  // })
+
+  // console.log('after fetching', tastyRecipeDetails.length);
+  // _writeToJson('tastyRecipes', tastyRecipes)
+  // _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
+
+  // }).catch(function (error) {
+  //   console.error(error)
+  // })
   return foodList
 }
 
 async function getRecipeById(id) {
   let recipeToReturn = null
   let idToInt = 0
+
   if (typeof id === String) idToInt = parseInt(id, base)
+
   recipes.forEach((recipe) => {
     if (recipe.id == id)
       recipeToReturn = recipe
     return
   })
   tastyRecipes.forEach((recipe) => {
-    if (recipe.id == id)
+    if (recipe.id == id) {
       recipeToReturn = recipe
+      console.log(recipe.id);
+    }
     return
   })
 
@@ -116,6 +137,10 @@ async function getRecipeById(id) {
 
   //   await axios.request(options).then(function (response) {
   //     recipeToReturn = response.data
+  //     // console.log(recipeToReturn);
+  //     // tastyRecipeDetails.push(recipeToReturn)
+  //     // _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
+
   //   }).catch(function (error) {
   //     console.error(error);
   //   })
