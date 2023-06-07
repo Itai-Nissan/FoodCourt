@@ -7,6 +7,8 @@ import { loadUser } from '../store/actions/userActions'
 import { utils } from '../services/utils'
 import { Button } from '@mui/material'
 import { RecipeSkeleton } from '../cmps/RecipeSkeleton'
+import { SingleRecipe } from '../cmps/recipeDetails/SingleRecipe'
+import { MultiRecipe } from '../cmps/recipeDetails/MultiRecipe'
 
 export const FoodDetails = (props) => {
     window.scrollTo(0, 0)
@@ -23,15 +25,7 @@ export const FoodDetails = (props) => {
     async function loadFood() {
         const foodId = params.id
         const getFoodById = await foodService.getById(foodId)
-        console.log(getFoodById);
         setFood(getFoodById)
-    }
-
-    function loggedUserRecipe() {
-        if (loggedInUser && loggedInUser._id === foodById.userId) {
-            return true
-        }
-        else return false
     }
 
     async function addFoodToFav() {
@@ -44,51 +38,14 @@ export const FoodDetails = (props) => {
     </div>
 
     return (
-        <div className='food-details'>
-            <img className='details-bg' src={foodById.thumbnail_url} alt="" />
-            <section className='details-left'>
-                <h1>{foodById.name}</h1>
-                <br />
-                <h2>Recipe origin - {foodById.country}</h2>
-                <div className="food-ingredients">
-                    <h2>Ingredients:</h2>
-                    <div className='ingredients-table'>
-                        {foodById.sections ? foodById.sections.map((component, index) => (
-                            <div key={index}>
-                                <h3>{component.name}</h3>
-                                <div>
-                                    {component.components.map((componentText, i) => (
-                                        <p key={i}>
-                                            {componentText.raw_text}
-                                        </p>
-                                    ))}
-                                </div>
-                            </div>
-                        )) : ''}
-                    </div>
-                </div>
-                <div className="food-instructions">
-                    <h2>Instructions:</h2>
-                    {foodById.instructions ? foodById.instructions.map((step, index) => (
-                        <div key={index}>
-                            <h4>Step {index + 1}</h4>
-                            <p>{step.display_text}</p>
-                            <hr />
-                        </div>
-                    )): ''}
-                </div>
-            </section>
-            <section className='details-right'>
-                <div className="sticky-right">
-                    <div className="food-video">
-                        {foodById.original_video_url ? <video controls autoPlay muted
-                            src={foodById.original_video_url}></video> : null}
-                    </div>
-                    {loggedUserRecipe() ? null : <Button onClick={addFoodToFav}> Add to list</Button>}
-                    {loggedUserRecipe() ? <Link to={`/Edit-recipe/${foodById.id}`} >Edit recipe</Link> : null}
-                </div>
-            </section>
-
+        <div className=''>
+            {foodById.recipes ?
+                foodById.recipes.map((recipe) => {
+                    return <MultiRecipe recipe={recipe} loggedInUser={loggedInUser} addFoodToFav={addFoodToFav}></MultiRecipe>
+                })
+                :
+                <SingleRecipe foodById={foodById} loggedInUser={loggedInUser} addFoodToFav={addFoodToFav}></SingleRecipe>
+            }
             {/* <button onClick={onBack}>Back</button> */}
             {/* <Link to='/food' >Next Food</Link> */}
         </div>
