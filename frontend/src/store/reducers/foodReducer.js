@@ -2,9 +2,8 @@ import { useDispatch as dispatch } from 'react-redux'
 
 const INITIAL_STATE = {
     foods: [],
-    foodById: 'foody',
+    foodById: {},
     filterBy: '',
-    test: false
 }
 
 export function foodReducer(state = INITIAL_STATE, action) {

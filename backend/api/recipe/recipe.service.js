@@ -24,11 +24,11 @@ async function getAllUserRecipes(user) {
   return foodList
 }
 
-async function getAllRecipes(filterBy) {
+async function getAllRecipes(filterBy, startPoint, amountToRturn) {
   let foodList = []
-
+  if (filterBy) filterBy = filterBy.text
   if (!filterBy || filterBy.toLowerCase() === 'all') {
-    foodList = recipes.concat(tastyRecipes)
+    foodList = recipes.concat(tastyRecipes.slice(startPoint, startPoint + amountToRturn))
   } else {
     recipes.forEach((recipe) => {
       if (recipe.name.toLowerCase().includes(filterBy.toLowerCase())) {

@@ -8,9 +8,10 @@ export const foodService = {
     editRecipe,
 }
 
-async function getFood(filterBy) {
+async function getFood(filterBy, startPoint, amountToRturn) {
     const ENDPOINT = 'recipe'
-    const usersRecipes = await httpService.get(ENDPOINT + '/', filterBy)
+    const pagination = { filterBy, startPoint, amountToRturn }
+    const usersRecipes = await httpService.get(ENDPOINT + '/', pagination)
     return usersRecipes
 }
 

@@ -1,13 +1,13 @@
 import { foodService } from "../../services/food.service"
 
 
-export function loadFoodList() {
+export function loadFoodList(startPoint, amountToRturn) {
 
     return async (dispatch, getState) => {
         try {
             dispatch({ type: 'SET_FOOD', undefined })
             const { filterBy } = getState().foodModule
-            const foods = await foodService.getFood(filterBy)
+            const foods = await foodService.getFood(filterBy, startPoint, amountToRturn)
             dispatch({ type: 'SET_FOOD', foods })
             return foods
         } catch (err) {

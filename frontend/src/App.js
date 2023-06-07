@@ -22,7 +22,7 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(loadFoodList())
+    dispatch(loadFoodList(0, 24))
   }, [])
 
   return (
