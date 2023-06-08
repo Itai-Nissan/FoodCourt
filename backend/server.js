@@ -1,14 +1,11 @@
-const userService = require("./api/user/user.service");
+const userService = require("./api/user/user.service")
+
 
 // express
 const express = require("express")
 const expressSession = require('express-session')
 const app = express()
 const port = 3030
-
-// dotenv
-require('dotenv').config()
-
 const cors = require('cors')
 const path = require('path')
 

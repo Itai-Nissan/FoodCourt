@@ -33,11 +33,11 @@ export const UserProfile = (props) => {
                     <div className="card-name">
                         <p>{utils.firstToCap(recipe.name)}</p>
                     </div>
-                    <div className="card-credits">
-                        <p>{foodCredits}</p>
+                    {/* <div className="card-credits"> */}
+                        {/* <p>{foodCredits}</p> */}
                         {/* <img src={foodCreditsImg} alt="" /> */}
                         {/* <Button onClick={() => removeRecipeFromFav(recipe.id)}>X</Button> */}
-                    </div>
+                    {/* </div> */}
                 </section>
             </div >
         </Link>

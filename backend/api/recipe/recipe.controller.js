@@ -21,7 +21,6 @@ async function addNewRecipe(req, res) {
 }
 
 async function editUserRecipe(req, res) {
-  // console.log('recipe controller', req.body);
   const { user, recipe } = req.body
   try {
     const editedRecipe = await recipeService.editRecipe(user, recipe)

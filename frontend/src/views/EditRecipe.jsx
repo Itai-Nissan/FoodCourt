@@ -84,7 +84,7 @@ export const EditRecipe = () => {
                     }
                 ],
                 instructions: recipeInstructions,
-                thumbnail_url: imgFile ? imgFile : outputImg,
+                thumbnail_url: imgFile,
                 original_video_url: videoFile,
             }
             setLoading(true)

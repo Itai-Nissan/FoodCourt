@@ -65,7 +65,6 @@ export function setAddUserRecipe(user, recipe) {
 }
 
 export function setUpdateUserRecipe(user, recipe) {
-    console.log(user);
 
     return async (dispatch, getState) => {
         try {
