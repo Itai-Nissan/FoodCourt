@@ -28,8 +28,6 @@ function _save(entityType, entities) {
 async function addNewRecipe(user, recipe) {
 
     const authUser = await httpService.post('recipe', { user, recipe })
-    if (authUser) {
-    }
     return authUser
 }
 

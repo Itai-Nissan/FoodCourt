@@ -58,6 +58,7 @@ async function getUserById(id) {
     users.map((userById) => {
         if (userById._id === id) {
             user = userById
+            return
         }
     })
     return user
