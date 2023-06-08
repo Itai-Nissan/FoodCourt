@@ -42,7 +42,7 @@ export class Filter extends Component {
     return (
       <div className='food-filter' >
         <section className="filter-result">
-          <h4>Showing {this.props.amountCount} search result for - {this.state.currentSearch}</h4>
+          <h4>Showing search result for {this.state.currentSearch.toUpperCase()}</h4>
         </section>
         <section className='filter-container'>
           <TextField value={text} onChange={this.handleChange} onKeyDown={this.onClickSearch}
