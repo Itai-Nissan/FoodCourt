@@ -84,12 +84,12 @@ export const UserProfile = (props) => {
                             {userFav}
                         </div>
                     </section>
-                    {/* <section className='user-recipe'>
+                    <section className='user-recipe'>
                         <h4>Your recipes</h4>
                         <div className="">
                             {userRecipe}
                         </div>
-                    </section> */}
+                    </section>
                 </div>
             </section>
         </div>
