@@ -7,25 +7,38 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 export const ExplorRecipes = (props) => {
-    window.scrollTo(0, 0)
 
     const dispatch = useDispatch()
     let recipes = useSelector((state) => state.foodModule.foods)
+
+    const [amountPerList, setAmountPerList] = useState(24)
+    const [amountCount, setAmountCount] = useState(24)
+
     let loading = false
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         resetFilter()
     }, [])
 
     function resetFilter() {
         dispatch(setFilterBy(''))
-        onChangeFilter()
+    }
+
+    function loadNext() {
+        loading = true
+        setAmountCount(amountCount + amountPerList)
+        dispatch(loadFoodList(0, amountCount))
+            .then(() => {
+                loading = false
+                dispatch(setFilterBy(''))
+            })
     }
 
     function onChangeFilter(filterBy) {
         loading = true
         dispatch(setFilterBy(filterBy))
-        dispatch(loadFoodList(0, 24))
+        dispatch(loadFoodList(0, amountCount))
             .then(() => {
                 loading = false
                 dispatch(setFilterBy(''))
@@ -34,32 +47,20 @@ export const ExplorRecipes = (props) => {
 
     return (
         <div className='explore-recipes'>
-            <Filter onChangeFilter={onChangeFilter} isLoading={loading}></Filter>
-            {/* <InfiniteScroll
-                dataLength={recipes ? recipes.length : 0} //This is important field to render the next data
-                next={onChangeFilter}
+            <Filter onChangeFilter={onChangeFilter} isLoading={loading} amountCount={amountCount}></Filter>
+            <InfiniteScroll
+                dataLength={amountCount * 2}
+                next={loadNext}
                 hasMore={true}
-                loader={<h4>Loading...</h4>}
+                scrollThreshold={'200px'}
                 endMessage={
                     <p style={{ textAlign: 'center' }}>
                         <b>Yay! You have seen it all</b>
                     </p>
                 }
-                // below props only if you need pull down functionality
-                // refreshFunction={this.refresh}
-                // pullDownToRefresh
-                // pullDownToRefreshThreshold={50}
-                // pullDownToRefreshContent={
-                //     <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
-                // }
-                // releaseToRefreshContent={
-                //     <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
-                // }
             >
-                {recipes}
-            </InfiniteScroll> */}
-
-            <FoodList foodList={recipes} />
+                <FoodList foodList={recipes} />
+            </InfiniteScroll>
         </div>
     )
 }
