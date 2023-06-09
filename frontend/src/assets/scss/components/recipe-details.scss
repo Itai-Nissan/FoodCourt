@@ -97,8 +97,16 @@
         .sticky-right {
 
             position: sticky;
-            top: 130px;
+            top: 100px;
             text-align: end;
+
+            .food-video {
+                video {
+                    border-radius: 7px;
+                    max-width: 100%;
+                    height: fit-content;
+                }
+            }
 
             a {
                 transition: .2s;
@@ -115,17 +123,10 @@
                 color: $dark-wood;
             }
 
-            .food-video {
-                video {
-                    border-radius: 7px;
-                    width: 100%;
-                }
-            }
-
             .MuiButtonBase-root {
                 background-color: $dark-text;
                 color: $light-wood;
-                margin-block-start: 1em;
+                margin-block-end: 1em;
                 width: 100%;
             }
 

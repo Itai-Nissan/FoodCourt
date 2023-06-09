@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 
 import { utils } from '../services/utils'
-import { loadUser } from '../store/actions/userActions'
 import { removeFromFav } from '../store/actions/userActions'
 
 import { Button } from '@mui/material'
@@ -34,15 +33,14 @@ export const UserProfile = (props) => {
                         <p>{utils.firstToCap(recipe.name)}</p>
                     </div>
                     {/* <div className="card-credits"> */}
-                        {/* <p>{foodCredits}</p> */}
-                        {/* <img src={foodCreditsImg} alt="" /> */}
-                        {/* <Button onClick={() => removeRecipeFromFav(recipe.id)}>X</Button> */}
+                    {/* <p>{foodCredits}</p> */}
+                    {/* <img src={foodCreditsImg} alt="" /> */}
+                    {/* <Button onClick={() => removeRecipeFromFav(recipe.id)}>X</Button> */}
                     {/* </div> */}
                 </section>
             </div >
         </Link>
     })
-
 
     let userFav = ''
     if (loggedInUser) userFav = loggedInUser.userFavorite.map((recipe, index) => {

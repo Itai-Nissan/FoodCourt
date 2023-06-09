@@ -42,7 +42,7 @@ async function removeFavFromUser(user, recipeId) {
         }
     })
     userToSet.userFavorite.map((recipeToSearch, index) => {
-        if (recipeToSearch.favId === recipeId) {
+        if (recipeToSearch.id === recipeId) {
             userToSet.userFavorite.splice(index, 1)
             _writeToJson()
         }

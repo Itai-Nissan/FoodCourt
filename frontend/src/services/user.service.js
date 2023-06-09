@@ -39,6 +39,7 @@ async function addToFav(user, food) {
 
 async function removeFromFav(user, recipeId) {
     const authUser = await httpService.delete('userFav', { user, recipeId })
+    console.log(authUser.userRecipes);
     if (authUser) {
         storageService.store(USER_DB, authUser)
     }

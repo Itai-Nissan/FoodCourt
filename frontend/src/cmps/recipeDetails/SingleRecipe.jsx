@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { foodService } from '../../services/food.service'
-import { addToFav } from '../../store/actions/userActions'
+import { addToFav, removeFromFav } from '../../store/actions/userActions'
 import { loadUser } from '../../store/actions/userActions'
 import { utils } from '../../services/utils'
 import { Button } from '@mui/material'
@@ -10,6 +10,19 @@ import { RecipeSkeleton } from '../RecipeSkeleton'
 
 export const SingleRecipe = (props) => {
     window.scrollTo(0, 0)
+    const [isFav, setIsFav] = useState(() => {
+        let ans = false
+        if (props.loggedInUser) {
+            props.loggedInUser.userFavorite.map((recipe) => {
+                if (recipe.id === props.foodById.id) {
+                    ans = true
+                    return
+                }
+            })
+        }
+        console.log(ans);
+        return ans
+    })
 
     function loggedUserRecipe() {
         if (props.loggedInUser && props.loggedInUser._id === props.foodById.userId) {
@@ -59,17 +72,23 @@ export const SingleRecipe = (props) => {
             </section>
             <section className='details-right'>
                 <div className="sticky-right">
+                    {
+                        !loggedUserRecipe() ?
+                            isFav ?
+                                <Button onClick={props.removeRecipeFromFav}> Remove from list</Button>
+                                :
+                                <Button onClick={props.addFoodToFav}> Add to list</Button>
+                            : <Link to={`/Edit-recipe/${props.foodById.id}`} >Edit recipe</Link>
+                    }
                     <div className="food-video">
                         {props.foodById.original_video_url ? <video controls autoPlay muted
                             src={props.foodById.original_video_url}></video> : null}
                     </div>
-                    {loggedUserRecipe() ? null : <Button onClick={props.addFoodToFav}> Add to list</Button>}
-                    {loggedUserRecipe() ? <Link to={`/Edit-recipe/${props.foodById.id}`} >Edit recipe</Link> : null}
                 </div>
-            </section>
+            </section >
 
             {/* <button onClick={onBack}>Back</button> */}
             {/* <Link to='/food' >Next Food</Link> */}
-        </div>
+        </div >
     )
 }

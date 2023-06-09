@@ -108,6 +108,7 @@ export function addToFav(user, food) {
 }
 
 export function removeFromFav(user, recipeId) {
+    console.log(recipeId);
     return async (dispatch, getState) => {
         try {
             const authUser = await userService.removeFromFav(user, recipeId)
