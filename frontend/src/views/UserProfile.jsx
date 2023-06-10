@@ -64,7 +64,6 @@ export const UserProfile = (props) => {
                         </div>
                     </div>
                 </Link>
-                <Button onClick={() => removeRecipeFromFav(recipe.favId)}>X</Button>
             </section>
         </div>
     })

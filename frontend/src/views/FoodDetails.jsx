@@ -11,12 +11,21 @@ import { MultiRecipe } from '../cmps/recipeDetails/MultiRecipe'
 
 export const FoodDetails = (props) => {
     window.scrollTo(0, 0)
+    const params = useParams()
+    const dispatch = useDispatch()
 
     const [foodById, setFood] = useState(null)
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
-
-    const params = useParams()
-    const dispatch = useDispatch()
+    const isFav = (() => {
+        let ans = false
+        loggedInUser.userFavorite.map((recipe) => {
+            if (recipe.id === foodById.id) {
+                ans = true
+                return
+            }
+        })
+        return ans
+    })
 
     useEffect(() => {
         loadFood()
@@ -26,7 +35,6 @@ export const FoodDetails = (props) => {
         const foodId = params.id
         const getFoodById = await foodService.getById(foodId)
         setFood(getFoodById)
-        // isRecipeInFavorite()
     }
 
     async function addFoodToFav() {
@@ -39,18 +47,6 @@ export const FoodDetails = (props) => {
         return dispatch(removeFromFav(loggedInUser, foodById.id))
     }
 
-    // function isRecipeInFavorite() {
-    //     if (foodById) {
-    //         loggedInUser.userFavorite.map((recipe) => {
-    //             if (recipe.id === foodById.id) {
-    //                 setIsFav(true)
-    //             } else setIsFav(false)
-    //         })
-    //     }
-    //     return isFav
-    // }
-
-
     if (!foodById) return <div>
         <RecipeSkeleton></RecipeSkeleton>
     </div>
@@ -58,8 +54,15 @@ export const FoodDetails = (props) => {
     return (
         <div className=''>
             {foodById.recipes ?
-                foodById.recipes.map((recipe) => {
-                    return <MultiRecipe recipe={recipe} loggedInUser={loggedInUser} addFoodToFav={addFoodToFav}></MultiRecipe>
+                foodById.recipes.map((recipe, index) => {
+                    return <MultiRecipe
+                        index={index}
+                        foodById={foodById}
+                        recipe={recipe}
+                        loggedInUser={loggedInUser}
+                        addFoodToFav={addFoodToFav}
+                        isFav={isFav}
+                        key={index}></MultiRecipe>
                 })
                 :
                 <SingleRecipe

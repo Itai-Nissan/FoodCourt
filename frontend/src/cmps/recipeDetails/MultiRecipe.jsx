@@ -59,12 +59,18 @@ export const MultiRecipe = (props) => {
             </section>
             <section className='details-right'>
                 <div className="sticky-right">
+                    {
+                        !loggedUserRecipe() ?
+                            props.isFav ?
+                                <Button onClick={props.removeRecipeFromFav}> Remove from list</Button>
+                                :
+                                <Button onClick={props.addFoodToFav}> Add to list</Button>
+                            : <Link to={`/Edit-recipe/${props.foodById.id}`} >Edit recipe</Link>
+                    }
                     <div className="food-video">
                         {props.recipe.original_video_url ? <video controls autoPlay muted
                             src={props.recipe.original_video_url}></video> : null}
                     </div>
-                    {loggedUserRecipe() ? null : <Button onClick={props.addFoodToFav}> Add to list</Button>}
-                    {loggedUserRecipe() ? <Link to={`/Edit-recipe/${props.recipe.id}`} >Edit recipe</Link> : null}
                 </div>
             </section>
 
