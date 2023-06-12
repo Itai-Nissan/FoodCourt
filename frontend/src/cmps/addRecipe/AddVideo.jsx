@@ -4,11 +4,17 @@ import { Button } from '@mui/material'
 export const AddVideo = (props) => {
 
   // //video
-  const handleVidChange = (e) => {
-    if (e.target.value) {
-      const videoPath = URL.createObjectURL(e.target.files[0])
-      props.setVideoOutput(videoPath)
-      props.setVideoFile(e.target.files[0])
+  const handleVideoChange = async (e) => {
+    const newVideo = e.target.files[0]
+    if (newVideo) {
+      const videoPath = {
+        src: await convertBase64(newVideo),
+        alt: e.target.files[0].name
+      }
+      const videoPre = URL.createObjectURL(newVideo)
+
+      props.setVideoOutput(videoPre)
+      props.setVideoFile(videoPath)
     }
   }
 
@@ -37,7 +43,7 @@ export const AddVideo = (props) => {
         <input
           type="file"
           hidden
-          onChange={handleVidChange}
+          onChange={handleVideoChange}
         />
       </Button>
     </div>

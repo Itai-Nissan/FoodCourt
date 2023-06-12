@@ -159,9 +159,15 @@ async function addRecipe(user, recipe) {
   try {
     let imgUrl
     if (recipe.thumbnail_url) {
+      console.log('recipe service uploadImage')
       imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
     }
-    console.log('adding recipe:', imgUrl);
+
+    let vidUrl
+    if (recipe.original_video_url) {
+      console.log('recipe service uploadVideo')
+      vidUrl = await cloudinary.uploadVideo(recipe.original_video_url)
+    }
 
     const recipeToAdd = {
       id: utilities.randomId(),
@@ -176,7 +182,7 @@ async function addRecipe(user, recipe) {
           name: user.fullName
         }
       ],
-      original_video_url: recipe.original_video_url,
+      original_video_url: vidUrl,
       createDate,
     }
 
@@ -208,6 +214,12 @@ async function editRecipe(user, recipe) {
       imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
     }
 
+    let vidUrl
+    if (recipe.original_video_url) {
+      vidUrl = await cloudinary.uploadVideo(recipe.original_video_url)
+    }
+
+
     const editedRecipe = {
       id: recipe.id,
       userId: user._id,
@@ -221,7 +233,7 @@ async function editRecipe(user, recipe) {
           name: user.fullName
         }
       ],
-      original_video_url: recipe.original_video_url,
+      original_video_url: vidUrl,
     }
 
     recipes.map((recipe, index) => {
