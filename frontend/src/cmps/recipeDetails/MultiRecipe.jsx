@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
 import { RecipeSkeleton } from '../RecipeSkeleton'
@@ -17,6 +17,21 @@ export const MultiRecipe = (props) => {
         }
         console.log(ans);
         return ans
+    })
+
+    useEffect(() => {
+        setIsFav(() => {
+            let ans = false
+            if (props.loggedInUser) {
+                props.loggedInUser.userFavorite.map((recipe) => {
+                    if (recipe.id === props.foodById.id) {
+                        ans = true
+                        return
+                    }
+                })
+            }
+            return ans
+        })
     })
 
     function loggedUserRecipe() {

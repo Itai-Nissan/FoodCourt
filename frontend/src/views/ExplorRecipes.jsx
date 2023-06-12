@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loadFoodList, setFilterBy } from '../store/actions/foodActions'
 import FoodList from '../cmps/FoodList'
 import { Filter } from '../cmps/Filter'
-import InfiniteScroll from 'react-infinite-scroll-component';
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 
 export const ExplorRecipes = (props) => {
@@ -16,9 +16,7 @@ export const ExplorRecipes = (props) => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        // setAmountCount(amountPerList)
         window.scrollTo(0, 0)
-        console.log('using effect');
         resetFilter()
     }, [])
 
@@ -27,6 +25,7 @@ export const ExplorRecipes = (props) => {
     }
 
     function loadNext() {
+        console.log('loadNext');
         setLoading(true)
         setAmountCount(amountCount + amountPerList)
         dispatch(loadFoodList(0, amountCount))
@@ -55,7 +54,7 @@ export const ExplorRecipes = (props) => {
                 dataLength={recipes ? recipes.length * 10 : amountPerList}
                 next={loadNext}
                 hasMore={true}
-                scrollThreshold={'100%'}
+                scrollThreshold={'99%'}
                 endMessage={
                     <p style={{ textAlign: 'center' }}>
                         <b>Yay! You have seen it all</b>

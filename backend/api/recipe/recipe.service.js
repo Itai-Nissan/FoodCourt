@@ -1,10 +1,8 @@
 const recipes = require("../../data/recipes.json")
 const tastyRecipes = require("../../data/tastyRecipes.json")
-const tastyRecipeDetails = require("../../data/tastyRecipeDetails.json")
 const userRecipes = require("../../data/userRecipes.json")
 const utilities = require("../../services/utilities")
 const cloudinary = require("../../services/cloudinary")
-const axios = require('axios')
 const fs = require('fs')
 
 

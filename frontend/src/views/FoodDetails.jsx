@@ -33,6 +33,7 @@ export const FoodDetails = (props) => {
     }
 
     async function removeRecipeFromFav() {
+        console.log('removing', foodById);
         if (!loggedInUser) return
         return dispatch(removeFromFav(loggedInUser, foodById.id))
     }
@@ -51,6 +52,7 @@ export const FoodDetails = (props) => {
                         recipe={recipe}
                         loggedInUser={loggedInUser}
                         addFoodToFav={addFoodToFav}
+                        removeRecipeFromFav={removeRecipeFromFav}
                         key={index}></MultiRecipe>
                 })
                 :
