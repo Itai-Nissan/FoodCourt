@@ -116,7 +116,6 @@ async function getRecipeById(id) {
   tastyRecipes.forEach((recipe) => {
     if (recipe.id == id) {
       recipeToReturn = recipe
-      console.log(recipe.id);
     }
     return
   })
@@ -157,13 +156,11 @@ async function addRecipe(user, recipe) {
   try {
     let imgUrl
     if (recipe.thumbnail_url) {
-      console.log('recipe service uploadImage')
       imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
     }
 
     let vidUrl
     if (recipe.original_video_url) {
-      console.log('recipe service uploadVideo')
       vidUrl = await cloudinary.uploadVideo(recipe.original_video_url)
     }
 
