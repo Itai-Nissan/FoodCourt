@@ -1,15 +1,23 @@
-import { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { foodService } from '../../services/food.service'
-import { addToFav } from '../../store/actions/userActions'
-import { loadUser } from '../../store/actions/userActions'
-import { utils } from '../../services/utils'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
 import { RecipeSkeleton } from '../RecipeSkeleton'
 
 export const MultiRecipe = (props) => {
     window.scrollTo(0, 0)
+    const [isFav, setIsFav] = useState(() => {
+        let ans = false
+        if (props.loggedInUser) {
+            props.loggedInUser.userFavorite.map((recipe) => {
+                if (recipe.id === props.foodById.id) {
+                    ans = true
+                    return
+                }
+            })
+        }
+        console.log(ans);
+        return ans
+    })
 
     function loggedUserRecipe() {
         if (props.loggedInUser && props.loggedInUser._id === props.recipe.userId) {
@@ -61,7 +69,7 @@ export const MultiRecipe = (props) => {
                 <div className="sticky-right">
                     {
                         !loggedUserRecipe() ?
-                            props.isFav ?
+                            isFav ?
                                 <Button onClick={props.removeRecipeFromFav}> Remove from list</Button>
                                 :
                                 <Button onClick={props.addFoodToFav}> Add to list</Button>

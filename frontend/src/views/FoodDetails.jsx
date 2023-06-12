@@ -16,16 +16,6 @@ export const FoodDetails = (props) => {
 
     const [foodById, setFood] = useState(null)
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
-    const isFav = (() => {
-        let ans = false
-        loggedInUser.userFavorite.map((recipe) => {
-            if (recipe.id === foodById.id) {
-                ans = true
-                return
-            }
-        })
-        return ans
-    })
 
     useEffect(() => {
         loadFood()
@@ -61,7 +51,6 @@ export const FoodDetails = (props) => {
                         recipe={recipe}
                         loggedInUser={loggedInUser}
                         addFoodToFav={addFoodToFav}
-                        isFav={isFav}
                         key={index}></MultiRecipe>
                 })
                 :
@@ -70,7 +59,6 @@ export const FoodDetails = (props) => {
                     loggedInUser={loggedInUser}
                     addFoodToFav={addFoodToFav}
                     removeRecipeFromFav={removeRecipeFromFav}
-                // isFav={isFav}
                 ></SingleRecipe>
             }
             {/* <button onClick={onBack}>Back</button> */}
