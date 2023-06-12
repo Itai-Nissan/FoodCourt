@@ -54,7 +54,7 @@ export const ExplorRecipes = (props) => {
                 dataLength={recipes ? recipes.length * 10 : amountPerList}
                 next={loadNext}
                 hasMore={true}
-                scrollThreshold={'99%'}
+                scrollThreshold={'250px'}
                 endMessage={
                     <p style={{ textAlign: 'center' }}>
                         <b>Yay! You have seen it all</b>
