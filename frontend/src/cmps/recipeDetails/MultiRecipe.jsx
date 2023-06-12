@@ -15,7 +15,6 @@ export const MultiRecipe = (props) => {
                 }
             })
         }
-        console.log(ans);
         return ans
     })
 

@@ -29,7 +29,6 @@ function loadUser() {
 
 async function addToFav(user, food) {
     const authUser = await httpService.put('user', { user, food })
-    console.log(authUser);
 
     if (authUser) {
         storageService.store(USER_DB, authUser)
@@ -39,7 +38,6 @@ async function addToFav(user, food) {
 
 async function removeFromFav(user, recipeId) {
     const authUser = await httpService.delete('userFav', { user, recipeId })
-    console.log(authUser.userRecipes);
     if (authUser) {
         storageService.store(USER_DB, authUser)
     }

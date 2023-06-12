@@ -61,8 +61,6 @@ export function setSignUp(user) {
             const login = await userService.signUp(user)
             if (login) {
                 const authUser = login.userToSet
-                console.log(login)
-                console.log(authUser)
                 const userRecipes = login.userRecipes
                 dispatch({ type: 'SET_USER', authUser })
                 return authUser
@@ -108,7 +106,6 @@ export function addToFav(user, food) {
 }
 
 export function removeFromFav(user, recipeId) {
-    console.log(recipeId);
     return async (dispatch, getState) => {
         try {
             const authUser = await userService.removeFromFav(user, recipeId)
