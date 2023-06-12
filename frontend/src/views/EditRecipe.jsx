@@ -36,13 +36,12 @@ export const EditRecipe = () => {
                 setRecipeCountry(foodToSet.country)
 
                 setRecipeSections(foodToSet ? foodToSet.sections[0].components : [])
-                // setIngredientCount(foodToSet ? foodToSet.sections[0].components.length : 0)
 
                 setRecipeInstructions(foodToSet ? foodToSet.instructions : [])
-                // setStepCount(foodToSet ? foodToSet.instructions.length : 0)
 
                 setOutputImg(foodToSet ? foodToSet.thumbnail_url : {})
-                setImageFile(foodToSet ? foodToSet.thumbnail_url : {})
+
+                setVideoOutput(foodToSet ? foodToSet.original_video_url : {})
             })
     }, [])
 
