@@ -52,6 +52,7 @@ async function login(cred) {
 
 async function signUp(user) {
     const authUser = await httpService.post(ENDPOINT + '/signup', user)
+    console.log(authUser);
     if (authUser) storageService.store(USER_DB, authUser)
     return authUser
 }
