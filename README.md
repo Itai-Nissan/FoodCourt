@@ -7,6 +7,7 @@ This app is using using [Tasty Api](https://rapidapi.com/apidojo/api/tasty) to c
 With this app you can:
 - Find recipes by ingredient and categories.
 - Open a user account.
+- Add your own recipes.
 - Add and manage favorite recipes in user account.
 - Personalize food suggestions.
 
