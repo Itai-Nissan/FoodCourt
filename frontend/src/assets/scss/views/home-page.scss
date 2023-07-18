@@ -1,12 +1,26 @@
 .home-page {
     width: 100%;
-    // height: 100vh;
     display: flex;
     flex-direction: column;
 
     .hero {
-        // display: block;
         height: 100vh;
+
+        .back-img {
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: -3px;
+            z-index: 1;
+
+            img {
+                left: 0;
+                top: -3px;
+                width: 100%;
+                object-fit: cover;
+            }
+
+        }
 
         .explore {
             position: absolute;
@@ -63,29 +77,13 @@
             }
         }
 
-        .back-img {
-            z-index: 1;
-
-            img {
-                position: absolute;
-                left: 0;
-                // opacity: 0.4;
-                // right: 0;
-                top: -3px;
-                width: 100%;
-                // height: 100%;
-                object-fit: cover;
-            }
-
-        }
     }
 
     .shorts {
         z-index: 200;
-        margin-block-end: 5em;
+        margin-block-end: 7em;
         display: grid;
         justify-content: space-between;
-        // width: 100%;
         grid-template-columns: 350px 350px 350px;
 
         .box {
@@ -93,35 +91,32 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: x-large;            
+            font-size: x-large;
         }
 
-        .short-join{
+        .short-join {
             box-shadow: 0px 0px 3px 1px $light-wood;
             -webkit-box-shadow: 0px 0px 3px 1px $light-wood;
             -moz-box-shadow: 0px 0px 3px 1px $light-wood;
             border: 1px solid $light-wood;
-
             color: $light-wood;
-            
+
         }
 
-        .short-explore{
+        .short-explore {
             box-shadow: 0px 0px 3px 1px $dark-wood;
             -webkit-box-shadow: 0px 0px 3px 1px $dark-wood;
             -moz-box-shadow: 0px 0px 3px 1px $dark-wood;
             border: 1px solid $dark-wood;
-
             color: $dark-wood;
-            
+
         }
 
-        .short-add{
+        .short-add {
             box-shadow: 0px 0px 3px 1px $dark-text;
             -webkit-box-shadow: 0px 0px 3px 1px $dark-text;
             -moz-box-shadow: 0px 0px 3px 1px $dark-text;
             border: 1px solid $dark-text;
-
             color: $dark-text;
 
         }

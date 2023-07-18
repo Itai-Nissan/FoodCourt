@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '@mui/material'
+import { Hero } from '../cmps/homePage/hero'
+import { Shorts } from '../cmps/homePage/shorts'
 
 import { loadFoodList, setFilterBy } from '../store/actions/foodActions'
 import FoodList from '../cmps/FoodList'
@@ -39,30 +41,8 @@ export const HomePage = (props) => {
 
     return (
         <div className='home-page'>
-            <section className="hero">
-                <div className="back-img">
-                    <img src={backImg} alt="" />
-                </div>
-                <div className="explore">
-                    <div className="explore-container">
-                        <h4>Explore new recipes</h4>
-                        <Link to="/ExplorRecipes">
-                            <Button>Explore</Button>
-                        </Link>
-                    </div>
-                </div>
-            </section>
-            <section className="shorts container">
-                <Link to="/Signup">
-                    <div className="short-join box">Join our community</div>
-                </Link>
-                <Link to="/ExplorRecipes">
-                    <div className="short-explore box">Explore</div>
-                </Link>
-                <Link to="/Add-recipe">
-                    <div className="short-add box">Add new recipes</div>
-                </Link>
-            </section>
+            <Hero></Hero>
+            <Shorts></Shorts>
             {/* <Filter onChangeFilter={onChangeFilter} isLoading={loading}></Filter> */}
             {/* <FoodList foodList={recipes} /> */}
         </div>
