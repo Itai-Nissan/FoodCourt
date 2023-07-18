@@ -104,7 +104,7 @@ export const EditRecipe = () => {
     }
 
     return (
-        <div className='add-recipe'>
+        <div className='add-recipe container'>
             <div className="add-recipe-wrapper">
                 <form>
                     <h1>Edit recipe</h1>

@@ -20,7 +20,8 @@ export function Login() {
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
 
 
-    function setLogin(e) {
+    function setLogin(key) {
+        if (key !== 'Enter') return
         const userToSignup = {
             userName,
             userPassword,
@@ -49,7 +50,8 @@ export function Login() {
                         onChange={(event) => setUserName(event.target.value)} />
                     <Input type="password" placeholder='Password'
                         value={userPassword}
-                        onChange={(event) => setuserPassword(event.target.value)} />
+                        onChange={(event) => setuserPassword(event.target.value)}
+                        onKeyDown={(event) => { setLogin(event.key) }} />
                     <Button onClick={setLogin}>Login</Button>
                 </form>
                 <p>Dont have an account yet? <Link to="/Signup">Sign up</Link></p>
