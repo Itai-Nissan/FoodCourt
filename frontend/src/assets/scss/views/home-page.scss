@@ -94,20 +94,27 @@
             font-size: x-large;
         }
 
+        .box:hover {
+            box-shadow: 0px 0px 0px 0px $light-wood;
+            -webkit-box-shadow: 0px 0px 0px 0px $light-wood;
+            -moz-box-shadow: 0px 0px 0px 0px $light-wood;
+            background-color: $card-back;
+        }
+
+
         .short-join {
             box-shadow: 0px 0px 3px 1px $light-wood;
             -webkit-box-shadow: 0px 0px 3px 1px $light-wood;
             -moz-box-shadow: 0px 0px 3px 1px $light-wood;
-            border: 1px solid $light-wood;
+            border: 3px solid $light-wood;
             color: $light-wood;
-
         }
 
         .short-explore {
             box-shadow: 0px 0px 3px 1px $dark-wood;
             -webkit-box-shadow: 0px 0px 3px 1px $dark-wood;
             -moz-box-shadow: 0px 0px 3px 1px $dark-wood;
-            border: 1px solid $dark-wood;
+            border: 3px solid $dark-wood;
             color: $dark-wood;
 
         }
@@ -116,7 +123,7 @@
             box-shadow: 0px 0px 3px 1px $dark-text;
             -webkit-box-shadow: 0px 0px 3px 1px $dark-text;
             -moz-box-shadow: 0px 0px 3px 1px $dark-text;
-            border: 1px solid $dark-text;
+            border: 3px solid $dark-text;
             color: $dark-text;
 
         }
