@@ -7,7 +7,7 @@ import { loadFoodList, setFilterBy } from '../store/actions/foodActions'
 import FoodList from '../cmps/FoodList'
 import { Filter } from '../cmps/Filter'
 
-import backImg from '../assets/images/background/il_fullxfull.2551070265_fcsh.jpg'
+import backImg from '../assets/images/background/il_fullxfull.2551070265_fcsh_edit.jpg'
 
 export const HomePage = (props) => {
     window.scrollTo(0, 0)
@@ -52,10 +52,16 @@ export const HomePage = (props) => {
                     </div>
                 </div>
             </section>
-            <section className="categories container">
-                <div className="Salad box">Salad</div>
-                <div className="Soup box">Soup</div>
-                <div className="Deserts box">Deserts</div>
+            <section className="shorts container">
+                <Link to="/Signup">
+                    <div className="short-join box">Join our community</div>
+                </Link>
+                <Link to="/ExplorRecipes">
+                    <div className="short-explore box">Explore</div>
+                </Link>
+                <Link to="/Add-recipe">
+                    <div className="short-add box">Add new recipes</div>
+                </Link>
             </section>
             {/* <Filter onChangeFilter={onChangeFilter} isLoading={loading}></Filter> */}
             {/* <FoodList foodList={recipes} /> */}
