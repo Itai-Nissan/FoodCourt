@@ -42,7 +42,7 @@ export const FoodDetails = (props) => {
     </div>
 
     return (
-        <div className=''>
+        <div className='container'>
             {foodById.recipes ?
                 foodById.recipes.map((recipe, index) => {
                     return <MultiRecipe
