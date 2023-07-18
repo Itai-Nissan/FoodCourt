@@ -45,7 +45,7 @@ export function Signup() {
 
     return (
         <div>
-            <section className='login'>
+            <section className='login container'>
                 <h2>Sign up</h2>
                 <form action="">
                     <Input type="text" placeholder='Full name'

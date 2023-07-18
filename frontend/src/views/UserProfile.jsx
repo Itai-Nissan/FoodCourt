@@ -69,7 +69,7 @@ export const UserProfile = (props) => {
     })
 
     return (
-        <div className='user-profile'>zz
+        <div className='user-profile container'>
             <section className='user-details'>
                 <div className="header">
                     <h1>Hi {userName}</h1>

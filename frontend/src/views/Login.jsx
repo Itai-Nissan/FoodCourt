@@ -41,7 +41,7 @@ export function Login() {
     }
     return (
         <div>
-            <section className='login'>
+            <section className='login container'>
                 <h2>Login</h2>
                 <form action="">
                     <Input type="text" placeholder='Username'
