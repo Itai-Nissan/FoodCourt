@@ -48,7 +48,7 @@ export const ExplorRecipes = (props) => {
     }
 
     return (
-        <div className='explore-recipes'>
+        <div className='explore-recipes container'>
             <Filter onChangeFilter={onChangeFilter} isLoading={loading}></Filter>
             <InfiniteScroll
                 dataLength={recipes ? recipes.length * 10 : amountPerList}

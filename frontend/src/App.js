@@ -29,7 +29,7 @@ function App() {
     <Router >
       <div className="app">
         <AppHeader />
-        <main className='app-main container'>
+        <main className='app-main'>
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/ExplorRecipes' element={<ExplorRecipes />} />
