@@ -23,11 +23,10 @@
     }
 
     .card-body {
-        // display: grid;
-        grid-column: 1fr;
-        grid-template-rows: 1fr 1fr;
+        display: grid;
         height: 50%;
         padding: 0.2em 0.5em 0.5em 0.5em;
+        background-color: $card-back;
 
         Button {
             width: 10px;
@@ -36,13 +35,14 @@
 
         .card-name {
             margin-block-start: 0.2em;
+            color: $dark-text;
         }
 
         .card-credits {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            align-items: center;
-            max-height: 25px;
+            align-items: end;
+            color: $dark-wood;
 
             .credit-img {
                 display: flex;
