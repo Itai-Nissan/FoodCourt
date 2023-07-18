@@ -5,6 +5,10 @@ import { Link } from "react-router-dom"
 import { utils } from '../services/utils'
 import { removeFromFav } from '../store/actions/userActions'
 
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+
+
 import { Button } from '@mui/material'
 
 export const UserProfile = (props) => {
@@ -75,7 +79,7 @@ export const UserProfile = (props) => {
                     <h1>Hi {userName}</h1>
                 </div>
                 <div className="user-content">
-                    <section>
+                    <section className='user-fav'>
                         <h4>Your favorites</h4>
                         <div className="food-list">
                             {userFav}
@@ -83,8 +87,10 @@ export const UserProfile = (props) => {
                     </section>
                     <section className='user-recipe'>
                         <h4>Your recipes</h4>
-                        <div className="">
-                            {userRecipe}
+                        <div className="user-recipe-box">
+                            {
+                                userRecipe ? <AliceCarousel mouseTracking items={userRecipe} /> : ''
+                            }
                         </div>
                     </section>
                 </div>

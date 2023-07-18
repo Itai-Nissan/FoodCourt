@@ -2,13 +2,25 @@
     margin-block-start: 1em;
 
     .user-content {
-        // display: grid;
-        // grid-template-columns: 75% 1fr;
+
+        .user-recipe {
+            // width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .user-recipe-box {
+                width: 100%;
+
+                .food-preview{
+                }
+            }
+        }
     }
 
     .food-list {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        // grid-template-columns: 1fr 1fr 1fr;
 
         .food-preview {
 
