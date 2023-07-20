@@ -10,7 +10,7 @@ export class Filter extends Component {
 
   state = {
     text: '',
-    currentSearch: 'All',
+    currentSearch: this.props.filterBy.category ? this.props.filterBy.category : 'All',
     searchResult: null,
     type: '',
     loading: false,
@@ -18,6 +18,7 @@ export class Filter extends Component {
 
   componentDidUpdate() {
     this.state.loading = false
+    console.log(this.props.filterBy);
   }
 
 
@@ -37,12 +38,28 @@ export class Filter extends Component {
     }
   }
 
+  onClickReset = (e) => {
+    if (e.key === 'Enter' || e.type === 'click') {
+      this.state.text = ''
+      this.props.onChangeFilter({ ...this.state })
+      this.state.currentSearch = 'All'
+      this.state.loading = true
+    }
+  }
+
   render() {
     const { text, type } = this.state
     return (
       <div className='food-filter' >
         <section className="filter-result">
-          <h4>Showing search result for {this.state.currentSearch.toUpperCase()}</h4>
+          <h4>Showing {this.state.currentSearch ? this.state.currentSearch.toUpperCase() : 'All'} search result </h4>
+          <Button
+            size="small"
+            onClick={this.onClickReset}
+            loading={this.state.loading}
+            variant="standard">
+            Reset filter
+          </Button>
         </section>
         <section className='filter-container'>
           <TextField value={text} onChange={this.handleChange} onKeyDown={this.onClickSearch}
@@ -59,7 +76,6 @@ export class Filter extends Component {
             Search
           </LoadingButton>
         </section>
-
       </div>
     )
   }

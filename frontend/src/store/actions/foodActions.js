@@ -7,6 +7,7 @@ export function loadFoodList(startPoint, amountToRturn) {
         try {
             dispatch({ type: 'SET_FOOD', undefined })
             const { filterBy } = getState().foodModule
+            if (filterBy.category) { filterBy.text = filterBy.category }
             const foods = await foodService.getFood(filterBy, startPoint, amountToRturn)
             dispatch({ type: 'SET_FOOD', foods })
             return foods

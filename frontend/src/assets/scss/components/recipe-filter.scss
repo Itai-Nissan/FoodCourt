@@ -1,7 +1,7 @@
 .food-filter {
     height: 60px;
     display: grid;
-    grid-template-columns: 1fr 40% 1fr;
+    grid-template-columns: 40% 40% 1fr;
 
     position: sticky;
     top: 110px;
@@ -10,6 +10,7 @@
 
     .filter-result {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         margin-inline-start: .5em;
         margin-inline-end: .5em;
@@ -17,6 +18,49 @@
         padding-inline-end: .5em;
         border-radius: 7px;
         color: $dark-text;
+
+        h4{
+            font-family: Handlee;
+        }
+        .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
+            // border-bottom: 2px solid $light-wood;
+        }
+    
+        .MuiFormControl-root {
+            // width: 90%;
+            // margin-inline-start: 1em;
+            // margin-inline-end: 1em;
+        }
+    
+        .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+            // color: $light-wood;
+        }
+    
+        .css-1x51dt5-MuiInputBase-input-MuiInput-input {
+            // color: $light-text;
+        }
+    
+        .MuiInputLabel-root {
+            // color: $light-wood;
+        }
+    
+        .MuiInputBase-root {
+            // color: $light-text;
+        }
+    
+        .MuiButtonBase-root {
+            background-color: $light-wood;
+            color: $dark-wood;
+            border-radius: 20px;
+            font-family: PatrickHand;
+        }
+    
+        .MuiButtonBase-root:hover {
+            background-color: $dark-text;
+            color: $light-wood;
+        }
+
+        
     }
 
     .filter-container {
@@ -26,44 +70,45 @@
         box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
         -webkit-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
         -moz-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
+
+        .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
+            border-bottom: 2px solid $light-wood;
+        }
+    
+        .MuiFormControl-root {
+            width: 90%;
+            margin-inline-start: 1em;
+            margin-inline-end: 1em;
+        }
+    
+        .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+            color: $light-wood;
+        }
+    
+        .css-1x51dt5-MuiInputBase-input-MuiInput-input {
+            color: $light-text;
+        }
+    
+        .MuiInputLabel-root {
+            color: $light-wood;
+        }
+    
+        .MuiInputBase-root {
+            color: $light-text;
+        }
+    
+        .MuiButtonBase-root {
+            background-color: $light-wood;
+            color: $dark-wood;
+            border-radius: 0 20px 20px 0px;
+        }
+    
+        .MuiButtonBase-root:hover {
+            background-color: $dark-text;
+            color: $light-wood;
+        }
     }
 
-    .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
-        border-bottom: 2px solid $light-wood;
-    }
-
-    .MuiFormControl-root {
-        width: 90%;
-        margin-inline-start: 1em;
-        margin-inline-end: 1em;
-    }
-
-    .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-        color: $light-wood;
-    }
-
-    .css-1x51dt5-MuiInputBase-input-MuiInput-input {
-        color: $light-text;
-    }
-
-    .MuiInputLabel-root {
-        color: $light-wood;
-    }
-
-    .MuiInputBase-root {
-        color: $light-text;
-    }
-
-    .MuiButtonBase-root {
-        background-color: $light-wood;
-        color: $dark-wood;
-        border-radius: 0 20px 20px 0px;
-    }
-
-    .MuiButtonBase-root:hover {
-        background-color: $dark-text;
-        color: $light-wood;
-    }
 
 
 }
