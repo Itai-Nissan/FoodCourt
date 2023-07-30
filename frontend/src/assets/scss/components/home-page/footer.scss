@@ -1,27 +1,33 @@
 .footer {
-    background-color: $dark-text;
+    background-color: $darker-text;
     width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
 
     .resources {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-
+        grid-template-columns: 1fr 1fr;
         .explore-container {
             .categories-links {
                 margin-block-start: 1em;
-
-
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                
+                
                 a {
                     margin-inline-end: 2em;
                 }
-
+                
                 .category-link {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background-color: $dark-text-opactiy;
-                    // transition: .3s;
+                    width: auto;
+                    margin-block-start: 1em;
                     border-radius: 7px;
 
 
@@ -38,22 +44,6 @@
     
                     }
                 }
-
-                .h4:hover {
-                    // color: $dark-text;
-
-
-                }
-
-                .category-link:hover {
-                    // border-radius: 50px;
-                    // text-decoration: underline $light-text;
-                    // border-bottom: .5px solid $light-text;
-                    // background-color: $light-text;
-                    // box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
-                    // -webkit-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
-                    // -moz-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
-                }
             }
         }
 
@@ -65,6 +55,8 @@
 
             a {
                 color: $light-wood;
+                margin-block-start: 1em;
+
                 list-style: none;
                 padding: 0.2em;
             }
@@ -76,10 +68,27 @@
     }
 
     .copy {
-        // height: 40px;
+        font-family: Handlee;
+        color: $light-text;
         display: flex;
         justify-content: space-between;
-        align-self: flex-end;
+        align-items: center;
         padding-block-end: 1em;
+        
+        button{
+            font-family: Gloock;
+            border-radius: 7px;
+            color: $light-text;
+            cursor: pointer;
+            background-color: $dark-text;
+            padding: .5em;
+            border: none;
+        }
+        
+        button:hover{
+            color: $light-wood;
+            background-color: $dark-text;
+
+        }
     }
 }

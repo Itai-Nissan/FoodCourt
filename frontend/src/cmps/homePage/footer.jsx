@@ -19,7 +19,7 @@ export const Footer = (props) => {
 
     return (
         <div className="footer">
-            <section className='resources'>
+            <section className='resources container'>
                 <div className="explore-container">
                     <div className="categories-links">
                         <Link onClick={() => { setCategory('cheese') }} to="/ExplorRecipes">
@@ -61,12 +61,12 @@ export const Footer = (props) => {
                     <Link to="/Terms">Terms & Conditions</Link>
                     <Link to="/Api">Used Api's</Link>
                 </div>
-                <div className="copy">
-                <button onClick={toTop}>BACK TO TOP</button>
-                <h4>ITAI NISSAN &copy; 2023</h4>
-            </div>
 
             </section>
+                <div className="copy container">
+                    <button onClick={toTop}>BACK TO TOP</button>
+                    <h4>ITAI NISSAN &copy; 2023</h4>
+                </div>
         </div>
     )
 }
