@@ -1,5 +1,85 @@
-.footer{
-height: 350px;
-background-color: $light-header-opactiy;
-width: 100%;
+.footer {
+    background-color: $dark-text;
+    width: 100%;
+
+
+    .resources {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        .explore-container {
+            .categories-links {
+                margin-block-start: 1em;
+
+
+                a {
+                    margin-inline-end: 2em;
+                }
+
+                .category-link {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: $dark-text-opactiy;
+                    // transition: .3s;
+                    border-radius: 7px;
+
+
+                    h4 {
+                        font-size: large;
+                        font-family: Handlee;
+                        color: $lighter-wood;
+                        z-index: 120;
+                    }
+
+                    h4:hover {
+                        border-radius: 50px;
+                        text-decoration: underline $light-text;
+    
+                    }
+                }
+
+                .h4:hover {
+                    // color: $dark-text;
+
+
+                }
+
+                .category-link:hover {
+                    // border-radius: 50px;
+                    // text-decoration: underline $light-text;
+                    // border-bottom: .5px solid $light-text;
+                    // background-color: $light-text;
+                    // box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
+                    // -webkit-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
+                    // -moz-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
+                }
+            }
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            margin-block-start: 1em;
+            justify-self: center;
+
+            a {
+                color: $light-wood;
+                list-style: none;
+                padding: 0.2em;
+            }
+
+            a:hover {
+                color: $lighter-wood;
+            }
+        }
+    }
+
+    .copy {
+        // height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-self: flex-end;
+        padding-block-end: 1em;
+    }
 }

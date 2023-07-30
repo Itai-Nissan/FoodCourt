@@ -9,12 +9,14 @@ a {
 }
 
 .app {
+    background-color: rgb(240, 240, 240);
+    min-height: 100vh;
+}
+
+.app-main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(240, 240, 240);
-    // background-color: $darker-text;
-    min-height: 100vh;
 }
 
 .container {

@@ -9,7 +9,6 @@ import soup from '../../assets/images/background/Homemade-Tomato-Soup-1.jpg'
 import fried from '../../assets/images/background/How-to-Use-A-Wok-For-Stir-Frying-Steaming.jpg'
 
 export const Categories = (props) => {
-    window.scrollTo(0, 0)
     const dispatch = useDispatch()
 
     function setCategory(category) {
