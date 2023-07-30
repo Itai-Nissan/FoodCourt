@@ -2,14 +2,14 @@
     z-index: 180;
     margin-block-start: 7em;
     margin-block-end: 7em;
-    display: grid;
     justify-content: space-between;
-    grid-template-columns: 350px 350px 350px;
+    display: flex;
 
     font-family: Gloock;
 
     .box {
         height: 150px;
+        width: 350px;
         display: flex;
         align-items: center;
         justify-content: center;

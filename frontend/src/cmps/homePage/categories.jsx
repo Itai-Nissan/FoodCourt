@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from "react-router-dom"
-import { Button } from '@mui/material'
 import { setFilterBy } from '../../store/actions/foodActions'
 
 import backImg from '../../assets/images/background/cutting-board-2680168_edit2.jpg'
@@ -22,7 +21,6 @@ export const Categories = (props) => {
 
     return (
         <section className="categories">
-            {/* <h4>Explore by tags</h4> */}
             <div className="back-img">
                 <img src={backImg} alt="" />
             </div>
