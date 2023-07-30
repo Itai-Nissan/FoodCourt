@@ -1,19 +1,14 @@
 import React, { useState, useEffect, Component } from 'react'
-import FoodList from '../cmps/FoodList'
-
-import { foodService } from '../services/food.service'
-
+import { Link } from "react-router-dom"
 
 export class AboutPage extends Component {
-
 
     componentDidMount() {
     }
 
     render() {
         return (
-            <div className='home-page'>
-                Abouut
+            <div className='about-page'>
             </div>
         )
     }

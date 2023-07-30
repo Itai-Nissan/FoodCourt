@@ -1,0 +1,54 @@
+.shorts {
+    z-index: 180;
+    margin-block-start: 7em;
+    margin-block-end: 7em;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 350px 350px 350px;
+
+    font-family: Gloock;
+
+    .box {
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: x-large;
+    }
+
+    .box:hover {
+        box-shadow: 0px 0px 0px 0px $light-wood;
+        -webkit-box-shadow: 0px 0px 0px 0px $light-wood;
+        -moz-box-shadow: 0px 0px 0px 0px $light-wood;
+        background-color: $card-back;
+    }
+
+
+    .short-join {
+        box-shadow: 0px 0px 3px 1px $light-wood;
+        -webkit-box-shadow: 0px 0px 3px 1px $light-wood;
+        -moz-box-shadow: 0px 0px 3px 1px $light-wood;
+        border: 3px solid $light-wood;
+        color: $light-wood;
+    }
+
+    .short-explore {
+        box-shadow: 0px 0px 3px 1px $dark-wood;
+        -webkit-box-shadow: 0px 0px 3px 1px $dark-wood;
+        -moz-box-shadow: 0px 0px 3px 1px $dark-wood;
+        border: 3px solid $dark-wood;
+        color: $dark-wood;
+
+    }
+
+    .short-add {
+        box-shadow: 0px 0px 3px 1px $dark-text;
+        -webkit-box-shadow: 0px 0px 3px 1px $dark-text;
+        -moz-box-shadow: 0px 0px 3px 1px $dark-text;
+        border: 3px solid $dark-text;
+        color: $dark-text;
+
+    }
+
+}
+

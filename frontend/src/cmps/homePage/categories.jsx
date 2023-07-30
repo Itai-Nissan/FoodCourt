@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { Button } from '@mui/material'
 import { setFilterBy } from '../../store/actions/foodActions'
 
-import backImg from '../../assets/images/background/cutting-board-2680168_edit3.jpg'
+import backImg from '../../assets/images/background/cutting-board-2680168_edit2.jpg'
 import cheese from '../../assets/images/background/healthiest-cheese-1296x728-swiss.jpg'
 import soup from '../../assets/images/background/Homemade-Tomato-Soup-1.jpg'
 import fried from '../../assets/images/background/How-to-Use-A-Wok-For-Stir-Frying-Steaming.jpg'
@@ -12,7 +12,6 @@ import fried from '../../assets/images/background/How-to-Use-A-Wok-For-Stir-Fryi
 export const Categories = (props) => {
     window.scrollTo(0, 0)
     const dispatch = useDispatch()
-    // const [filterBy, setStateFilterBy] = useState({})
 
     function setCategory(category) {
         let filterBy = {

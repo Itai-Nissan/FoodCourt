@@ -1,0 +1,82 @@
+.hero {
+    height: 100vh;
+
+    .back-img {
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: -3px;
+        z-index: 1;
+
+        img {
+            left: 0;
+            top: -3px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+    }
+
+    .explore {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        z-index: 180;
+        height: 50px;
+        width: 350px;
+        top: 350px;
+        left: 40%;
+        text-align: center;
+        border-radius: 3px;
+
+        .explore-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #4c3e3e5d;
+            border-radius: 20px;
+            box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
+            -webkit-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
+            -moz-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
+
+            button {
+                font-family: Handlee;
+            }
+
+            h4 {
+                font-weight: 200;
+                letter-spacing: 0.2em;
+                color: #ffeded;
+                margin-inline-start: 2em;
+                font-family: Handlee;
+
+            }
+
+            .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
+                border-bottom: 2px solid $light-wood;
+            }
+
+            .MuiFormControl-root {
+                width: 90%;
+                margin-inline-start: 1em;
+                margin-inline-end: 1em;
+            }
+
+            .MuiButtonBase-root {
+                background-color: $light-wood;
+                color: $dark-wood;
+                border-radius: 0 20px 20px 0px;
+            }
+
+            .MuiButtonBase-root:hover {
+                background-color: $dark-text;
+                color: $light-wood;
+            }
+
+            Link {
+                width: 100px;
+
+            }
+        }
+    }
+
+}

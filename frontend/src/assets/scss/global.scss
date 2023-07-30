@@ -2,20 +2,27 @@
 @import 'setup/base';
 @import 'setup/typography';
 
-//cmps
-@import 'components/app-header.scss';
+//views
 @import 'views/home-page.scss';
 @import 'views/explore-recipes.scss';
+@import 'views/about-page.scss';
+@import 'components/login.scss';
+@import 'components/user-profile.scss';
+
+//cmps
+@import 'components/app-header.scss';
 @import 'components/dropdown-menu.scss';
 @import 'components/recipe-list.scss';
 @import 'components/recipe-preview.scss';
 @import 'components/recipe-details.scss';
 @import 'components/recipe-filter.scss';
-@import 'components/login.scss';
-@import 'components/user-profile.scss';
 @import 'components/add-recipe.scss';
 @import 'components/add-step.scss';
 @import 'components/add-ingredient.scss';
 @import 'components/recipe-output.scss';
+@import 'components/home-page/categories.scss';
+@import 'components/home-page/footer.scss';
+@import 'components/home-page/hero.scss';
+@import 'components/home-page/shorts.scss';
 
 @import "react-alice-carousel/lib/scss/alice-carousel.scss";
