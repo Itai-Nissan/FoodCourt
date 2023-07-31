@@ -1,14 +1,20 @@
 .footer {
+    margin-top: auto;
+    z-index: 200;
+    height: 300px;
+    bottom: 0;
     background-color: $darker-text;
     width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-block-start: 2em;
 
 
     .resources {
         display: grid;
         grid-template-columns: 1fr 1fr;
+
         .explore-container {
             .categories-links {
                 margin-block-start: 1em;
@@ -16,12 +22,12 @@
                 align-items: center;
                 justify-content: center;
                 flex-direction: column;
-                
-                
+
+
                 a {
                     margin-inline-end: 2em;
                 }
-                
+
                 .category-link {
                     display: flex;
                     align-items: center;
@@ -41,7 +47,7 @@
                     h4:hover {
                         border-radius: 50px;
                         text-decoration: underline $light-text;
-    
+
                     }
                 }
             }
@@ -74,8 +80,8 @@
         justify-content: space-between;
         align-items: center;
         padding-block-end: 1em;
-        
-        button{
+
+        button {
             font-family: Gloock;
             border-radius: 7px;
             color: $light-text;
@@ -84,8 +90,8 @@
             padding: .5em;
             border: none;
         }
-        
-        button:hover{
+
+        button:hover {
             color: $light-wood;
             background-color: $dark-text;
 

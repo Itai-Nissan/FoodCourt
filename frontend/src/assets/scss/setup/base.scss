@@ -10,12 +10,15 @@ a {
 
 .app {
     background-color: rgb(240, 240, 240);
-    min-height: 100vh;
+    // min-height: 100vh;
 }
 
-.app-main{
+.app-main {
+    min-height: calc(100vh - 300px - 90px);
+
     display: flex;
     flex-direction: column;
+
     align-items: center;
 }
 
