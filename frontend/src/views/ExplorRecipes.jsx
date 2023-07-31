@@ -8,8 +8,6 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 
-
-
 export const ExplorRecipes = (props) => {
 
     const dispatch = useDispatch()

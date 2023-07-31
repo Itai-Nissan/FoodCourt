@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from "react-router-dom"
@@ -13,14 +13,16 @@ export function Signup() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
-
     const [fullName, setUserFullName] = useState('')
     const [userName, setUserName] = useState('')
     const [userPassword, setuserPassword] = useState('')
     const [userEmail, setuserEmail] = useState('')
 
     const routeToProfile = useCallback((userToSignup) => navigate(`/UserProfile/${userToSignup._id}`, { replace: true }), [navigate])
+    
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     function setLogin(e) {
         const userToSignup = {

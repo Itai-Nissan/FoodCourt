@@ -55,7 +55,7 @@
         }
 
         .MuiButtonBase-root:hover {
-            background-color: $dark-wood-opactiy;
+            background-color: $confirm;
             color: $dark-wood;
         }
 
@@ -68,7 +68,6 @@
                 height: 40px;
             }
 
-            .add-remove-section {}
         }
     }
 }

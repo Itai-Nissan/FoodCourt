@@ -1,7 +1,6 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from "react-router-dom"
-
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
 import { setLoggedInUser } from '../store/actions/userActions'
@@ -17,7 +16,10 @@ export function Login() {
     const [userPassword, setuserPassword] = useState('')
 
     const routeToProfile = useCallback((userToSignup) => navigate(`/UserProfile/${userToSignup._id}`, { replace: true }), [navigate])
-    const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
 
     function setLogin(key) {
