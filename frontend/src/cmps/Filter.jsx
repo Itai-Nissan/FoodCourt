@@ -10,10 +10,11 @@ export class Filter extends Component {
 
   state = {
     text: '',
+    category: '',
     currentSearch: this.props.filterBy.category ? this.props.filterBy.category : 'All',
     searchResult: null,
     type: '',
-    loading: this.props.isLoading,
+    // loading: this.props.isLoading,
   }
 
   componentDidUpdate() {
@@ -54,7 +55,7 @@ export class Filter extends Component {
           <Button
             size="small"
             onClick={this.onClickReset}
-            loading={this.state.loading}
+            // loading={this.state.loading}
             variant="standard">
             Reset filter
           </Button>
@@ -69,7 +70,7 @@ export class Filter extends Component {
           <LoadingButton
             size="small"
             onClick={this.onClickSearch}
-            loading={this.props.isLoading}
+            // loading={this.props.isLoading}
             variant="standard">
             Search
           </LoadingButton>

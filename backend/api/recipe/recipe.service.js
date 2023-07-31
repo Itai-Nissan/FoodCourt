@@ -24,24 +24,33 @@ async function getAllUserRecipes(user) {
 
 async function getAllRecipes(filterBy, startPoint, amountToRturn) {
   let foodList = []
-  if (filterBy) filterBy = filterBy.text
-  if (!filterBy || filterBy.toLowerCase() === 'all') {
+  let count
+
+  if (filterBy.category) filterBy.text = filterBy.category
+  // if (filterBy) {
+    // if (filterBy.text) filterBy = filterBy.text
+    // if (filterBy.category) filterBy = filterBy.category
+    // console.log('filterBy:', filterBy);
+  // }
+  if (!filterBy || filterBy.text.toLowerCase() === 'all' || filterBy.text.toLowerCase() === '') {
+    count = recipes.length + tastyRecipes.length
     if (startPoint > 0) {
-      foodList = tastyRecipes.slice(startPoint, startPoint + amountToRturn)
+      foodList = tastyRecipes
     } else {
-      foodList = recipes.concat(tastyRecipes.slice(startPoint, startPoint + amountToRturn))
+      foodList = recipes.concat(tastyRecipes)
     }
   } else {
     recipes.forEach((recipe) => {
-      if (recipe.name.toLowerCase().includes(filterBy.toLowerCase())) {
+      if (recipe.name.toLowerCase().includes(filterBy.text.toLowerCase())) {
         foodList.push(recipe)
       }
     })
     tastyRecipes.forEach((recipe) => {
-      if (recipe.name.toLowerCase().includes(filterBy.toLowerCase())) {
+      if (recipe.name.toLowerCase().includes(filterBy.text.toLowerCase())) {
         foodList.push(recipe)
       }
     })
+    count = foodList.length
   }
 
   // console.log('before cleaning:', tastyRecipes.length);
@@ -104,8 +113,10 @@ async function getAllRecipes(filterBy, startPoint, amountToRturn) {
   //   console.error(error)
   // })
 
-  const count = recipes.length + tastyRecipes.length
+  foodList = foodList.slice(startPoint, startPoint + amountToRturn)
   const recipesData = { foodList, count }
+  console.log('count:', recipesData.count);
+  console.log('foodList:', recipesData.foodList.length);
   return recipesData
 }
 

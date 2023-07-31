@@ -22,7 +22,8 @@ export const ExplorRecipes = (props) => {
     const [pageSize, setPageSize] = useState(24)
     const [amountCount, setAmountCount] = useState(pageSize)
     const [loading, setLoading] = useState(false)
-    const [pagesCount, setPagesCount] = useState()
+    const [pagesCount, setPagesCount] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1)
 
 
     useEffect(() => {
@@ -36,14 +37,22 @@ export const ExplorRecipes = (props) => {
         }
         dispatch(loadFoodList(0, pageSize))
             .then((res) => {
+                let count = 1
+                if (filterBy.category) {
+                    count = Math.floor(res.foodList.length / pageSize)
+                } else {
+                    count = Math.floor(res.count / pageSize)
+                }
+                if (count <= 0) count = 1
+                setPagesCount(count)
                 setRecipes(res.foodList)
-                setPagesCount(Math.floor(res.count / pageSize))
             })
     }
 
     function handlePageChange(event, page) {
+        setCurrentPage(page)
         setRecipes([])
-        setLoading('true')
+        // setLoading('true')
         const from = (page - 1) * pageSize
         const to = (page - 1) * pageSize + pageSize
 
@@ -51,28 +60,39 @@ export const ExplorRecipes = (props) => {
         dispatch(loadFoodList(from, to))
             .then((res) => {
                 setRecipes(res.foodList)
-                setLoading(false)
+                // setLoading(false)
             })
     }
 
     function onChangeFilter(filterBy) {
+        setCurrentPage(1)
         setRecipes([])
-        setLoading('true')
+        // setLoading(true)
         setAmountCount(pageSize)
         window.scrollTo(0, 0)
         dispatch(setFilterBy(filterBy))
         dispatch(loadFoodList(0, pageSize))
             .then((res) => {
+                if (filterBy.text === '' || filterBy.text === 'all') {
+                    setPagesCount(Math.floor(res.count / pageSize))
+                }
+                if (res.foodList.length < pageSize) {
+                    setPagesCount(1)
+                }
+                else {
+                    setPagesCount(Math.floor(res.count / pageSize))
+                }
                 setRecipes(res.foodList)
-                setLoading(false)
+                // setLoading(false)
             })
     }
 
     return (
         <div className='explore-recipes container'>
-            <Filter onChangeFilter={onChangeFilter} isLoading={loading ? loading : undefined} filterBy={filterBy}></Filter>
+            <Filter onChangeFilter={onChangeFilter} filterBy={filterBy}></Filter>
+            {/* <Filter onChangeFilter={onChangeFilter} isLoading={loading ? loading.toString() : undefined} filterBy={filterBy}></Filter> */}
             <section className="pagination">
-                <Pagination onChange={handlePageChange} count={pagesCount} />
+                <Pagination onChange={handlePageChange} page={currentPage} count={pagesCount} />
             </section>
             <FoodList foodList={recipes} />
         </div>
