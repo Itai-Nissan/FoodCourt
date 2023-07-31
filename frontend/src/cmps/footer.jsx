@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setFilterBy } from '../../store/actions/foodActions'
+import { setFilterBy } from '../store/actions/foodActions'
 import { Link } from "react-router-dom"
 
 export const Footer = (props) => {
