@@ -26,7 +26,11 @@ async function getAllRecipes(filterBy, startPoint, amountToRturn) {
   let foodList = []
   if (filterBy) filterBy = filterBy.text
   if (!filterBy || filterBy.toLowerCase() === 'all') {
-    foodList = recipes.concat(tastyRecipes.slice(startPoint, startPoint + amountToRturn))
+    if (startPoint > 0) {
+      foodList = tastyRecipes.slice(startPoint, startPoint + amountToRturn)
+    } else {
+      foodList = recipes.concat(tastyRecipes.slice(startPoint, startPoint + amountToRturn))
+    }
   } else {
     recipes.forEach((recipe) => {
       if (recipe.name.toLowerCase().includes(filterBy.toLowerCase())) {
@@ -99,7 +103,10 @@ async function getAllRecipes(filterBy, startPoint, amountToRturn) {
   // }).catch(function (error) {
   //   console.error(error)
   // })
-  return foodList
+
+  const count = recipes.length + tastyRecipes.length
+  const recipesData = { foodList, count }
+  return recipesData
 }
 
 async function getRecipeById(id) {
