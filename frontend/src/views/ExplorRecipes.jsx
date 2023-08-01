@@ -14,7 +14,7 @@ export const ExplorRecipes = (props) => {
     let filterBy = useSelector((state) => state.foodModule.filterBy)
 
     const [recipes, setRecipes] = useState([])
-    const [pageSize, setPageSize] = useState(24)
+    const [pageSize, setPageSize] = useState(25)
     const [amountCount, setAmountCount] = useState(pageSize)
     const [loading, setLoading] = useState(false)
     const [pagesCount, setPagesCount] = useState(1)
