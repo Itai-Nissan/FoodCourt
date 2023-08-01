@@ -20,7 +20,6 @@ export class Filter extends Component {
   componentDidUpdate() {
   }
 
-
   handleChange = ({ target }) => {
     const field = target.name
     const value = target.type === 'number' ? (+target.value || '') : target.value
@@ -51,7 +50,7 @@ export class Filter extends Component {
     return (
       <div className='food-filter' >
         <section className="filter-result">
-          <h4>Showing {this.state.currentSearch ? this.state.currentSearch.toUpperCase() : 'All'} search result </h4>
+          <h4>Showing {this.props.resultsNumber} {this.state.currentSearch ? this.state.currentSearch.toUpperCase() : 'All'} search result </h4>
           <Button
             size="small"
             onClick={this.onClickReset}

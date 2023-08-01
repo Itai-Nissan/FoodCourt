@@ -28,9 +28,9 @@ async function getAllRecipes(filterBy, startPoint, amountToRturn) {
 
   if (filterBy.category) filterBy.text = filterBy.category
   // if (filterBy) {
-    // if (filterBy.text) filterBy = filterBy.text
-    // if (filterBy.category) filterBy = filterBy.category
-    // console.log('filterBy:', filterBy);
+  // if (filterBy.text) filterBy = filterBy.text
+  // if (filterBy.category) filterBy = filterBy.category
+  // console.log('filterBy:', filterBy);
   // }
   if (!filterBy || filterBy.text.toLowerCase() === 'all' || filterBy.text.toLowerCase() === '') {
     count = recipes.length + tastyRecipes.length
@@ -52,7 +52,14 @@ async function getAllRecipes(filterBy, startPoint, amountToRturn) {
     })
     count = foodList.length
   }
+  // fetchFromApi()
+  
+  foodList = foodList.slice(startPoint, startPoint + amountToRturn)
+  const recipesData = { foodList, count }
+  return recipesData
+}
 
+async function fetchFromApi() {
   // console.log('before cleaning:', tastyRecipes.length);
 
   // const cleanList = tastyRecipes.reduce((accumulator, current) => {
@@ -113,11 +120,6 @@ async function getAllRecipes(filterBy, startPoint, amountToRturn) {
   //   console.error(error)
   // })
 
-  foodList = foodList.slice(startPoint, startPoint + amountToRturn)
-  const recipesData = { foodList, count }
-  console.log('count:', recipesData.count);
-  console.log('foodList:', recipesData.foodList.length);
-  return recipesData
 }
 
 async function getRecipeById(id) {
@@ -292,5 +294,6 @@ module.exports = {
   getRecipeById,
   getAllRecipes,
   getAllUserRecipes,
+  fetchFromApi,
   _writeToJson,
 }
