@@ -53,10 +53,13 @@ export const ExplorRecipes = (props) => {
         // setLoading('true')
         const from = (page - 1) * pageSize
         const to = (page - 1) * pageSize + pageSize
+        console.log(from);
+        console.log(to);
 
         setAmountCount(amountCount + pageSize)
         dispatch(loadFoodList(from, to))
             .then((res) => {
+                console.log(res.foodList.length);
                 setRecipes(res.foodList)
                 // setLoading(false)
             })

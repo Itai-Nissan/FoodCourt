@@ -22,16 +22,11 @@ async function getAllUserRecipes(user) {
   return foodList
 }
 
-async function getAllRecipes(filterBy, startPoint, amountToRturn) {
+async function getAllRecipes(filterBy, startPoint, endPoint) {
   let foodList = []
   let count
 
   if (filterBy.category) filterBy.text = filterBy.category
-  // if (filterBy) {
-  // if (filterBy.text) filterBy = filterBy.text
-  // if (filterBy.category) filterBy = filterBy.category
-  // console.log('filterBy:', filterBy);
-  // }
   if (!filterBy || filterBy.text.toLowerCase() === 'all' || filterBy.text.toLowerCase() === '') {
     count = recipes.length + tastyRecipes.length
     if (startPoint > 0) {
@@ -54,7 +49,7 @@ async function getAllRecipes(filterBy, startPoint, amountToRturn) {
   }
   // fetchFromApi()
   
-  foodList = foodList.slice(startPoint, startPoint + amountToRturn)
+  foodList = foodList.slice(startPoint, endPoint)
   const recipesData = { foodList, count }
   return recipesData
 }
