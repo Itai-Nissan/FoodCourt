@@ -21,9 +21,9 @@ function App() {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(loadFoodList(0, 24))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(loadFoodList(0, 24))
+  // }, [])
 
   return (
     <Router >

@@ -5,6 +5,57 @@ const utilities = require("../../services/utilities")
 const cloudinary = require("../../services/cloudinary")
 const fs = require('fs')
 
+// function sliceJson() {
+//   // let listA = tastyRecipes.slice(start, start + amount)
+//   // console.log('list.slice:', listA.length);
+//   // listA.map((recipe) => {
+//   //   tastyRecipesA.push(recipe)
+//   // })
+//   // _writeToJson('tastyRecipesA', tastyRecipesA)
+//   // start = start + amount
+
+//   // let listB = tastyRecipes.slice(start, start + amount)
+//   // console.log('list.slice:', listB.length);
+//   // listB.map((recipe) => {
+//   //   tastyRecipesB.push(recipe)
+//   // })
+//   // _writeToJson('tastyRecipesB', tastyRecipesB)
+//   // start = start + amount
+
+//   // let listC = tastyRecipes.slice(start, start + amount)
+//   // console.log('list.slice:', listC.length);
+//   // listC.map((recipe) => {
+//   //   tastyRecipesC.push(recipe)
+//   // })
+//   // _writeToJson('tastyRecipesC', tastyRecipesC)
+//   // start = start + amount
+
+//   // let listD = tastyRecipes.slice(start, start + amount)
+//   // console.log('list.slice:', listD.length);
+//   // listD.map((recipe) => {
+//   //   tastyRecipesD.push(recipe)
+//   // })
+//   // _writeToJson('tastyRecipesD', tastyRecipesD)
+//   // start = start + amount
+
+//   // let listE = tastyRecipes.slice(start, start + amount)
+//   // console.log('list.slice:', listE.length);
+//   // listE.map((recipe) => {
+//   //   tastyRecipesE.push(recipe)
+//   // })
+//   // _writeToJson('tastyRecipesE', tastyRecipesE)
+//   // start = start + amount
+
+//   // let listF = tastyRecipes.slice(start, start + amount)
+//   // console.log('list.slice:', listF.length);
+//   // listF.map((recipe) => {
+//   //   tastyRecipesF.push(recipe)
+//   // })
+//   // _writeToJson('tastyRecipesF', tastyRecipesF)
+//   // start = start + amount
+// }
+
+//JSON *****************************
 
 async function getAllUserRecipes(user) {
   let foodList = []
