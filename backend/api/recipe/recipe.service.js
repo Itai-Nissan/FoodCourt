@@ -1,61 +1,101 @@
 const recipes = require("../../data/recipes.json")
 const tastyRecipes = require("../../data/tastyRecipes.json")
+const updatedTastyRecipe = require("../../data/updatedTastyRecipe.json")
+const updatedTastyRecipe1 = require("../../data/updatedTastyRecipe1.json")
+const updatedTastyRecipe2 = require("../../data/updatedTastyRecipe2.json")
+const updatedTastyRecipe3 = require("../../data/updatedTastyRecipe3.json")
+const updatedTastyRecipe4 = require("../../data/updatedTastyRecipe4.json")
 const userRecipes = require("../../data/userRecipes.json")
 const utilities = require("../../services/utilities")
 const cloudinary = require("../../services/cloudinary")
 const fs = require('fs')
 
-// function sliceJson() {
-//   // let listA = tastyRecipes.slice(start, start + amount)
-//   // console.log('list.slice:', listA.length);
-//   // listA.map((recipe) => {
-//   //   tastyRecipesA.push(recipe)
-//   // })
-//   // _writeToJson('tastyRecipesA', tastyRecipesA)
-//   // start = start + amount
+const dbService = require('../../services/db.service')
+const ObjectId = require('mongodb').ObjectId
 
-//   // let listB = tastyRecipes.slice(start, start + amount)
-//   // console.log('list.slice:', listB.length);
-//   // listB.map((recipe) => {
-//   //   tastyRecipesB.push(recipe)
-//   // })
-//   // _writeToJson('tastyRecipesB', tastyRecipesB)
-//   // start = start + amount
+async function query(filterBy) {
+  const { query, order } = _buildCriteria(filterBy)
 
-//   // let listC = tastyRecipes.slice(start, start + amount)
-//   // console.log('list.slice:', listC.length);
-//   // listC.map((recipe) => {
-//   //   tastyRecipesC.push(recipe)
-//   // })
-//   // _writeToJson('tastyRecipesC', tastyRecipesC)
-//   // start = start + amount
+  const collection = await dbService.getCollection('tastyRecipe')
 
-//   // let listD = tastyRecipes.slice(start, start + amount)
-//   // console.log('list.slice:', listD.length);
-//   // listD.map((recipe) => {
-//   //   tastyRecipesD.push(recipe)
-//   // })
-//   // _writeToJson('tastyRecipesD', tastyRecipesD)
-//   // start = start + amount
+  const tastyRecipes = await collection
+    .find(query)
+    .sort(order)
+    .toArray()
+  console.log(tastyRecipes.length);
 
-//   // let listE = tastyRecipes.slice(start, start + amount)
-//   // console.log('list.slice:', listE.length);
-//   // listE.map((recipe) => {
-//   //   tastyRecipesE.push(recipe)
-//   // })
-//   // _writeToJson('tastyRecipesE', tastyRecipesE)
-//   // start = start + amount
+  console.log(tastyRecipes.length);
 
-//   // let listF = tastyRecipes.slice(start, start + amount)
-//   // console.log('list.slice:', listF.length);
-//   // listF.map((recipe) => {
-//   //   tastyRecipesF.push(recipe)
-//   // })
-//   // _writeToJson('tastyRecipesF', tastyRecipesF)
-//   // start = start + amount
-// }
+  return tastyRecipes
+}
 
-//JSON *****************************
+function _buildCriteria(filterBy, sortBy) {
+  console.log('_buildCriteria filterBy:', filterBy);
+  const { text, category } = filterBy
+  let query = {}
+  let order = {}
+
+  if (text) {
+    console.log('_buildCriteria text', text)
+    const textCriteria = { $regex: text, $options: 'i' }
+    query.$or = [
+      { title: textCriteria },
+      { description: textCriteria },
+      { ['name']: textCriteria },
+    ]
+  }
+
+  if (category) {
+    console.log('_buildCriteria category', category);
+    const categoryCriteria = { $regex: category, $options: 'i' }
+    query.$or = [
+      { title: categoryCriteria },
+      { description: categoryCriteria },
+      { ['name']: categoryCriteria },
+    ]
+  }
+
+
+
+  // if (userId) {
+  //   query['owner._id'] = userId
+  // }
+
+  // const deliveryTime = parseInt(delivery)
+  // if (!isNaN(deliveryTime)) {
+  //   query.delivery = { $lte: deliveryTime }
+  // }
+
+  // if (price) {
+
+  //   const p = {}
+  //   if (price.min >= 0) {
+  //     p.$gte = price.min
+  //   }
+
+  //   if (price.max) {
+  //     p.$lte = price.max
+  //   }
+
+  //   if (price.min || price.max) {
+  //     query.price = p
+  //   }
+  // }
+
+  // if (sortBy) {
+  //   order = { [sortBy]: 1 }
+  // }
+
+  return { query, order }
+}
+
+async function add() {
+  const collection = await dbService.getCollection('tastyRecipe')
+  updatedTastyRecipe.map((recipe) => {
+    collection.insertOne(recipe)
+  })
+  // return ops[0]
+}
 
 async function getAllUserRecipes(user) {
   let foodList = []
@@ -77,31 +117,40 @@ async function getAllRecipes(filterBy, startPoint, endPoint) {
   let foodList = []
   let count
 
-  if (filterBy.category) filterBy.text = filterBy.category
-  if (!filterBy || filterBy.text.toLowerCase() === 'all' || filterBy.text.toLowerCase() === '') {
-    count = recipes.length + tastyRecipes.length
-    if (startPoint > 0) {
-      foodList = tastyRecipes
-    } else {
-      foodList = recipes.concat(tastyRecipes)
-    }
-  } else {
-    recipes.forEach((recipe) => {
-      if (recipe.name.toLowerCase().includes(filterBy.text.toLowerCase())) {
-        foodList.push(recipe)
-      }
-    })
-    tastyRecipes.forEach((recipe) => {
-      if (recipe.name.toLowerCase().includes(filterBy.text.toLowerCase())) {
-        foodList.push(recipe)
-      }
-    })
-    count = foodList.length
-  }
+  // add()
+  foodList = await query(filterBy)
+  count = foodList.length
+  // utilities.cleaningJson()
+  // utilities.sliceJson()
+
+  // if (filterBy.category) filterBy.text = filterBy.category
+  // if (!filterBy || filterBy.text.toLowerCase() === 'all' || filterBy.text.toLowerCase() === '') {
+  //   count = recipes.length + tastyRecipes.length
+  //   if (startPoint > 0) {
+  //     foodList = tastyRecipes
+  //   } else {
+  //     foodList = recipes.concat(tastyRecipes)
+  //   }
+  // } else {
+  //   recipes.forEach((recipe) => {
+  //     if (recipe.name.toLowerCase().includes(filterBy.text.toLowerCase())) {
+  //       foodList.push(recipe)
+  //     }
+  //   })
+  //   tastyRecipes.forEach((recipe) => {
+  //     if (recipe.name.toLowerCase().includes(filterBy.text.toLowerCase())) {
+  //       foodList.push(recipe)
+  //     }
+  //   })
+  //   count = foodList.length
+  // }
+
   // fetchFromApi()
-  
+  console.log('count:', count);
+
   foodList = foodList.slice(startPoint, endPoint)
   const recipesData = { foodList, count }
+  console.log('recipesData.count:', recipesData.count);
   return recipesData
 }
 
@@ -341,5 +390,6 @@ module.exports = {
   getAllRecipes,
   getAllUserRecipes,
   fetchFromApi,
+  add,
   _writeToJson,
 }

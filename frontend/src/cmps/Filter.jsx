@@ -4,8 +4,6 @@ import { LoadingButton } from '@mui/lab';
 import TextField from '@mui/material/TextField'
 import { Autocomplete } from '@mui/material';
 
-
-
 export class Filter extends Component {
 
   state = {
@@ -14,7 +12,6 @@ export class Filter extends Component {
     currentSearch: this.props.filterBy.category ? this.props.filterBy.category : 'All',
     searchResult: null,
     type: '',
-    // loading: this.props.isLoading,
   }
 
   componentDidUpdate() {
@@ -32,7 +29,6 @@ export class Filter extends Component {
       this.props.onChangeFilter({ ...this.state })
       this.state.currentSearch = this.state.text
       this.state.text = ''
-      this.state.loading = true
     }
   }
 
@@ -69,7 +65,7 @@ export class Filter extends Component {
           <LoadingButton
             size="small"
             onClick={this.onClickSearch}
-            // loading={this.props.isLoading}
+            loading={this.props.isLoading}
             variant="standard">
             Search
           </LoadingButton>
