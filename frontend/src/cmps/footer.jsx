@@ -22,34 +22,34 @@ export const Footer = (props) => {
             <section className='resources container'>
                 <div className="explore-container">
                     <div className="categories-links">
-                        <Link onClick={() => { setCategory('cheese') }} to="/ExplorRecipes">
+                        <Link onClick={() => { setCategory('BBQ') }} to="/ExplorRecipes">
                             <div className="category-link">
-                                <h4>Cheese</h4>
+                                <h4>BBQ</h4>
                             </div>
                         </Link>
-                        <Link onClick={() => { setCategory('Soup') }} to="/ExplorRecipes">
+                        <Link onClick={() => { setCategory('Lunch') }} to="/ExplorRecipes">
                             <div className="category-link">
-                                <h4>Soup</h4>
+                                <h4>Lunch</h4>
                             </div>
                         </Link>
-                        <Link onClick={() => { setCategory('fried') }} to="/ExplorRecipes">
+                        <Link onClick={() => { setCategory('Vegetarian') }} to="/ExplorRecipes">
                             <div className="category-link">
-                                <h4>Fried</h4>
+                                <h4>Vegetarian</h4>
                             </div>
                         </Link>
-                        <Link onClick={() => { setCategory('cheese') }} to="/ExplorRecipes">
+                        <Link onClick={() => { setCategory('Bread') }} to="/ExplorRecipes">
                             <div className="category-link">
-                                <h4>Cheese</h4>
+                                <h4>Bread</h4>
                             </div>
                         </Link>
-                        <Link onClick={() => { setCategory('Soup') }} to="/ExplorRecipes">
+                        <Link onClick={() => { setCategory('Desserts') }} to="/ExplorRecipes">
                             <div className="category-link">
-                                <h4>Soup</h4>
+                                <h4>Desserts</h4>
                             </div>
                         </Link>
-                        <Link onClick={() => { setCategory('fried') }} to="/ExplorRecipes">
+                        <Link onClick={() => { setCategory('Italian') }} to="/ExplorRecipes">
                             <div className="category-link">
-                                <h4>Fried</h4>
+                                <h4>Italian</h4>
                             </div>
                         </Link>
                     </div>

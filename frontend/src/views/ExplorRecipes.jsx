@@ -33,7 +33,7 @@ export const ExplorRecipes = (props) => {
         }
         dispatch(loadFoodList(0, pageSize))
             .then((res) => {
-                let count = Math.floor(res.count / pageSize)
+                let count = Math.ceil(res.count / pageSize)
                 if (count <= 0) count = 1
                 setPagesCount(count)
                 setResultsNumber(res.count)
@@ -64,13 +64,13 @@ export const ExplorRecipes = (props) => {
         dispatch(loadFoodList(0, pageSize))
             .then((res) => {
                 if (filterBy.text === '' || filterBy.text === 'all') {
-                    setPagesCount(Math.floor(res.count / pageSize))
+                    setPagesCount(Math.ceil(res.count / pageSize))
                 }
                 if (res.foodList.length < pageSize) {
                     setPagesCount(1)
                 }
                 else {
-                    setPagesCount(Math.floor(res.count / pageSize))
+                    setPagesCount(Math.ceil(res.count / pageSize))
                 }
                 setResultsNumber(res.count)
                 setRecipes(res.foodList)

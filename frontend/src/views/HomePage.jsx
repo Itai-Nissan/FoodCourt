@@ -11,8 +11,6 @@ export const HomePage = (props) => {
             <Hero></Hero>
             <Shorts></Shorts>
             <Categories></Categories>
-            {/* <Filter onChangeFilter={onChangeFilter} isLoading={loading}></Filter> */}
-            {/* <FoodList foodList={recipes} /> */}
         </div>
     )
 }

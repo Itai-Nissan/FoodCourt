@@ -1,10 +1,6 @@
 const recipes = require("../../data/recipes.json")
 const tastyRecipes = require("../../data/tastyRecipes.json")
 const updatedTastyRecipe = require("../../data/updatedTastyRecipe.json")
-const updatedTastyRecipe1 = require("../../data/updatedTastyRecipe1.json")
-const updatedTastyRecipe2 = require("../../data/updatedTastyRecipe2.json")
-const updatedTastyRecipe3 = require("../../data/updatedTastyRecipe3.json")
-const updatedTastyRecipe4 = require("../../data/updatedTastyRecipe4.json")
 const userRecipes = require("../../data/userRecipes.json")
 const utilities = require("../../services/utilities")
 const cloudinary = require("../../services/cloudinary")
@@ -22,9 +18,6 @@ async function query(filterBy) {
     .find(query)
     .sort(order)
     .toArray()
-  console.log(tastyRecipes.length);
-
-  console.log(tastyRecipes.length);
 
   return tastyRecipes
 }
@@ -39,17 +32,17 @@ function _buildCriteria(filterBy, sortBy) {
     console.log('_buildCriteria text', text)
     const textCriteria = { $regex: text, $options: 'i' }
     query.$or = [
-      { title: textCriteria },
-      { description: textCriteria },
+      // { title: textCriteria },
+      { ['description']: textCriteria },
       { ['name']: textCriteria },
+      // { ['topics']: textCriteria },
     ]
   }
 
   if (category) {
-    console.log('_buildCriteria category', category);
     const categoryCriteria = { $regex: category, $options: 'i' }
     query.$or = [
-      { title: categoryCriteria },
+      // { title: categoryCriteria },
       { description: categoryCriteria },
       { ['name']: categoryCriteria },
     ]
