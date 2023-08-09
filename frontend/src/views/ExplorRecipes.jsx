@@ -3,12 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loadFoodList, setFilterBy } from '../store/actions/foodActions'
 import FoodList from '../cmps/FoodList'
 import { Filter } from '../cmps/Filter'
-import InfiniteScroll from 'react-infinite-scroll-component'
-
 import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
 
-export const ExplorRecipes = (props) => {
+export const ExplorRecipes = () => {
 
     const dispatch = useDispatch()
     let filterBy = useSelector((state) => state.foodModule.filterBy)
