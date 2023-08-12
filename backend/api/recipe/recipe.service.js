@@ -32,18 +32,17 @@ async function query(filterBy, skip, limit) {
 }
 
 function _buildCriteria(filterBy, sortBy) {
-  console.log('_buildCriteria filterBy:', filterBy);
   const { text, category } = filterBy
   let query = {}
   let order = {}
 
   if (text) {
-    console.log('_buildCriteria text', text)
     const textCriteria = { $regex: text, $options: 'i' }
     query.$or = [
       // { title: textCriteria },
       { ['description']: textCriteria },
       { ['name']: textCriteria },
+      { ['userId']: textCriteria },
       // { ['topics']: textCriteria },
     ]
   }
@@ -71,8 +70,6 @@ async function add(recipe, collectionToInsert) {
 
 async function getById(recipeId, list) {
   try {
-    console.log('getById:', recipeId);
-
     const collection = await dbService.getCollection(list)
     const recipe = await collection.findOne({ id: recipeId })
     return recipe
@@ -82,53 +79,15 @@ async function getById(recipeId, list) {
   }
 }
 
-async function mapById(userRecipeList) {
-  const promises = userRecipeList.map(async (userRecipe) => {
-    return await getById(userRecipe.recipeId, 'recipe')
-  })
-
-  return Promise.all(promises)
-}
-
-
 async function getAllUserRecipes(user) {
-  // console.log('getAllUserRecipes:', user._id);
-  let userRecipeList = []
-  let foodList = []
-
-  let userRecipeQuery = {}
-  const userId = user._id
-  if (userId) {
-    // console.log('_buildCriteria userId', userId)
-    const userIdCriteria = { $regex: userId, $options: 'i' }
-    userRecipeQuery.$or = [
-      { userId: userIdCriteria },
-    ]
-  }
-  // console.log('userRecipeQuery:', userRecipeQuery);
-  const userRecipeCollection = await dbService.getCollection('userRecipe')
-  userRecipeList = await userRecipeCollection.find(userRecipeQuery).toArray()
-  console.log('userRecipeList:', userRecipeList);
-
   let recipeQuery = {}
-  foodList = await mapById(userRecipeList)
+  const userId = user._id
+  recipeQuery.$or = [
+    { ['userId']: userId }
+  ]
 
-  console.log('got it:', foodList.length);
-  // console.log('recipeQuery:', recipeQuery);
-  // const collection = await dbService.getCollection('recipe')
-  // foodList = collection.findOne(recipeQuery).toArray()
-
-
-  // userRecipes.forEach((userRecipe) => {
-  //   if (userRecipe.userId === user._id)
-
-  //     recipes.forEach((recipe) => {
-  //       if (recipe.id === userRecipe.recipeId) {
-  //         foodList.push(recipe)
-  //       }
-  //     }
-  //     )
-  // })
+  const collection = await dbService.getCollection('recipe')
+  const foodList = await collection.find(recipeQuery).toArray()
   return foodList
 }
 
