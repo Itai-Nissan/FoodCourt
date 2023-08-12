@@ -9,17 +9,26 @@ const fs = require('fs')
 const dbService = require('../../services/db.service')
 const ObjectId = require('mongodb').ObjectId
 
-async function query(filterBy) {
+async function query(filterBy, skip, limit) {
   const { query, order } = _buildCriteria(filterBy)
+  skip = Number(skip)
+  limit = Number(limit)
 
-  const collection = await dbService.getCollection('tastyRecipe')
-
-  const tastyRecipes = await collection
+  const recipeCollection = await dbService.getCollection('recipe')
+  const recipes = await recipeCollection
     .find(query)
+    .skip(skip)
+    .limit(limit)
     .sort(order)
     .toArray()
 
-  return tastyRecipes
+  const collectionCount = await recipeCollection.count(query)
+  const collectionData = {
+    recipes,
+    collectionCount
+  }
+
+  return collectionData
 }
 
 function _buildCriteria(filterBy, sortBy) {
@@ -47,103 +56,87 @@ function _buildCriteria(filterBy, sortBy) {
       { ['name']: categoryCriteria },
     ]
   }
-
-
-
-  // if (userId) {
-  //   query['owner._id'] = userId
-  // }
-
-  // const deliveryTime = parseInt(delivery)
-  // if (!isNaN(deliveryTime)) {
-  //   query.delivery = { $lte: deliveryTime }
-  // }
-
-  // if (price) {
-
-  //   const p = {}
-  //   if (price.min >= 0) {
-  //     p.$gte = price.min
-  //   }
-
-  //   if (price.max) {
-  //     p.$lte = price.max
-  //   }
-
-  //   if (price.min || price.max) {
-  //     query.price = p
-  //   }
-  // }
-
-  // if (sortBy) {
-  //   order = { [sortBy]: 1 }
-  // }
-
   return { query, order }
 }
 
-async function add() {
-  const collection = await dbService.getCollection('tastyRecipe')
-  updatedTastyRecipe.map((recipe) => {
-    collection.insertOne(recipe)
-  })
-  // return ops[0]
+async function add(recipe, collectionToInsert) {
+  // const collection = await dbService.getCollection('recipe')
+  // recipes.map((recipe) => {
+  //   collection.insertOne(recipe)
+  // })
+  const collection = await dbService.getCollection(collectionToInsert)
+  const { ops } = await collection.insertOne(recipe)
+  return ops[0]
 }
 
+async function getById(recipeId, list) {
+  try {
+    console.log('getById:', recipeId);
+
+    const collection = await dbService.getCollection(list)
+    const recipe = await collection.findOne({ id: recipeId })
+    return recipe
+  } catch (err) {
+    // logger.error(`while finding user ${recipeId}`, err)
+    throw err
+  }
+}
+
+async function mapById(userRecipeList) {
+  const promises = userRecipeList.map(async (userRecipe) => {
+    return await getById(userRecipe.recipeId, 'recipe')
+  })
+
+  return Promise.all(promises)
+}
+
+
 async function getAllUserRecipes(user) {
+  // console.log('getAllUserRecipes:', user._id);
+  let userRecipeList = []
   let foodList = []
 
-  userRecipes.forEach((userRecipe) => {
-    if (userRecipe.userId === user._id)
+  let userRecipeQuery = {}
+  const userId = user._id
+  if (userId) {
+    // console.log('_buildCriteria userId', userId)
+    const userIdCriteria = { $regex: userId, $options: 'i' }
+    userRecipeQuery.$or = [
+      { userId: userIdCriteria },
+    ]
+  }
+  // console.log('userRecipeQuery:', userRecipeQuery);
+  const userRecipeCollection = await dbService.getCollection('userRecipe')
+  userRecipeList = await userRecipeCollection.find(userRecipeQuery).toArray()
+  console.log('userRecipeList:', userRecipeList);
 
-      recipes.forEach((recipe) => {
-        if (recipe.id === userRecipe.recipeId) {
-          foodList.push(recipe)
-        }
-      }
-      )
-  })
+  let recipeQuery = {}
+  foodList = await mapById(userRecipeList)
+
+  console.log('got it:', foodList.length);
+  // console.log('recipeQuery:', recipeQuery);
+  // const collection = await dbService.getCollection('recipe')
+  // foodList = collection.findOne(recipeQuery).toArray()
+
+
+  // userRecipes.forEach((userRecipe) => {
+  //   if (userRecipe.userId === user._id)
+
+  //     recipes.forEach((recipe) => {
+  //       if (recipe.id === userRecipe.recipeId) {
+  //         foodList.push(recipe)
+  //       }
+  //     }
+  //     )
+  // })
   return foodList
 }
 
-async function getAllRecipes(filterBy, startPoint, endPoint) {
-  let foodList = []
-  let count
-
-  // add()
-  foodList = await query(filterBy)
-  count = foodList.length
-  // utilities.cleaningJson()
-  // utilities.sliceJson()
-
-  // if (filterBy.category) filterBy.text = filterBy.category
-  // if (!filterBy || filterBy.text.toLowerCase() === 'all' || filterBy.text.toLowerCase() === '') {
-  //   count = recipes.length + tastyRecipes.length
-  //   if (startPoint > 0) {
-  //     foodList = tastyRecipes
-  //   } else {
-  //     foodList = recipes.concat(tastyRecipes)
-  //   }
-  // } else {
-  //   recipes.forEach((recipe) => {
-  //     if (recipe.name.toLowerCase().includes(filterBy.text.toLowerCase())) {
-  //       foodList.push(recipe)
-  //     }
-  //   })
-  //   tastyRecipes.forEach((recipe) => {
-  //     if (recipe.name.toLowerCase().includes(filterBy.text.toLowerCase())) {
-  //       foodList.push(recipe)
-  //     }
-  //   })
-  //   count = foodList.length
-  // }
-
-  // fetchFromApi()
-  console.log('count:', count);
-
-  foodList = foodList.slice(startPoint, endPoint)
-  const recipesData = { foodList, count }
-  console.log('recipesData.count:', recipesData.count);
+async function getAllRecipes(filterBy, skip, limit) {
+  const recipesQuery = await query(filterBy, skip, limit)
+  const count = recipesQuery.collectionCount
+  const recipeList = recipesQuery.recipes
+  const recipesData = { recipeList, count }
   return recipesData
 }
 
@@ -289,14 +282,11 @@ async function addRecipe(user, recipe) {
       createDate,
     }
 
-    recipes.push(recipeToAdd)
-    userRecipes.push({
+    await add(recipeToAdd, 'recipe')
+    await add({
       recipeId: recipeToAdd.id,
       userId: user._id
-    })
-
-    _writeToJson('recipes', recipes)
-    _writeToJson('userRecipes', userRecipes)
+    }, 'userRecipe')
 
     const allUserRecipes = await getAllUserRecipes(user)
     return ({
@@ -383,6 +373,7 @@ module.exports = {
   getAllRecipes,
   getAllUserRecipes,
   fetchFromApi,
+  getById,
   add,
   _writeToJson,
 }

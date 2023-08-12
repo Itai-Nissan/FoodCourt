@@ -65,6 +65,7 @@ async function getUserById(id) {
 }
 
 async function getByUsername(userName) {
+    
     let user = {}
     const usersList = users
     try {

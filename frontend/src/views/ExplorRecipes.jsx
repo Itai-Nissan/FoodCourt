@@ -30,24 +30,22 @@ export const ExplorRecipes = () => {
         }
         dispatch(loadFoodList(0, pageSize))
             .then((res) => {
+                console.log(res);
                 let count = Math.ceil(res.count / pageSize)
                 if (count <= 0) count = 1
                 setPagesCount(count)
                 setResultsNumber(res.count)
-                setRecipes(res.foodList)
+                setRecipes(res.recipeList)
             })
     }
 
     function handlePageChange(event, page) {
         setCurrentPage(page)
-        setRecipes([])
-        const from = (page - 1) * pageSize
-        const to = (page - 1) * pageSize + pageSize
-
+        const skip = (page - 1) * pageSize
         setAmountCount(amountCount + pageSize)
-        dispatch(loadFoodList(from, to))
+        dispatch(loadFoodList(skip, pageSize))
             .then((res) => {
-                setRecipes(res.foodList)
+                setRecipes(res.recipeList)
             })
     }
 
@@ -63,14 +61,14 @@ export const ExplorRecipes = () => {
                 if (filterBy.text === '' || filterBy.text === 'all') {
                     setPagesCount(Math.ceil(res.count / pageSize))
                 }
-                if (res.foodList.length < pageSize) {
+                if (res.recipeList.length < pageSize) {
                     setPagesCount(1)
                 }
                 else {
                     setPagesCount(Math.ceil(res.count / pageSize))
                 }
                 setResultsNumber(res.count)
-                setRecipes(res.foodList)
+                setRecipes(res.recipeList)
                 setLoading(false)
             })
     }

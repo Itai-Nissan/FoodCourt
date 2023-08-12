@@ -54,10 +54,11 @@ async function getUserRecipeById(req, res) {
 
 async function getUserRecipe(req, res) {
   const filterBy = req.query.filterBy
-  const startPoint = req.query.startPoint
-  const amountToRturn = req.query.amountToRturn
+  const skip = req.query.startPoint
+  const limit = req.query.amountToRturn
   try {
-    const recipeToReturn = await recipeService.getAllRecipes(filterBy, startPoint, amountToRturn)
+    const recipeToReturn = await recipeService.getAllRecipes(filterBy, skip, limit)
+    // console.log('recipeToReturn:', recipeToReturn);
 
     // let recipeToReturn = { ...newRecipe }
     // // req.session.userName = userToSet

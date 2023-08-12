@@ -6,7 +6,9 @@ async function login(req, res) {
   const { userName, userPassword } = req.body
   try {
     const user = await authService.login(userName, userPassword)
+    console.log('auth controller:', user.fullName);
     const userRecipes = await recipeService.getAllUserRecipes(user)
+    console.log('auth controller-userRecipes.length:', userRecipes.length);
     let userToSet = { ...user }
     delete userToSet.userPassword
     req.session.userName = userToSet
