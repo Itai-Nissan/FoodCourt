@@ -27,7 +27,7 @@ export const UserProfile = (props) => {
     if (userRecipes) userRecipe = userRecipes.map((recipe, index) => {
         let imgName = recipe.thumbnail_url
         const foodCredits = recipe.credits[0].name
-        return <Link to={`/foodDetails/${recipe.id}`} key={index}>
+        return <Link to={`/foodDetails/${recipe._id}`} key={index}>
             <div className='food-preview' key={index}>
                 <section className="card-img">
                     <img alt="timer" src={recipe.thumbnail_url} />

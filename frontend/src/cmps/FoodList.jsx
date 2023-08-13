@@ -25,7 +25,7 @@ export default function FoodList({ foodList }) {
         <div className='food-list'>
             {foodList.map((food, index) => (
                 <div key={index}>
-                    <Link to={`/foodDetails/${food.id}`} >
+                    <Link to={`/foodDetails/${food._id}`} >
                         <FoodPreview food={food} />
                     </Link>
                 </div>

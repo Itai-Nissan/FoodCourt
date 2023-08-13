@@ -58,7 +58,7 @@ export const AddRecipe = () => {
                 thumbnail_url: imgFile,
                 original_video_url: videoFile,
             }
-            setLoading(true)
+            // setLoading(true)
             dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
                 .then((res) => {
                     if (!res) {

@@ -43,8 +43,6 @@ async function getUserRecipeById(req, res) {
   const { id } = req.query
   try {
     const recipeToReturn = await recipeService.getRecipeById(id)
-    // let recipeToReturn = { ...newRecipe }
-    // // req.session.userName = userToSet
     res.json(recipeToReturn)
   } catch (err) {
     // logger.error('Failed to Login ' + err)
@@ -58,10 +56,6 @@ async function getUserRecipe(req, res) {
   const limit = req.query.amountToRturn
   try {
     const recipeToReturn = await recipeService.getAllRecipes(filterBy, skip, limit)
-    // console.log('recipeToReturn:', recipeToReturn);
-
-    // let recipeToReturn = { ...newRecipe }
-    // // req.session.userName = userToSet
     res.json(recipeToReturn)
   } catch (err) {
     // logger.error('Failed to Login ' + err)

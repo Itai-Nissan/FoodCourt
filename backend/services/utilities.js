@@ -22,6 +22,7 @@ function randomId() {
 }
 
 function cleaningJson() {
+    console.log('cleaning');
     let updatedTastyRecipe = []
     tastyRecipes.map((recipe) => {
         let recipeToInsert = {}
@@ -38,6 +39,7 @@ function cleaningJson() {
                 key == 'created_at' ||
                 key == 'name' ||
                 key == 'instructions' ||
+                key == 'recipes' ||
                 key == 'original_video_url'
             ) {
                 Object.defineProperty(recipeToInsert, `${key}`, {

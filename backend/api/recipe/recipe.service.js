@@ -63,9 +63,21 @@ async function add(recipe, collectionToInsert) {
   // recipes.map((recipe) => {
   //   collection.insertOne(recipe)
   // })
+  console.log('adding recipe:', recipe);
+  console.log('adding recipe:', collectionToInsert);
   const collection = await dbService.getCollection(collectionToInsert)
-  const { ops } = await collection.insertOne(recipe)
-  return ops[0]
+  const recipeToReturn  = await collection.insertOne(recipe)
+  console.log(recipeToReturn);
+  return recipeToReturn
+}
+
+async function update(recipe) {
+  var id = ObjectId(recipe._id)
+  delete recipe._id
+  const collection = await dbService.getCollection('recipe')
+  await collection.updateOne({ _id: id }, { $set: { ...recipe } })
+  recipe._id = id
+  return recipe
 }
 
 async function getById(recipeId, list) {
@@ -83,9 +95,8 @@ async function getAllUserRecipes(user) {
   let recipeQuery = {}
   const userId = user._id
   recipeQuery.$or = [
-    { ['userId']: userId }
+    { ['author']: userId }
   ]
-
   const collection = await dbService.getCollection('recipe')
   const foodList = await collection.find(recipeQuery).toArray()
   return foodList
@@ -163,55 +174,14 @@ async function fetchFromApi() {
 }
 
 async function getRecipeById(id) {
-  let recipeToReturn = null
-  let idToInt = 0
-
-  if (typeof id === String) idToInt = parseInt(id, base)
-
-  recipes.forEach((recipe) => {
-    if (recipe.id == id)
-      recipeToReturn = recipe
-    return
-  })
-  tastyRecipes.forEach((recipe) => {
-    if (recipe.id == id) {
-      recipeToReturn = recipe
-    }
-    return
-  })
-
-  // console.log('getRecipeById:', recipeToReturn);
-  // if (!recipeToReturn) {
-  //   const options = {
-  //     method: 'GET',
-  //     url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
-  //     params: { id: id },
-  //     headers: {
-  //       'X-RapidAPI-Key': "",
-  //       'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-  //     }
-  //   }
-
-  //   await axios.request(options).then(function (response) {
-  //     recipeToReturn = response.data
-  //     // console.log(recipeToReturn);
-  //     // tastyRecipeDetails.push(recipeToReturn)
-  //     // _writeToJson('tastyRecipeDetails', tastyRecipeDetails)
-
-  //   }).catch(function (error) {
-  //     console.error(error);
-  //   })
-  // }
-
-  return recipeToReturn
+  console.log(id);
+  const collection = await dbService.getCollection('recipe')
+  const recipe = await collection.findOne({ ['_id']: new ObjectId(id) } )
+  return recipe
 }
 
 async function addRecipe(user, recipe) {
   let dateObj = new Date()
-  let month = dateObj.getUTCMonth() + 1
-  let day = dateObj.getUTCDate()
-  let year = dateObj.getUTCFullYear()
-  let createDate = year + "/" + month + "/" + day
 
   try {
     let imgUrl
@@ -226,7 +196,7 @@ async function addRecipe(user, recipe) {
 
     const recipeToAdd = {
       id: utilities.randomId(),
-      userId: user._id,
+      author: user._id,
       name: recipe.name,
       country: recipe.country,
       sections: recipe.sections,
@@ -238,14 +208,10 @@ async function addRecipe(user, recipe) {
         }
       ],
       original_video_url: vidUrl,
-      createDate,
+      create_at : dateObj,
     }
 
     await add(recipeToAdd, 'recipe')
-    await add({
-      recipeId: recipeToAdd.id,
-      userId: user._id
-    }, 'userRecipe')
 
     const allUserRecipes = await getAllUserRecipes(user)
     return ({
@@ -274,7 +240,7 @@ async function editRecipe(user, recipe) {
 
     const editedRecipe = {
       id: recipe.id,
-      userId: user._id,
+      author: user._id,
       name: recipe.name,
       country: recipe.country,
       sections: recipe.sections,
@@ -288,15 +254,7 @@ async function editRecipe(user, recipe) {
       original_video_url: vidUrl,
     }
 
-    recipes.map((recipe, index) => {
-      if (recipe.id === editedRecipe.id) {
-        recipes[index] = editedRecipe
-        return
-      }
-    })
-
-    _writeToJson('recipes', recipes)
-    _writeToJson('userRecipes', userRecipes)
+    await update(editedRecipe, 'recipe')
 
     const allUserRecipes = await getAllUserRecipes(user)
     return ({
