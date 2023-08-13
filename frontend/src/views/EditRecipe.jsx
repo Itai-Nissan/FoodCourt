@@ -39,6 +39,7 @@ export const EditRecipe = () => {
 
                 setRecipeInstructions(foodToSet ? foodToSet.instructions : [])
 
+                setImageFile(foodToSet ? foodToSet.thumbnail_url : {})
                 setOutputImg(foodToSet ? foodToSet.thumbnail_url : {})
 
                 setVideoOutput(foodToSet ? foodToSet.original_video_url : {})
@@ -73,7 +74,8 @@ export const EditRecipe = () => {
             return
         }
         else {
-            const recipeToAdd = {
+            const recipeToUpdate = {
+                _id : foodById._id,
                 id: foodById.id,
                 name: recipeName,
                 country: recipeCountry,
@@ -87,7 +89,7 @@ export const EditRecipe = () => {
                 original_video_url: videoFile,
             }
             setLoading(true)
-            dispatch(setUpdateUserRecipe(loggedInUser, recipeToAdd))
+            dispatch(setUpdateUserRecipe(loggedInUser, recipeToUpdate))
                 .then((res) => {
                     if (!res) {
                         console.log('ein rez')
@@ -95,14 +97,13 @@ export const EditRecipe = () => {
                     if (res) {
                         console.log(res)
                         dispatch(setUpdatedUser(res))
-                            .then(() => {
-                                navigate(`/UserProfile/${loggedInUser._id}`)
-                            })
+                        .then(() => {
+                            navigate(`/UserProfile/${loggedInUser._id}`)
+                        })
                     }
                 })
-        }
+            }
     }
-
     return (
         <div className='add-recipe container'>
             <div className="add-recipe-wrapper">

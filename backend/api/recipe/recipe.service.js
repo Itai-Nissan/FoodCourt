@@ -63,32 +63,18 @@ async function add(recipe, collectionToInsert) {
   // recipes.map((recipe) => {
   //   collection.insertOne(recipe)
   // })
-  console.log('adding recipe:', recipe);
-  console.log('adding recipe:', collectionToInsert);
   const collection = await dbService.getCollection(collectionToInsert)
-  const recipeToReturn  = await collection.insertOne(recipe)
-  console.log(recipeToReturn);
+  const recipeToReturn = await collection.insertOne(recipe)
   return recipeToReturn
 }
 
 async function update(recipe) {
-  var id = ObjectId(recipe._id)
+  var id = new ObjectId(recipe._id)
   delete recipe._id
   const collection = await dbService.getCollection('recipe')
   await collection.updateOne({ _id: id }, { $set: { ...recipe } })
   recipe._id = id
   return recipe
-}
-
-async function getById(recipeId, list) {
-  try {
-    const collection = await dbService.getCollection(list)
-    const recipe = await collection.findOne({ id: recipeId })
-    return recipe
-  } catch (err) {
-    // logger.error(`while finding user ${recipeId}`, err)
-    throw err
-  }
 }
 
 async function getAllUserRecipes(user) {
@@ -174,9 +160,8 @@ async function fetchFromApi() {
 }
 
 async function getRecipeById(id) {
-  console.log(id);
   const collection = await dbService.getCollection('recipe')
-  const recipe = await collection.findOne({ ['_id']: new ObjectId(id) } )
+  const recipe = await collection.findOne({ ['_id']: new ObjectId(id) })
   return recipe
 }
 
@@ -208,7 +193,7 @@ async function addRecipe(user, recipe) {
         }
       ],
       original_video_url: vidUrl,
-      create_at : dateObj,
+      create_at: dateObj,
     }
 
     await add(recipeToAdd, 'recipe')
@@ -225,20 +210,22 @@ async function addRecipe(user, recipe) {
 }
 
 async function editRecipe(user, recipe) {
+  // console.log('update:', recipe);
 
   try {
     let imgUrl = recipe.thumbnail_url
     if (typeof recipe.thumbnail_url === 'object') {
-      imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
+      // imgUrl = await cloudinary.uploadImage(recipe.thumbnail_url)
     }
 
     let vidUrl
     if (recipe.original_video_url) {
-      vidUrl = await cloudinary.uploadVideo(recipe.original_video_url)
+      // vidUrl = await cloudinary.uploadVideo(recipe.original_video_url)
     }
 
 
     const editedRecipe = {
+      _id: recipe._id,
       id: recipe.id,
       author: user._id,
       name: recipe.name,
@@ -290,7 +277,6 @@ module.exports = {
   getAllRecipes,
   getAllUserRecipes,
   fetchFromApi,
-  getById,
   add,
   _writeToJson,
 }

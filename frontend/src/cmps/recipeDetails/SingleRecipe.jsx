@@ -34,7 +34,7 @@ export const SingleRecipe = (props) => {
     })
     
     function loggedUserRecipe() {
-        if (props.loggedInUser && props.loggedInUser._id === props.foodById.userId) {
+        if (props.loggedInUser && props.loggedInUser._id === props.foodById.author) {
             return true
         }
         else return false
@@ -87,7 +87,7 @@ export const SingleRecipe = (props) => {
                                 <Button onClick={props.removeRecipeFromFav}> Remove from list</Button>
                                 :
                                 <Button onClick={props.addFoodToFav}> Add to list</Button>
-                            : <Link to={`/Edit-recipe/${props.foodById.id}`} >Edit recipe</Link>
+                            : <Link to={`/Edit-recipe/${props.foodById._id}`} >Edit recipe</Link>
                     }
                     <div className="food-video">
                         {props.foodById.original_video_url ? <video controls autoPlay muted
