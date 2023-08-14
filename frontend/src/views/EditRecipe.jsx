@@ -75,7 +75,7 @@ export const EditRecipe = () => {
         }
         else {
             const recipeToUpdate = {
-                _id : foodById._id,
+                _id: foodById._id,
                 id: foodById.id,
                 name: recipeName,
                 country: recipeCountry,
@@ -97,12 +97,12 @@ export const EditRecipe = () => {
                     if (res) {
                         console.log(res)
                         dispatch(setUpdatedUser(res))
-                        .then(() => {
-                            navigate(`/UserProfile/${loggedInUser._id}`)
-                        })
+                            .then(() => {
+                                navigate(`/UserProfile/${loggedInUser._id}`)
+                            })
                     }
                 })
-            }
+        }
     }
     return (
         <div className='add-recipe container'>
@@ -129,25 +129,27 @@ export const EditRecipe = () => {
                             setRecipeInstructions={setRecipeInstructions}
                             recipeInstructions={recipeInstructions}
                         ></AddStep>
-                        <div className="upload-button">
-                            <AddImage
-                                setOutputImg={setOutputImg}
-                                setImageFile={setImageFile}
-                            ></AddImage>
-                            <AddVideo
-                                setVideoFile={setVideoFile}
-                                setVideoOutput={setVideoOutput}
-                            ></AddVideo>
-                        </div>
-                        <div className='loading-button'>
-                            <LoadingButton
-                                onClick={onEditRecipe}
-                                loading={loading}
-                                variant="standard"
-                                placeholder='Create'>
-                                <h3 >{loading ? '' : 'Save recipe'}</h3>
-                            </LoadingButton>
-                        </div>
+                        <section className="buttons">
+                            <div className="upload-button">
+                                <AddImage
+                                    setOutputImg={setOutputImg}
+                                    setImageFile={setImageFile}
+                                ></AddImage>
+                                <AddVideo
+                                    setVideoFile={setVideoFile}
+                                    setVideoOutput={setVideoOutput}
+                                ></AddVideo>
+                            </div>
+                            <div className='loading-button'>
+                                <LoadingButton
+                                    onClick={onEditRecipe}
+                                    loading={loading}
+                                    variant="standard"
+                                    placeholder='Create'>
+                                    <h3 >{loading ? '' : 'update recipe'}</h3>
+                                </LoadingButton>
+                            </div>
+                        </section>
                     </section>
                 </form>
                 <section className='add-recipe-output'>

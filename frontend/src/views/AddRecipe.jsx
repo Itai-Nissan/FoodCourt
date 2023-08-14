@@ -100,29 +100,31 @@ export const AddRecipe = () => {
                             setRecipeInstructions={setRecipeInstructions}
                             recipeInstructions={recipeInstructions}
                         ></AddStep>
-                        <div className="upload-button">
-                            <AddImage
-                                setOutputImg={setOutputImg}
-                                setImageFile={setImageFile}
-                            ></AddImage>
-                            <AddVideo
-                                setVideoFile={setVideoFile}
-                                setVideoOutput={setVideoOutput}
-                            ></AddVideo>
-                        </div>
-                        <div className='loading-button'>
-                            <LoadingButton
-                                onClick={onAddRecipe}
-                                loading={loading}
-                                variant="standard"
-                                placeholder='Create'>
-                                <h3 >{loading ? '' : 'Create recipe'}</h3>
-                            </LoadingButton>
-                        </div>
+                        <section className="buttons">
+                            <div className="upload-button">
+                                <AddImage
+                                    setOutputImg={setOutputImg}
+                                    setImageFile={setImageFile}
+                                ></AddImage>
+                                <AddVideo
+                                    setVideoFile={setVideoFile}
+                                    setVideoOutput={setVideoOutput}
+                                ></AddVideo>
+                            </div>
+                            <div className='loading-button'>
+                                <LoadingButton
+                                    onClick={onAddRecipe}
+                                    loading={loading}
+                                    variant="standard"
+                                    placeholder='Create'>
+                                    <h3 >{loading ? '' : 'Publish recipe'}</h3>
+                                </LoadingButton>
+                            </div>
+                        </section>
                     </section>
                 </form>
                 <section className='add-recipe-output'>
-                    <h1>Recipe output</h1>
+                    <h1>Preview</h1>
                     <hr />
                     <AddRecipeOutput
                         recipeName={recipeName}
