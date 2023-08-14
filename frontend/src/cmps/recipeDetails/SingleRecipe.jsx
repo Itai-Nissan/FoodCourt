@@ -32,7 +32,7 @@ export const SingleRecipe = (props) => {
             return ans
         })
     })
-    
+
     function loggedUserRecipe() {
         if (props.loggedInUser && props.loggedInUser._id === props.foodById.author) {
             return true
@@ -46,11 +46,12 @@ export const SingleRecipe = (props) => {
 
     return (
         <div className='food-details'>
-            <img className='details-bg' src={props.foodById.thumbnail_url} alt="" />
+            {/* <img className='details-bg' src={props.foodById.thumbnail_url} alt="" /> */}
             <section className='details-left'>
                 <h1>{props.foodById.name}</h1>
                 <br />
                 <h2>Recipe origin - {props.foodById.country}</h2>
+                <p>{props.foodById.description}</p>
                 <div className="food-ingredients">
                     <h2>Ingredients:</h2>
                     <div className='ingredients-table'>
@@ -91,7 +92,8 @@ export const SingleRecipe = (props) => {
                     }
                     <div className="food-video">
                         {props.foodById.original_video_url ? <video controls autoPlay muted
-                            src={props.foodById.original_video_url}></video> : null}
+                            src={props.foodById.original_video_url}></video> : <img className='' src={props.foodById.thumbnail_url} alt="" />
+                        }
                     </div>
                 </div>
             </section >
