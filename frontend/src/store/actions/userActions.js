@@ -1,6 +1,7 @@
 import { userService } from '../../services/user.service'
 
 export function setLoggedInUser(user, actionType) {
+    console.log('hi');
 
     return async (dispatch, getState) => {
         try {

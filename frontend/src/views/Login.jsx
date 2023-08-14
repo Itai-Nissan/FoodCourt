@@ -6,8 +6,6 @@ import { Button } from '@mui/material'
 import { setLoggedInUser } from '../store/actions/userActions'
 import { useDispatch, useSelector } from 'react-redux'
 
-
-
 export function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -23,25 +21,28 @@ export function Login() {
 
 
     function setLogin(key) {
-        if (key !== 'Enter') return
-        const userToSignup = {
-            userName,
-            userPassword,
+        if (key === 'Enter' || key.type === 'click') {
+
+            const userToSignup = {
+                userName,
+                userPassword,
+            }
+            console.log('hi');
+
+            return dispatch(setLoggedInUser(userToSignup))
+                .then((res) => {
+                    if (!res) {
+                        console.log('ein rez')
+                    }
+                    if (res) {
+                        routeToProfile(res)
+                    }
+                    setUserName('')
+                    setuserPassword('')
+                })
         }
-
-        return dispatch(setLoggedInUser(userToSignup))
-            .then((res) => {
-                if (!res) {
-                    console.log('ein rez')
-                }
-                if (res) {
-                    routeToProfile(res)
-                }
-                setUserName('')
-                setuserPassword('')
-            })
-
     }
+
     return (
         <div>
             <section className='login container'>

@@ -1,7 +1,10 @@
 const users = require("../../data/users.json")
 const recipeService = require("../recipe/recipe.service")
 const utilities = require("../../services/utilities")
-const fs = require('fs');
+const fs = require('fs')
+const dbService = require('../../services/db.service')
+const ObjectId = require('mongodb').ObjectId
+
 
 module.exports = {
     addFavToUser,
@@ -19,34 +22,26 @@ function getUsers() {
     return Promise.resolve(users)
 }
 
-async function addFavToUser(user, food) {
-    let userToSet
-    food.favId = utilities.randomId()
-    users.forEach((userToSearch) => {
-        if (user._id === userToSearch._id) {
-            userToSet = userToSearch
-            userToSet.userFavorite.push(food)
-            _writeToJson()
-        }
-    })
+async function addFavToUser(user, recipe) {
+    recipe.favId = utilities.randomId()
+    user.userFavorite.push(recipe)
+    const collection = await dbService.getCollection('user')
+    await collection.updateOne({ _id: user._id }, { $set: { ...user } })
+    const userToSet = await getByUsername(user.fullName)
     const userRecipes = await recipeService.getAllUserRecipes(user)
     const authUser = { userToSet, userRecipes }
     return Promise.resolve(authUser)
 }
 
 async function removeFavFromUser(user, recipeId) {
-    let userToSet
-    users.forEach((userToSearch) => {
-        if (user._id === userToSearch._id) {
-            userToSet = userToSearch
+    user.userFavorite.map((favToSlice, index) => {
+        if (favToSlice.id === recipeId) {
+            user.userFavorite.splice(index, 1)
         }
     })
-    userToSet.userFavorite.map((recipeToSearch, index) => {
-        if (recipeToSearch.id === recipeId) {
-            userToSet.userFavorite.splice(index, 1)
-            _writeToJson()
-        }
-    })
+    const collection = await dbService.getCollection('user')
+    await collection.updateOne({ _id: user._id }, { $set: { ...user } })
+    const userToSet = await getByUsername(user.fullName)
     const userRecipes = await recipeService.getAllUserRecipes(user)
     const authUser = { userToSet, userRecipes }
     return Promise.resolve(authUser)
@@ -65,16 +60,10 @@ async function getUserById(id) {
 }
 
 async function getByUsername(userName) {
-    
-    let user = {}
-    const usersList = users
     try {
-        await usersList.forEach((userToSet) => {
-            if (userName === userToSet.userName) {
-                user = userToSet
-            }
-        })
-        return user
+        const collection = await dbService.getCollection('user')
+        const userToReturn = await collection.findOne({ fullName: userName })
+        return userToReturn
     } catch (err) {
         logger.error(`while finding user ${userName}`, err)
         throw err
@@ -82,15 +71,14 @@ async function getByUsername(userName) {
 }
 
 async function addUser(user) {
-    let dateObj = new Date();
-    let month = dateObj.getUTCMonth() + 1; //months from 1-12
-    let day = dateObj.getUTCDate();
-    let year = dateObj.getUTCFullYear();
+    let dateObj = new Date()
+    let month = dateObj.getUTCMonth() + 1
+    let day = dateObj.getUTCDate()
+    let year = dateObj.getUTCFullYear()
 
     let memberSince = year + "/" + month + "/" + day
     try {
         const userToAdd = {
-            _id: utilities.randomId(),
             fullName: user.fullName,
             userName: user.userName,
             userPassword: user.userPassword,
@@ -99,9 +87,11 @@ async function addUser(user) {
             userRecipe: [],
             memberSince,
         }
-        users.push(userToAdd)
-        _writeToJson()
-        return userToAdd
+        const collection = await dbService.getCollection('user')
+        await collection.insertOne(userToAdd)
+        const userToReturn = await getByUsername(userToAdd.fullName)
+        delete userToReturn.userPassword
+        return userToReturn
     } catch (err) {
         logger.error('cannot insert user', err)
         throw err
