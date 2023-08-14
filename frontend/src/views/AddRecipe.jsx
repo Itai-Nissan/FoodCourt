@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAddUserRecipe } from '../store/actions/foodActions'
 import { setUpdatedUser } from '../store/actions/userActions'
@@ -9,7 +9,13 @@ import { AddImage } from '../cmps/addRecipe/AddImage'
 import { AddVideo } from '../cmps/addRecipe/AddVideo'
 import { AddRecipeOutput } from '../cmps/addRecipe/AddRecipeOutput'
 import { Input } from '@mui/material'
-import { LoadingButton } from '@mui/lab';
+import { LoadingButton } from '@mui/lab'
+import { Button } from '@mui/material'
+import { ToggleButton } from '@mui/material'
+import { ToggleButtonGroup } from '@mui/material'
+
+
+
 
 
 export const AddRecipe = () => {
@@ -39,6 +45,18 @@ export const AddRecipe = () => {
 
     //add recipe
     const [loading, setLoading] = useState(false)
+
+    const [togglePreview, setTogglePreview] = useState(true)
+
+    const [alignment, setAlignment] = React.useState('web');
+
+    const handleChange = (event, newAlignment) => {
+        setAlignment(newAlignment)
+        let bool = Boolean
+        if (newAlignment === 'true') bool = true
+        if (newAlignment === 'false') bool = false
+        setTogglePreview(bool)
+    };
 
     function onAddRecipe() {
         if (recipeName === '') {
@@ -77,67 +95,83 @@ export const AddRecipe = () => {
 
     return (
         <div className='add-recipe container'>
-            <div className="add-recipe-wrapper">
-                <form>
-                    <h1>Add new recipe</h1>
-                    <hr />
-                    <Input type="text" placeholder='Name'
-                        value={recipeName}
-                        onChange={(event) => setRecipeName(event.target.value)} />
-                    <Input type="text" placeholder='Country'
-                        value={recipeCountry}
-                        onChange={(event) => setRecipeCountry(event.target.value)} />
-                    <section className="add-remove-section">
-                        <AddIngredient
-                            ingredientCount={ingredientCount}
-                            setIngredientCount={setIngredientCount}
-                            recipeSections={recipeSections}
-                            setRecipeSections={setRecipeSections}
-                        ></AddIngredient>
-                        <AddStep
-                            setStepCount={setStepCount}
-                            stepCount={stepCount}
-                            setRecipeInstructions={setRecipeInstructions}
-                            recipeInstructions={recipeInstructions}
-                        ></AddStep>
-                        <section className="buttons">
-                            <div className="upload-button">
-                                <AddImage
-                                    setOutputImg={setOutputImg}
-                                    setImageFile={setImageFile}
-                                ></AddImage>
-                                <AddVideo
-                                    setVideoFile={setVideoFile}
-                                    setVideoOutput={setVideoOutput}
-                                ></AddVideo>
-                            </div>
-                            <div className='loading-button'>
-                                <LoadingButton
-                                    onClick={onAddRecipe}
+            <h1>Add new recipe</h1>
+            <hr />
+            <section className="content">
+                <section className="add-recipe-wrapper">
+                    {
+                        togglePreview ?
+                            <form>
+                                <Input type="text" placeholder='Name'
+                                    value={recipeName}
+                                    onChange={(event) => setRecipeName(event.target.value)} />
+                                <Input type="text" placeholder='Country'
+                                    value={recipeCountry}
+                                    onChange={(event) => setRecipeCountry(event.target.value)} />
+                                <section className="add-remove-section">
+                                    <AddIngredient
+                                        ingredientCount={ingredientCount}
+                                        setIngredientCount={setIngredientCount}
+                                        recipeSections={recipeSections}
+                                        setRecipeSections={setRecipeSections}
+                                    ></AddIngredient>
+                                    <AddStep
+                                        setStepCount={setStepCount}
+                                        stepCount={stepCount}
+                                        setRecipeInstructions={setRecipeInstructions}
+                                        recipeInstructions={recipeInstructions}
+                                    ></AddStep>
+                                </section>
+                            </form>
+                            :
+                            <section className='add-recipe-output'>
+                                <AddRecipeOutput
+                                    recipeName={recipeName}
+                                    recipeCountry={recipeCountry}
+                                    recipeSections={recipeSections}
+                                    recipeInstructions={recipeInstructions}
+                                    onAddRecipe={onAddRecipe}
+                                    imageOutput={outputImg}
+                                    videoOutput={videoOutput}
                                     loading={loading}
-                                    variant="standard"
-                                    placeholder='Create'>
-                                    <h3 >{loading ? '' : 'Publish recipe'}</h3>
-                                </LoadingButton>
-                            </div>
-                        </section>
-                    </section>
-                </form>
-                <section className='add-recipe-output'>
-                    {/* <h1>Preview</h1> */}
-                    {/* <hr /> */}
-                    <AddRecipeOutput
-                        recipeName={recipeName}
-                        recipeCountry={recipeCountry}
-                        recipeSections={recipeSections}
-                        recipeInstructions={recipeInstructions}
-                        onAddRecipe={onAddRecipe}
-                        imageOutput={outputImg}
-                        videoOutput={videoOutput}
-                        loading={loading}
-                    ></AddRecipeOutput>
+                                ></AddRecipeOutput>
+                            </section>
+                    }
                 </section>
-            </div>
+                <section className="control">
+                    <ToggleButtonGroup
+                        color="primary"
+                        value={alignment}
+                        exclusive
+                        onChange={handleChange}
+                        aria-label="Platform"
+                    >
+                        <ToggleButton value="true">edit</ToggleButton>
+                        <ToggleButton value="false">preview</ToggleButton>
+                    </ToggleButtonGroup>
+                    <section className="buttons">
+                        <div className="upload-button">
+                            <AddImage
+                                setOutputImg={setOutputImg}
+                                setImageFile={setImageFile}
+                            ></AddImage>
+                            <AddVideo
+                                setVideoFile={setVideoFile}
+                                setVideoOutput={setVideoOutput}
+                            ></AddVideo>
+                        </div>
+                        <div className='loading-button'>
+                            <LoadingButton
+                                onClick={onAddRecipe}
+                                loading={loading}
+                                variant="standard"
+                                placeholder='Create'>
+                                <h3 >{loading ? '' : 'Publish recipe'}</h3>
+                            </LoadingButton>
+                        </div>
+                    </section>
+                </section>
+            </section>
         </div >
     )
 }

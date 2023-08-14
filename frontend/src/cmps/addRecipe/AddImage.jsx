@@ -38,7 +38,7 @@ export const AddImage = (props) => {
         variant="contained"
         component="label"
       >
-        Upload recipe image
+        Upload image
         <input
           type="file"
           hidden

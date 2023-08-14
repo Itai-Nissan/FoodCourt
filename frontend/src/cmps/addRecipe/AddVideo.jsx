@@ -39,7 +39,7 @@ export const AddVideo = (props) => {
         variant="contained"
         component="label"
       >
-        Upload recipe video
+        Upload video
         <input
           type="file"
           hidden

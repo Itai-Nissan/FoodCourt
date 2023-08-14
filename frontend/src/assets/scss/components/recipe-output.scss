@@ -3,13 +3,120 @@
     min-height: 40vh;
 
     .food-details {
-        display: flex;
+        display: grid;
+        grid-template-columns: minmax(60%, 40%) 40% 60%;
         padding: 1em;
 
         .details-left {
-            .add-remove-step {
+            z-index: 180;
+            width: 100%;
+            
+            h1 {
+                margin-block-start: .6em;
+            }
+            
+            h2 {
+                margin-block-end: 1em;
             }
 
+            h3 {
+                margin-block-start: .5em;
+                margin-block-end: .5em;
+            }
+
+            h4 {
+                font-weight: 600;
+                color: $darker-text;
+
+            }
+
+            hr {
+                margin: 0 auto;
+                margin-top: .5em;
+                border: 0;
+                height: 1px;
+                background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
+            }
+
+            p {
+                font-family: Handlee;
+                margin-block-start: .5em;
+                margin-block-end: .5em;
+                font-weight: 600;
+            }
+
+            .food-ingredients {
+
+                .ingredients-table {
+                    display: grid;
+                    grid-template-columns: 1fr auto;
+
+                    margin-block-end: 1em;
+
+
+
+                }
+            }
+        }
+
+        .details-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            width: 100%;
+            padding: 0.5em;
+            z-index: 180;
+
+            .sticky-right {
+
+                position: sticky;
+                top: 100px;
+                text-align: end;
+
+                .food-video {
+                    margin-block-start: 1em;
+
+                    video {
+                        border-radius: 7px;
+                        max-width: 100%;
+                        height: fit-content;
+                    }
+
+                    img {
+                        border-radius: 7px;
+                        max-width: 100%;
+                        height: fit-content;
+                    }
+                }
+
+                a {
+                    transition: .2s;
+                    background-color: $dark-text;
+                    color: $light-wood;
+                    margin-block-start: 1em;
+                    padding: .5em;
+                    border-radius: 7px;
+                    width: 100%;
+                }
+
+                a:hover {
+                    background-color: $confirm;
+                    color: $dark-wood;
+                }
+
+                .MuiButtonBase-root {
+                    background-color: $dark-text;
+                    color: $light-wood;
+                    margin-block-end: 1em;
+                    width: 100%;
+                }
+
+                .MuiButtonBase-root:hover {
+                    background-color: $confirm;
+                    color: $dark-wood;
+                }
+
+            }
         }
     }
 
