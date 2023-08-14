@@ -12,16 +12,9 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import { Button } from '@mui/material'
 
 export const UserProfile = (props) => {
-    const dispatch = useDispatch()
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
     const userRecipes = useSelector((state) => state.userModule.userRecipes)
     const userName = loggedInUser ? loggedInUser.userName : ''
-    const userEmail = loggedInUser ? loggedInUser.userEmail : ''
-
-    async function removeRecipeFromFav(recipeId) {
-        if (!loggedInUser) return
-        return dispatch(removeFromFav(loggedInUser, recipeId))
-    }
 
     let userRecipe = ''
     if (userRecipes) userRecipe = userRecipes.map((recipe, index) => {
