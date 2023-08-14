@@ -46,7 +46,7 @@ export const MultiRecipe = (props) => {
 
     return (
         <div className='food-details'>
-            <img className='multi-details-bg' src={props.recipe.thumbnail_url} alt="" />
+            {/* <img className='multi-details-bg' src={props.recipe.thumbnail_url} alt="" /> */}
             <section className='details-left'>
                 <h1>{props.recipe.name}</h1>
                 <br />
@@ -91,7 +91,8 @@ export const MultiRecipe = (props) => {
                     }
                     <div className="food-video">
                         {props.recipe.original_video_url ? <video controls autoPlay muted
-                            src={props.recipe.original_video_url}></video> : null}
+                            src={props.recipe.original_video_url}></video> : <img className='multi-details-bg' src={props.recipe.thumbnail_url} alt="" />
+                        }
                     </div>
                 </div>
             </section>
