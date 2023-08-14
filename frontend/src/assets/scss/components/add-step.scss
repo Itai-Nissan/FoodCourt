@@ -1,23 +1,26 @@
 .add-remove-step-section {
+    h3 {
+        margin-block-start: .5em;
+    }
 
     .add-remove-step {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        // justify-content: space-between;
+        // align-items: center;
 
         * {
             font-family: Handlee;
         }
 
         .MuiInputBase-root {
-            width: 65%;
+            width: 100%;
         }
 
         .MuiButtonBase-root {
-            background-color: $light-text-opactiy;
+            // background-color: $light-text-opactiy;
             color: $dark-wood;
-            margin-inline-start: 1em;
-            width: 35%;
+            // margin-inline-start: 1em;
+            // width: 35%;
         }
 
         .MuiButtonBase-root:hover {
@@ -31,14 +34,14 @@
         justify-content: space-between;
 
         .MuiInputBase-root {
-            width: 65%;
+            width: 100%;
         }
 
         .MuiButtonBase-root {
-            background-color: $light-wood;
+            // background-color: $light-wood;
             color: $dark-wood;
-            margin-inline-start: 1em;
-            width: 35%;
+            // margin-inline-start: 1em;
+            // width: 35%;
             font-family: Handlee;
         }
 
@@ -58,7 +61,7 @@
         justify-content: flex-end;
 
         .MuiButtonBase-root {
-            margin-inline-start: 1em;
+            // margin-inline-start: 1em;
         }
 
     }

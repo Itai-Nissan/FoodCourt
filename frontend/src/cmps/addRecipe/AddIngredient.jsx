@@ -52,23 +52,25 @@ export const AddIngredient = (props) => {
 
     return (
         <div className='add-remove-ingredient-section'>
+            <h3>Ingredients</h3>
+            <hr />
             {props.recipeSections ? props.recipeSections.map((ingredient, index) => {
                 return <div className="add-remove-ingredient" key={index}>
+                    <Button onClick={event => removeIngredient(event, index)} key={index}>-</Button>
                     <Input type="text" placeholder={ingredient.raw_text}
                         value={ingredient.raw_text}
                         onChange={event => { setUpdatedIngredient(event.target.value); updateIngredient(event, index) }}
                     />
-                    <Button onClick={event => removeIngredient(event, index)} key={index}>Remove ingredient</Button>
                 </div>
             }) : []
             }
             <div className="add-ingredient">
-                <Input type="text" placeholder={recipeIngredient}
+                <Button onClick={addIngredient}>+</Button>
+                <Input type="text" placeholder={recipeIngredient ? recipeIngredient : 'Add ingredient'}
                     value={recipeIngredient}
                     onChange={(event) => setIngredient(event.target.value)}
                     onKeyDown={addIngredient}
                 />
-                <Button onClick={addIngredient}>Add ingredient</Button>
             </div>
         </div>
     )

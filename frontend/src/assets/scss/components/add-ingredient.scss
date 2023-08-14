@@ -1,4 +1,7 @@
 .add-remove-ingredient-section {
+    h3 {
+        margin-block-start: .5em;
+    }
 
     .add-remove-ingredient {
         display: flex;
@@ -10,14 +13,13 @@
         }
 
         .MuiInputBase-root {
-            width: 65%;
+            width: 100%;
         }
 
         .MuiButtonBase-root {
-            background-color: $light-text-opactiy;
+            // background-color: $light-text-opactiy;
             color: $dark-wood;
-            margin-inline-start: 1em;
-            width: 35%;
+            // margin-inline-start: 1em;
         }
 
         .MuiButtonBase-root:hover {
@@ -31,15 +33,15 @@
         justify-content: space-between;
 
         .MuiInputBase-root {
-            width: 65%;
+            width: 100%;
         }
 
         .MuiButtonBase-root {
-            background-color: $light-wood;
+            // background-color: $light-wood;
             color: $dark-wood;
-            margin-inline-start: 1em;
+            // margin-inline-start: 1em;
             font-family: Handlee;
-            width: 35%;
+            // width: 35%;
         }
 
         .MuiButtonBase-root:hover {
@@ -63,6 +65,8 @@
         }
 
         .MuiButtonBase-root {
+            width: 5px;
+
             margin-inline-start: 1em;
         }
 

@@ -11,7 +11,7 @@ export const AddRecipeOutput = (props) => {
                 <img className='recipe-details-bg' src={props.imageOutput} alt="" />
                 <div className="food-details">
                     <section className='details-left' >
-                        <h2>{props.recipeName ? utils.firstToCap(props.recipeName) : 'Recipe name'}</h2>
+                        {/* <h2>{props.recipeName ? utils.firstToCap(props.recipeName) : 'Recipe name'}</h2>
                         <h2>{props.recipeCountry ? utils.firstToCap(props.recipeCountry) : 'Recipe origin'}</h2>
                         <h3 >{props.recipeSections && props.recipeSections.length !== 0 ? 'Ingredients' : ''}</h3>
                         {props.recipeSections && props.recipeSections.length !== 0 ? <hr /> : null}
@@ -29,7 +29,7 @@ export const AddRecipeOutput = (props) => {
                                 <p>{utils.firstToCap(props.recipeInstructions[index].display_text)}</p>
                             </div>
                         }) : ''
-                        }
+                        } */}
                         <section className='details-right'>
                             <div className="sticky-right">
                                 <div className="food-video">

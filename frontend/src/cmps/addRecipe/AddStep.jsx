@@ -58,24 +58,26 @@ export const AddStep = (props) => {
 
     return (
         <div className='add-remove-step-section'>
+            <h3>Steps</h3>
+            <hr />
             {props.recipeInstructions ? props.recipeInstructions.map((step, index) => {
                 return <div className="add-remove-step" key={index}>
+                    <Button onClick={event => removeStep(event, index)} key={index}>-</Button>
                     <Input type="text" placeholder={step.display_text}
                         value={step.display_text}
                         onChange={event => { setUpdatedStep(event.target.value); updateStep(event, index) }}
                     />
 
                     {/* <h4>{props.recipeInstructions[0].display_text === null ? '' : props.recipeInstructions[index].display_text}</h4> */}
-                    <Button onClick={event => removeStep(event, index)} key={index}>Remove step</Button>
                 </div>
             }) : []
             }
             <div className="add-step">
-                <Input type="text" placeholder={recipeStep}
+                <Button onClick={addStep}>+</Button>
+                <Input type="text" placeholder={recipeStep ? recipeStep : 'Add step'}
                     value={recipeStep}
                     onChange={(event) => setStep(event.target.value)}
                     onKeyDown={addStep} />
-                <Button onClick={addStep}>Add step</Button>
             </div>
         </div>
     )
