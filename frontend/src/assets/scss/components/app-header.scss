@@ -2,13 +2,13 @@
     position: sticky;
     top: 0;
     width: 100%;
-    height: 90px;
-    background-color: rgb(242, 242, 242);
+    height: 65px;
+    // background-color: rgb(242, 242, 242);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 190;
-    background-image: url('../../images/background/il_fullxfull.2551070265_fcsh.jpg');
+    // background-image: url('../../images/background/il_fullxfull.2551070265_fcsh.jpg');
     background-size: cover;
 
     .header-container {
@@ -55,7 +55,7 @@
             align-items: center;
             font-family: PatrickHand;
             background-color: $light-wood;
-            height: 90px;
+            height: 65px;
             padding-inline-start: 1em;
             border-radius: 50px 0 0 50px;
 

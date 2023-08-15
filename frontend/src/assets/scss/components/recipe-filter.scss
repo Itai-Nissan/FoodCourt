@@ -1,17 +1,19 @@
 .food-filter {
     height: 60px;
     display: grid;
-    grid-template-columns: 40% 40% 1fr;
-
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
     position: sticky;
-    top: 110px;
+    top: 80px;
     z-index: 100;
     margin-block-start: 1em;
     margin-block-end: 1em;
 
     .filter-result {
+        position: absolute;
         display: flex;
-        justify-content: space-between;
+        justify-content: start;
         align-items: center;
         margin-inline-start: .5em;
         margin-inline-end: .5em;
@@ -22,31 +24,7 @@
 
         h4{
             font-family: Handlee;
-        }
-        .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
-            // border-bottom: 2px solid $light-wood;
-        }
-    
-        .MuiFormControl-root {
-            // width: 90%;
-            // margin-inline-start: 1em;
-            // margin-inline-end: 1em;
-        }
-    
-        .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-            // color: $light-wood;
-        }
-    
-        .css-1x51dt5-MuiInputBase-input-MuiInput-input {
-            // color: $light-text;
-        }
-    
-        .MuiInputLabel-root {
-            // color: $light-wood;
-        }
-    
-        .MuiInputBase-root {
-            // color: $light-text;
+            margin-inline-end: 1em;
         }
     
         .MuiButtonBase-root {
@@ -60,14 +38,14 @@
             background-color: $dark-text;
             color: $light-wood;
         }
-
-        
     }
 
     .filter-container {
         display: flex;
+        justify-self: center;
         background-color: $dark-text;
         border-radius: 20px;
+        width: 40%;
         box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
         -webkit-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
         -moz-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
