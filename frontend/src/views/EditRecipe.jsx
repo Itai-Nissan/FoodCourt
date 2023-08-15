@@ -70,7 +70,7 @@ export const EditRecipe = () => {
 
     const [togglePreview, setTogglePreview] = useState(true)
 
-    const [alignment, setAlignment] = React.useState('web');
+    const [alignment, setAlignment] = React.useState('true');
 
     const handleChange = (event, newAlignment) => {
         setAlignment(newAlignment)
