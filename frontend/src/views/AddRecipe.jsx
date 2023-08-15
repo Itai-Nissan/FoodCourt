@@ -14,10 +14,6 @@ import { Button } from '@mui/material'
 import { ToggleButton } from '@mui/material'
 import { ToggleButtonGroup } from '@mui/material'
 
-
-
-
-
 export const AddRecipe = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -48,7 +44,7 @@ export const AddRecipe = () => {
 
     const [togglePreview, setTogglePreview] = useState(true)
 
-    const [alignment, setAlignment] = React.useState('web');
+    const [alignment, setAlignment] = React.useState('true');
 
     const handleChange = (event, newAlignment) => {
         setAlignment(newAlignment)
@@ -97,7 +93,7 @@ export const AddRecipe = () => {
         <div className='add-recipe container'>
             <h1>Add new recipe</h1>
             <hr />
-            <section className="content">
+            <div className="content">
                 <section className="add-recipe-wrapper">
                     {
                         togglePreview ?
@@ -171,7 +167,7 @@ export const AddRecipe = () => {
                         </div>
                     </section>
                 </section>
-            </section>
+            </div>
         </div >
     )
 }
