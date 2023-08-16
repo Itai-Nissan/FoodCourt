@@ -11,7 +11,12 @@ export function Login() {
     const navigate = useNavigate()
 
     const [userName, setUserName] = useState('')
-    const [userPassword, setuserPassword] = useState('')
+    const [userPassword, setUserPassword] = useState('')
+
+    const [incorrectUsername, setIncorrectUsername] = useState(false)
+    const [incorrectPassword, setIncorrectPassword] = useState(false)
+    
+    const [incorrectLogin, setIncorrectLogin] = useState(false)
 
     const routeToProfile = useCallback((userToSignup) => navigate(`/UserProfile/${userToSignup._id}`, { replace: true }), [navigate])
 
@@ -27,18 +32,31 @@ export function Login() {
                 userName,
                 userPassword,
             }
-            console.log('hi');
-
             return dispatch(setLoggedInUser(userToSignup))
                 .then((res) => {
-                    if (!res) {
-                        console.log('ein rez')
+                    if (res.code) {
+                        const error = res.response.data.err
+                        console.log('ein rez', res.response.data.err)
+                        if (error == 'Invalid username or password') {
+                            console.log('Invalid username or password', error)
+                            setIncorrectLogin(true)
+                            setUserName('')
+                            setUserPassword('')
+                        }
+                        if (error == 'Invalid username') {
+                            console.log('Invalid username', error)
+                            setIncorrectUsername(true)
+                            setUserName('')
+                        }
+                        if (error == 'Invalid password') {
+                            console.log('Invalid password', error)
+                            setIncorrectPassword(true)
+                            setUserPassword('')
+                        }
                     }
-                    if (res) {
+                    if (res._id) {
                         routeToProfile(res)
                     }
-                    setUserName('')
-                    setuserPassword('')
                 })
         }
     }
@@ -47,14 +65,24 @@ export function Login() {
         <div>
             <section className='login container'>
                 <h2>Login</h2>
-                <form action="">
-                    <Input type="text" placeholder='Username'
-                        value={userName}
-                        onChange={(event) => setUserName(event.target.value)} />
-                    <Input type="password" placeholder='Password'
-                        value={userPassword}
-                        onChange={(event) => setuserPassword(event.target.value)}
-                        onKeyDown={(event) => { setLogin(event.key) }} />
+                <form className={incorrectUsername ? 'incorrect' : ''} action="">
+                    <section className="input">
+                        <div className="input-container">
+                            <Input type="text" placeholder='Username'
+                                value={userName}
+                                onChange={(event) => setUserName(event.target.value)} />
+                            <p className='incorrect'>{incorrectUsername ? 'Please enter a valid user name' : ''}</p>
+                            <p className='incorrect'>{incorrectLogin ? 'Please enter a valid user name' : ''}</p>
+                        </div>
+                        <div className="input-container">
+                            <Input type="password" placeholder='Password'
+                                value={userPassword}
+                                onChange={(event) => setUserPassword(event.target.value)}
+                                onKeyDown={(event) => { setLogin(event.key) }} />
+                            <p className='incorrect'>{incorrectPassword ? 'Please enter a valid password' : ''}</p>
+                            <p className='incorrect'>{incorrectLogin ? 'Please enter a valid password' : ''}</p>
+                        </div>
+                    </section>
                     <Button onClick={setLogin}>Login</Button>
                 </form>
                 <p>Dont have an account yet? <Link to="/Signup">Sign up</Link></p>

@@ -59,7 +59,7 @@
                 align-items: center;
 
                 .loading-button {
-                    margin-block-start: 2em;
+                    margin-block-start: 1em;
                     display: flex;
                     justify-content: start;
 
@@ -71,7 +71,6 @@
                     .MuiButtonBase-root {
                         background-color: $light-wood;
                         color: $dark-wood;
-                        border-radius: 20px;
                     }
                 }
 

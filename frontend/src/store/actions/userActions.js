@@ -1,7 +1,6 @@
 import { userService } from '../../services/user.service'
 
 export function setLoggedInUser(user, actionType) {
-    console.log('hi');
 
     return async (dispatch, getState) => {
         try {
@@ -16,6 +15,7 @@ export function setLoggedInUser(user, actionType) {
             } else return false
         } catch (err) {
             console.log('err:', err)
+            return err
         }
     }
 }

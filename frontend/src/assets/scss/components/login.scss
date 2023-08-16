@@ -1,53 +1,71 @@
 .login {
     margin-block-start: 1em;
     color: $dark-text;
-
-    * {
-        font-family: PatrickHand;
-    }
-
-    .css-q0jhri-MuiInputBase-root-MuiInput-root {
-        color: $dark-text;
-    }
-
-    .css-q0jhri-MuiInputBase-root-MuiInput-root::after {
-        border-bottom: 2px solid $light-wood;
-    }
-
-    .MuiButtonBase-root {
-        background-color: $dark-text;
-        color: $light-wood;
-        margin-block-start: 1em;
-        width: 100%;
-    }
-
-    .MuiButtonBase-root:hover {
-        background-color: $dark-wood-opactiy;
-        color: $dark-wood;
-    }
-
-    a {
-        color: $dark-text;
-        padding-inline-start: .3em;
-        padding-inline-end: .3em;
-        border-radius: 7px;
-    }
-
-    a:hover {
-        background-color: $light-text-opactiy;
-    }
-
-    h2 {
-        margin-block-end: 1em;
-    }
-
-    p {
-        margin-block-start: 1em;
-    }
+    font-family: PatrickHand;
 
     form {
         display: flex;
         flex-direction: column;
-        width: 50%;
+        width: 30%;
+
+        .input {
+            display: flex;
+            flex-direction: column;
+            // width: 100%;
+            .input-container{
+                // display: grid;
+                // grid-template-columns: 70% 1fr;
+                // width: 100%;
+                
+            }
+        }
+        
+        .css-q0jhri-MuiInputBase-root-MuiInput-root {
+            width: 100%;
+            color: $dark-text;
+        }
+
+        .css-q0jhri-MuiInputBase-root-MuiInput-root::after {
+            border-bottom: 2px solid $light-wood;
+        }
+
+        .MuiButtonBase-root {
+            background-color: $dark-text;
+            color: $light-wood;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            width: 100%;
+        }
+
+        .MuiButtonBase-root:hover {
+            background-color: $dark-wood-opactiy;
+            color: $dark-wood;
+        }
+
+        a {
+            color: $dark-text;
+            padding-inline-start: .3em;
+            padding-inline-end: .3em;
+            border-radius: 7px;
+        }
+
+        a:hover {
+            background-color: $light-text-opactiy;
+        }
+
+        h2 {
+            margin-block-end: 1em;
+        }
+
+        p {
+            margin-block-start: .5em;
+        }
+
+        .incorrect {
+            color: $incorrect;
+        }
     }
+
+    // }
+
 }

@@ -3,19 +3,17 @@
     top: 0;
     width: 100%;
     height: 65px;
-    // background-color: rgb(242, 242, 242);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 190;
-    // background-image: url('../../images/background/il_fullxfull.2551070265_fcsh.jpg');
     background-size: cover;
+    background-color: $light-header-opactiy;
 
     .header-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background-color: $light-header-opactiy;
         border-radius: 7px;
 
         .header-logo {
