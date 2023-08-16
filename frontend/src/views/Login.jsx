@@ -14,8 +14,7 @@ export function Login() {
     const [userPassword, setUserPassword] = useState('')
 
     const [incorrectUsername, setIncorrectUsername] = useState(false)
-    const [incorrectPassword, setIncorrectPassword] = useState(false)
-    
+    const [incorrectPassword, setIncorrectPassword] = useState(false)    
     const [incorrectLogin, setIncorrectLogin] = useState(false)
 
     const routeToProfile = useCallback((userToSignup) => navigate(`/UserProfile/${userToSignup._id}`, { replace: true }), [navigate])
