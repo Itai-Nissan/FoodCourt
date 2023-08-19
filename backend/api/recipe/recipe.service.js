@@ -39,10 +39,10 @@ function _buildCriteria(filterBy, sortBy) {
   if (text) {
     const textCriteria = { $regex: text, $options: 'i' }
     query.$or = [
-      // { title: textCriteria },
       { ['description']: textCriteria },
       { ['name']: textCriteria },
       { ['userId']: textCriteria },
+      { ['{credit:name}']: textCriteria },
       // { ['topics']: textCriteria },
     ]
   }
