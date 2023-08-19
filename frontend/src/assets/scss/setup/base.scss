@@ -34,3 +34,41 @@ span {
     padding: 0;
     margin: 0;
 }
+
+.confirm-button {
+    cursor: pointer;
+    padding: .3em 1em .3em 1em;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: Roboto-Medium;
+    color: $light-wood;
+    background-color: $dark-text;
+    border: none;
+    align-self: self-end;
+    font-size: 1em;
+    transition: .3s;
+}
+
+.confirm-button:hover {
+    color: $dark-text;
+    background-color: $light-wood;
+}
+
+.basic-button {
+    cursor: pointer;
+    padding: .3em 1em .3em 1em;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: Roboto-Medium;
+    color: $light-wood;
+    background-color: $dark-text;
+    border: none;
+    align-self: self-end;
+    font-size: 1em;
+    transition: .3s;
+}
+
+.basic-button:hover {
+    color: $dark-text;
+    background-color: $light-wood;
+}

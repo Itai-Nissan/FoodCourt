@@ -10,10 +10,19 @@
         .details-left {
             z-index: 180;
             width: 100%;
+            color: $dark-text;
+
             
             h1 {
-                margin-block-start: .6em;
+                font-size: 5em;
+                font-family: Roboto-Medium;
+                margin-top: 0;
             }
+
+            h1::first-letter {
+                text-transform: capitalize;
+            }
+
             
             h2 {
                 margin-block-end: 1em;

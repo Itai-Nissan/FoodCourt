@@ -84,10 +84,10 @@ export const MultiRecipe = (props) => {
                     {
                         !loggedUserRecipe() ?
                             isFav ?
-                                <Button onClick={props.removeRecipeFromFav}> Remove from list</Button>
+                                <button className='confirm-button' onClick={props.removeRecipeFromFav}> Remove from list</button>
                                 :
-                                <Button onClick={props.addFoodToFav}> Add to list</Button>
-                            : <Link to={`/Edit-recipe/${props.foodById.id}`} >Edit recipe</Link>
+                                <button className='confirm-button' onClick={props.addFoodToFav}> Add to list</button>
+                            : <Link className='confirm-button' to={`/Edit-recipe/${props.foodById.id}`} >Edit recipe</Link>
                     }
                     <div className="food-video">
                         {props.recipe.original_video_url ? <video controls autoPlay muted

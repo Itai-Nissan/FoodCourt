@@ -8,11 +8,10 @@ export const AddRecipeOutput = (props) => {
     return (
         <div className="recipe-output">
             <div className='recipe-output'>
-                {/* <img className='recipe-details-bg' src={props.imageOutput} alt="" /> */}
                 <div className="food-details">
                     <section className='details-left' >
-                        <h2>{props.recipeName ? utils.firstToCap(props.recipeName) : 'Recipe name'}</h2>
-                        <h2>{props.recipeCountry ? utils.firstToCap(props.recipeCountry) : 'Recipe origin'}</h2>
+                        <h1>{props.recipeName ? utils.firstToCap(props.recipeName) : 'Recipe name'}</h1>
+                        <h2>Recipe origin - {props.recipeCountry ? utils.firstToCap(props.recipeCountry) : ''}</h2>
                         <h3 >{props.recipeSections && props.recipeSections.length !== 0 ? 'Ingredients' : ''}</h3>
                         {props.recipeSections && props.recipeSections.length !== 0 ? <hr /> : null}
                         {props.recipeSections ? props.recipeSections.map((ingredient, index) => {
@@ -34,9 +33,9 @@ export const AddRecipeOutput = (props) => {
                     <section className='details-right'>
                         <div className="sticky-right">
                             <div className="food-video">
+                                <img className='' src={props.imageOutput} alt="" />
                                 {props.videoOutput ? <video controls autoPlay muted
-                                    src={props.videoOutput}></video> : <img className='recipe-details-bg' src={props.imageOutput} alt="" />
-                                }
+                                    src={props.videoOutput}></video> : null}
                             </div>
                         </div>
                     </section>

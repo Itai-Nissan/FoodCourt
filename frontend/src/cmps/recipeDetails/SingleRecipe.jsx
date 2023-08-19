@@ -46,10 +46,11 @@ export const SingleRecipe = (props) => {
 
     return (
         <div className='food-details'>
-            {/* <img className='details-bg' src={props.foodById.thumbnail_url} alt="" /> */}
             <section className='details-left'>
-                <h1>{props.foodById.name}</h1>
-                <br />
+                <div className="header">
+                    <h1>{props.foodById.name}</h1>
+                    {/* <br /> */}
+                </div>
                 <h2>Recipe origin - {props.foodById.country}</h2>
                 <p>{props.foodById.description}</p>
                 <div className="food-ingredients">
@@ -81,18 +82,20 @@ export const SingleRecipe = (props) => {
                 </div>
             </section>
             <section className='details-right'>
-                <div className="sticky-right">
-                    {
-                        !loggedUserRecipe() ?
-                            isFav ?
-                                <Button onClick={props.removeRecipeFromFav}> Remove from list</Button>
-                                :
-                                <Button onClick={props.addFoodToFav}> Add to list</Button>
-                            : <Link to={`/Edit-recipe/${props.foodById._id}`} >Edit recipe</Link>
+                {
+                    !loggedUserRecipe() ?
+                        isFav ?
+                            <button className='basic-button' onClick={props.removeRecipeFromFav}> Remove from list</button>
+                            :
+                            <button className='basic-button' onClick={props.addFoodToFav}> Add to list</button>
+                        : <Link className='confirm-button' to={`/Edit-recipe/${props.foodById._id}`} >Edit recipe</Link>
                     }
+                <div className="sticky-right">
                     <div className="food-video">
-                        {props.foodById.original_video_url ? <video controls autoPlay muted
-                            src={props.foodById.original_video_url}></video> : <img className='' src={props.foodById.thumbnail_url} alt="" />
+                        <img className='' src={props.foodById.thumbnail_url} alt="" />
+                        {props.foodById.original_video_url ?
+                            <video controls autoPlay muted src={props.foodById.original_video_url}></video> :
+                            null
                         }
                     </div>
                 </div>
