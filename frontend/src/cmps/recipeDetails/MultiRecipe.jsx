@@ -46,10 +46,8 @@ export const MultiRecipe = (props) => {
 
     return (
         <div className='food-details'>
-            {/* <img className='multi-details-bg' src={props.recipe.thumbnail_url} alt="" /> */}
             <section className='details-left'>
                 <h1>{props.recipe.name}</h1>
-                <br />
                 <h2>Recipe origin - {props.recipe.country}</h2>
                 <div className="food-ingredients">
                     <h2>Ingredients:</h2>

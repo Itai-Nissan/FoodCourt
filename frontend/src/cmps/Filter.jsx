@@ -63,11 +63,11 @@ export class Filter extends Component {
             label="Search"
             variant="standard" />
           <LoadingButton
-            size="small"
+            size="medium"
             onClick={this.onClickSearch}
             loading={this.props.isLoading}
             variant="standard">
-            Search
+            {this.props.isLoading ? '' : 'Search'}
           </LoadingButton>
         </section>
       </div>

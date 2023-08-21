@@ -10,6 +10,7 @@ const dbService = require('../../services/db.service')
 const ObjectId = require('mongodb').ObjectId
 
 async function query(filterBy, skip, limit) {
+  console.log('filterby:', filterBy);
   const { query, order } = _buildCriteria(filterBy)
   skip = Number(skip)
   limit = Number(limit)
@@ -32,12 +33,13 @@ async function query(filterBy, skip, limit) {
 }
 
 function _buildCriteria(filterBy, sortBy) {
-  const { text, category } = filterBy
+  let { text, category } = filterBy
   let query = {}
   let order = {}
 
   if (text) {
     const textCriteria = { $regex: text, $options: 'i' }
+    console.log('textcriteria:', textCriteria);
     query.$or = [
       { ['description']: textCriteria },
       { ['name']: textCriteria },

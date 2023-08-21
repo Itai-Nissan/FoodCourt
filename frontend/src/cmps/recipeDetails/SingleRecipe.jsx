@@ -47,10 +47,8 @@ export const SingleRecipe = (props) => {
     return (
         <div className='food-details'>
             <section className='details-left'>
-                <div className="header">
                     <h1>{props.foodById.name}</h1>
                     {/* <br /> */}
-                </div>
                 <h2>Recipe origin - {props.foodById.country}</h2>
                 <p>{props.foodById.description}</p>
                 <div className="food-ingredients">
