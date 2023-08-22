@@ -125,8 +125,6 @@ export function Signup() {
                                 value={fullName}
                                 onChange={(event) => setUserFullName(event.target.value)} />
                             <p className='incorrect'>{incorrectFullname ? incorrectFullnameText : ''}</p>
-                            {/* <p className='incorrect'>{incorrectLogin ? 'Please enter a valid user name' : ''}</p> */}
-
                         </div>
                         <div className="input-container">
                             <Input type="text" placeholder='Username'

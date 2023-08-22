@@ -40,6 +40,11 @@
                 flex-direction: column;
                 margin-inline-end: 1em;
 
+                p{
+                    margin-block-start: .3em;
+                    color: $incorrect;
+                }
+    
                 Input {
                     height: 40px;
                 }

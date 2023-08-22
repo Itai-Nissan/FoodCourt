@@ -1,6 +1,7 @@
 export const utils = {
     firstToCap,
     randomId,
+    validatInput,
 }
 
 function firstToCap(str) {
@@ -17,6 +18,17 @@ function randomId() {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
+}
+
+function validatInput(value, inputType) {
+    // console.log(value, inputType);
+    if (value.includes('$')) {
+        return 'Please do not use $ sign'
+    }
+    if (!value) {
+        // console.log('no value');
+        return `Please enter a valid ${inputType} name`
+    } else return true
 }
 
 

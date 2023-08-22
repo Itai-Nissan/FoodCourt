@@ -13,6 +13,8 @@ import { LoadingButton } from '@mui/lab'
 import { Button } from '@mui/material'
 import { ToggleButton } from '@mui/material'
 import { ToggleButtonGroup } from '@mui/material'
+import { utils } from '.././services/utils'
+
 
 export const AddRecipe = () => {
     const dispatch = useDispatch()
@@ -44,7 +46,33 @@ export const AddRecipe = () => {
 
     const [togglePreview, setTogglePreview] = useState(true)
 
-    const [alignment, setAlignment] = React.useState('true');
+    const [alignment, setAlignment] = React.useState('true')
+
+    //validate
+    const [incorrectRecipeName, setIncorrectRecipeName] = useState(false)
+    const [incorrectRecipeNameText, setIncorrectRecipeNameText] = useState('')
+    const [incorrectRecipeCountry, setIncorrectRecipeCountry] = useState(false)
+    const [incorrectRecipeCountryText, setIncorrectRecipeCountryText] = useState('')
+
+    function validatRecipeName() {
+        const validateReturn = utils.validatInput(recipeName, 'recipe name')
+        setIncorrectRecipeName(false)
+        if (validateReturn !== true) {
+            setIncorrectRecipeName(true)
+            setIncorrectRecipeNameText(validateReturn)
+            return false
+        }
+    }
+
+    function validatRecipeCountry() {
+        const validateReturn = utils.validatInput(recipeCountry, 'recipe origin')
+        setIncorrectRecipeCountry(false)
+        if (validateReturn !== true) {
+            setIncorrectRecipeCountry(true)
+            setIncorrectRecipeCountryText(validateReturn)
+            return false
+        }
+    }
 
     const handleChange = (event, newAlignment) => {
         setAlignment(newAlignment)
@@ -52,9 +80,16 @@ export const AddRecipe = () => {
         if (newAlignment === 'true') bool = true
         if (newAlignment === 'false') bool = false
         setTogglePreview(bool)
-    };
+    }
 
     function onAddRecipe() {
+        const checkRecipeName = validatRecipeName()
+        const checkRecipeCountry = validatRecipeCountry()
+        // const checkPassword = validatPassword()
+        // const checkEmail = validatEmail()
+        // if (checkRecipeName === false || checkUserName === false || checkPassword === false || checkEmail === false) return
+        if (checkRecipeName === false || checkRecipeCountry === false) return
+
         if (recipeName === '') {
             console.log('neit')
             return
@@ -72,20 +107,21 @@ export const AddRecipe = () => {
                 thumbnail_url: imgFile,
                 original_video_url: videoFile,
             }
+            console.log('dispatch',recipeToAdd);
             // setLoading(true)
-            dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
-                .then((res) => {
-                    if (!res) {
-                        console.log('ein rez')
-                    }
-                    if (res) {
-                        console.log(res)
-                        dispatch(setUpdatedUser(res))
-                            .then(() => {
-                                navigate(`/UserProfile/${loggedInUser._id}`)
-                            })
-                    }
-                })
+            // dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
+            //     .then((res) => {
+            //         if (!res) {
+            //             console.log('ein rez')
+            //         }
+            //         if (res) {
+            //             console.log(res)
+            //             dispatch(setUpdatedUser(res))
+            //                 .then(() => {
+            //                     navigate(`/UserProfile/${loggedInUser._id}`)
+            //                 })
+            //         }
+            //     })
         }
     }
 
@@ -101,9 +137,11 @@ export const AddRecipe = () => {
                                 <Input type="text" placeholder='Name'
                                     value={recipeName}
                                     onChange={(event) => setRecipeName(event.target.value)} />
+                                <p className='incorrect'>{incorrectRecipeName ? incorrectRecipeNameText : ''}</p>
                                 <Input type="text" placeholder='Country'
                                     value={recipeCountry}
                                     onChange={(event) => setRecipeCountry(event.target.value)} />
+                                <p className='incorrect'>{incorrectRecipeCountry ? incorrectRecipeCountryText : ''}</p>
                                 <section className="add-remove-section">
                                     <AddIngredient
                                         ingredientCount={ingredientCount}
@@ -165,6 +203,8 @@ export const AddRecipe = () => {
                                 <h3 >{loading ? '' : 'Publish recipe'}</h3>
                             </LoadingButton>
                         </div>
+                        <p className='incorrect'>{incorrectRecipeName ? incorrectRecipeNameText : ''}</p>
+                        <p className='incorrect'>{incorrectRecipeCountry ? incorrectRecipeCountryText : ''}</p>
                     </section>
                 </section>
             </div>
