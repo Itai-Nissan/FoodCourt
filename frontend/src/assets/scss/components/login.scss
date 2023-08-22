@@ -42,16 +42,7 @@
             color: $dark-wood;
         }
 
-        a {
-            color: $dark-text;
-            padding-inline-start: .3em;
-            padding-inline-end: .3em;
-            border-radius: 7px;
-        }
 
-        a:hover {
-            background-color: $light-text-opactiy;
-        }
 
         h2 {
             margin-block-end: 1em;
@@ -65,7 +56,15 @@
             color: $incorrect;
         }
     }
+    
+    a {
+        color: $dark-text;
+        padding-inline-start: .3em;
+        padding-inline-end: .3em;
+        border-radius: 7px;
+    }
 
-    // }
-
+    a:hover {
+        background-color: $light-wood;
+    }
 }
