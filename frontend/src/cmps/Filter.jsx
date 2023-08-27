@@ -58,7 +58,7 @@ export class Filter extends Component {
         </section>
         <section className='filter-container'>
           <input
-          placeholder='Enter search here'
+            placeholder='Enter search here'
             value={text}
             onChange={this.handleChange}
             onKeyDown={this.onClickSearch}
