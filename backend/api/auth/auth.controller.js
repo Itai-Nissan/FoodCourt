@@ -36,7 +36,7 @@ async function signup(req, res) {
   } catch (err) {
     console.log('signup error:', err);
     // logger.error('Failed to signup ' + err)
-    res.status(500).send({ err })
+    res.status(401).send({ err })
   }
 }
 

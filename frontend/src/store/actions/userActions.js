@@ -64,6 +64,7 @@ export function setSignUp(user) {
                 const authUser = login.userToSet
                 const userRecipes = login.userRecipes
                 dispatch({ type: 'SET_USER', authUser })
+                dispatch({ type: 'SET_USER_RECIPES', userRecipes })
                 return authUser
             } else return false
         } catch (err) {
