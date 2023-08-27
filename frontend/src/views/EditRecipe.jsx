@@ -87,6 +87,8 @@ export const EditRecipe = () => {
     const [incorrectRecipeNameText, setIncorrectRecipeNameText] = useState('')
     const [incorrectRecipeCountry, setIncorrectRecipeCountry] = useState(false)
     const [incorrectRecipeCountryText, setIncorrectRecipeCountryText] = useState('')
+    const [incorrectRecipeDescription, setIncorrectRecipeDescription] = useState(false)
+    const [incorrectRecipeDescriptionText, setIncorrectRecipeDescriptionText] = useState('')
     const [incorrectRecipeIngredient, setIncorrectRecipeIngredient] = useState(false)
     const [incorrectRecipeStep, setIncorrectRecipeStep] = useState(false)
 
@@ -110,11 +112,26 @@ export const EditRecipe = () => {
         }
     }
 
+    function validatRecipeDescription() {
+        const validateReturn = utils.validatInput(recipeDescription, 'recipe description')
+        setIncorrectRecipeDescription(false)
+        if (validateReturn !== true) {
+            setIncorrectRecipeDescription(true)
+            setIncorrectRecipeDescriptionText(validateReturn)
+            return true
+        }
+    }
+
 
     function onEditRecipe() {
         const checkRecipeName = validatRecipeName()
         const checkRecipeCountry = validatRecipeCountry()
-        if (checkRecipeName === true || checkRecipeCountry === true || incorrectRecipeIngredient === true || incorrectRecipeStep === true) return
+        const checkRecipeDescription = validatRecipeDescription()
+        if (checkRecipeName === true
+            || checkRecipeCountry === true
+            || incorrectRecipeIngredient === true
+            || incorrectRecipeStep === true
+            || checkRecipeDescription === true) return
         else {
             const recipeToUpdate = {
                 _id: foodById._id,
@@ -131,7 +148,6 @@ export const EditRecipe = () => {
                 thumbnail_url: imgFile,
                 original_video_url: videoFile,
             }
-            console.log('dispatch', recipeToUpdate);
             setLoading(true)
             dispatch(setUpdateUserRecipe(loggedInUser, recipeToUpdate))
                 .then((res) => {
@@ -168,7 +184,7 @@ export const EditRecipe = () => {
                             <Input type="text" placeholder='Description'
                                 value={recipeDescription}
                                 onChange={(event) => setRecipeDescription(event.target.value)} />
-
+                            <p className='incorrect'>{incorrectRecipeDescription ? incorrectRecipeDescriptionText : ''}</p>
                             <section className="add-remove-section">
                                 <AddIngredient
                                     setIncorrectRecipeIngredient={setIncorrectRecipeIngredient}
