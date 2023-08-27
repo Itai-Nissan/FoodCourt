@@ -5,10 +5,12 @@
     justify-content: center;
     align-items: center;
     position: sticky;
-    top: 80px;
+    top: 65px;
     z-index: 100;
     margin-block-start: 1em;
     margin-block-end: 1em;
+    background-color: rgb(240, 240, 240, .7);
+
 
     .filter-result {
         position: absolute;
@@ -22,18 +24,18 @@
         border-radius: 7px;
         color: $dark-text;
 
-        h4{
+        h4 {
             font-family: Handlee;
             margin-inline-end: 1em;
         }
-    
+
         .MuiButtonBase-root {
             background-color: $light-wood;
             color: $dark-wood;
             border-radius: 20px;
             font-family: PatrickHand;
         }
-    
+
         .MuiButtonBase-root:hover {
             background-color: $dark-text;
             color: $light-wood;
@@ -43,46 +45,29 @@
     .filter-container {
         display: flex;
         justify-self: center;
-        background-color: $dark-text;
         border-radius: 20px;
-        width: 40%;
         box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
         -webkit-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
         -moz-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
 
-        .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
-            border-bottom: 2px solid $light-wood;
+        input {
+            padding-inline-start: .5em;
+            border-radius: 20px 0 0 20px;
+            background-color: $main-back;
+            border: none;
         }
-    
-        .MuiFormControl-root {
-            width: 90%;
-            margin-inline-start: 1em;
-            margin-inline-end: 1em;
+        
+        input:focus {
+            outline: .2px solid $lighter-wood;
         }
-    
-        .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-            color: $light-wood;
-        }
-    
-        .css-1x51dt5-MuiInputBase-input-MuiInput-input {
-            color: $light-text;
-        }
-    
-        .MuiInputLabel-root {
-            color: $light-wood;
-        }
-    
-        .MuiInputBase-root {
-            color: $light-text;
-        }
-    
+        
         .MuiButtonBase-root {
             background-color: $light-wood;
             color: $dark-wood;
             border-radius: 0 20px 20px 0px;
             width: 100px;
         }
-    
+
         .MuiButtonBase-root:hover {
             background-color: $dark-text;
             color: $light-wood;

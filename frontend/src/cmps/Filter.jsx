@@ -1,8 +1,9 @@
 import { Component } from 'react'
 import { Button } from '@mui/material'
-import { LoadingButton } from '@mui/lab';
+import { LoadingButton } from '@mui/lab'
 import TextField from '@mui/material/TextField'
-import { Autocomplete } from '@mui/material';
+import { Input } from '@mui/material'
+import { Autocomplete } from '@mui/material'
 
 export class Filter extends Component {
 
@@ -56,7 +57,11 @@ export class Filter extends Component {
           </Button>
         </section>
         <section className='filter-container'>
-          <TextField value={text} onChange={this.handleChange} onKeyDown={this.onClickSearch}
+          <input
+          placeholder='Enter search here'
+            value={text}
+            onChange={this.handleChange}
+            onKeyDown={this.onClickSearch}
             type="text"
             name="text"
             id="standard-basic"
