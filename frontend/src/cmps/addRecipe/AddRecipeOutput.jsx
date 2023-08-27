@@ -12,6 +12,7 @@ export const AddRecipeOutput = (props) => {
                     <section className='details-left' >
                         <h1>{props.recipeName ? utils.firstToCap(props.recipeName) : 'Recipe name'}</h1>
                         <h2>Recipe origin - {props.recipeCountry ? utils.firstToCap(props.recipeCountry) : ''}</h2>
+                        <p >{props.recipeDescription && props.recipeDescription.length !== 0 ? props.recipeDescription : ''}</p>
                         <h3 >{props.recipeSections && props.recipeSections.length !== 0 ? 'Ingredients' : ''}</h3>
                         {props.recipeSections && props.recipeSections.length !== 0 ? <hr /> : null}
                         {props.recipeSections ? props.recipeSections.map((ingredient, index) => {

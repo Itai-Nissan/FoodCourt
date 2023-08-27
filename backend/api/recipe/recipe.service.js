@@ -71,6 +71,7 @@ async function add(recipe, collectionToInsert) {
 }
 
 async function update(recipe) {
+  console.log('updating', recipe);
   var id = new ObjectId(recipe._id)
   delete recipe._id
   const collection = await dbService.getCollection('recipe')
@@ -186,6 +187,7 @@ async function addRecipe(user, recipe) {
       author: user._id,
       name: recipe.name,
       country: recipe.country,
+      description: recipe.description,
       sections: recipe.sections,
       instructions: recipe.instructions,
       thumbnail_url: imgUrl,
@@ -232,6 +234,7 @@ async function editRecipe(user, recipe) {
       author: user._id,
       name: recipe.name,
       country: recipe.country,
+      description: recipe.description,
       sections: recipe.sections,
       instructions: recipe.instructions,
       thumbnail_url: imgUrl,

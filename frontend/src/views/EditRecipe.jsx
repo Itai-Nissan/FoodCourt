@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { utils } from '.././services/utils'
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { setUpdateUserRecipe } from '../store/actions/foodActions'
@@ -48,6 +49,7 @@ export const EditRecipe = () => {
 
     const [recipeName, setRecipeName] = useState('')
     const [recipeCountry, setRecipeCountry] = useState('')
+    const [recipeDescription, setRecipeDescription] = useState('')
 
     // Ingredient
     const [recipeSections, setRecipeSections] = useState(foodById ? foodById.sections[0].components : [])
@@ -78,19 +80,48 @@ export const EditRecipe = () => {
         if (newAlignment === 'true') bool = true
         if (newAlignment === 'false') bool = false
         setTogglePreview(bool)
-    };
+    }
+
+    //validate
+    const [incorrectRecipeName, setIncorrectRecipeName] = useState(false)
+    const [incorrectRecipeNameText, setIncorrectRecipeNameText] = useState('')
+    const [incorrectRecipeCountry, setIncorrectRecipeCountry] = useState(false)
+    const [incorrectRecipeCountryText, setIncorrectRecipeCountryText] = useState('')
+    const [incorrectRecipeIngredient, setIncorrectRecipeIngredient] = useState(false)
+    const [incorrectRecipeStep, setIncorrectRecipeStep] = useState(false)
+
+    function validatRecipeName() {
+        const validateReturn = utils.validatInput(recipeName, 'recipe name')
+        setIncorrectRecipeName(false)
+        if (validateReturn !== true) {
+            setIncorrectRecipeName(true)
+            setIncorrectRecipeNameText(validateReturn)
+            return true
+        }
+    }
+
+    function validatRecipeCountry() {
+        const validateReturn = utils.validatInput(recipeCountry, 'recipe origin')
+        setIncorrectRecipeCountry(false)
+        if (validateReturn !== true) {
+            setIncorrectRecipeCountry(true)
+            setIncorrectRecipeCountryText(validateReturn)
+            return true
+        }
+    }
+
 
     function onEditRecipe() {
-        if (recipeName === '') {
-            console.log('neit')
-            return
-        }
+        const checkRecipeName = validatRecipeName()
+        const checkRecipeCountry = validatRecipeCountry()
+        if (checkRecipeName === true || checkRecipeCountry === true || incorrectRecipeIngredient === true || incorrectRecipeStep === true) return
         else {
             const recipeToUpdate = {
                 _id: foodById._id,
                 id: foodById.id,
                 name: recipeName,
                 country: recipeCountry,
+                description: recipeDescription,
                 sections: [
                     {
                         components: recipeSections
@@ -100,6 +131,7 @@ export const EditRecipe = () => {
                 thumbnail_url: imgFile,
                 original_video_url: videoFile,
             }
+            console.log('dispatch', recipeToUpdate);
             setLoading(true)
             dispatch(setUpdateUserRecipe(loggedInUser, recipeToUpdate))
                 .then((res) => {
@@ -116,6 +148,7 @@ export const EditRecipe = () => {
                 })
         }
     }
+
     return (
         <div className='add-recipe container'>
             <section className="content">
@@ -127,17 +160,25 @@ export const EditRecipe = () => {
                             <Input type="text" placeholder='Name'
                                 value={recipeName}
                                 onChange={(event) => setRecipeName(event.target.value)} />
+                            <p className='incorrect'>{incorrectRecipeName ? incorrectRecipeNameText : ''}</p>
                             <Input type="text" placeholder='Country'
                                 value={recipeCountry}
                                 onChange={(event) => setRecipeCountry(event.target.value)} />
+                            <p className='incorrect'>{incorrectRecipeCountry ? incorrectRecipeCountryText : ''}</p>
+                            <Input type="text" placeholder='Description'
+                                value={recipeDescription}
+                                onChange={(event) => setRecipeDescription(event.target.value)} />
+
                             <section className="add-remove-section">
                                 <AddIngredient
+                                    setIncorrectRecipeIngredient={setIncorrectRecipeIngredient}
                                     ingredientCount={ingredientCount}
                                     setIngredientCount={setIngredientCount}
                                     recipeSections={recipeSections}
                                     setRecipeSections={setRecipeSections}
                                 ></AddIngredient>
                                 <AddStep
+                                    setIncorrectRecipeStep={setIncorrectRecipeStep}
                                     setStepCount={setStepCount}
                                     stepCount={stepCount}
                                     setRecipeInstructions={setRecipeInstructions}
@@ -148,6 +189,7 @@ export const EditRecipe = () => {
                         :
                         <section className='add-recipe-output'>
                             <AddRecipeOutput
+                                recipeDescription={recipeDescription}
                                 recipeName={recipeName}
                                 recipeCountry={recipeCountry}
                                 recipeSections={recipeSections}
@@ -161,7 +203,7 @@ export const EditRecipe = () => {
                     }
                 </div>
                 <div className="control">
-                <ToggleButtonGroup
+                    <ToggleButtonGroup
                         color="primary"
                         value={alignment}
                         exclusive

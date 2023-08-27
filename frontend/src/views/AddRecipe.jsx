@@ -8,7 +8,7 @@ import { AddStep } from '../cmps/addRecipe/AddStep'
 import { AddImage } from '../cmps/addRecipe/AddImage'
 import { AddVideo } from '../cmps/addRecipe/AddVideo'
 import { AddRecipeOutput } from '../cmps/addRecipe/AddRecipeOutput'
-import { Input } from '@mui/material'
+import { Input, TextField } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
 import { Button } from '@mui/material'
 import { ToggleButton } from '@mui/material'
@@ -24,6 +24,7 @@ export const AddRecipe = () => {
 
     const [recipeName, setRecipeName] = useState('')
     const [recipeCountry, setRecipeCountry] = useState('')
+    const [recipeDescription, setRecipeDescription] = useState('')
 
     // Ingredient
     const [recipeSections, setRecipeSections] = useState([])
@@ -53,6 +54,10 @@ export const AddRecipe = () => {
     const [incorrectRecipeNameText, setIncorrectRecipeNameText] = useState('')
     const [incorrectRecipeCountry, setIncorrectRecipeCountry] = useState(false)
     const [incorrectRecipeCountryText, setIncorrectRecipeCountryText] = useState('')
+    const [incorrectRecipeDescription, setIncorrectRecipeDescription] = useState(false)
+    const [incorrectRecipeDescriptionText, setIncorrectRecipeDescriptionText] = useState('')
+    const [incorrectRecipeIngredient, setIncorrectRecipeIngredient] = useState(false)
+    const [incorrectRecipeStep, setIncorrectRecipeStep] = useState(false)
 
     function validatRecipeName() {
         const validateReturn = utils.validatInput(recipeName, 'recipe name')
@@ -60,7 +65,7 @@ export const AddRecipe = () => {
         if (validateReturn !== true) {
             setIncorrectRecipeName(true)
             setIncorrectRecipeNameText(validateReturn)
-            return false
+            return true
         }
     }
 
@@ -70,7 +75,17 @@ export const AddRecipe = () => {
         if (validateReturn !== true) {
             setIncorrectRecipeCountry(true)
             setIncorrectRecipeCountryText(validateReturn)
-            return false
+            return true
+        }
+    }
+
+    function validatRecipeDescription() {
+        const validateReturn = utils.validatInput(recipeDescription, 'recipe description')
+        setIncorrectRecipeDescription(false)
+        if (validateReturn !== true) {
+            setIncorrectRecipeDescription(true)
+            setIncorrectRecipeDescriptionText(validateReturn)
+            return true
         }
     }
 
@@ -85,19 +100,17 @@ export const AddRecipe = () => {
     function onAddRecipe() {
         const checkRecipeName = validatRecipeName()
         const checkRecipeCountry = validatRecipeCountry()
-        // const checkPassword = validatPassword()
-        // const checkEmail = validatEmail()
-        // if (checkRecipeName === false || checkUserName === false || checkPassword === false || checkEmail === false) return
-        if (checkRecipeName === false || checkRecipeCountry === false) return
-
-        if (recipeName === '') {
-            console.log('neit')
-            return
-        }
+        const checkRecipeDescription = validatRecipeDescription()
+        if (checkRecipeName === true
+            || checkRecipeCountry === true
+            || incorrectRecipeIngredient === true
+            || incorrectRecipeStep === true
+            || checkRecipeDescription === true) return
         else {
             const recipeToAdd = {
                 name: recipeName,
                 country: recipeCountry,
+                description: recipeDescription,
                 sections: [
                     {
                         components: recipeSections
@@ -107,21 +120,21 @@ export const AddRecipe = () => {
                 thumbnail_url: imgFile,
                 original_video_url: videoFile,
             }
-            console.log('dispatch',recipeToAdd);
-            // setLoading(true)
-            // dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
-            //     .then((res) => {
-            //         if (!res) {
-            //             console.log('ein rez')
-            //         }
-            //         if (res) {
-            //             console.log(res)
-            //             dispatch(setUpdatedUser(res))
-            //                 .then(() => {
-            //                     navigate(`/UserProfile/${loggedInUser._id}`)
-            //                 })
-            //         }
-            //     })
+            console.log('dispatch', recipeToAdd);
+            setLoading(true)
+            dispatch(setAddUserRecipe(loggedInUser, recipeToAdd))
+                .then((res) => {
+                    if (!res) {
+                        console.log('ein rez')
+                    }
+                    if (res) {
+                        console.log(res)
+                        dispatch(setUpdatedUser(res))
+                            .then(() => {
+                                navigate(`/UserProfile/${loggedInUser._id}`)
+                            })
+                    }
+                })
         }
     }
 
@@ -142,14 +155,20 @@ export const AddRecipe = () => {
                                     value={recipeCountry}
                                     onChange={(event) => setRecipeCountry(event.target.value)} />
                                 <p className='incorrect'>{incorrectRecipeCountry ? incorrectRecipeCountryText : ''}</p>
+                                <Input type="text" placeholder='Description'
+                                    value={recipeDescription}
+                                    onChange={(event) => setRecipeDescription(event.target.value)} />
+                                <p className='incorrect'>{incorrectRecipeDescription ? incorrectRecipeDescriptionText : ''}</p>
                                 <section className="add-remove-section">
                                     <AddIngredient
                                         ingredientCount={ingredientCount}
                                         setIngredientCount={setIngredientCount}
                                         recipeSections={recipeSections}
                                         setRecipeSections={setRecipeSections}
+                                        setIncorrectRecipeIngredient={setIncorrectRecipeIngredient}
                                     ></AddIngredient>
                                     <AddStep
+                                        setIncorrectRecipeStep={setIncorrectRecipeStep}
                                         setStepCount={setStepCount}
                                         stepCount={stepCount}
                                         setRecipeInstructions={setRecipeInstructions}
@@ -162,6 +181,7 @@ export const AddRecipe = () => {
                                 <AddRecipeOutput
                                     recipeName={recipeName}
                                     recipeCountry={recipeCountry}
+                                    recipeDescription={recipeDescription}
                                     recipeSections={recipeSections}
                                     recipeInstructions={recipeInstructions}
                                     onAddRecipe={onAddRecipe}
@@ -203,8 +223,6 @@ export const AddRecipe = () => {
                                 <h3 >{loading ? '' : 'Publish recipe'}</h3>
                             </LoadingButton>
                         </div>
-                        <p className='incorrect'>{incorrectRecipeName ? incorrectRecipeNameText : ''}</p>
-                        <p className='incorrect'>{incorrectRecipeCountry ? incorrectRecipeCountryText : ''}</p>
                     </section>
                 </section>
             </div>

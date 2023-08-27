@@ -36,9 +36,13 @@ export const AddStep = (props) => {
     }
 
     function addStep(e) {
+        props.setIncorrectRecipeStep(false)
         if (e.key === "Enter" || e.type === 'click') {
             const checkRecipeStep = validatRecipeStep(recipeStep)
-            if (checkRecipeStep === false) return
+            if (checkRecipeStep === false) {
+                props.setIncorrectRecipeStep(true)
+                return
+            }
 
             let updatedInstructions = null
             if (props.recipeInstructions.length === 0) {
@@ -60,10 +64,14 @@ export const AddStep = (props) => {
     }
 
     function updateStep(event, index) {
+        props.setIncorrectRecipeStep(false)
         let updatedInstructions = props.recipeInstructions
         updatedInstructions.splice(index, 1, { display_text: event.target.value })
         const checkRecipeStep = validatRecipeStep(event.target.value)
-        if (checkRecipeStep === false) return
+        if (checkRecipeStep === false) {
+            props.setIncorrectRecipeStep(true)
+            return
+        }
         props.setRecipeInstructions(updatedInstructions)
 
         const newCount = props.stepCount + 1

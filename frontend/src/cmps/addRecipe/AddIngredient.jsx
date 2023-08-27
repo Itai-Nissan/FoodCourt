@@ -3,7 +3,6 @@ import { utils } from '../../services/utils'
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
 
-
 export const AddIngredient = (props) => {
 
     const [recipeIngredient, setIngredient] = useState('')
@@ -34,10 +33,13 @@ export const AddIngredient = (props) => {
     }
 
     function addIngredient(e) {
+        props.setIncorrectRecipeIngredient(false)
         if (e.key === "Enter" || e.type === 'click') {
             const checkRecipeIngredient = validatRecipeIngredient(recipeIngredient)
-            if (checkRecipeIngredient === false) return
-
+            if (checkRecipeIngredient === false) {
+                props.setIncorrectRecipeIngredient(true)
+                return
+            }
             let updatedSections = null
             if (props.recipeSections.length === 0) {
                 updatedSections = props.recipeSections
@@ -57,10 +59,15 @@ export const AddIngredient = (props) => {
     }
 
     function updateIngredient(event, index) {
+        props.setIncorrectRecipeIngredient(false)
+
         let updatedSections = props.recipeSections
         updatedSections.splice(index, 1, { raw_text: event.target.value })
         const checkRecipeIngredient = validatRecipeIngredient(event.target.value)
-        if (checkRecipeIngredient === false) return
+        if (checkRecipeIngredient === false) {
+            props.setIncorrectRecipeIngredient(true)
+            return
+        }
         props.setRecipeSections(updatedSections)
 
         const newCount = props.ingredientCount + 1
