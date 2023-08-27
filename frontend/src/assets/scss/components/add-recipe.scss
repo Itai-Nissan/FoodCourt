@@ -40,11 +40,11 @@
                 flex-direction: column;
                 margin-inline-end: 1em;
 
-                p{
+                p {
                     margin-block-start: .3em;
                     color: $incorrect;
                 }
-    
+
                 Input {
                     height: 40px;
                 }
@@ -58,12 +58,24 @@
             flex-direction: column;
             align-items: center;
 
+            .MuiToggleButtonGroup-root {
+                background-color: $lighter-wood;
+
+                .MuiToggleButtonGroup-grouped:not(:first-of-type) {
+                    color: $dark-text;
+                }
+
+                .MuiToggleButtonGroup-grouped:not(:last-of-type) {
+                    color: $dark-wood
+                }
+            }
+
             .buttons {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                
-                p{
+
+                p {
                     margin-block-start: .3em;
                     color: $incorrect;
                 }
