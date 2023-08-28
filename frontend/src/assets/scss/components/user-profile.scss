@@ -21,11 +21,12 @@
             // width: 100%;
             display: flex;
             flex-direction: column;
-            // align-items: center;
             justify-content: center;
-
+            
             .user-recipe-box {
                 width: 100%;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
 
                 p {
                     font-size: 1.5em;
