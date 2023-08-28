@@ -44,11 +44,6 @@ export const UserProfile = (props) => {
         const foodCredits = recipe.credits[0].name
         const foodCreditsImg = recipe.credits[0].image_url
         return <div className='food-preview' key={index}>
-            <section className="card-img">
-                <Link to={`/foodDetails/${recipe._id}`} >
-                    <img src={recipe.thumbnail_url} alt="" />
-                </Link>
-            </section>
             <section className="card-body">
                 <Link to={`/foodDetails/${recipe._id}`} >
                     <div className="card-name">
@@ -62,6 +57,12 @@ export const UserProfile = (props) => {
                     </div>
                 </Link>
             </section>
+
+            <section className="card-img">
+                <Link to={`/foodDetails/${recipe._id}`} >
+                    <img src={recipe.thumbnail_url} alt="" />
+                </Link>
+            </section>
         </div>
     })
 
@@ -69,20 +70,26 @@ export const UserProfile = (props) => {
         <div className='user-profile container'>
             <section className='user-details'>
                 <div className="header">
-                    <h1>Hi {userName}</h1>
+                    {/* <h1>Hi {userName}</h1> */}
                 </div>
                 <div className="user-content">
                     <section className='user-fav'>
-                        <h4>Your favorites</h4>
+                        <h2>Your favorites</h2>
                         <div className="food-list">
-                            {userFav}
+                        {
+                                userFav ? <AliceCarousel 
+                                mouseTracking
+                                items={userFav}
+                                /> : ''
+                            }
                         </div>
                     </section>
+                    <hr />
                     <section className='user-recipe'>
-                        <h4>Your recipes</h4>
+                        <h2>Your recipes</h2>
                         <div className="user-recipe-box">
                             {
-                                userRecipe ? <AliceCarousel mouseTracking items={userRecipe} /> : ''
+                                userRecipe ? userRecipe : ''
                             }
                         </div>
                     </section>

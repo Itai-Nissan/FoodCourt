@@ -3,35 +3,98 @@
 
     .user-content {
 
+        h2 {
+            font-size: 2em;
+        }
+
+        hr {
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            border: 0;
+            height: 1px;
+            background: #333;
+            background-image: linear-gradient(to right, #ccc, #333, #ccc);
+
+        }
+
         .user-recipe {
             // width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            // align-items: center;
             justify-content: center;
+
             .user-recipe-box {
                 width: 100%;
 
-                .food-preview{
+                p {
+                    font-size: 1.5em;
                 }
             }
         }
     }
 
-    .food-list {
-        display: grid;
-        // grid-template-columns: 1fr 1fr 1fr;
+    .user-fav {
 
-        .food-preview {
+        .food-list {
+            display: flex;
+            flex-wrap: wrap;
 
-            .MuiButtonBase-root {
-                background-color: $dark-wood-opactiy;
-                color: $dark-wood;
+            .alice-carousel__stage {
+                width: 350px;
             }
 
-            .MuiButtonBase-root:hover {
-                background-color: $dark-text;
-                color: $light-wood;
+            span {
+                color: $dark-wood;
+                font-size: 1.5em;
+            }
+
+            .alice-carousel__dots-item.__active {
+                background-color: $light-wood;
+
+            }
+
+            .alice-carousel__dots-item {
+                background-color: $lighter-wood;
+
+            }
+
+            .alice-carousel__stage-item {
+                margin-inline-end: 1em;
+                width: 350px;
+            }
+
+            .food-preview {
+                height: 200px;
+                width: 350px;
+                display: flex;
+                flex: row;
+
+                .card-img {
+                    height: 100px;
+                    justify-self: end;
+                    min-height: 100px;
+                    max-height: 100px;
+
+                    img {
+                        height: 100px;
+                        max-height: 100px;
+                    }
+                }
+
+                .card-body {
+                    // height: 100%;
+                }
+
+                .MuiButtonBase-root {
+                    background-color: $dark-wood-opactiy;
+                    color: $dark-wood;
+                }
+
+                .MuiButtonBase-root:hover {
+                    background-color: $dark-text;
+                    color: $light-wood;
+                }
             }
         }
     }
