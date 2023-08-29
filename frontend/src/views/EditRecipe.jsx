@@ -35,6 +35,7 @@ export const EditRecipe = () => {
                 setFood(foodToSet)
                 setRecipeName(foodToSet.name)
                 setRecipeCountry(foodToSet.country)
+                setRecipeDescription(foodToSet.description)
 
                 setRecipeSections(foodToSet ? foodToSet.sections[0].components : [])
 

@@ -21,18 +21,19 @@
                 background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
             }
 
-            .css-q0jhri-MuiInputBase-root-MuiInput-root {
+            .MuiInputBase-root-MuiInput-root {
                 color: $dark-text;
             }
 
-            .css-q0jhri-MuiInputBase-root-MuiInput-root::after {
+            .MuiInputBase-root-MuiInput-root::after {
                 border-bottom: 2px solid $light-wood;
             }
 
             .MuiButtonBase-root {
-                margin-block-start: 1em;
+                // margin-block-start: 1em;
                 // width: 100%;
                 font-family: Handlee;
+                // padding: 0;
             }
 
             form {
@@ -84,6 +85,7 @@
                     margin-block-start: 1em;
                     display: flex;
                     justify-content: start;
+
 
                     .MuiButtonBase-root:hover {
                         background-color: $confirm;

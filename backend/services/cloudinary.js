@@ -53,13 +53,3 @@ module.exports = {
     uploadImage,
     uploadVideo,
 }
-
-// module.exports.uploadMultipleImages = (images) => {
-//     return new Promise((resolve, reject) => {
-//       const uploads = images.map((base) => uploadImage(base));
-//       Promise.all(uploads)
-//         .then((values) => resolve(values))
-//         .catch((err) => reject(err));
-//     });
-//   };
-

@@ -3,65 +3,62 @@
         margin-block-start: .5em;
     }
 
+    h4 {
+        width: 100%;
+    }
+
+    .MuiInputBase-root {
+        width: 100%;
+    }
+
+    .MuiButtonBase-root {
+        padding: 0;
+        margin-inline-start: .5em;
+        margin-inline-end: .5em;
+        height: 30px;
+    }
+
     .add-remove-step {
         display: flex;
-        // justify-content: space-between;
-        // align-items: center;
 
         * {
             font-family: Handlee;
         }
 
-        .MuiInputBase-root {
-            width: 100%;
-        }
-
-        .MuiButtonBase-root {
-            // background-color: $light-text-opactiy;
-            color: $dark-wood;
-            // margin-inline-start: 1em;
-            // width: 35%;
-        }
-
-        .MuiButtonBase-root:hover {
-            background-color: $reject;
-            color: $dark-wood;
-        }
     }
 
     .add-step {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+
+        svg {
+            height: 30px;
+        }
 
         .MuiInputBase-root {
             width: 100%;
         }
 
-        .MuiButtonBase-root {
-            // background-color: $light-wood;
-            color: $dark-wood;
-            // margin-inline-start: 1em;
-            // width: 35%;
-            font-family: Handlee;
+        .MuiButtonBase-root:hover {
+            background-color: $confirm;
+        }
+    }
+
+    .add-remove-step {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        svg {
+            height: 30px;
+        }
+
+        .MuiInputBase-root {
+            width: 100%;
         }
 
         .MuiButtonBase-root:hover {
-            background-color: $confirm;
-            color: $dark-wood;
-        }
-
-    }
-
-    h4 {
-        width: 100%;
-    }
-
-    .remove-step {
-        display: flex;
-        justify-content: flex-end;
-
-        .MuiButtonBase-root {
-            // margin-inline-start: 1em;
+            background-color: $reject;
         }
 
     }

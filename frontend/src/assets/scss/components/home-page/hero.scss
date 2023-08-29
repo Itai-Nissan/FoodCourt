@@ -4,7 +4,7 @@
     .back-img {
         height: 100%;
         z-index: 1;
-        
+
         img {
             position: absolute;
             top: 53%;
@@ -21,7 +21,7 @@
         transform: translate(-50%, -50%);
         z-index: 180;
         height: 50px;
-        width: 350px;
+        // width: 350px;
         top: 350px;
         left: 40%;
         text-align: center;
@@ -37,6 +37,11 @@
             -webkit-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
             -moz-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
 
+            a {
+                display: flex;
+                align-items: center;
+            }
+
             button {
                 font-family: Handlee;
             }
@@ -47,10 +52,9 @@
                 color: #ffeded;
                 margin-inline-start: 2em;
                 font-family: Handlee;
-
             }
 
-            .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
+            .MuiInputBase-root-MuiInput-root:after {
                 border-bottom: 2px solid $light-wood;
             }
 
@@ -71,10 +75,6 @@
                 color: $light-wood;
             }
 
-            Link {
-                width: 100px;
-
-            }
         }
     }
 

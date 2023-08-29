@@ -1,6 +1,25 @@
 .add-remove-ingredient-section {
+
     h3 {
         margin-block-start: .5em;
+    }
+
+    svg {
+        height: 30px;
+        padding: 0;
+
+    }
+
+    h4 {
+        width: 100%;
+    }
+
+    .MuiButtonBase-root {
+        font-family: Handlee;
+        padding: 0;
+        margin-inline-start: .5em;
+        margin-inline-end: .5em;
+        height: 30px;
     }
 
     .add-remove-ingredient {
@@ -16,59 +35,31 @@
             width: 100%;
         }
 
-        .MuiButtonBase-root {
-            // background-color: $light-text-opactiy;
-            color: $dark-wood;
-            // margin-inline-start: 1em;
-        }
+        .MuiButtonBase-root {}
 
         .MuiButtonBase-root:hover {
             background-color: $reject;
-            color: $dark-wood;
         }
     }
 
     .add-ingredient {
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         .MuiInputBase-root {
             width: 100%;
         }
 
-        .MuiButtonBase-root {
-            // background-color: $light-wood;
-            color: $dark-wood;
-            // margin-inline-start: 1em;
-            font-family: Handlee;
-            // width: 35%;
-        }
-
         .MuiButtonBase-root:hover {
             background-color: $confirm;
-            color: $dark-wood;
         }
 
-    }
-
-    h4 {
-        width: 100%;
     }
 
     .remove-ingredient {
         display: flex;
         justify-content: flex-end;
-
-        input {
-            // width: 100%;
-            // width: 10px;
-        }
-
-        .MuiButtonBase-root {
-            width: 5px;
-
-            margin-inline-start: 1em;
-        }
-
+        align-items: center
     }
 }

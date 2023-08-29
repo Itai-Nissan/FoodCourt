@@ -13,8 +13,8 @@ export const Hero = (props) => {
             </div>
             <div className="explore">
                 <div className="explore-container">
-                    <h4>Explore new recipes</h4>
                     <Link to="/ExplorRecipes">
+                    <h4>Explore new recipes</h4>
                         <Button>Explore</Button>
                     </Link>
                 </div>
