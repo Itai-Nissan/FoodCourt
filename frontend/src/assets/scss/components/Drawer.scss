@@ -1,0 +1,44 @@
+.mobile-header {
+    img {
+        width: 50px;
+    }
+
+    Button:hover{
+
+        background-color: $lighter-wood;
+    }
+    img:hover {
+    }
+}
+
+.MuiBox-root {
+    height: 100%;
+    background-color: $light-wood;
+    padding-inline-start: 1em;
+    padding-inline-end: 1em;
+
+
+    a {
+        padding: 0;
+        margin: 0;
+    }
+
+    h4 {
+        border-radius: 7px;
+        // padding: 1em;
+        padding-inline-start: 1em;
+        color: $dark-text;
+        // margin-inline-start: 1em;
+        margin-block-start: 1em;
+    }
+
+    h4:hover {
+        outline: .3px solid $dark-text;
+        background-color: $lighter-wood;
+    }
+
+    h4:active {
+        background-color: $light-header-opactiy;
+    }
+
+}

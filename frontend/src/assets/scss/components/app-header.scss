@@ -10,6 +10,15 @@
     background-size: cover;
     background-color: $light-header-opactiy;
 
+    .mobile-header {
+        display: none;
+        width: 100%;
+        
+        svg:hover{
+            -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+            box-shadow: 5px 5px 15px 5px #000000;        }
+    }
+
     .header-container {
         display: flex;
         align-items: center;
@@ -88,15 +97,18 @@
     }
 }
 
-.is-active{
+.is-active {
     background-color: red;
 }
 
 @media only screen and (max-width: 480px) {
-    .login {
+    .app-header {
+        .full-header {
+            display: none;
+        }
 
-        form {
-            width: 100%;
+        .mobile-header {
+            display: block;
         }
     }
 }
@@ -142,11 +154,4 @@
 }
 
 /* Largest devices such as desktops (1280px and up) */
-@media only screen and (min-width: 1340px) {
-    .login {
-
-        form {
-            width: 30%;
-        }
-    }
-}
+@media only screen and (min-width: 1340px) {}

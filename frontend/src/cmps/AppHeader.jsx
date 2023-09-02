@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { logout } from '../store/actions/userActions'
 import { loadUser } from '../store/actions/userActions'
-
 import Dropdown from './Dropdown'
 import { Filter } from '../cmps/Filter'
+import { TemporaryDrawer } from './Drawer'
 
 
 export function AppHeader() {
@@ -40,26 +40,39 @@ export function AppHeader() {
 
   return (
     <div className='app-header'>
-
-      <section className="header-container container">
-        <div className="header-logo">
-          <Link to="/"><h1><span>C</span>uttin <span>B</span>oard</h1></Link>
-        </div>
-        <div className="header-routes">
-          <Link to="/">
-            <h4>Home</h4>
-          </Link>
-          <Link to="/ExplorRecipes">
-            <h4>Recipes</h4>
-          </Link>
-          <div className='logged-user'>
-            {loggedUserName()}
+      <div className="full-header">
+        <section className="header-container container">
+          <div className="header-logo">
+            <Link to="/"><h1><span>C</span>uttin <span>B</span>oard</h1></Link>
           </div>
-          <Link to="/Signup">
-            <div>{isLoggedIn()}</div>
-          </Link>
-        </div>
-      </section>
+          <div className="header-routes">
+            <Link to="/">
+              <h4>Home</h4>
+            </Link>
+            <Link to="/ExplorRecipes">
+              <h4>Recipes</h4>
+            </Link>
+            <div className='logged-user'>
+              {loggedUserName()}
+            </div>
+            <Link to="/Signup">
+              <div>{isLoggedIn()}</div>
+            </Link>
+          </div>
+        </section>
+      </div>
+      <div className="mobile-header">
+        <section className="header-container container">
+          <div className="header-logo">
+            <Link to="/"><h1><span>C</span>uttin <span>B</span>oard</h1></Link>
+          </div>
+          <TemporaryDrawer
+            loggedInUser={loggedInUser}
+            isLoggedIn={isLoggedIn}
+          >
+          </TemporaryDrawer>
+        </section>
+      </div>
     </div>
   )
 }
