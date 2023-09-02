@@ -115,8 +115,7 @@ export function Signup() {
     }
 
     return (
-        <div>
-            <section className='login container'>
+        <div className='login container'>
                 <h2>Sign up</h2>
                 <form className={incorrectUsername ? 'incorrect' : ''} action="">
                     <div className="input">
@@ -150,7 +149,6 @@ export function Signup() {
                     <Button onClick={setLogin}>Signup</Button>
                 </form>
                 <p>Allready have an account? <Link to="/Login">Login</Link></p>
-            </section>
         </div>
     )
 }
