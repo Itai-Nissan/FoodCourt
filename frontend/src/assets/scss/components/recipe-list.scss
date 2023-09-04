@@ -3,7 +3,6 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 
     .skeleton-preview {
-        // height: 250px;
         border-radius: 7px;
         margin-block-start: 1em;
         margin-left: 0.5em;
@@ -20,8 +19,52 @@
 .food-list {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-  
+
     * {
         font-family: PatrickHand;
     }
 }
+
+@media only screen and (max-width: 440px) {
+    .skeleton-list {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+
+        .skeleton-preview {
+            width: 100px;
+            // height: 100px;
+            .Skeleton{
+            }
+
+            // min-height: 150px;
+            // max-height: 150px;
+            .skeleton-footer {
+                // min-height: 150px;
+                // max-height: 150px;
+            }
+
+        }
+
+    }
+
+    .food-list {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+}
+
+/* Small devices (520px and up) */
+@media only screen and (min-width: 480px) {}
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 680px) {}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 808px) {}
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 1064px) {}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 1340px) {}

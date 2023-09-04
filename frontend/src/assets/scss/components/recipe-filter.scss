@@ -50,8 +50,7 @@
         -webkit-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
         -moz-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.24);
 
-        .reset-button{
-            // width: 200px;
+        .reset-button {
             display: flex;
             max-height: 30px;
         }
@@ -72,7 +71,6 @@
             background-color: $light-wood;
             color: $dark-wood;
             border-radius: 0 20px 20px 0px;
-            // width: 100px;
         }
 
         .MuiButtonBase-root:hover {
@@ -80,7 +78,41 @@
             color: $light-wood;
         }
     }
-
-
-
 }
+
+@media only screen and (max-width: 440px) {
+    .food-filter {
+        height: 85px;
+        display: flex;
+        flex-direction: column;
+        top: 65px;
+
+        .filter-result {
+            position: relative;
+
+        }
+
+        .filter-container {
+            margin-block-start: .5em;
+
+            input {
+                width: 250px;
+            }
+        }
+    }
+}
+
+/* Small devices (520px and up) */
+@media only screen and (min-width: 480px) {}
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 680px) {}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 808px) {}
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 1064px) {}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 1340px) {}
