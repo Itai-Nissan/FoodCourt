@@ -1,19 +1,10 @@
 .hero {
-    // height: 100vh;
     position: relative;
 
     .back-img {
-        // height: 100%;
         z-index: 1;
-        // position: absolute;
-        // top: 0px;
-        // left: 0;
 
         img {
-            // position: absolute;
-            // top: 53%;
-            // left: 50%;
-            // transform: translate(-50%, -50%);
             width: 100%;
             object-fit: cover;
         }
@@ -85,14 +76,6 @@
 
 @media only screen and (max-width: 440px) {
     .explore {
-        // position: absolute;
-        // transform: translate(-50%, -50%);
-        // z-index: 180;
-        // height: 50px;
-        // top: 350px;
-        // left: 40%;
-        // text-align: center;
-        // border-radius: 3px;
 
         .explore-container {
             h4 {
