@@ -20,30 +20,34 @@ export const Categories = (props) => {
 
     return (
         <section className="categories">
-            <div className="back-img">
-                <img src={backImg} alt="" />
-            </div>
-            <div className="explore">
-                <div className="explore-container">
-                    <div className="categories-links">
-                        <Link onClick={() => { setCategory('cheese') }} to="/ExplorRecipes">
-                            <div className="category-link">
-                                <h4>Cheese</h4>
-                                <img src={cheese} alt="" />
-                            </div>
-                        </Link>
-                        <Link onClick={() => { setCategory('Soup') }} to="/ExplorRecipes">
-                            <div className="category-link">
-                                <h4>Soup</h4>
-                                <img src={soup} alt="" />
-                            </div>
-                        </Link>
-                        <Link onClick={() => { setCategory('fried') }} to="/ExplorRecipes">
-                            <div className="category-link">
-                                <h4>Fried</h4>
-                                <img src={fried} alt="" />
-                            </div>
-                        </Link>
+            <hr />
+            <h2>Explore by categories</h2>
+            <div className="categories-content">
+                <div className="back-img">
+                    <img src={backImg} alt="" />
+                </div>
+                <div className="explore">
+                    <div className="explore-container">
+                        <div className="categories-links">
+                            <Link onClick={() => { setCategory('cheese') }} to="/ExplorRecipes">
+                                <div className="category-link">
+                                    <h4>Cheese</h4>
+                                    <img src={cheese} alt="" />
+                                </div>
+                            </Link>
+                            <Link onClick={() => { setCategory('Soup') }} to="/ExplorRecipes">
+                                <div className="category-link">
+                                    <h4>Soup</h4>
+                                    <img src={soup} alt="" />
+                                </div>
+                            </Link>
+                            <Link onClick={() => { setCategory('fried') }} to="/ExplorRecipes">
+                                <div className="category-link">
+                                    <h4>Fried</h4>
+                                    <img src={fried} alt="" />
+                                </div>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

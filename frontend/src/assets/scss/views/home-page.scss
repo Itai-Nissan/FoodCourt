@@ -1,7 +1,35 @@
 .home-page {
     width: 100%;
     display: flex;
+    // display: grid;
+    // grid-template-rows: 1fr 1fr 1fr;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@media only screen and (max-width: 440px) {
+}
+
+/* Small devices (520px and up) */
+@media only screen and (min-width: 480px) {
+}
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 680px) {
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 808px) {
+
+}
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 1064px) {
+
+}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 1340px) {
+
 }

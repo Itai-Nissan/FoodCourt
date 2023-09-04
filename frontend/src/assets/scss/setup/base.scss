@@ -35,6 +35,15 @@ span {
     margin: 0;
 }
 
+hr {
+    // margin: 0 auto;
+    border: 0;
+    height: 1px;
+    // background: red;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 .confirm-button {
     cursor: pointer;
     padding: .3em 1em .3em 1em;
@@ -72,4 +81,3 @@ span {
     color: $dark-text;
     background-color: $light-wood;
 }
-

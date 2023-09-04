@@ -14,7 +14,7 @@ import { Link } from "react-router-dom"
 
 export const TemporaryDrawer = (props) => {
   const [state, setState] = React.useState({
-    right: true,
+    right: false,
   })
 
   const toggleDrawer = (anchor, open) => (event) => {
