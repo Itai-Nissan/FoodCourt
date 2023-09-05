@@ -44,7 +44,7 @@
     }
 }
 
-@media only screen and (max-width: 440px) {
+@media only screen and (max-width: 480px) {
     .skeleton-list {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -84,10 +84,19 @@
 }
 
 /* Small devices (520px and up) */
-@media only screen and (min-width: 480px) {}
+@media only screen and (min-width: 480px) {
+    .food-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
 
 /* Small devices such as large phones (640px and up) */
-@media only screen and (min-width: 680px) {}
+@media only screen and (min-width: 680px) {
+    .food-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
 
 /* Medium devices such as tablets (768px and up) */
 @media only screen and (min-width: 808px) {}
@@ -96,4 +105,8 @@
 @media only screen and (min-width: 1064px) {}
 
 /* Largest devices such as desktops (1280px and up) */
-@media only screen and (min-width: 1340px) {}
+@media only screen and (min-width: 1340px) {
+    .food-list {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
