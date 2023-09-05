@@ -122,3 +122,112 @@
     }
 
 }
+
+@media only screen and (max-width: 440px) {
+    .add-recipe {
+        text-align: center;
+    
+        .content {
+            display: flex;
+            flex-direction: column-reverse;
+    
+            .add-recipe-wrapper {
+                display: grid;
+    
+                h1 {
+                    font-size: xx-large;
+                    margin-block-start: .3em;
+                }
+    
+                hr {
+                    margin-top: .5em;
+                    border: 0;
+                    height: 1px;
+                    background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
+                }
+    
+                .MuiInputBase-root-MuiInput-root {
+                    color: $dark-text;
+                }
+    
+                .MuiInputBase-root-MuiInput-root::after {
+                    border-bottom: 2px solid $light-wood;
+                }
+    
+                .MuiButtonBase-root {
+                    // margin-block-start: 1em;
+                    // width: 100%;
+                    font-family: Handlee;
+                    // padding: 0;
+                }
+    
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    margin-inline-end: 1em;
+    
+                    p {
+                        margin-block-start: .3em;
+                        color: $incorrect;
+                    }
+    
+                    Input {
+                        height: 40px;
+                    }
+    
+                }
+            }
+    
+            .control {
+    
+                .buttons {
+    
+                    p {
+                        // margin-block-start: .3em;
+                        // color: $incorrect;
+                    }
+    
+                    .loading-button {
+                        // margin-block-start: 1em;
+                        // display: flex;
+                        // justify-content: start;
+    
+                    }
+    
+                    .upload-button {
+                        // display: flex;
+                        // width: 150px;
+                        // flex-direction: row;
+    
+                    }
+                }
+    
+            }
+        }
+    
+    }
+    
+}
+
+/* Small devices (520px and up) */
+@media only screen and (min-width: 480px) {
+}
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 680px) {
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 808px) {
+
+}
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 1064px) {
+
+}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 1340px) {
+
+}

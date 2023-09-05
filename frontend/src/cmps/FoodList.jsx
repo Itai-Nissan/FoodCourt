@@ -10,12 +10,12 @@ export default function FoodList({ foodList }) {
         {[...Array(25)].map((e, i) => {
             return <Stack key={i} spacing={1}>
                 <div className='skeleton-preview'>
-                    <Skeleton variant="rounded" height={255} width={245} />
-                    <Skeleton variant="text" height={20} sx={{ fontSize: '1rem' }} />
+                    <Skeleton variant="rounded"/>
+                    <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
                     <br />
                     <div className="skeleton-footer">
-                        <Skeleton variant="text" width={100} height={20} sx={{ fontSize: '1rem' }} />
-                        <Skeleton variant="circular" width={40} height={40} />
+                        <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+                        <Skeleton variant="circular" />
                     </div>
                 </div>
             </Stack>

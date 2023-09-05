@@ -8,10 +8,29 @@
         margin-left: 0.5em;
         margin-right: 0.5em;
 
+        .MuiSkeleton-rounded {
+            height: 255px;
+            width: 245px;
+        }
+
+        .MuiSkeleton-text {
+            height: 20px;
+        }
+
         .skeleton-footer {
             display: flex;
             justify-content: space-between;
             align-items: end;
+
+            .MuiSkeleton-text {
+                width: 100px;
+                height: 20px;
+            }
+
+            .MuiSkeleton-circular {
+                width: 40px;
+                height: 40px;
+            }
         }
     }
 }
@@ -31,20 +50,30 @@
         grid-template-columns: repeat(1, 1fr);
 
         .skeleton-preview {
-            width: 100px;
-            // height: 100px;
-            .Skeleton{
+            margin-left: 0em;
+            margin-right: 0em;
+            width: 100%;
+    
+            .MuiSkeleton-rounded {
+                width: 100%;
             }
-
-            // min-height: 150px;
-            // max-height: 150px;
+    
+            .MuiSkeleton-text {
+            }
+    
             .skeleton-footer {
-                // min-height: 150px;
-                // max-height: 150px;
+                display: flex;
+                justify-content: space-between;
+                align-items: end;
+    
+                .MuiSkeleton-text {
+                }
+    
+                .MuiSkeleton-circular {
+                }
             }
-
         }
-
+    
     }
 
     .food-list {

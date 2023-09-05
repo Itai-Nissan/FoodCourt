@@ -53,7 +53,7 @@ export class Filter extends Component {
             onClick={this.onClickReset}
             // loading={this.state.loading}
             variant="standard">
-            Reset filter
+            Reset
           </Button>
         </section>
         <section className='filter-container'>
