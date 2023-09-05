@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { logout } from '../store/actions/userActions'
 import { loadUser } from '../store/actions/userActions'
-import Dropdown from './Dropdown'
+import {Dropdown} from './Dropdown'
 import { Filter } from '../cmps/Filter'
 import { TemporaryDrawer } from './Drawer'
 

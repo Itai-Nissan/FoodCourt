@@ -37,6 +37,14 @@
 
     .user-fav {
 
+        .fav-header {
+            display: flex;
+            align-items: center;
+            padding-inline-start: 1em;
+            padding-inline-end: 1em;
+            justify-content: space-between;
+        }
+
         .food-list {
             display: flex;
             flex-wrap: wrap;

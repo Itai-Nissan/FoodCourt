@@ -1,25 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
-
 import { utils } from '../services/utils'
-import { removeFromFav } from '../store/actions/userActions'
-
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
-
-
-import { Button } from '@mui/material'
+import AliceCarousel from 'react-alice-carousel'
+import { Dropdown } from '../cmps/Dropdown'
+import 'react-alice-carousel/lib/alice-carousel.css'
 
 export const UserProfile = (props) => {
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
     const userRecipes = useSelector((state) => state.userModule.userRecipes)
-    const userName = loggedInUser ? loggedInUser.userName : ''
 
     let userRecipe = ''
     if (userRecipes) userRecipe = userRecipes.map((recipe, index) => {
-        let imgName = recipe.thumbnail_url
-        const foodCredits = recipe.credits[0].name
         return <Link to={`/foodDetails/${recipe._id}`} key={index}>
             <div className='food-preview' key={index}>
                 <section className="card-img">
@@ -29,11 +21,6 @@ export const UserProfile = (props) => {
                     <div className="card-name">
                         <p>{utils.firstToCap(recipe.name)}</p>
                     </div>
-                    {/* <div className="card-credits"> */}
-                    {/* <p>{foodCredits}</p> */}
-                    {/* <img src={foodCreditsImg} alt="" /> */}
-                    {/* <Button onClick={() => removeRecipeFromFav(recipe.id)}>X</Button> */}
-                    {/* </div> */}
                 </section>
             </div >
         </Link>
@@ -70,16 +57,18 @@ export const UserProfile = (props) => {
         <div className='user-profile container'>
             <section className='user-details'>
                 <div className="header">
-                    {/* <h1>Hi {userName}</h1> */}
                 </div>
                 <div className="user-content">
                     <section className='user-fav'>
-                        <h2>Your favorites</h2>
+                        <div className="fav-header">
+                            <h2>Your favorites</h2>
+                            {loggedInUser ? <Dropdown></Dropdown> : null}
+                        </div>
                         <div className="food-list">
-                        {
-                                userFav ? <AliceCarousel 
-                                mouseTracking
-                                items={userFav}
+                            {
+                                userFav ? <AliceCarousel
+                                    mouseTracking
+                                    items={userFav}
                                 /> : ''
                             }
                         </div>

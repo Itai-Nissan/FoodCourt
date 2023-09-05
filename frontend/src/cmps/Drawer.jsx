@@ -42,9 +42,11 @@ export const TemporaryDrawer = (props) => {
             <Link to="/ExplorRecipes">
               <h4>Recipes</h4>
             </Link>
-            <Link to={`/UserProfile/${props.loggedInUser._id}`}>
-              <h4>{props.loggedInUser.userName}</h4>
-            </Link>
+            {props.loggedInUser ?
+              <Link to={`/UserProfile/${props.loggedInUser._id}`}>
+                <h4>{props.loggedInUser.userName}</h4>
+              </Link> : null
+            }
             <Link to="/Signup">
               <div>{props.isLoggedIn()}</div>
             </Link>

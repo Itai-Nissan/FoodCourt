@@ -117,7 +117,7 @@ const Popper = styled(PopperUnstyled)`
   z-index: 190;
 `;
 
-export default function UnstyledMenuIntroduction() {
+export const Dropdown = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isOpen = Boolean(anchorEl);
   const buttonRef = React.useRef(null);
@@ -126,11 +126,10 @@ export default function UnstyledMenuIntroduction() {
   const dispatch = useDispatch()
 
   function loggedUserName() {
-    if (loggedInUser) {
+    console.log(loggedInUser);
       return <div>
-        {loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1)}
+        {loggedInUser.userName ? loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1) : null}
       </div >
-    }
   }
 
   function setLogout(e) {
