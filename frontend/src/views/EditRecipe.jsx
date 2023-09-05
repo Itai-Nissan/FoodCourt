@@ -168,12 +168,12 @@ export const EditRecipe = () => {
 
     return (
         <div className='add-recipe container'>
+                    <h1>Edit recipe</h1>
+                    <hr />
             <section className="content">
                 <div className="add-recipe-wrapper">
                     {togglePreview ?
                         <form>
-                            <h1>Edit recipe</h1>
-                            <hr />
                             <Input type="text" placeholder='Name'
                                 value={recipeName}
                                 onChange={(event) => setRecipeName(event.target.value)} />

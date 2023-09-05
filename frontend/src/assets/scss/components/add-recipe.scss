@@ -2,24 +2,24 @@
     font-family: Handlee;
     color: $dark-text;
 
+    h1 {
+        font-size: xx-large;
+        margin-block-start: .3em;
+    }
+
+    hr {
+        margin-top: .5em;
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
+    }
+
     .content {
         display: grid;
         grid-template-columns: 75% 1fr;
 
         .add-recipe-wrapper {
             display: grid;
-
-            h1 {
-                font-size: xx-large;
-                margin-block-start: .3em;
-            }
-
-            hr {
-                margin-top: .5em;
-                border: 0;
-                height: 1px;
-                background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
-            }
 
             .MuiInputBase-root-MuiInput-root {
                 color: $dark-text;
@@ -125,62 +125,80 @@
 
 @media only screen and (max-width: 480px) {
     .add-recipe {
-        text-align: center;
-    
+        margin-block-end: 1em;
+
+        h1 {
+            text-align: center;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        }
+
         .content {
             display: flex;
             flex-direction: column-reverse;
-    
-            .add-recipe-wrapper {
-                display: grid;
-    
-                h1 {
-                    font-size: xx-large;
-                    margin-block-start: .3em;
-                }
-    
-                hr {
-                    margin-top: .5em;
-                    border: 0;
-                    height: 1px;
-                    background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
-                }
-    
-                .MuiInputBase-root-MuiInput-root {
-                    color: $dark-text;
-                }
-    
-                .MuiInputBase-root-MuiInput-root::after {
-                    border-bottom: 2px solid $light-wood;
-                }
-    
-                .MuiButtonBase-root {
-                    // margin-block-start: 1em;
-                    // width: 100%;
-                    font-family: Handlee;
-                    // padding: 0;
-                }
-    
-                form {
-                    display: flex;
-                    flex-direction: column;
-                    margin-inline-end: 1em;
-    
-                    p {
-                        margin-block-start: .3em;
-                        color: $incorrect;
-                    }
-    
-                    Input {
-                        height: 40px;
-                    }
-    
-                }
+
+            hr {
+                width: 100%;
+                margin-top: .5em;
+                border: 0;
+                height: 1px;
+                background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
             }
-    
+        }
+    }
+}
+
+/* Small devices (520px and up) */
+@media only screen and (min-width: 480px) {
+    .add-recipe {
+        margin-block-end: 1em;
+
+        h1 {
+            text-align: center;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column-reverse;
+
+            hr {
+                width: 100%;
+                margin-top: .5em;
+                border: 0;
+                height: 1px;
+                background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
+            }
             .control {
+                // padding: 1em;
+                // flex-direction: row;
+                // align-items: center;
+    
+                .MuiToggleButtonGroup-root {
+                    // background-color: $lighter-wood;
+    
+                    .MuiToggleButtonGroup-grouped:not(:first-of-type) {
+                        // color: $dark-text;
+                    }
+    
+                    .MuiToggleButtonGroup-grouped:not(:last-of-type) {
+                        // color: $dark-wood
+                    }
+                }
     
                 .buttons {
+                    // display: flex;
+                    // flex-direction: row;
+                    // align-items: center;
     
                     p {
                         // margin-block-start: .3em;
@@ -192,6 +210,16 @@
                         // display: flex;
                         // justify-content: start;
     
+    
+                        .MuiButtonBase-root:hover {
+                            // background-color: $confirm;
+                            // color: $dark-wood;
+                        }
+    
+                        .MuiButtonBase-root {
+                            // background-color: $light-wood;
+                            // color: $dark-wood;
+                        }
                     }
     
                     .upload-button {
@@ -199,35 +227,70 @@
                         // width: 150px;
                         // flex-direction: row;
     
+                        .MuiButtonBase-root:hover {
+                            // background-color: $confirm;
+                            // color: $dark-wood;
+                        }
+    
+                        .MuiButtonBase-root {
+                            // background-color: $dark-text;
+                            // color: $light-wood;
+                            // margin-block-start: 1em;
+                            // width: 100%;
+                            // font-family: Handlee;
+                        }
                     }
                 }
     
             }
-        }
-    
-    }
-    
-}
 
-/* Small devices (520px and up) */
-@media only screen and (min-width: 480px) {
+        }
+
+    }
+
 }
 
 /* Small devices such as large phones (640px and up) */
 @media only screen and (min-width: 680px) {
+    .add-recipe {
+        margin-block-end: 1em;
+
+        h1 {
+            text-align: start;
+        }
+
+        hr {
+            width: 100%;
+            margin-top: .5em;
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
+    }
+
+        .content {
+            display: grid;
+            grid-template-columns: 75% 1fr;
+
+            hr {
+                // width: 100%;
+                // margin-top: .5em;
+                // border: 0;
+                // height: 1px;
+                // background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
+            }
+            
+
+        }
+
+    }
+
 }
 
 /* Medium devices such as tablets (768px and up) */
-@media only screen and (min-width: 808px) {
-
-}
+@media only screen and (min-width: 808px) {}
 
 /* Large devices such as laptops (1024px and up) */
-@media only screen and (min-width: 1064px) {
-
-}
+@media only screen and (min-width: 1064px) {}
 
 /* Largest devices such as desktops (1280px and up) */
-@media only screen and (min-width: 1340px) {
-
-}
+@media only screen and (min-width: 1340px) {}
