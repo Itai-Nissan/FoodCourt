@@ -100,7 +100,6 @@
         justify-content: start;
         align-items: center;
         width: 100%;
-        // padding: 0.5em;
         z-index: 180;
 
         a {
@@ -178,6 +177,26 @@
             padding-inline-start: 1em;
             margin-block-end: 1em;
     
+        }
+
+        .details-right {
+            .sticky-right {
+    
+                .food-video {
+                    video {
+                        // max-width: 100%;
+                    }
+    
+                    img {
+                        // object-fit: cover;
+                        // border-radius: 7px;
+                        // max-width: 100%;
+                        // max-height: 450px;
+                        // margin-block-end: 1em;
+                    }
+                }
+    
+            }
         }
     }
 }
