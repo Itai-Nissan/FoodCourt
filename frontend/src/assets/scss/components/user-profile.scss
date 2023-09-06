@@ -85,26 +85,17 @@
                 display: grid;
                 grid-template-columns: 30% 1fr;
                 border-radius: 7px;
-                // flex: row;
-
-                // outline: 1px solid $light-wood;
 
                 .card-img {
                     position: absolute;
-                    // height: 100px;
-                    // justify-self: end;
-                    // min-height: 100px;
-                    // max-height: 100px;
 
                     img {
                         z-index: 1;
                         height: 200px;
                         width: 350px;
-                        // max-height: 200px;
                     }
 
                     img:hover {
-                        // opacity: .7;
                         transform: none;
                     }
 
@@ -136,3 +127,72 @@
         }
     }
 }
+
+@media only screen and (max-width: 480px) {
+    .user-profile {
+        margin-block-start: 0em;
+
+        .user-content {
+
+            .user-recipe {
+                h2 {
+                    margin-inline-start: .5em;
+                }
+
+
+                .user-recipe-box {
+                    grid-template-columns: repeat(1, 1fr);
+                }
+            }
+        }
+
+        .user-fav {
+
+            .fav-header {}
+
+            .food-list {
+
+                .alice-carousel__stage {
+                    width: 250px;
+                }
+
+                span {}
+
+                .alice-carousel__stage-item {}
+
+                .food-preview {
+                    width: 250px;
+
+                    .card-img {
+
+                        img {
+                            width: 250px;
+                        }
+
+                    }
+
+                    .card-body {}
+
+                    .MuiButtonBase-root {}
+
+                    .MuiButtonBase-root:hover {}
+                }
+            }
+        }
+    }
+}
+
+/* Small devices (520px and up) */
+@media only screen and (min-width: 480px) {}
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 680px) {}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 808px) {}
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 1064px) {}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 1340px) {}

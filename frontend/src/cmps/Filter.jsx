@@ -30,6 +30,7 @@ export class Filter extends Component {
       this.props.onChangeFilter({ ...this.state })
       this.state.currentSearch = this.state.text
       this.state.text = ''
+      console.log(window.location);
     }
   }
 

@@ -21,7 +21,6 @@
     }
 
     .header-container {
-        width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -68,20 +67,27 @@
             padding-inline-start: 1em;
             border-radius: 50px 0 0 50px;
 
-            // a:focus{
-            //     border-bottom: 1px solid $darker-text;
-            // }
-
             a {
                 color: $dark-text;
-                // border-bottom: 0px solid $dark-wood
             }
 
             a:hover {
                 color: $darker-text;
-                border-bottom: 1px solid $darker-text;
             }
-
+        
+            a::after {
+                content: '';
+                display: block;
+                width: 0;
+                height: 2px;
+                background: $darker-text;
+                transition: width .2s;
+            }
+        
+            a:hover::after {
+                width: 100%;
+            }
+        
             h4 {
                 font-size: 1em;
                 font-weight: 100;
@@ -119,7 +125,7 @@
 @media only screen and (min-width: 480px) {
     .app-header {
         .full-header {
-            width: 100%;
+            // width: 100%;
         }
 
     }
@@ -135,4 +141,12 @@
 @media only screen and (min-width: 1064px) {}
 
 /* Largest devices such as desktops (1280px and up) */
-@media only screen and (min-width: 1340px) {}
+@media only screen and (min-width: 1340px) {
+    .app-header {
+        .full-header {
+            // max-width: 100%;
+        }
+
+    }
+
+}

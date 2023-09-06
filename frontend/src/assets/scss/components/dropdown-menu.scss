@@ -1,12 +1,25 @@
 .dropdown-menu {
     h4 {
-        color: $dark-text;
+        // color: $dark-text;
+        display: inline-block;
+        text-decoration: none;
     }
 
     h4:hover {
         color: $darker-text;
-        border-bottom: 1px solid $darker-text;
+    }
 
+    h4::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 2px;
+        background: $darker-text;
+        transition: width .2s;
+    }
+
+    h4:hover::after {
+        width: 100%;
     }
 
     .MuiMenu-root {
@@ -32,28 +45,9 @@
 
 .MuiMenuItem-root:hover {
     background-color: $lighter-wood;
-    // background: $light-wood;
     outline: .5px solid $dark-text;
 }
 
 .Mui-focusVisible {
-    // border-bottom: 1px solid $darker-text;
     outline: none;
 }
-
-// .MuiMenu-root{
-//     position: relative;
-    
-// }
-// .Mui-expanded{
-//     position: relative;
-    
-// }
-// .css-1ej3oh2{
-//     position: relative;
-    
-// }
-// .MuiPopper-root{
-//     position: relative;
-
-// }

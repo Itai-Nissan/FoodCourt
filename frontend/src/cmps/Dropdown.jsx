@@ -126,10 +126,9 @@ export const Dropdown = (props) => {
   const dispatch = useDispatch()
 
   function loggedUserName() {
-    console.log(loggedInUser);
-      return <div>
+      return <>
         {loggedInUser.userName ? loggedInUser.userName.charAt(0).toUpperCase() + loggedInUser.userName.slice(1) : null}
-      </div >
+      </ >
   }
 
   function setLogout(e) {
@@ -182,7 +181,7 @@ export const Dropdown = (props) => {
         aria-expanded={isOpen || undefined}
         aria-haspopup="menu"
       >
-        <h4>{loggedUserName()}</h4>
+        <h4 className='cool-link'>{loggedUserName()}</h4>
       </TriggerButton>
       <MenuUnstyled
         actions={menuActions}
@@ -204,7 +203,7 @@ export const Dropdown = (props) => {
           </Link>
         </StyledMenuItem>
         <StyledMenuItem>
-          <div>{onClickLogout()}</div>
+          <>{onClickLogout()}</>
         </StyledMenuItem>
       </MenuUnstyled>
     </div>
