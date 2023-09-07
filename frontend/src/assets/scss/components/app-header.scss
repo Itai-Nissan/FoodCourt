@@ -80,14 +80,14 @@
                 display: block;
                 width: 0;
                 height: 2px;
-                background: $darker-text;
+                background: $dark-text;
                 transition: width .2s;
             }
         
             a:hover::after {
                 width: 100%;
             }
-        
+
             h4 {
                 font-size: 1em;
                 font-weight: 100;

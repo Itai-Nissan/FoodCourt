@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: minmax(60%, 40%) 40% 60%;
     margin-block-start: .5em;
+    margin-block-end: 1em;
 
     * {
         // font-family: PatrickHand;
@@ -40,6 +41,7 @@
         z-index: 180;
         width: 100%;
         color: $dark-text;
+        padding-inline-end: 1em;
 
             h1 {
                 font-size: 5em;

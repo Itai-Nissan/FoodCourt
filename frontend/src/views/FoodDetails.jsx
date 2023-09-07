@@ -43,7 +43,7 @@ export const FoodDetails = (props) => {
     </div>
 
     return (
-        < >
+        <div className='container'>
             {foodById.recipes ?
                 foodById.recipes.map((recipe, index) => {
                     return <MultiRecipe
@@ -65,6 +65,6 @@ export const FoodDetails = (props) => {
             }
             {/* <button onClick={onBack}>Back</button> */}
             {/* <Link to='/food' >Next Food</Link> */}
-        </>
+        </div>
     )
 }
