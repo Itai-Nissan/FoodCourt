@@ -84,8 +84,7 @@
                 .loading-button {
                     margin-block-start: 1em;
                     display: flex;
-                    justify-content: start;
-
+                    justify-content: center;
 
                     .MuiButtonBase-root:hover {
                         background-color: $confirm;
@@ -95,6 +94,9 @@
                     .MuiButtonBase-root {
                         background-color: $light-wood;
                         color: $dark-wood;
+                        border-radius: 50px;
+                        height: 30px;
+                        width: 200px;
                     }
                 }
 
@@ -178,70 +180,36 @@
                 height: 1px;
                 background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
             }
+
             .control {
-                // padding: 1em;
-                // flex-direction: row;
-                // align-items: center;
-    
+
                 .MuiToggleButtonGroup-root {
-                    // background-color: $lighter-wood;
-    
-                    .MuiToggleButtonGroup-grouped:not(:first-of-type) {
-                        // color: $dark-text;
-                    }
-    
-                    .MuiToggleButtonGroup-grouped:not(:last-of-type) {
-                        // color: $dark-wood
-                    }
+
+                    .MuiToggleButtonGroup-grouped:not(:first-of-type) {}
+
+                    .MuiToggleButtonGroup-grouped:not(:last-of-type) {}
                 }
-    
+
                 .buttons {
-                    // display: flex;
-                    // flex-direction: row;
-                    // align-items: center;
-    
-                    p {
-                        // margin-block-start: .3em;
-                        // color: $incorrect;
-                    }
-    
+
+                    p {}
+
                     .loading-button {
-                        // margin-block-start: 1em;
-                        // display: flex;
-                        // justify-content: start;
-    
-    
-                        .MuiButtonBase-root:hover {
-                            // background-color: $confirm;
-                            // color: $dark-wood;
-                        }
-    
-                        .MuiButtonBase-root {
-                            // background-color: $light-wood;
-                            // color: $dark-wood;
-                        }
+
+
+                        .MuiButtonBase-root:hover {}
+
+                        .MuiButtonBase-root {}
                     }
-    
+
                     .upload-button {
-                        // display: flex;
-                        // width: 150px;
-                        // flex-direction: row;
-    
-                        .MuiButtonBase-root:hover {
-                            // background-color: $confirm;
-                            // color: $dark-wood;
-                        }
-    
-                        .MuiButtonBase-root {
-                            // background-color: $dark-text;
-                            // color: $light-wood;
-                            // margin-block-start: 1em;
-                            // width: 100%;
-                            // font-family: Handlee;
-                        }
+
+                        .MuiButtonBase-root:hover {}
+
+                        .MuiButtonBase-root {}
                     }
                 }
-    
+
             }
 
         }
@@ -265,20 +233,14 @@
             border: 0;
             height: 1px;
             background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
-    }
+        }
 
         .content {
             display: grid;
             grid-template-columns: 75% 1fr;
 
-            hr {
-                // width: 100%;
-                // margin-top: .5em;
-                // border: 0;
-                // height: 1px;
-                // background-image: linear-gradient(to right, $dark-text, $light-text, rgba(255, 255, 255, 0));
-            }
-            
+            hr {}
+
 
         }
 
