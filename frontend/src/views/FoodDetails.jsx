@@ -19,7 +19,6 @@ export const FoodDetails = (props) => {
 
     useEffect(() => {
         loadFood()
-        console.log(foodById);
     }, [params.id])
 
     async function loadFood() {

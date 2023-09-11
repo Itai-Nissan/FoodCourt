@@ -10,7 +10,6 @@ const dbService = require('../../services/db.service')
 const ObjectId = require('mongodb').ObjectId
 
 async function query(filterBy, skip, limit) {
-  console.log('filterby:', filterBy);
   const { query, order } = _buildCriteria(filterBy)
   skip = Number(skip)
   limit = Number(limit)
@@ -71,7 +70,6 @@ async function add(recipe, collectionToInsert) {
 }
 
 async function update(recipe) {
-  console.log('updating', recipe);
   var id = new ObjectId(recipe._id)
   delete recipe._id
   const collection = await dbService.getCollection('recipe')
@@ -163,6 +161,7 @@ async function fetchFromApi() {
 }
 
 async function getRecipeById(id) {
+  console.log('getting by id:', id);
   const collection = await dbService.getCollection('recipe')
   const recipe = await collection.findOne({ ['_id']: new ObjectId(id) })
   return recipe
