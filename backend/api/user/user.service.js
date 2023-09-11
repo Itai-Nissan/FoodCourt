@@ -23,7 +23,7 @@ function getUsers() {
 }
 
 async function addFavToUser(user, recipe) {
-    recipe.favId = utilities.randomId()
+    // recipe.favId = utilities.randomId()
     user.userFavorite.push(recipe)
     const collection = await dbService.getCollection('user')
     await collection.updateOne({ _id: user._id }, { $set: { ...user } })
@@ -48,6 +48,7 @@ async function removeFavFromUser(user, recipeId) {
 }
 
 async function getUserById(id) {
+    console.log('getUserById');
     id = parseInt(id)
     let user = null
     users.map((userById) => {
@@ -60,9 +61,10 @@ async function getUserById(id) {
 }
 
 async function getByUsername(userName) {
+    console.log('getByUsername');
     try {
         const collection = await dbService.getCollection('user')
-        const userToReturn = await collection.findOne({ fullName: userName })
+        const userToReturn = await collection.findOne({ userName: userName })
         return userToReturn
     } catch (err) {
         logger.error(`while finding user ${userName}`, err)
@@ -113,17 +115,12 @@ function _writeToJson() {
     })
 }
 
-function addRecipeToUser(userId, recipe) {
-
-    let userToSet
-    users.forEach((userToSearch) => {
-        if (userId === userToSearch._id) {
-            userToSet = userToSearch
-            userToSet.userRecipe.push(recipe)
-            _writeToJson()
-        }
-    })
-    return Promise.resolve(userToSet)
+async function addRecipeToUser(userId, recipe) {
+    const collection = await dbService.getCollection('user')
+    const user = await collection.findOne({ userName: userName })
+    user.userRecipe.push(recipe)
+    const userToReturn = await collection.updateOne({ _id: userId }, { $set: { ...user } })
+    return userToReturn
 }
 
 function removeRecipeFromUser(userId, recipeId) {

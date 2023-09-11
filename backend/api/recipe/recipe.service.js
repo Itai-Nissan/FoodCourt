@@ -5,6 +5,7 @@ const userRecipes = require("../../data/userRecipes.json")
 const utilities = require("../../services/utilities")
 const cloudinary = require("../../services/cloudinary")
 const fs = require('fs')
+const userService = require('../user/user.service')
 
 const dbService = require('../../services/db.service')
 const ObjectId = require('mongodb').ObjectId
@@ -59,7 +60,7 @@ function _buildCriteria(filterBy, sortBy) {
   return { query, order }
 }
 
-async function add(recipe, collectionToInsert) {
+async function _add(recipe, collectionToInsert) {
   // const collection = await dbService.getCollection('recipe')
   // recipes.map((recipe) => {
   //   collection.insertOne(recipe)
@@ -69,7 +70,7 @@ async function add(recipe, collectionToInsert) {
   return recipeToReturn
 }
 
-async function update(recipe) {
+async function _update(recipe) {
   var id = new ObjectId(recipe._id)
   delete recipe._id
   const collection = await dbService.getCollection('recipe')
@@ -80,7 +81,7 @@ async function update(recipe) {
 
 async function getAllUserRecipes(user) {
   let recipeQuery = {}
-  const userId = user._id
+  const userId = user._id.toString()
   recipeQuery.$or = [
     { ['author']: userId }
   ]
@@ -161,7 +162,6 @@ async function fetchFromApi() {
 }
 
 async function getRecipeById(id) {
-  console.log('getting by id:', id);
   const collection = await dbService.getCollection('recipe')
   const recipe = await collection.findOne({ ['_id']: new ObjectId(id) })
   return recipe
@@ -199,7 +199,7 @@ async function addRecipe(user, recipe) {
       create_at: dateObj,
     }
 
-    await add(recipeToAdd, 'recipe')
+    await _add(recipeToAdd, 'recipe')
 
     const allUserRecipes = await getAllUserRecipes(user)
     return ({
@@ -245,7 +245,7 @@ async function editRecipe(user, recipe) {
       original_video_url: vidUrl,
     }
 
-    await update(editedRecipe, 'recipe')
+    await _update(editedRecipe, 'recipe')
 
     const allUserRecipes = await getAllUserRecipes(user)
     return ({
@@ -281,6 +281,5 @@ module.exports = {
   getAllRecipes,
   getAllUserRecipes,
   fetchFromApi,
-  add,
   _writeToJson,
 }

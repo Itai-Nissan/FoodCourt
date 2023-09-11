@@ -10,6 +10,8 @@ async function login(req, res) {
     let userToSet = { ...user }
     delete userToSet.userPassword
     req.session.userName = userToSet
+    console.log('userToSet',userToSet);
+    console.log('userRecipes',userRecipes);
     res.json({
       userToSet,
       userRecipes
