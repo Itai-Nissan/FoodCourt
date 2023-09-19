@@ -1,6 +1,22 @@
 .MuiDialogContent-root {
-    // background-color: $light-wood;
     background-color: $lighter-wood;
+}
+
+.alert-dialog-slide {
+    align-self: self-end;
+    button {
+        border: none;
+        svg{
+            height: 20px;
+        }
+        height: 20px;
+        color: $dark-wood;
+        margin-block-end: 1em;
+    }
+
+    button:hover{
+        border: 1px solid $dark-wood-opactiy;
+    }
 }
 
 .MuiDialogTitle-root {
@@ -10,27 +26,6 @@
 .MuiDialogActions-root {
     background-color: $dark-text;
     color: $light-text;
-}
-
-.Button {
-}
-
-.MuiDialogContent-dividers {
-    background-color: blue;
-}
-
-.MuiDialogContentText-root {
-    clear: pink;
-}
-
-.MuiDialog-scrollPaper {
-    // background-color: purple;
-}
-
-
-.MuiDialog-paper {
-    background-color: peru;
-    color: purple;
 }
 
 .add-recipe {
