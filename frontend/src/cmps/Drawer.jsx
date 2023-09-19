@@ -47,6 +47,10 @@ export const TemporaryDrawer = (props) => {
                 <h4>{props.loggedInUser.userName}</h4>
               </Link> : null
             }
+            {
+              props.isLoggedIn() ? 
+              <>{props.loggedUserName()}</> : null
+            }
             <Link to="/Signup">
               <div>{props.isLoggedIn()}</div>
             </Link>

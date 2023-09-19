@@ -69,6 +69,7 @@ export function AppHeader() {
           <TemporaryDrawer
             loggedInUser={loggedInUser}
             isLoggedIn={isLoggedIn}
+            loggedUserName={loggedUserName}
           >
           </TemporaryDrawer>
         </section>

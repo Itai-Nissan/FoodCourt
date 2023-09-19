@@ -23,51 +23,51 @@ function getUsers() {
 }
 
 async function addFavToUser(user, recipe) {
-    // recipe.favId = utilities.randomId()
-    user.userFavorite.push(recipe)
     const collection = await dbService.getCollection('user')
-    await collection.updateOne({ _id: user._id }, { $set: { ...user } })
-    const userToSet = await getByUsername(user.fullName)
+    await collection.updateOne({ _id: new ObjectId(user._id) }, { $push: { userFavorite: recipe } })
+    console.log('pushed');
+    const userToSet = await getUserById(user._id)
     const userRecipes = await recipeService.getAllUserRecipes(user)
     const authUser = { userToSet, userRecipes }
     return Promise.resolve(authUser)
 }
 
 async function removeFavFromUser(user, recipeId) {
-    user.userFavorite.map((favToSlice, index) => {
-        if (favToSlice.id === recipeId) {
-            user.userFavorite.splice(index, 1)
+    const collection = await dbService.getCollection('user')
+    const userToUpdate = await getUserById(user._id)
+    userToUpdate.userFavorite.forEach((recipe, index) => {
+        if (recipe._id === recipeId) {
+            console.log('match')
+            userToUpdate.userFavorite.splice(index, 1)
         }
     })
-    const collection = await dbService.getCollection('user')
-    await collection.updateOne({ _id: user._id }, { $set: { ...user } })
-    const userToSet = await getByUsername(user.fullName)
+    await collection.updateOne({ _id: new ObjectId(user._id) }, { $set: { ...userToUpdate } })
+    const userToSet = await getUserById(user._id)
     const userRecipes = await recipeService.getAllUserRecipes(user)
     const authUser = { userToSet, userRecipes }
     return Promise.resolve(authUser)
 }
 
 async function getUserById(id) {
-    console.log('getUserById');
-    id = parseInt(id)
-    let user = null
-    users.map((userById) => {
-        if (userById._id === id) {
-            user = userById
-            return
-        }
-    })
-    return user
+    try {
+        const collection = await dbService.getCollection('user')
+        const userToReturn = await collection.findOne({ _id: new ObjectId(id) })
+        return userToReturn
+    } catch (err) {
+        // logger.error(`while finding user ${userName}`, err)
+        throw err
+    }
 }
 
 async function getByUsername(userName) {
-    console.log('getByUsername');
     try {
         const collection = await dbService.getCollection('user')
+        console.log('getByUsername:', userName);
         const userToReturn = await collection.findOne({ userName: userName })
+        console.log('userToReturn:', userToReturn);
         return userToReturn
     } catch (err) {
-        logger.error(`while finding user ${userName}`, err)
+        // logger.error(`while finding user ${userName}`, err)
         throw err
     }
 }
@@ -95,7 +95,7 @@ async function addUser(user) {
         delete userToReturn.userPassword
         return userToReturn
     } catch (err) {
-        logger.error('cannot insert user', err)
+        // logger.error('cannot insert user', err)
         throw err
     }
 }

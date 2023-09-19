@@ -34,7 +34,7 @@ export const FoodDetails = (props) => {
 
     async function removeRecipeFromFav() {
         if (!loggedInUser) return
-        return dispatch(removeFromFav(loggedInUser, foodById.id))
+        return dispatch(removeFromFav(loggedInUser, foodById._id))
     }
 
     if (!foodById) return <div>

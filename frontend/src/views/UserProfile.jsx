@@ -12,6 +12,7 @@ export const UserProfile = (props) => {
 
     let userRecipe = ''
     if (userRecipes) userRecipe = userRecipes.map((recipe, index) => {
+        console.log(recipe._id);
         return <Link to={`/foodDetails/${recipe._id}`} key={index}>
             <div className='food-preview' key={index}>
                 <section className="card-img">
@@ -28,23 +29,14 @@ export const UserProfile = (props) => {
 
     let userFav = ''
     if (loggedInUser) userFav = loggedInUser.userFavorite.map((recipe, index) => {
-        const foodCredits = recipe.credits[0].name
-        const foodCreditsImg = recipe.credits[0].image_url
         return <div className='food-preview' key={index}>
             <section className="card-body">
                 <Link to={`/foodDetails/${recipe._id}`} >
                     <div className="card-name">
                         <p>{recipe.name}</p>
                     </div>
-                    <div className="card-credits">
-                        <p>{foodCredits}</p>
-                        <div className="credit-img">
-                            <img src={foodCreditsImg} alt="" />
-                        </div>
-                    </div>
                 </Link>
             </section>
-
             <section className="card-img">
                 <Link to={`/foodDetails/${recipe._id}`} >
                     <img src={recipe.thumbnail_url} alt="" />
