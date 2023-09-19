@@ -78,3 +78,17 @@ export function setUpdateUserRecipe(user, recipe) {
         }
     }
 }
+
+export function setRemoveRecipe(user, recipe) {
+
+    return async (dispatch, getState) => {
+        try {
+            const authUser = await foodService.removeUserRecipe(user, recipe)
+            if (authUser) {
+                return authUser
+            }
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}

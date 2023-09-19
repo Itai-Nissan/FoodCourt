@@ -12,7 +12,6 @@ export const UserProfile = (props) => {
 
     let userRecipe = ''
     if (userRecipes) userRecipe = userRecipes.map((recipe, index) => {
-        console.log(recipe._id);
         return <Link to={`/foodDetails/${recipe._id}`} key={index}>
             <div className='food-preview' key={index}>
                 <section className="card-img">

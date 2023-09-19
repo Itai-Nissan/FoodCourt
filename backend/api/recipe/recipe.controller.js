@@ -21,6 +21,25 @@ async function addNewRecipe(req, res) {
   }
 }
 
+async function removeRecipe(req, res) {
+  
+  const { user, recipe } = req.body
+  try {
+    const newRecipe = await recipeService.removeUserRecipe(user, recipe)
+    let authUser = newRecipe
+    const userToSet = authUser.user
+    const userRecipes = authUser.allUserRecipes
+    res.json({
+      userToSet,
+      userRecipes
+    })
+
+  } catch (err) {
+    // logger.error('Failed to Login ' + err)
+    res.status(401).send({ err: 'Failed to Login' })
+  }
+}
+
 async function editUserRecipe(req, res) {
   const { user, recipe } = req.body
   try {
@@ -69,4 +88,5 @@ module.exports = {
   editUserRecipe,
   getUserRecipeById,
   getUserRecipe,
+  removeRecipe,
 }

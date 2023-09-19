@@ -79,6 +79,14 @@ async function _update(recipe) {
   return recipe
 }
 
+async function _delete(recipe) {
+  var id = new ObjectId(recipe._id)
+  delete recipe._id
+  const collection = await dbService.getCollection('recipe')
+  await collection.deleteOne({ _id: id })
+  return true
+}
+
 async function getAllUserRecipes(user) {
   let recipeQuery = {}
   const userId = user._id.toString()
@@ -258,6 +266,21 @@ async function editRecipe(user, recipe) {
   }
 }
 
+async function removeUserRecipe(user, recipe) {
+  try {
+    await _delete(recipe, 'recipe')
+
+    const allUserRecipes = await getAllUserRecipes(user)
+    return ({
+      user,
+      allUserRecipes
+    })
+  } catch (err) {
+    logger.error('cannot insert new recipe', err)
+    throw err
+  }
+}
+
 function _writeToJson(file, db) {
   console.log('writing to jSON');
   let updatedUsers = db
@@ -277,6 +300,7 @@ function _writeToJson(file, db) {
 module.exports = {
   addRecipe,
   editRecipe,
+  removeUserRecipe,
   getRecipeById,
   getAllRecipes,
   getAllUserRecipes,

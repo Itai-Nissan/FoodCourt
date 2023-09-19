@@ -6,6 +6,7 @@ export const foodService = {
     getById,
     addNewRecipe,
     editRecipe,
+    removeUserRecipe,
 }
 
 async function getFood(filterBy, startPoint, amountToRturn) {
@@ -32,11 +33,16 @@ async function addNewRecipe(user, recipe) {
 }
 
 async function editRecipe(user, recipe) {
-console.log(recipe);
     const authUser = await httpService.put('recipe', { user, recipe })
     if (authUser) {
     }
     return authUser
 }
 
+async function removeUserRecipe(user, recipe) {
+    const authUser = await httpService.delete('recipe', { user, recipe })
+    if (authUser) {
+    }
+    return authUser
+}
 

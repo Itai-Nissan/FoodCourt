@@ -3,6 +3,7 @@ import { utils } from '.././services/utils'
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { setUpdateUserRecipe } from '../store/actions/foodActions'
+import { setRemoveRecipe } from '../store/actions/foodActions'
 import { setUpdatedUser } from '../store/actions/userActions'
 import { AddIngredient } from '../cmps/addRecipe/AddIngredient'
 import { AddStep } from '../cmps/addRecipe/AddStep'
@@ -14,6 +15,8 @@ import { Input } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
 import { ToggleButton } from '@mui/material'
 import { ToggleButtonGroup } from '@mui/material'
+import { Button } from '@mui/material'
+
 
 export const EditRecipe = () => {
     const dispatch = useDispatch()
@@ -123,7 +126,6 @@ export const EditRecipe = () => {
         }
     }
 
-
     function onEditRecipe() {
         const checkRecipeName = validatRecipeName()
         const checkRecipeCountry = validatRecipeCountry()
@@ -166,10 +168,26 @@ export const EditRecipe = () => {
         }
     }
 
+    function onRemoveRecipe() {
+        setLoading(true)
+        dispatch(setRemoveRecipe(loggedInUser, foodById))
+            .then((res) => {
+                if (!res) {
+                    console.log('ein rez')
+                }
+                if (res) {
+                    dispatch(setUpdatedUser(res))
+                        .then(() => {
+                            navigate(`/UserProfile/${loggedInUser._id}`)
+                        })
+                }
+            })
+    }
+
     return (
         <div className='add-recipe container'>
-                    <h1>Edit recipe</h1>
-                    <hr />
+            <h1>Edit recipe</h1>
+            <hr />
             <section className="content">
                 <div className="add-recipe-wrapper">
                     {togglePreview ?
@@ -219,7 +237,9 @@ export const EditRecipe = () => {
                         </section>
                     }
                 </div>
+
                 <div className="control">
+                    <Button onClick={onRemoveRecipe}>Remove recipe</Button>
                     <ToggleButtonGroup
                         color="primary"
                         value={alignment}
@@ -230,7 +250,6 @@ export const EditRecipe = () => {
                         <ToggleButton value="true">edit</ToggleButton>
                         <ToggleButton value="false">preview</ToggleButton>
                     </ToggleButtonGroup>
-
                     <section className="buttons">
                         <div className="upload-button">
                             <AddImage
