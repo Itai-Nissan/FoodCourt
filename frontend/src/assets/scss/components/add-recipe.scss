@@ -1,6 +1,42 @@
+.MuiDialogContent-root {
+    // background-color: $light-wood;
+    background-color: $lighter-wood;
+}
+
+.MuiDialogTitle-root {
+    background-color: $lighter-wood;
+}
+
+.MuiDialogActions-root {
+    background-color: $dark-text;
+    color: $light-text;
+}
+
+.Button {
+}
+
+.MuiDialogContent-dividers {
+    background-color: blue;
+}
+
+.MuiDialogContentText-root {
+    clear: pink;
+}
+
+.MuiDialog-scrollPaper {
+    // background-color: purple;
+}
+
+
+.MuiDialog-paper {
+    background-color: peru;
+    color: purple;
+}
+
 .add-recipe {
     font-family: Handlee;
     color: $dark-text;
+
 
     h1 {
         font-size: xx-large;

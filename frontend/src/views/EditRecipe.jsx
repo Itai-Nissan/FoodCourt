@@ -16,6 +16,8 @@ import { LoadingButton } from '@mui/lab'
 import { ToggleButton } from '@mui/material'
 import { ToggleButtonGroup } from '@mui/material'
 import { Button } from '@mui/material'
+import { AlertDialogSlide } from '../cmps/AlertDialogSlide'
+
 
 
 export const EditRecipe = () => {
@@ -239,7 +241,7 @@ export const EditRecipe = () => {
                 </div>
 
                 <div className="control">
-                    <Button onClick={onRemoveRecipe}>Remove recipe</Button>
+                    <AlertDialogSlide onRemoveRecipe={onRemoveRecipe}></AlertDialogSlide>
                     <ToggleButtonGroup
                         color="primary"
                         value={alignment}
