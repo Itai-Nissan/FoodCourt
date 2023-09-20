@@ -103,6 +103,7 @@ async function getAllRecipes(filterBy, skip, limit) {
   const count = recipesQuery.collectionCount
   const recipeList = recipesQuery.recipes
   const recipesData = { recipeList, count }
+  return tastyRecipes
   return recipesData
 }
 
