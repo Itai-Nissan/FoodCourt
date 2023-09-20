@@ -12,7 +12,7 @@ export const foodService = {
 async function getFood(filterBy, startPoint, amountToRturn) {
     const ENDPOINT = 'recipe'
     const pagination = { filterBy, startPoint, amountToRturn }
-    const recipesData = await httpService.get(ENDPOINT + '/', pagination)
+    const recipesData = await httpService.get(ENDPOINT, pagination)
     return recipesData
 }
 
