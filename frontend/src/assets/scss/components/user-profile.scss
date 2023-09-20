@@ -43,6 +43,9 @@
             padding-inline-start: 1em;
             padding-inline-end: 1em;
             justify-content: space-between;
+            .drop-menu{
+                display: none;
+            }
         }
 
         .food-list {
@@ -148,7 +151,11 @@
 
         .user-fav {
 
-            .fav-header {}
+            .fav-header {
+                .drop-menu{
+                    display: block;
+                }
+            }
 
             .food-list {
 

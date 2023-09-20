@@ -53,7 +53,9 @@ export const UserProfile = (props) => {
                     <section className='user-fav'>
                         <div className="fav-header">
                             <h2>Your favorites</h2>
-                            {loggedInUser ? <Dropdown></Dropdown> : null}
+                            <div className="drop-menu">
+                                {loggedInUser ? <Dropdown></Dropdown> : null}
+                            </div>
                         </div>
                         <div className="food-list">
                             {
