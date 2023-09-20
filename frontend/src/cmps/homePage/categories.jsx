@@ -3,11 +3,6 @@ import { useDispatch } from 'react-redux'
 import { Link } from "react-router-dom"
 import { setFilterBy } from '../../store/actions/foodActions'
 
-import backImg from '../../assets/images/background/cutting-board-2680168_edit2.jpg'
-import cheese from '../../assets/images/background/healthiest-cheese-1296x728-swiss.jpg'
-import soup from '../../assets/images/background/Homemade-Tomato-Soup-1.jpg'
-import fried from '../../assets/images/background/How-to-Use-A-Wok-For-Stir-Frying-Steaming.jpg'
-
 export const Categories = (props) => {
     const dispatch = useDispatch()
 
@@ -24,7 +19,7 @@ export const Categories = (props) => {
             <h2>Explore by categories</h2>
             <div className="categories-content">
                 <div className="back-img">
-                    <img src={backImg} alt="" />
+                    <img src='https://res.cloudinary.com/counditai/image/upload/v1695206941/Cutting-board/backgroud/cutting-board-2680168_edit2_mdw3c5.jpg' alt="" />
                 </div>
                 <div className="explore">
                     <div className="explore-container">
@@ -32,19 +27,19 @@ export const Categories = (props) => {
                             <Link onClick={() => { setCategory('cheese') }} to="/ExplorRecipes">
                                 <div className="category-link">
                                     <h4>Cheese</h4>
-                                    <img src={cheese} alt="" />
+                                    <img src='https://res.cloudinary.com/counditai/image/upload/v1695206937/Cutting-board/backgroud/healthiest-cheese-1296x728-swiss_mfjtmk.jpg' alt="" />
                                 </div>
                             </Link>
                             <Link onClick={() => { setCategory('Soup') }} to="/ExplorRecipes">
                                 <div className="category-link">
                                     <h4>Soup</h4>
-                                    <img src={soup} alt="" />
+                                    <img src='https://res.cloudinary.com/counditai/image/upload/v1695206938/Cutting-board/backgroud/Homemade-Tomato-Soup-1_osg8hn.jpg' alt="" />
                                 </div>
                             </Link>
                             <Link onClick={() => { setCategory('fried') }} to="/ExplorRecipes">
                                 <div className="category-link">
                                     <h4>Fried</h4>
-                                    <img src={fried} alt="" />
+                                    <img src='https://res.cloudinary.com/counditai/image/upload/v1695206937/Cutting-board/backgroud/How-to-Use-A-Wok-For-Stir-Frying-Steaming_erpdfc.jpg' alt="" />
                                 </div>
                             </Link>
                         </div>

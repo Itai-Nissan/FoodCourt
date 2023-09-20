@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { logout } from '../store/actions/userActions'
 import { loadUser } from '../store/actions/userActions'
-import {Dropdown} from './Dropdown'
-import { Filter } from '../cmps/Filter'
+import { Dropdown } from './Dropdown'
 import { TemporaryDrawer } from './Drawer'
 
 
 export function AppHeader() {
   const dispatch = useDispatch()
-  const [recipes, setRecipes] = useState(null)
 
   useEffect(() => {
     dispatch(loadUser())

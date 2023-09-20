@@ -55,18 +55,18 @@ export const Footer = (props) => {
                     </div>
                 </div>
                 <div className="links">
-                    <Link to="/Contact">About Us</Link>
-                    <Link to="/Contact">Contact Us</Link>
+                    <a href="https://itai-nissan.github.io/nissfolio/#/" target="_blank">About Me</a>
+                    <a href="https://itai-nissan.github.io/nissfolio/#/" target="_blank">Contact Me</a>
                     <Link to="/Privacy">Privacy Policy</Link>
                     <Link to="/Terms">Terms & Conditions</Link>
-                    <Link to="/Api">Used Api's</Link>
+                    <a href="https://rapidapi.com/apidojo/api/tasty" target="_blank">Used Api's</a>
                 </div>
 
             </section>
-                <div className="copy container">
-                    <button onClick={toTop}>BACK TO TOP</button>
-                    <h4>ITAI NISSAN &copy; 2023</h4>
-                </div>
+            <div className="copy container">
+                <button onClick={toTop}>BACK TO TOP</button>
+                <h4>ITAI NISSAN &copy; 2023</h4>
+            </div>
         </div>
     )
 }
