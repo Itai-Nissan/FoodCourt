@@ -15,6 +15,7 @@ const imgOptions = {
     overwrite: true,
     invalidate: true,
     resource_type: "auto",
+    folder: 'Cutting-board'
 }
 
 const vidOptions = {
