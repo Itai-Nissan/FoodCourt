@@ -100,8 +100,6 @@ async function getAllUserRecipes(user) {
 
 async function getAllRecipes(filterBy, skip, limit) {
   const recipesQuery = await query(filterBy, skip, limit)
-  // const count = updatedTastyRecipe.length
-  // const recipeList = updatedTastyRecipe
   const count = recipesQuery.collectionCount
   const recipeList = recipesQuery.recipes
   const recipesData = { recipeList, count }
@@ -178,6 +176,7 @@ async function getRecipeById(id) {
 }
 
 async function addRecipe(user, recipe) {
+  if (!user) return
   let dateObj = new Date()
 
   try {
@@ -209,7 +208,7 @@ async function addRecipe(user, recipe) {
       create_at: dateObj,
     }
 
-    await _add(recipeToAdd, 'recipe')
+    // await _add(recipeToAdd, 'recipe')
 
     const allUserRecipes = await getAllUserRecipes(user)
     return ({
@@ -217,7 +216,8 @@ async function addRecipe(user, recipe) {
       allUserRecipes
     })
   } catch (err) {
-    logger.error('cannot insert new recipe', err)
+    console.log('cannot insert new recipe', err)
+    // logger.error('cannot insert new recipe', err)
     throw err
   }
 }

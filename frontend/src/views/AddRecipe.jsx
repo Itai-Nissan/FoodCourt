@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAddUserRecipe } from '../store/actions/foodActions'
 import { setUpdatedUser } from '../store/actions/userActions'
@@ -98,6 +98,10 @@ export const AddRecipe = () => {
     }
 
     function onAddRecipe() {
+        if (!loggedInUser) {
+            navigate('/login')
+            return
+        }
         const checkRecipeName = validatRecipeName()
         const checkRecipeCountry = validatRecipeCountry()
         const checkRecipeDescription = validatRecipeDescription()
