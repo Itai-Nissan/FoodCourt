@@ -76,17 +76,26 @@
 
 @media only screen and (max-width: 480px) {
     .hero {
+
+        .back-img {
+    
+            img {
+                height: 400px;
+                object-fit: cover;
+            }
+    
+        }
+    
         .explore {
             top: 22%;
             left: 50%;
             width: 80%;
             
             .explore-container {
-                height: 30px;
                 a {
                     justify-content: space-between;
 
-                    // width: 100%;
+                    width: 100%;
                     h4 {
                         font-size: small;
                     }

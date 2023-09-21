@@ -37,7 +37,6 @@
                 h1 {
                     font-family: Handlee;
                     font-size: 1em;
-                    margin-inline-start: 1em;
                 }
 
                 span {
@@ -74,7 +73,7 @@
             a:hover {
                 color: $darker-text;
             }
-        
+
             a::after {
                 content: '';
                 display: block;
@@ -83,7 +82,7 @@
                 background: $dark-text;
                 transition: width .2s;
             }
-        
+
             a:hover::after {
                 width: 100%;
             }
@@ -111,6 +110,16 @@
 
 @media only screen and (max-width: 480px) {
     .app-header {
+        .header-container {
+            .header-logo {
+                a {
+                    h1 {
+                        margin-inline-start: .5em;
+                    }
+                }
+            }
+        }
+
         .full-header {
             display: none;
         }
