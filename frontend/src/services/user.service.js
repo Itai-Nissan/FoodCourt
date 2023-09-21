@@ -13,7 +13,6 @@ export const userService = {
 }
 
 const USER_DB = 'FoodyUserDb'
-const API = 'user'
 const ENDPOINT = 'auth'
 
 async function confirmUser(cred) {

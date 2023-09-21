@@ -99,11 +99,11 @@ async function getAllUserRecipes(user) {
 }
 
 async function getAllRecipes(filterBy, skip, limit) {
-  // const recipesQuery = await query(filterBy, skip, limit)
-  const count = updatedTastyRecipe.length
-  const recipeList = updatedTastyRecipe
-  // const count = recipesQuery.collectionCount
-  // const recipeList = recipesQuery.recipes
+  const recipesQuery = await query(filterBy, skip, limit)
+  // const count = updatedTastyRecipe.length
+  // const recipeList = updatedTastyRecipe
+  const count = recipesQuery.collectionCount
+  const recipeList = recipesQuery.recipes
   const recipesData = { recipeList, count }
   return recipesData
 }
