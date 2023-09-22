@@ -208,7 +208,7 @@ async function addRecipe(user, recipe) {
       create_at: dateObj,
     }
 
-    // await _add(recipeToAdd, 'recipe')
+    await _add(recipeToAdd, 'recipe')
 
     const allUserRecipes = await getAllUserRecipes(user)
     return ({
