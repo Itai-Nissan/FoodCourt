@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { Input } from '@mui/material'
 import { Button } from '@mui/material'
 import { setLoggedInUser } from '../store/actions/userActions'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 export function Login() {
     const dispatch = useDispatch()
@@ -36,18 +36,18 @@ export function Login() {
                     if (res.code) {
                         const error = res.response.data.err
                         console.log('ein rez', res.response.data.err)
-                        if (error == 'Invalid username or password') {
+                        if (error === 'Invalid username or password') {
                             console.log('Invalid username or password', error)
                             setIncorrectLogin(true)
                             setUserName('')
                             setUserPassword('')
                         }
-                        if (error == 'Invalid username') {
+                        if (error === 'Invalid username') {
                             console.log('Invalid username', error)
                             setIncorrectUsername(true)
                             setUserName('')
                         }
-                        if (error == 'Invalid password') {
+                        if (error === 'Invalid password') {
                             console.log('Invalid password', error)
                             setIncorrectPassword(true)
                             setUserPassword('')
