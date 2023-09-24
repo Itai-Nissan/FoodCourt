@@ -2,7 +2,8 @@
     margin-block-start: 1em;
     color: $dark-text;
     font-family: PatrickHand;
-    height: calc(100vh - 365px);
+    height: calc(100vh - 22.813em);
+    min-height: 15em;
 
     form {
         display: flex;
