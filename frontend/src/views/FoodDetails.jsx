@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { foodService } from '../services/food.service'
 import { addToFav } from '../store/actions/userActions'
 import { removeFromFav } from '../store/actions/userActions'
-import { Button } from '@mui/material'
 import { RecipeSkeleton } from '../cmps/RecipeSkeleton'
 import { SingleRecipe } from '../cmps/recipeDetails/SingleRecipe'
 import { MultiRecipe } from '../cmps/recipeDetails/MultiRecipe'
@@ -13,6 +12,7 @@ export const FoodDetails = (props) => {
     window.scrollTo(0, 0)
     const params = useParams()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [foodById, setFood] = useState(null)
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
@@ -28,7 +28,7 @@ export const FoodDetails = (props) => {
     }
 
     async function addFoodToFav() {
-        if (!loggedInUser) return
+        if (!loggedInUser) navigate('/login')
         return dispatch(addToFav(loggedInUser, foodById))
     }
 
