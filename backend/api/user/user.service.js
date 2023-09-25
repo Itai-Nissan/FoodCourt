@@ -25,7 +25,6 @@ function getUsers() {
 async function addFavToUser(user, recipe) {
     const collection = await dbService.getCollection('user')
     await collection.updateOne({ _id: new ObjectId(user._id) }, { $push: { userFavorite: recipe } })
-    console.log('pushed');
     const userToSet = await getUserById(user._id)
     const userRecipes = await recipeService.getAllUserRecipes(user)
     const authUser = { userToSet, userRecipes }
@@ -37,7 +36,6 @@ async function removeFavFromUser(user, recipeId) {
     const userToUpdate = await getUserById(user._id)
     userToUpdate.userFavorite.forEach((recipe, index) => {
         if (recipe._id === recipeId) {
-            console.log('match')
             userToUpdate.userFavorite.splice(index, 1)
         }
     })
@@ -62,9 +60,7 @@ async function getUserById(id) {
 async function getByUsername(userName) {
     try {
         const collection = await dbService.getCollection('user')
-        console.log('getByUsername:', userName);
         const userToReturn = await collection.findOne({ userName: userName })
-        console.log('userToReturn:', userToReturn);
         return userToReturn
     } catch (err) {
         // logger.error(`while finding user ${userName}`, err)

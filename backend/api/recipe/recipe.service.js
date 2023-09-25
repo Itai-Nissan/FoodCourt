@@ -39,7 +39,6 @@ function _buildCriteria(filterBy, sortBy) {
 
   if (text) {
     const textCriteria = { $regex: text, $options: 'i' }
-    console.log('textcriteria:', textCriteria);
     query.$or = [
       { ['description']: textCriteria },
       { ['name']: textCriteria },

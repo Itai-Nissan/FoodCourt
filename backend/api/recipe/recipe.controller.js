@@ -2,7 +2,6 @@ const recipeService = require('./recipe.service')
 // const logger = require('../../services/logger.service')
 
 async function addNewRecipe(req, res) {
-  console.log('addNewRecipe');
   const { user, recipe } = req.body
   try {
     const newRecipe = await recipeService.addRecipe(user, recipe)
