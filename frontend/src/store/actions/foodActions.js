@@ -2,6 +2,7 @@ import { foodService } from "../../services/food.service"
 
 
 export function loadFoodList(startPoint, amountToRturn) {
+    console.log('neit');
 
     return async (dispatch, getState) => {
         try {

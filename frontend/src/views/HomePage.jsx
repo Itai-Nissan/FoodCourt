@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Hero } from '../cmps/homePage/hero'
+import { Recommendation } from '../cmps/homePage/Recommendation'
 import { Shorts } from '../cmps/homePage/shorts'
 import { Categories } from '../cmps/homePage/categories'
 import { setFilterBy } from '../store/actions/foodActions'
@@ -17,6 +18,7 @@ export const HomePage = (props) => {
         <div className='home-page'>
             <Hero></Hero>
             <Shorts></Shorts>
+            <Recommendation></Recommendation>
             <Categories></Categories>
         </div>
     )

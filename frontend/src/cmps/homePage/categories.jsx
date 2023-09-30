@@ -26,19 +26,25 @@ export const Categories = (props) => {
                         <div className="categories-links">
                             <Link onClick={() => { setCategory('cheese') }} to="/ExplorRecipes">
                                 <div className="category-link">
-                                    <h4>Cheese</h4>
+                                    <div className="category-text">
+                                        <h4>Cheese</h4>
+                                    </div>
                                     <img src='https://res.cloudinary.com/counditai/image/upload/v1695206937/Cutting-board/backgroud/healthiest-cheese-1296x728-swiss_mfjtmk.jpg' alt="" />
                                 </div>
                             </Link>
                             <Link onClick={() => { setCategory('Soup') }} to="/ExplorRecipes">
                                 <div className="category-link">
-                                    <h4>Soup</h4>
+                                    <div className="category-text">
+                                        <h4>Soup</h4>
+                                    </div>
                                     <img src='https://res.cloudinary.com/counditai/image/upload/v1695206938/Cutting-board/backgroud/Homemade-Tomato-Soup-1_osg8hn.jpg' alt="" />
                                 </div>
                             </Link>
                             <Link onClick={() => { setCategory('fried') }} to="/ExplorRecipes">
                                 <div className="category-link">
-                                    <h4>Fried</h4>
+                                    <div className="category-text">
+                                        <h4>Fried</h4>
+                                    </div>
                                     <img src='https://res.cloudinary.com/counditai/image/upload/v1695206937/Cutting-board/backgroud/How-to-Use-A-Wok-For-Stir-Frying-Steaming_erpdfc.jpg' alt="" />
                                 </div>
                             </Link>

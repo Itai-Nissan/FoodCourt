@@ -1,0 +1,59 @@
+.recommendation {
+    margin-block-start: 2em;
+    h2 {
+        text-align: center;
+        font-family: Roboto-Light;
+        font-weight: 100;
+        color: $dark-text;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+    }
+
+    p {
+        color: $dark-text;
+    }
+
+    .recommendation-carousel {
+        .carousel {
+            .recommendation-img {
+                width: 350px;
+            }
+
+            img {
+                z-index: 1;
+                height: 200px;
+                width: 350px;
+                object-fit: cover;
+            }
+
+        }
+
+        .alice-carousel__stage {
+            width: 350px;
+        }
+
+
+        .alice-carousel__dots-item.__active {
+            background-color: $light-wood;
+
+        }
+
+        .alice-carousel__dots {
+            display: none;
+            background-color: $lighter-wood;
+        }
+
+        .alice-carousel__stage-item {
+            margin-inline-end: 1em;
+            width: 350px;
+        }
+
+        .alice-carousel__next-btn-item{
+            font-size: xx-large;
+        }
+        
+        .alice-carousel__prev-btn-item{
+            font-size: xx-large;
+        }
+    }
+}
