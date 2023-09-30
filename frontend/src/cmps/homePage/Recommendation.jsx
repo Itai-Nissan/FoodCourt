@@ -20,8 +20,8 @@ export const Recommendation = (props) => {
     }, [])
 
     function loadRecipes() {
-        dispatch(setFilterBy('cheese'))
-        dispatch(loadFoodList(0, pageSize))
+        dispatch(setFilterBy('banana'))
+        dispatch(loadFoodList(24, pageSize))
             .then((res) => {
                 console.log(res.recipeList);
                 setRecipes(res.recipeList)
@@ -34,16 +34,13 @@ export const Recommendation = (props) => {
 
     }
 
-    function setRecommendation(category) {
-    }
-
     return (
         <section className="recommendation container">
             <hr />
-            <h2>Recommended recipes</h2>
+            <h2>Suggested recipes</h2>
             <div className="recommendation-carousel">{
                 recipes ?
-                    <AliceCarousel mouseTracking  items={recipes.map((recipe, index) => {
+                    <AliceCarousel items={recipes.map((recipe, index) => {
                         return <Link to={`/foodDetails/${recipe._id}`} key={index}>
                             <div className='carousel'>
                                 <section className='recommendation-img'>
